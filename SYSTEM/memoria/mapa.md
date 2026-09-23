@@ -10,6 +10,7 @@ Actualizado: 2026-09-23
 | `SYSTEM/dashboard/` | `dashboard-maestro.html`: dashboard maestro de TT, servido protegido en `/sistema/dashboard-maestro.html` |
 | `SYSTEM/runtime/` | Servidor local (`server.mjs`) que sirve todo en :8790. Pruebas en `tests/` |
 | `SYSTEM/memoria/` | Esta memoria para orientar a las IA |
+| `SYSTEM/ia/promt/` | Registro local de prompts preparados por sector y de los que fueron utilizados. Actualmente vacío |
 | `SYSTEM/documentos-internos/` | Documentos fuente internos |
 | `GLOBAL/` | App Next.js del equipo Global (socios). Landing en `GLOBAL/landing/global.html`. Migraciones en `GLOBAL/supabase/migrations/` |
 | `GROWTH/` | Solo la landing `GROWTH/landing/growth.html`. Sin app todavía |
@@ -56,7 +57,7 @@ Explicación en palabras simples de cada carpeta. El apartado de carpetas del da
 | `global.tdt.systems` | Landing de Global → `/login` → app Global (equipo) |
 
 Por ahora se trabaja en local y no se despliega sin que TT lo pida.
-La versión publicada hoy es más vieja: `app.tdt.systems` todavía sirve la app Global.
+Publicado el 2026-09-23: `tdt.systems` sirve portada y landings; `app.tdt.systems` sirve la app Global (todavía no es el System de TT); `global.tdt.systems` no existe en el DNS. El dashboard maestro y el PIN NO están publicados: solo funcionan en local.
 
 ## Dos logins distintos (no mezclar)
 

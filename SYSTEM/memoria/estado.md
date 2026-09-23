@@ -5,6 +5,8 @@ Actualizado: 2026-09-23
 - HECHO: acceso local directo al dashboard maestro durante la construcción. El PIN permanece implementado, pero está desactivado en `SYSTEM/runtime/start.mjs`.
 
 ## Portada TDT
+- HECHO 2026-09-23: publicada en `tdt.systems` (portada, proyectos, System solo con pantalla de PIN, landings de Global, Growth y Digital).
+- PENDIENTE (deploy): validar el PIN y servir el dashboard maestro desde un servidor para `app.tdt.systems`; crear `global.tdt.systems` en el DNS (CNAME en Namecheap) y moverle la app Global; conectar un repositorio remoto para poder hacer push.
 - HECHO: `tdtsystem.html` → `proyectos.html` → landings en las carpetas de cada proyecto.
 - PENDIENTE (propuesto, sin confirmar por TT): usar en Growth y Digital el mismo botón "Login →" que Global; indicar que el logo se puede clicar; hacer que "← TDT" vuelva a proyectos.
 
@@ -22,6 +24,8 @@ Actualizado: 2026-09-23
 - Solo la landing. Sin app todavía.
 
 ## System / Admin
+- HECHO 2026-09-23: IA y automatización tiene el subapartado temporal `Promt`, con registros vacíos para preparados por sector y usos.
+- HECHO 2026-09-23: el apartado IA y automatización muestra el inventario actual de herramientas: GPT Work, Claude Code local y Antigravity IDE.
 - HECHO 2026-09-23: Global, Growth y Digital tienen vistas administrativas diferenciadas en el dashboard maestro. La operación detallada queda en la aplicación propia de cada negocio; Growth y Digital reflejan que todavía no tienen app.
 - PENDIENTE (TT): configurar el PIN con `node SYSTEM/runtime/configurar-pin.mjs` y reiniciar `./abrir.sh`.
 - HECHO 2026-09-23: acceso proyectos → System → login admin → dashboard maestro limpio, con los 4 proyectos y sus enlaces. Sin datos todavía.

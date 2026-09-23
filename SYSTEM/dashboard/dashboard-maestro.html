@@ -75,6 +75,16 @@ button:focus-visible,a:focus-visible{outline:2px solid rgba(255,255,255,.5);outl
 .btn.pri:hover{transform:translateY(-1px);box-shadow:0 12px 34px -8px rgba(255,255,255,.7)}
 .btn.sec{background:var(--glass2);color:var(--text);border:1px solid var(--edge2)}
 .btn.sec:hover{background:rgba(255,255,255,.12)}
+.btn.off{background:var(--glass);color:var(--muted);border:1px solid var(--edge);cursor:default;opacity:.65}
+/* herramientas de IA */
+.ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:28px}
+.ai-card{min-height:180px;padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.ai-icon{width:52px;height:52px;display:grid;place-items:center;border:1px solid var(--edge2);border-radius:16px;background:var(--glass2)}
+.ai-icon svg{width:29px;height:29px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ai-card h2{margin:30px 0 5px;font-size:18px;font-weight:500;letter-spacing:-.02em}.ai-card p{margin:0;color:var(--muted);font-size:12px}
+.promt-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:42px}.promt-head h2{margin:0;font-size:22px;font-weight:500;letter-spacing:-.03em}
+.promt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.promt-box{min-height:150px;padding:22px}.promt-box header{display:flex;align-items:center;justify-content:space-between;gap:12px}.promt-box h3{margin:0;font-size:15px;font-weight:500}.promt-box .zero{color:var(--muted);font:11px/1 var(--mono)}
+.promt-empty{height:90px;display:grid;place-items:center;color:var(--muted);font-size:12px}@media(max-width:700px){.promt-grid{grid-template-columns:1fr}}
 .section-head{display:flex;align-items:baseline;justify-content:space-between;margin:44px 4px 14px}
 .section-head h2{margin:0;font-size:18px;font-weight:500;letter-spacing:-.02em}
 .section-head span{color:var(--muted);font-size:12px}
@@ -282,7 +292,7 @@ const DETAIL={
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Navegación en tres niveles: lectura arriba, negocios al centro y gobierno abajo.
 const navBtn=id=>'<button data-page="'+id+'" title="'+NAMES[id]+'">'+svg(id)+'<span>'+NAMES[id]+'</span></button>';
-document.getElementById('nav').innerHTML=['inicio','mapa','memoria'].map(navBtn).join('')+'<div class="grow"></div>'+['global','growth','digital'].map(navBtn).join('')+'<div class="grow"></div>'+['direccion','personal','sistema','infraestructura','automatizacion'].map(navBtn).join('');
+document.getElementById('nav').innerHTML=['inicio','mapa','memoria','automatizacion'].map(navBtn).join('')+'<div class="grow"></div>'+['global','growth','digital'].map(navBtn).join('')+'<div class="grow"></div>'+['direccion','personal','sistema','infraestructura'].map(navBtn).join('');
 const pill=u=>'<span class="pill'+(u.on?' on':'')+'"><i></i>'+u.state+'</span>';
 const links=u=>u.links.map(l=>'<a class="btn '+l[2]+'" href="'+l[0]+'" target="'+l[3]+'"'+(l[3]==='_blank'?' rel="noopener"':'')+'>'+l[1]+'</a>').join('');
 const cards=()=>SYSTEM.map(x=>'<button class="card hover system-card" data-detail="'+x[0]+'"><span class="tag">'+x[1]+'</span><strong>'+x[2]+'</strong><p>'+x[3]+'</p></button>').join('');
@@ -293,30 +303,29 @@ function mapa(){
 function memoryView(){
  return '<header class="view-head"><h1>Memoria viva</h1><div class="row"><span class="pill" id="memoriaEstado">Leyendo…</span><button class="btn sec" id="memoriaRefrescar">Actualizar</button></div></header><div class="memory-grid" id="memoriaCuerpo"></div>';
 }
-function globalView(){
- const app=LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login';
- return '<header class="unit-head"><div><span class="pill on"><i></i>Dirección de negocio</span><h1>Global</h1><p>Lectura administrativa, decisiones y control del negocio.</p></div><div class="unit-actions"><a class="btn sec" href="/global.html" target="_top">Ver landing</a><a class="btn pri" href="'+app+'" target="_blank" rel="noopener">Abrir dashboard operativo →</a></div></header>'
-  +'<section class="facts"><article class="card fact"><strong style="font-size:15px">HECHO</strong><span>Dashboard operativo separado</span></article><article class="card fact"><strong style="font-size:15px">PENDIENTE</strong><span>Despliegue en global.tdt.systems</span></article><article class="card fact"><strong style="font-size:15px">SIN CARGAR</strong><span>Lectura económica consolidada</span></article><article class="card fact"><strong style="font-size:15px">SIN CARGAR</strong><span>Bloqueos de Dirección</span></article></section>'
-  +'<section class="work-grid"><article class="card work"><span class="tag">Dirección</span><h2>Negocio</h2><ul><li>Estado actual</li><li>Oferta y productos</li><li>Comercial</li><li>Próxima meta</li></ul></article><article class="card work"><span class="tag">Cadena</span><h2>Abastecimiento</h2><ul><li>Proveedores</li><li>Sourcing</li><li>Operación y logística</li><li>Riesgos y dependencias</li></ul></article><article class="card work"><span class="tag">Control</span><h2>Economía y organización</h2><ul><li>Economics</li><li>Capital</li><li>Equipo y responsabilidades</li><li>Bloqueos</li></ul></article></section>'
-  +'<section class="card pending-row"><div><span class="pill"><i></i>Lectura directiva pendiente</span><p>Estos apartados quedan preparados para incorporar información administrativa confirmada por TT.</p></div></section>';
+function projectView(name,id,app){
+ const dashboard=app?'<a class="btn pri" href="'+app+'" target="_blank" rel="noopener">Abrir dashboard operativo →</a>':'<span class="btn off" title="Todavía no existe">Dashboard operativo pendiente</span>';
+ return '<header class="unit-head"><div><h1>'+esc(name)+'</h1></div><div class="unit-actions"><a class="btn sec" href="/'+id+'.html" target="_top">Ver landing</a>'+dashboard+'</div></header>';
 }
-function businessView(data){
- const action='<a class="btn sec" href="/'+data.id+'.html" target="_top">Ver landing</a>';
- return '<header class="unit-head"><div><span class="pill on"><i></i>Dirección de negocio</span><h1>'+esc(data.name)+'</h1><p>'+esc(data.subtitle)+'</p></div><div class="unit-actions">'+action+'</div></header>'
-  +'<section class="facts"><article class="card fact"><strong style="font-size:15px">HECHO</strong><span>Landing pública disponible</span></article><article class="card fact"><strong style="font-size:15px">SIN APP</strong><span>Dashboard operativo todavía no creado</span></article><article class="card fact"><strong style="font-size:15px">SIN CARGAR</strong><span>Lectura económica consolidada</span></article><article class="card fact"><strong style="font-size:15px">SIN CARGAR</strong><span>Bloqueos de Dirección</span></article></section>'
-  +'<section class="work-grid">'+data.groups.map(g=>'<article class="card work"><span class="tag">'+esc(g[0])+'</span><h2>'+esc(g[1])+'</h2><ul>'+g[2].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></article>').join('')+'</section>'
-  +'<section class="card pending-row"><div><span class="pill"><i></i>Lectura directiva pendiente</span><p>La estructura está preparada para incorporar información administrativa confirmada por TT.</p></div></section>';
+function globalView(){return projectView('Global','global',LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login')}
+function growthView(){return projectView('Growth','growth','')}
+function digitalView(){return projectView('Digital','digital','')}
+const AI_TOOLS=[
+ ['GPT Work','Trabajo actual','<path d="M12 3a4 4 0 014 4 4 4 0 014 4 4 4 0 01-4 4 4 4 0 01-4 4 4 4 0 01-4-4 4 4 0 01-4-4 4 4 0 014-4 4 4 0 014-4z"/><path d="M8 7l8 8M16 7l-8 8"/>'],
+ ['Claude Code','Local','<path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/><circle cx="12" cy="12" r="3"/>'],
+ ['Antigravity IDE','IDE','<ellipse cx="12" cy="12" rx="9" ry="4"/><ellipse cx="12" cy="12" rx="4" ry="9" transform="rotate(45 12 12)"/><circle cx="12" cy="12" r="1.5"/>']
+];
+function aiView(){
+ return '<header class="view-head"><h1>IA y automatización</h1></header><section class="ai-grid">'+AI_TOOLS.map(x=>'<article class="card ai-card"><div class="ai-icon"><svg viewBox="0 0 24 24" role="img" aria-label="'+esc(x[0])+'">'+x[2]+'</svg></div><div><h2>'+esc(x[0])+'</h2><p>'+esc(x[1])+'</p></div></article>').join('')+'</section><section class="promt-head"><h2>Promt</h2><span class="pill" id="promtEstado"><i></i>Leyendo…</span></section><section class="promt-grid" id="promtCuerpo"></section>';
 }
-function growthView(){return businessView({id:'growth',name:'Growth',subtitle:'Dirección, control y evolución de la agencia.',groups:[
- ['Dirección','Negocio',['Estado actual','Oferta','Próxima meta','Bloqueos']],
- ['Mercado','Comercial',['Clientes','Marketing','Ventas','Inteligencia comercial']],
- ['Control','Economía y organización',['Delivery','Economics','Equipo y responsabilidades','Capacidad']]
-]})}
-function digitalView(){return businessView({id:'digital',name:'Digital',subtitle:'Dirección y control de conocimiento, productos y ofertas.',groups:[
- ['Dirección','Negocio',['Estado actual','Misión','Oferta y productos','Próxima meta']],
- ['Mercado','Conversión',['Audiencia','Captación','Conversión','Recurrencia']],
- ['Control','Economía y organización',['Checkout y cobro','Entrega','Economía y caja','Equipo','Bloqueos']]
-]})}
+function cargarPromt(){
+ const estado=document.getElementById('promtEstado'),cuerpo=document.getElementById('promtCuerpo');if(!estado)return;
+ fetch('/_tdt/promt',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{
+  if(!document.getElementById('promtCuerpo'))return;
+  estado.className='pill on';estado.innerHTML='<i></i>Registro local';
+  cuerpo.innerHTML='<article class="card promt-box"><header><h3>Preparados por sector</h3><span class="zero">'+e.preparados.length+'</span></header><div class="promt-empty">Todavía vacío</div></article><article class="card promt-box"><header><h3>Usados</h3><span class="zero">'+e.usos.length+'</span></header><div class="promt-empty">Todavía vacío</div></article>';
+ }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión';cuerpo.innerHTML=''});
+}
 function memoryMarkup(text){
  return String(text).split('\n').map(l=>{
   if(/^###\s+/.test(l))return '<h3>'+esc(l.replace(/^###\s+/,''))+'</h3>';
@@ -369,9 +378,10 @@ function render(next,detailId){
  document.getElementById('crumb').innerHTML='System'+(title?' <span style="opacity:.4">/</span> <b>'+esc(title)+'</b>':'');
  document.body.classList.toggle('inicio',page==='inicio'&&!detailId);
  const app=document.getElementById('app');
- app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():page==='mapa'?mapa():page==='memoria'?memoryView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
+ app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():page==='mapa'?mapa():page==='memoria'?memoryView():page==='automatizacion'?aiView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
  if(page==='mapa'&&!detailId)cargarMapa();
  if(page==='memoria'&&!detailId)cargarMemoria();
+ if(page==='automatizacion'&&!detailId)cargarPromt();
  app.style.animation='none';void app.offsetWidth;app.style.animation='';
  try{history.replaceState(null,'','#'+(detailId?'sistema/'+detailId:page))}catch{}
  window.scrollTo(0,0);

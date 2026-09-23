@@ -21,6 +21,8 @@ test('System PIN opens a local session, rejects wrong PINs and locks after 5 fai
   const e=await r.json();assert.ok(e.carpetas.some(c=>c.name==='SYSTEM'));assert.ok(!JSON.stringify(e).includes('node_modules'));
   r=await fetch(origin+'/_tdt/memoria');assert.equal(r.status,401);
   r=await fetch(origin+'/_tdt/memoria',{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.equal((await r.json()).documentos.length,6);
+  r=await fetch(origin+'/_tdt/promt');assert.equal(r.status,401);
+  r=await fetch(origin+'/_tdt/promt',{headers:{Cookie:cookie}});assert.equal(r.status,200);assert.deepEqual((await r.json()).preparados,[]);
   r=await fetch(origin+'/_tdt/session');assert.equal(r.status,401);
   for(let i=0;i<4;i++)assert.equal((await pin('1111')).status,401);
   assert.equal((await pin('1111')).status,429);
