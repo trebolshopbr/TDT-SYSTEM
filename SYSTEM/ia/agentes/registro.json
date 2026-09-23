@@ -3,7 +3,34 @@
   "herramientas": {
     "gpt-work": {
       "nombre": "GPT Work",
-      "activos": []
+      "activos": [
+        {
+          "id": "gpt-work-global-sugestoes",
+          "titulo": "Flujo de candidatos de producto en Global",
+          "estado": "activo",
+          "responsable": "GPT Work · Codex",
+          "haciendo": "Ordenando los cinco candidatos con imágenes, estado, ficha de análisis y conversión controlada al catálogo.",
+          "hecho": [
+            "Verificó que solo Papa-Bolinhas tiene dos imágenes históricas identificables como referencia."
+          ],
+          "siguiente": "Aplicar y verificar el flujo completo en Supabase y en el navegador.",
+          "bloqueos": [],
+          "archivos": [
+            "GLOBAL/src/app/productos/sugestoes/",
+            "GLOBAL/supabase/migrations/",
+            "SYSTEM/memoria/bitacora.md"
+          ],
+          "fuente": "Pedido directo de TT",
+          "actualizado": "2026-09-23T23:37:51Z",
+          "agente": {
+            "nombre": "GPT Work",
+            "simbolo": "◎",
+            "color": "#FFFFFF",
+            "forma": "circulo",
+            "lema": "Ordeno la evidencia y cierro el flujo."
+          }
+        }
+      ]
     },
     "claude-code": {
       "nombre": "Claude Code",
@@ -89,7 +116,7 @@
             "Despliegue de la aplicación Global en app.tdt.systems en Vercel",
             "Paso de todas las pruebas de runtime (3/3: server, PIN, IA registry)"
           ],
-          "siguiente": "Avanzar con la Fase 2 (GROWTH): embudo comercial de 13 estados y validación estricta de pagos.",
+          "siguiente": "Esperando la siguiente instrucción directa de TT.",
           "bloqueos": [],
           "archivos": [
             "SYSTEM/ia/agentes/registro.json",
