@@ -11,6 +11,7 @@ Actualizado: 2026-09-23
 - PENDIENTE (propuesto, sin confirmar por TT): usar en Growth y Digital el mismo botón "Login →" que Global; indicar que el logo se puede clicar; hacer que "← TDT" vuelva a proyectos.
 
 ## Global (app de socios, portugués de Brasil, moneda BRL)
+- HECHO 2026-09-23: Sugerencias contiene los cinco candidatos G1 con su nivel real de investigación. Una galería separada muestra las 73 imágenes históricas sin asociarlas todavía a productos o SKUs.
 - HECHO 2026-09-23: las dos sugerencias investigadas (Suporte Magnético Automotivo y Papa-Bolinhas Portátil) están cargadas y verificadas en la base remota mediante la migración `0020`.
 - HECHO: login, Meu escritório (KPIs de toda la empresa por Dia/Semana/Mês/Ano), Financeiro (bruto → comisiones → líquido → costo → gastos → lucro), Despesas (USD/BRL con el cambio del día), Fechamento de caixa, Pedidos (ligados a stock, comisión, método de pago), Produtos (imagen, canal, costo en USD, stock negativo = vendido sin stock, margens, sugestões), Catálogo, Plataformas, Sócios (solo admin). Galería de 73 fotos reales de productos disponible en `GLOBAL/public/products/`.
 - HECHO: estética negro/blanco en toda la app, autenticación rápida (`getClaims` + `cache`).
