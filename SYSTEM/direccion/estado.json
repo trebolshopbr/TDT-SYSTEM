@@ -1,0 +1,18 @@
+{
+  "ahora": {
+    "prioridad": "",
+    "decision": "",
+    "espera": "",
+    "bloqueo": "",
+    "delegar": "",
+    "noHacer": ""
+  },
+  "horizontes": {
+    "dias7": "",
+    "dias30": "",
+    "dias90": "",
+    "meses12": ""
+  },
+  "inbox": [],
+  "actualizado": null
+}

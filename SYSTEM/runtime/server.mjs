@@ -6,6 +6,8 @@ import { verifyPin } from './pin.mjs';
 import { estructura } from './estructura.mjs';
 import { memoria } from './memoria.mjs';
 import { promt } from './promt.mjs';
+import { ia } from './ia.mjs';
+import { guardarDireccion, leerDireccion } from './direccion.mjs';
 
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.css':'text/css'};
 export function createTdtServer({root,verifyUser,pinStore=null,requirePin=true}) {
@@ -84,9 +86,20 @@ export function createTdtServer({root,verifyUser,pinStore=null,requirePin=true})
     if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
     return respond(res,200,JSON.stringify(await memoria(root)),{'Content-Type':'application/json'});
    }
+   if(path==='/_tdt/ia'){
+    if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
+    return respond(res,200,JSON.stringify(await ia(root)),{'Content-Type':'application/json'});
+   }
    if(path==='/_tdt/promt'){
     if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
     return respond(res,200,JSON.stringify(await promt(root)),{'Content-Type':'application/json'});
+   }
+   if(path==='/_tdt/direccion'){
+    if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
+    if(req.method==='GET')return respond(res,200,JSON.stringify(await leerDireccion(root)),{'Content-Type':'application/json'});
+    if(req.method!=='PUT'||req.headers.origin!==origin)return respond(res,403,'Origen no permitido');
+    const entrada=JSON.parse(String(await body(req)));
+    return respond(res,200,JSON.stringify({estado:await guardarDireccion(root,entrada)}),{'Content-Type':'application/json'});
    }
    if(path==='/index.html')return respond(res,301,'',{'Location':'/'});
    if(path.startsWith('/sistema/')||path==='/'||/^\/(tdtsystem|proyectos|dashboard|system|personal|global|growth|digital)\.html$/.test(path)||/^\/(auth|config)\.js$/.test(path)||path.startsWith('/marca/')){

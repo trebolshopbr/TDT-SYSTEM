@@ -20,6 +20,7 @@ Si no sabes dónde está algo, qué se decidió o dónde guardar lo que hiciste,
 | Un cambio terminado | `bitacora.md`, con la fecha, qué se hizo y en qué archivos, en una entrada breve |
 | Algo terminado o pendiente | `estado.md`, actualizando el proyecto que corresponde |
 | Una carpeta, URL o base de datos nueva | `mapa.md` |
+| Lo que estás haciendo ahora (cada IA) | `SYSTEM/ia/agentes/registro.json`, en tu herramienta, campo `activos` |
 | Código o archivos de un proyecto | en la carpeta de ese proyecto (`GLOBAL/`, `GROWTH/`, `DIGITAL/`), nunca aquí |
 | Material viejo o dudoso | `~/TDT_REVISION/<nombre>-AAAA-MM-DD/`, nunca se borra. Anotarlo en `revision.md` |
 

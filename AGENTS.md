@@ -8,6 +8,8 @@ Construir TDT como un sistema claro, trazable y escalable sin volver a introduci
 
 Si te pierdes o no sabes dónde guardar algo, lee `SYSTEM/memoria/LEEME.md`. Ahí están el mapa, el estado, las decisiones y la bitácora. Al terminar un cambio, anótalo en `SYSTEM/memoria/bitacora.md`. Las decisiones nuevas de TT van en `SYSTEM/memoria/decisiones.md`.
 
+Toda IA que trabaje aquí (Claude Code, Antigravity IDE, GPT Work) registra lo que está haciendo en `SYSTEM/ia/agentes/registro.json`, dentro de `activos` de su herramienta: título, estado, qué hace ahora, qué hizo, siguiente paso, bloqueos y archivos. Se actualiza al empezar, al cambiar de tarea y al terminar. El dashboard maestro lo muestra en IA y automatización. Cada IA elige su propia identidad visual (`agente`: nombre, símbolo, color, forma y lema) y puede sumar `secciones` libres. Si TT te da el prompt "Ubicarse y dejar constancia" (sección Promt del dashboard), sigue ese prompt. Sin claves ni datos sensibles.
+
 ## Arquitectura objetivo
 
 - `tdt.systems`: portada pública. `tdtsystem.html` (solo el logo) → `proyectos.html` (Global, Growth, Digital, System) → landing de cada proyecto, guardada en la carpeta de su proyecto: `GLOBAL/landing/global.html`, `GROWTH/landing/growth.html`, `DIGITAL/landing/digital.html`.
@@ -16,6 +18,7 @@ Si te pierdes o no sabes dónde guardar algo, lee `SYSTEM/memoria/LEEME.md`. Ah�
 - Hay dos logins distintos a propósito: el de TT (sistema/admin) y el de cada proyecto (equipo). No mezclarlos.
 - En local: portada, landings y System en http://localhost:8790 (`./abrir.sh`); app Global en http://localhost:3000 (`cd GLOBAL && npm run dev`)). Cada app se abre por separado; System no arranca ninguna.
 - Trabajo local por defecto: no desplegar a Vercel ni tocar dominios sin pedido explícito de TT.
+- Para publicar la portada en `tdt.systems`, primero ejecutar `SYSTEM/deploy/armar-landing.sh` y desplegar desde `_registro/deploy-landing`. Nunca desplegar `SYSTEM/landing-sistema` directo: las landings de Global, Growth y Digital viven en sus carpetas y quedarían en 404.
 
 Mientras continúen dentro de un solo repositorio, estas fronteras deben mantenerse conceptualmente separadas.
 

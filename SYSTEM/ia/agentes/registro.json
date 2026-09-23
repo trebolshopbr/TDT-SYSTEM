@@ -1,0 +1,130 @@
+{
+  "_como_usar": "Cada IA agrega o actualiza SU entrada en 'activos' de su herramienta. Campos: id, titulo, estado (activo | en pausa | terminado), responsable, haciendo, hecho[], siguiente, bloqueos[], archivos[], fuente, actualizado (ISO). Identidad visual libre en 'agente': {nombre, simbolo (hasta 4 caracteres), color (#RRGGBB), forma (circulo | cuadrado | rombo | hexagono | pildora), lema}. 'secciones' es libre: [{titulo, texto o items[]}] para contar lo que cada IA decida. Sin claves ni datos sensibles.",
+  "herramientas": {
+    "gpt-work": {
+      "nombre": "GPT Work",
+      "activos": []
+    },
+    "claude-code": {
+      "nombre": "Claude Code",
+      "activos": [
+        {
+          "id": "claude-code-local-tdt-nuevo",
+          "titulo": "Sesión local en TDT NUEVO",
+          "estado": "activo",
+          "responsable": "claude system1 · Claude Code (Sonnet 5), sesión local en la Mac de TT",
+          "haciendo": "Esperando que Antigravity suba a GitHub los cambios locales. La portada ya está corregida en tdt.systems.",
+          "hecho": [
+            "Ordenó TDT NUEVO: cada proyecto con su landing en su carpeta y lo viejo archivado en TDT_REVISION",
+            "Creó SYSTEM/memoria: mapa, estado, decisiones, bitácora y revisión para que las IA se orienten",
+            "Rehizo el dashboard maestro: barra lateral solo con íconos, árbol de carpetas plegable, memoria viva",
+            "Separó System de Growth y dejó el acceso con PIN de 4 números (hoy apagado en local)",
+            "Publicó la portada en tdt.systems y actualizó la app Global en app.tdt.systems, a pedido de TT",
+            "Creó el registro de IA: cada herramienta muestra lo activo al tocarla en IA y automatización",
+            "Corrigió tdt.systems: Global, Growth y Digital volvieron a abrir (estaban en 404 tras un deploy incompleto)",
+            "Creó SYSTEM/deploy/armar-landing.sh para que ninguna IA vuelva a publicar la portada incompleta"
+          ],
+          "siguiente": "Cuando Antigravity suba los cambios, verificar que GitHub main coincida con la carpeta local y no tenga secretos.",
+          "bloqueos": [
+            "global.tdt.systems no existe en el DNS: TT debe crear el registro CNAME en Namecheap",
+            "Subir a GitHub los cambios locales pendientes (lo hace Antigravity)"
+          ],
+          "archivos": [
+            "SYSTEM/dashboard/dashboard-maestro.html",
+            "SYSTEM/runtime/server.mjs",
+            "SYSTEM/memoria/bitacora.md",
+            "SYSTEM/ia/agentes/registro.json",
+            "SYSTEM/deploy/armar-landing.sh"
+          ],
+          "fuente": "SYSTEM/memoria/bitacora.md",
+          "actualizado": "2026-09-23T23:27:00Z",
+          "agente": {
+            "nombre": "claude system1",
+            "simbolo": "◑",
+            "color": "#F5B971",
+            "forma": "hexagono",
+            "lema": "Ordeno, verifico y dejo constancia."
+          },
+          "secciones": [
+            {
+              "titulo": "Cómo entiendo el sistema",
+              "texto": "TDT NUEVO es tu carpeta local limpia. SYSTEM es tu centro: portada, dashboard maestro, servidor local, memoria para las IA. Global, Growth, Digital y Personal son proyectos; cada uno guarda lo suyo en su carpeta y tiene su landing. Lo viejo está en TDT_REVISION, aparte y sin ejecutarse. En internet solo está publicada la portada y la app Global; el dashboard maestro funciona solo en tu Mac."
+            },
+            {
+              "titulo": "Lo que sé que no sé",
+              "items": [
+                "No vi la interfaz que hizo la versión de la nube sobre Supabase ni su rama en GitHub",
+                "No sé qué contiene hoy el Supabase de System (zffjultbznluqzweiuxj), que dejó de usarse para entrar",
+                "No sé qué hace Antigravity IDE con el repositorio más allá de lo que TT me contó",
+                "No verifiqué la app Global en internet con una sesión real, solo que las páginas responden"
+              ]
+            },
+            {
+              "titulo": "Cómo trabajo",
+              "items": [
+                "Reviso primero qué hay en el disco antes de tocar algo",
+                "Guardo lo viejo en TDT_REVISION en vez de borrarlo",
+                "Anoto cada cambio en la bitácora y en este registro",
+                "Si no me piden algo, no lo agrego"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "antigravity-ide": {
+      "nombre": "Antigravity IDE",
+      "activos": [
+        {
+          "id": "antigravity-ide-local-tdt-nuevo",
+          "titulo": "Sesión Antigravity IDE en TDT NUEVO",
+          "estado": "activo",
+          "responsable": "antigravity core · Antigravity IDE, sesión de desarrollo con TT",
+          "haciendo": "Sincronizando el repositorio GitHub main, gobernando deploys con armar-landing.sh y registrando la constancia del agente.",
+          "hecho": [
+            "Auditoría y segmentación completa de TDT_REVISION en 6 carpetas temáticas con LEEME.md",
+            "Fase 1 (GLOBAL): migración de 73 fotos de productos a GLOBAL/public/products y creación de la migración SQL 0020_seed_sugestoes_productos.sql",
+            "Configuración del repositorio Git limpio en main con .gitignore estricto sin subir TDT_REVISION ni claves",
+            "Publicación y verificación de la portada en tdt.systems mediante armar-landing.sh y deploy desde _registro/deploy-landing",
+            "Despliegue de la aplicación Global en app.tdt.systems en Vercel",
+            "Paso de todas las pruebas de runtime (3/3: server, PIN, IA registry)"
+          ],
+          "siguiente": "Avanzar con la Fase 2 (GROWTH): embudo comercial de 13 estados y validación estricta de pagos.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/ia/agentes/registro.json",
+            "SYSTEM/ia/promt/registro.json",
+            "SYSTEM/deploy/armar-landing.sh",
+            "SYSTEM/runtime/ia.mjs",
+            "SYSTEM/runtime/direccion.mjs",
+            "SYSTEM/runtime/tests/ia.test.mjs"
+          ],
+          "fuente": "SYSTEM/memoria/bitacora.md",
+          "actualizado": "2026-09-23T23:30:00Z",
+          "agente": {
+            "nombre": "antigravity core",
+            "simbolo": "▲",
+            "color": "#4A90E2",
+            "forma": "rombo",
+            "lema": "Elevo la arquitectura, protejo las fronteras."
+          },
+          "secciones": [
+            {
+              "titulo": "Cómo entiendo el sistema",
+              "texto": "TDT es una arquitectura modular y trazable. SYSTEM es el cerebro maestro y de gobierno de TT; Global, Growth, Digital y Personal son unidades operativas independientes con sus propias fronteras y ciclos de vida. TDT_REVISION es archivo histórico que se evalúa y migra quirúrgicamente sin contaminar el entorno activo."
+            },
+            {
+              "titulo": "Compromisos de trabajo",
+              "items": [
+                "Verificar antes de cerrar cada cambio",
+                "No exponer secretos, claves ni archivos de revisión en Git",
+                "Seguir siempre el pipeline oficial de deploy con armar-landing.sh",
+                "Respetar la autoridad raíz de TT y registrar cada acción en la bitácora"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

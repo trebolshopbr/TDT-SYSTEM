@@ -8,9 +8,13 @@ Actualizado: 2026-09-23
 |---|---|
 | `SYSTEM/landing-sistema/` | Portada `tdtsystem.html` (solo el logo), `proyectos.html` (System, Global, Growth, Digital), `marca/` (logo) y System: `system.html` (PIN) → `dashboard.html` |
 | `SYSTEM/dashboard/` | `dashboard-maestro.html`: dashboard maestro de TT, servido protegido en `/sistema/dashboard-maestro.html` |
+| `SYSTEM/deploy/` | `armar-landing.sh`: junta la portada con las landings de cada proyecto en `_registro/deploy-landing` para publicar en `tdt.systems`. No publica solo |
 | `SYSTEM/runtime/` | Servidor local (`server.mjs`) que sirve todo en :8790. Pruebas en `tests/` |
 | `SYSTEM/memoria/` | Esta memoria para orientar a las IA |
+| `SYSTEM/ia/promt/` | `registro.json`: prompts preparados por sector (`preparados`) y cuáles se usaron y quién (`usos`). Se muestra en Promt, dentro de IA y automatización |
+| `SYSTEM/ia/agentes/` | `registro.json`: lo que hace cada IA ahora (Claude Code, Antigravity IDE, GPT Work). Se muestra al tocar cada tarjeta en IA y automatización. Lo lee `/_tdt/ia` |
 | `SYSTEM/ia/promt/` | Registro local de prompts preparados por sector y de los que fueron utilizados. Actualmente vacío |
+| `SYSTEM/direccion/` | Estado vivo de Dirección: ahora, horizontes, inbox e historial local de cambios |
 | `SYSTEM/documentos-internos/` | Documentos fuente internos |
 | `GLOBAL/` | App Next.js del equipo Global (socios). Landing en `GLOBAL/landing/global.html`. Migraciones en `GLOBAL/supabase/migrations/` |
 | `GROWTH/` | Solo la landing `GROWTH/landing/growth.html`. Sin app todavía |
@@ -27,6 +31,7 @@ Explicación en palabras simples de cada carpeta. El apartado de carpetas del da
 - `SYSTEM/landing-sistema` — La entrada: el logo, la elección de proyecto y la pantalla del PIN
 - `SYSTEM/runtime` — El motor que prende todo en tu Mac y cuida tu PIN
 - `SYSTEM/memoria` — Donde las IA leen cómo está todo y anotan lo que hacen
+- `SYSTEM/ia` — Lo que hace cada IA ahora mismo, para que lo veas en el dashboard
 - `SYSTEM/documentos-internos` — Documentos fuente de TDT
 - `GLOBAL` — Proyecto Global: la app de tus socios
 - `GLOBAL/landing` — Su página de presentación, con el botón Login

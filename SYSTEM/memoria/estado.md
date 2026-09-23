@@ -11,6 +11,7 @@ Actualizado: 2026-09-23
 - PENDIENTE (propuesto, sin confirmar por TT): usar en Growth y Digital el mismo botón "Login →" que Global; indicar que el logo se puede clicar; hacer que "← TDT" vuelva a proyectos.
 
 ## Global (app de socios, portugués de Brasil, moneda BRL)
+- HECHO 2026-09-23: las dos sugerencias investigadas (Suporte Magnético Automotivo y Papa-Bolinhas Portátil) están cargadas y verificadas en la base remota mediante la migración `0020`.
 - HECHO: login, Meu escritório (KPIs de toda la empresa por Dia/Semana/Mês/Ano), Financeiro (bruto → comisiones → líquido → costo → gastos → lucro), Despesas (USD/BRL con el cambio del día), Fechamento de caixa, Pedidos (ligados a stock, comisión, método de pago), Produtos (imagen, canal, costo en USD, stock negativo = vendido sin stock, margens, sugestões), Catálogo, Plataformas, Sócios (solo admin). Galería de 73 fotos reales de productos disponible en `GLOBAL/public/products/`.
 - HECHO: estética negro/blanco en toda la app, autenticación rápida (`getClaims` + `cache`).
 - Datos reales: 13 pedidos de Shopee cargados. Nada ficticio.
@@ -24,6 +25,7 @@ Actualizado: 2026-09-23
 - Solo la landing. Sin app todavía.
 
 ## System / Admin
+- HECHO 2026-09-23: Dirección es editable y persistente: Ahora, horizontes, inbox y decisiones recientes. Cada guardado conserva la versión anterior en un historial local.
 - HECHO 2026-09-23: IA y automatización tiene el subapartado temporal `Promt`, con registros vacíos para preparados por sector y usos.
 - HECHO 2026-09-23: el apartado IA y automatización muestra el inventario actual de herramientas: GPT Work, Claude Code local y Antigravity IDE.
 - HECHO 2026-09-23: Global, Growth y Digital tienen vistas administrativas diferenciadas en el dashboard maestro. La operación detallada queda en la aplicación propia de cada negocio; Growth y Digital reflejan que todavía no tienen app.
