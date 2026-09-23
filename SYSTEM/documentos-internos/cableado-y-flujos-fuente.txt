@@ -1,0 +1,529 @@
+FASE 5 — CABLEADO Y FLUJOS
+Contrato conceptual de conexiones del TDT OS
+
+OBJETIVO
+Definir cómo dos nodos previamente delimitados en Fase 4 pueden intercambiar información, estado, decisiones, capital, trabajo o evidencia sin alterar silenciosamente sus fronteras ni su autoridad.
+
+REGLA DE ENTRADA
+Fase 5 solo puede instanciar conexiones entre nodos suficientemente delimitados por Fase 4.
+- CONFIRMADO / saneado → conexión diseñable.
+- PARCIAL → solo conexión provisional/restringida con límites explícitos.
+- POR VERIFICAR o afectado por hallazgo Grupo 3 → no se cablea esa relación hasta obtener evidencia.
+La conexión hereda el nivel de certeza más débil de los elementos de los que depende.
+
+DEFINICIÓN DE CONEXIÓN
+Una conexión existe cuando un OUTPUT identificable de un nodo ORIGEN es recibido como INPUT por un nodo DESTINO mediante un mecanismo explícito, bajo autoridad definida y con trazabilidad suficiente para demostrar qué ocurrió.
+Una conexión no crea autoridad nueva, no convierte una proyección en fuente canónica y no fusiona los nodos que conecta.
+
+CONTRATO UNIVERSAL DE CONEXIÓN
+CONEXIÓN: [ID]
+1. ORIGEN: [Nodo productor]
+2. OUTPUT DE ORIGEN: [Qué sale exactamente]
+3. DESTINO: [Nodo receptor]
+4. INPUT DE DESTINO: [Qué consume exactamente]
+5. DOMINIO / HECHO: [Qué realidad representa o transporta]
+6. FUENTE CANÓNICA: [Qué fuente gobierna ese hecho]
+7. DIRECCIÓN: [A→B / B→A; nunca asumir bidireccionalidad]
+8. TRIGGER / CADENCIA: [Evento, condición, horario o manual]
+9. CANAL / TRANSPORTE: [API, archivo, documento, mensaje, acción humana u otro mecanismo]
+10. AUTORIDAD SOBRE EL FLUJO:
+   - Leer:
+   - Escribir:
+   - Ejecutar:
+   - Decidir:
+11. TRANSFORMACIÓN / NORMALIZACIÓN: [Qué cambia entre origen y destino; si nada, declarar SIN TRANSFORMACIÓN]
+12. VALIDACIÓN / ACK: [Cómo se confirma recepción, aplicación o rechazo]
+13. EVIDENCIA / TRAZA: [Qué registro permite auditar la conexión]
+14. FALLO Y ESCALAMIENTO: [Qué ocurre si falla, diverge o recibe datos inválidos]
+15. ESTADO Y CERTEZA: [Propuesta / Provisional-restringida / Operativa confirmada / Bloqueada / Retirada + nivel de certeza heredado]
+
+REGLAS DURAS DE FASE 5
+1. Ningún flujo puede redefinir la frontera del nodo sin volver a gobierno.
+2. Ninguna conexión concede W/E/D a un nodo que Fase 4 no haya autorizado.
+3. Para cada hecho gobernable debe existir una fuente canónica explícita; una copia, UI o cache no adquiere canonicidad por transportar el dato.
+4. Toda escritura debe declarar autor, autoridad, resultado y evidencia.
+5. Bidireccionalidad se modela como dos conexiones si existen dos responsabilidades distintas.
+6. Transformar datos obliga a declarar reglas de normalización; no se permite semántica implícita.
+7. Un fallo no puede producir un fallback silencioso hacia una segunda fuente de verdad.
+8. Los hallazgos Grupo 3 bloquean únicamente las conexiones que dependan de la evidencia faltante, salvo que el componente sea crítico para todo el sistema.
+9. Las conexiones deben poder retirarse o sustituirse sin borrar el historial de su existencia.
+
+OUTPUTS DE FASE 5
+- Registro de Conexiones.
+- Fichas de Contrato por conexión.
+- Mapa de Flujos por dominio.
+- Registro de fallos, excepciones y escalamiento.
+- Estado de certeza heredado de cada conexión.
+
+LÍMITE DE ESTA APERTURA
+En esta versión se define únicamente el contrato conceptual. No se instancia todavía ningún par real de nodos ni se elige API, trigger o automatización concreta.
+
+
+SECUENCIA DE CABLEADO POR CIRCUITOS FUNCIONALES CERRADOS
+
+Principio de ejecución
+Fase 5 se implementa por circuitos funcionales cerrados, desde el núcleo de gobierno hacia las ramas operativas. El objetivo es evitar una red de conexiones cruzadas cuya autoridad, fuente de verdad o dependencia no pueda auditarse.
+
+Circuito 0 — Columna Vertebral: Gobernanza y Verdad Central
+- Dirección Estratégica ↔ fuentes canónicas de Dirección: mandatos, normativa y resoluciones vigentes bajo jerarquía A > B > C.
+- Fuentes canónicas / Single Source of Truth por dominio → Tablero de Control / Señales: métricas y excepciones consolidadas para Dirección.
+- Tesorería Central ↔ cuentas/pasarelas confirmadas: conciliación de saldo real, entradas, salidas y runway.
+
+Circuito 1 — Motor TDT Growth
+- Prospección / Outbound → CRM / Registro de Leads.
+- Diagnóstico / Cierre → contrato + mecanismo de cobro.
+- Pago confirmado → onboarding operativo + registro financiero central.
+
+Circuito 2 — Motor TDT Global
+- Sourcing / Compra CDE → inventario + costo unitario.
+- Canal / Punto de Venta → orden confirmada.
+- Logística / Despacho → actualización de stock + liquidación neta / margen realizado.
+
+Circuito 3 — Bucle de Capital y Retorno
+- Caja Central → reserva / reinversión según normativa y mandato vigentes.
+- Caja Central → liquidación/reporte al frente de financiación según condiciones contractuales vigentes.
+
+Regla: esta secuencia no confirma por sí misma la existencia operativa de cada nodo nombrado. Cada conexión se instancia únicamente cuando sus extremos hayan superado la entrada de Fase 5.
+
+FICHA F5-C0-01 — INGRESO CONFIRMADO → REGISTRO NORMALIZADO DE CAJA
+
+Naturaleza
+Primer cable del Circuito 0 a nivel de contrato. Su función es transformar evidencia transaccional de dinero efectivamente recibido en un evento financiero normalizado y trazable. No convierte una venta, propuesta aceptada, factura emitida o contrato firmado en caja.
+
+1. ORIGEN
+Clase de nodo: cuenta, banco, pasarela o mecanismo transaccional autorizado que pueda aportar evidencia verificable de recepción de fondos.
+Instancia concreta: PENDIENTE DE CONFIRMACIÓN EN INVENTARIO.
+
+2. OUTPUT DE ORIGEN
+Evento de ingreso confirmado con, como mínimo cuando la fuente lo permita:
+- identificador de transacción o referencia externa;
+- fecha/hora efectiva;
+- monto bruto;
+- moneda original;
+- comisiones/costos de cobro si son observables;
+- monto neto recibido si es observable;
+- cuenta/pasarela de destino;
+- referencia a cliente/operación comercial cuando exista vínculo demostrable;
+- estado transaccional confirmado.
+
+3. DESTINO
+Clase de nodo: registro financiero central / Tesorería encargado de custodiar la representación normalizada del ingreso y alimentar caja/runway.
+Instancia concreta: PENDIENTE DE CONFIRMACIÓN EN INVENTARIO.
+
+4. INPUT DE DESTINO
+Evento financiero normalizado de cash_received, preservando la evidencia de origen y sin perder moneda, monto ni identificador transaccional originales.
+
+5. DOMINIO / HECHO
+Hecho gobernable: dinero efectivamente recibido.
+Separación obligatoria:
+- venta/cierre comercial ≠ cash_received;
+- factura/contrato ≠ cash_received;
+- saldo mostrado por una interfaz ≠ evidencia de cash_received.
+
+6. FUENTE CANÓNICA
+Para existencia, monto, moneda y momento del cobro: la fuente transaccional autorizada que originó el evento.
+Para la representación normalizada y consolidada: el registro financiero central una vez que el evento haya sido aceptado y conciliado.
+Si existe divergencia, la normalización no puede sobrescribir silenciosamente la evidencia transaccional; debe abrir excepción de conciliación.
+
+7. DIRECCIÓN
+Fuente transaccional → Registro financiero central.
+El flujo inverso, si existiera para órdenes de pago o reembolsos, es otra conexión y debe modelarse por separado.
+
+8. TRIGGER / CADENCIA
+Diseño objetivo: evento de confirmación de ingreso emitido por la fuente o detección de nuevo movimiento confirmado durante conciliación.
+Implementación concreta: PENDIENTE. No asumir webhook, polling ni frecuencia hasta confirmar la fuente real.
+
+9. CANAL / TRANSPORTE
+PENDIENTE DE IMPLEMENTACIÓN. Puede ser API, exportación, archivo, registro manual controlado u otro mecanismo autorizado. El contrato no privilegia una herramienta específica.
+
+10. AUTORIDAD SOBRE EL FLUJO
+- Leer evidencia transaccional: solo nodos autorizados por gobierno.
+- Escribir el registro normalizado: ACTUALMENTE Dirección Estratégica. Una función financiera/Tesorería o automatización solo puede adquirir W mediante delegación explícita vigente; ejecutar una escritura delegada no concede D.
+- Ejecutar la captura/normalización: mecanismo autorizado; no adquiere autoridad de decisión por ejecutar.
+- Decidir reclasificaciones, correcciones materiales o excepciones: ACTUALMENTE Dirección Estratégica. Cualquier frente financiero futuro requiere delegación explícita antes de adquirir D.
+
+11. TRANSFORMACIÓN / NORMALIZACIÓN
+El evento debe preservar siempre los valores originales. Puede añadir campos normalizados como unidad de negocio, cliente, categoría, moneda de reporte o período, pero toda derivación debe declarar regla y fuente.
+Conversión de moneda solo puede registrarse si se conserva: moneda original + monto original + tasa/fuente + momento de conversión + resultado normalizado. Sin esos datos, no se fabrica equivalencia.
+
+12. VALIDACIÓN / ACK
+El destino responde con uno de tres estados:
+- ACEPTADO: evento registrado y conciliable;
+- RECHAZADO: evidencia insuficiente o formato inválido;
+- EXCEPCIÓN: evento recibido pero requiere conciliación humana/directiva.
+
+13. EVIDENCIA / TRAZA
+Debe poder reconstruirse: fuente → transacción original → transformación aplicada → registro resultante → estado de validación → correcciones posteriores.
+Nunca se elimina la referencia al evento original para “limpiar” la base.
+
+14. FALLO Y ESCALAMIENTO
+- Duplicado: no crear doble ingreso; conservar intento y marcar deduplicación.
+- Monto/moneda divergente: EXCEPCIÓN de conciliación.
+- Fuente no verificable: RECHAZADO; no suma caja.
+- Identidad comercial incierta: puede registrarse como ingreso no asignado si la política lo permite, pero no atribuirlo a una unidad/cliente sin evidencia.
+- Caída del canal: no usar una segunda fuente como sustituto silencioso.
+
+15. ESTADO Y CERTEZA
+Estado actual: PROPUESTA — NO OPERATIVA.
+Certeza: POR VERIFICAR en los extremos concretos.
+Gate local para promoción:
+1) identificar y confirmar las cuentas/pasarelas reales que podrán originar el evento;
+2) confirmar el nodo que custodiará el registro financiero normalizado;
+3) fijar autoridad W/E/D efectiva;
+4) escoger mecanismo de transporte y validar una transacción de punta a punta con evidencia;
+5) verificar deduplicación, conciliación y tratamiento de error.
+
+Criterio de promoción
+Solo después de superar el gate local F5-C0-01 puede pasar de PROPUESTA a PROVISIONAL-RESTRINGIDA u OPERATIVA CONFIRMADA. Hasta entonces, ningún tablero debe tratar este cable como fuente automática de caja.
+
+
+RATIFICACIÓN DE SECUENCIA DE CABLEADO — 23/08/2026
+
+La ejecución de Fase 5 queda ordenada por circuitos funcionales cerrados. La secuencia define prioridad de diseño y validación; no canoniza por sí sola la existencia, autoridad ni operatividad de cada nodo mencionado.
+
+REGLA DE ESTADO
+- Circuito DEFINIDO: su función y orden están aceptados conceptualmente.
+- Circuito HABILITADO: sus nodos y fronteras permiten instanciar conexiones bajo el contrato universal.
+- Circuito EN EJECUCIÓN: al menos una conexión está siendo especificada o validada.
+- Circuito OPERATIVO: sus conexiones críticas han superado sus gates locales y tienen evidencia de punta a punta.
+
+CIRCUITO 0 — COLUMNA VERTEBRAL / GOBERNANZA Y VERDAD CENTRAL
+Estado: EN EJECUCIÓN.
+Objetivo: asegurar gobierno, lectura directiva y verdad financiera antes de abrir ramas económicas dependientes.
+Ramas:
+1) Dirección Estratégica ↔ CANON A/B/C: normativa, mandatos y resoluciones vigentes. La bidireccionalidad lógica se representa como conexiones separadas cuando exista escritura o consumo en sentidos distintos.
+2) Fuentes canónicas por dominio → Tablero de Control / Señales: consolidación de métricas y excepciones sin trasladar canonicidad al tablero.
+3) Tesorería / Registro financiero central ↔ cuentas y pasarelas confirmadas: conciliación de saldos, cash_received, salidas y runway.
+F5-C0-01 pertenece a esta tercera rama y permanece PROPUESTA / POR VERIFICAR hasta confirmar sus extremos reales.
+
+CIRCUITO 1 — TDT GROWTH / SERVICIOS B2B
+Estado: DEFINIDO; habilitación progresiva después del núcleo mínimo de Circuito 0.
+Tubería objetivo:
+- Prospección / Outbound → CRM / Registro de Leads.
+- Diagnóstico / Cierre → contrato + mecanismo de cobro.
+- Pago confirmado → onboarding operativo + registro financiero central.
+Regla: cierre comercial, contrato y cash_received permanecen eventos distintos.
+
+CIRCUITO 2 — TDT GLOBAL / COMERCIO FÍSICO
+Estado: DEFINIDO / NO HABILITADO COMO CIRCUITO OPERATIVO.
+Tubería objetivo:
+- Sourcing / Compra CDE → inventario + costo unitario.
+- Canal / Punto de Venta → orden confirmada.
+- Logística / Despacho → actualización de stock + liquidación neta / margen realizado.
+Gate: Fase 4 mantiene que TDT Global no se considera nodo de la familia de Unidades Económicas Existentes mientras no supere la Prueba de Nodalidad. Por tanto, esta rama es diseño previsto, no cableado operativo autorizado.
+
+CIRCUITO 3 — BUCLE DE CAPITAL Y RETORNO / FINANCIACIÓN
+Estado: DEFINIDO / CONDICIONADO.
+Tubería objetivo:
+- Caja Central → reserva / reinversión / amortización o recompra únicamente según normativa y mandato vigentes.
+- Caja Central → liquidación y reporte al frente de financiación según condiciones contractuales vigentes.
+Gate: porcentajes, derechos económicos, periodicidad de liquidación y reglas de repago no se automatizan ni se asumen hasta estar ratificados en CANON A/B y, cuando corresponda, en el acuerdo contractual aplicable. Clayton es asignación actual/propuesta del frente de Financiación, no la arquitectura del frente.
+
+REGLA DE AVANCE ENTRE CIRCUITOS
+La secuencia es 0 → 1 → 2 → 3 como orden de construcción. Esto no exige terminar absolutamente toda deuda técnica de un circuito para comenzar el siguiente; exige que las dependencias que el circuito siguiente consume estén saneadas y operativas o explícitamente restringidas. Ningún circuito posterior puede usar como hecho una salida que el circuito anterior todavía mantiene como PROPUESTA o POR VERIFICAR.
+
+
+ACTUALIZACIÓN F5-C0-01 — MAPEO DE EXTREMOS — 23/08/2026
+
+EXTREMO A — ORIGEN DE LIQUIDEZ
+Estado: PARCIAL / POR VERIFICAR COMO ORIGEN DE cash_received.
+Evidencia actual:
+- Mercado Pago existe como infraestructura de cobro integrada/trabajada y disponible a través de Visionarios IA / WhatsApp 7D.
+- La documentación de setup contempla credenciales de producción y verificación del pago acreditado directamente en Mercado Pago.
+- Sin embargo, el estado comercial más reciente conserva USD 0 cash_received y no existe una compra confirmada atribuible al producto. Por tanto, Mercado Pago NO se promueve todavía a origen confirmado del cable por mera existencia de la integración.
+- PayPal, Cash App, transferencia bancaria, Western Union, crypto y otros métodos aparecen en construcciones anteriores como métodos soportados o placeholders; no se consideran cuentas reales activas sin evidencia actual de cuenta y transacción.
+- Zelle: la auditoría aporta evidencia local reportada del caso VX22, donde aparece una comisión/liquidación real vía Zelle. Esto demuestra uso transaccional observado, pero NO confirma por sí solo identidad, titularidad/control o condición de cuenta institucional autorizada. Queda como evidencia PARCIAL pendiente de cruzar con la fuente original antes de promover Zelle a origen de F5-C0-01.
+- Binance/P2P/USDT aparece en documentación histórica como activo/capacidad disponible, pero requiere validación vigente antes de ingresar al inventario operativo de F5.
+- Caja física HQ, banca PY/BR/AR, Stripe u otras pasarelas permanecen POR INVENTARIAR / POR VERIFICAR para este cable.
+
+Regla: un vehículo entra al Extremo A solo cuando se confirma identidad del nodo + control/autorización + evidencia transaccional verificable. Existencia de app, carpeta, integración o setup no basta.
+
+EXTREMO B — DESTINO CANÓNICO
+Estado: CONFIRMADO como nodo/destino materializado y delimitado; PARCIAL como custodio operativo E2E mientras no exista un evento real aceptado/conciliado.
+Nodo: LEDGER — Caja Central TDT.
+ID Drive: 14xsvLapxz2uQezP_HW0XYHiFhyzMabi7OaOpmUPH4Ws
+Ubicación: 02 — NEGOCIOS / 00 — ECOSISTEMA Y CAPITAL.
+Función: custodiar eventos financieros normalizados aceptados y su trazabilidad; no sustituye el comprobante transaccional de origen.
+Moneda de gestión: USD.
+Regla de moneda: conservar moneda/monto originales; toda conversión exige tasa, fuente y timestamp. USD es unidad gerencial de consolidación, no afirmación de moneda estatutaria.
+Autoridad W/D inicial: Dirección Estratégica. Automatizaciones futuras solo por delegación explícita.
+
+Estado de F5-C0-01 tras esta actualización:
+- Destino: CONFIRMADO.
+- Origen: PARCIAL / POR VERIFICAR.
+- Estado global del cable: PROPUESTA — NO OPERATIVA.
+- Certeza heredada: PARCIAL / POR VERIFICAR en el Extremo A.
+
+Criterio de promoción restante:
+1) confirmar al menos un punto real de entrada de liquidez;
+2) producir un comprobante transaccional real;
+3) registrar el evento en LEDGER — Caja Central TDT preservando original + evidencia;
+4) obtener ACK ACEPTADO o EXCEPCIÓN y resolver conciliación;
+5) demostrar deduplicación y trazabilidad de punta a punta.
+
+Solo entonces F5-C0-01 puede pasar a OPERATIVA CONFIRMADA.
+
+
+CAMBIO DE FOCO — F5-C0-01
+F5-C0-01 permanece documentado como PROPUESTA / NO OPERATIVA, pero queda ESTACIONADO COMO DEUDA LOCAL NO BLOQUEANTE. Su falta de cierre no impide continuar por otras ramas independientes de Circuito 0. Se retoma cuando exista un origen financiero real que merezca prueba E2E.
+
+FICHA F5-C0-02 — DIRECCIÓN ESTRATÉGICA → CANON A/B/C
+Naturaleza: cable de publicación y ratificación directiva. No es una sincronización universal; enruta cada hecho a la capa canónica que corresponde.
+
+1. ORIGEN: Dirección Estratégica.
+2. OUTPUT: decisión directiva explícita con tipo de hecho, fecha, autorizador, efecto y evidencia/referencia.
+3. DESTINO: CANON A — Repositorio Maestro de Gobierno / CANON B — Matriz de Objetivos y Asignación Vigente / CANON C — Registro de Decisiones y Resoluciones.
+4. INPUT: A recibe normativa/política ratificada; B recibe objetivo, prioridad, presupuesto o asignación vigente; C recibe resolución puntual o decisión histórica auditable.
+5. DOMINIO / HECHO: gobierno directivo vigente.
+6. FUENTE CANÓNICA: después del ACK, gobierna la fuente de destino correspondiente. La decisión previa a su registro no crea una segunda fuente documental.
+7. DIRECCIÓN: Dirección Estratégica → CANON A/B/C.
+8. TRIGGER / CADENCIA: decisión explícita de Dirección o cambio ratificado de norma/mandato/resolución. No hay cadencia automática obligatoria.
+9. CANAL / TRANSPORTE ACTUAL: acción humana controlada sobre Google Docs. Automatización futura requiere delegación explícita.
+10. AUTORIDAD: R = nodos autorizados; W/D = Dirección Estratégica; E = Dirección o mecanismo expresamente delegado para ejecutar la escritura sin adquirir D.
+11. TRANSFORMACIÓN: clasificación obligatoria del hecho en A, B o C. A > B > C. No copiar el mismo hecho como vigente en varias capas.
+12. VALIDACIÓN / ACK: la fuente correcta refleja el cambio con estado VIGENTE, versión/fecha cuando corresponda y trazabilidad suficiente. En C, la entrada es append-only lógico.
+13. EVIDENCIA / TRAZA: revisión de CANON A/B/C + registro de decisión relacionado en CANON C cuando el cambio afecte A o B.
+14. FALLO / ESCALAMIENTO: hecho en capa incorrecta, documento no VIGENTE o contradicción A>B>C = RECHAZO/ESCALAMIENTO; no ejecutar la instrucción hasta corregir la canonicidad.
+15. ESTADO / CERTEZA: OPERATIVA CONFIRMADA — MANUAL / CONTROLADA. Evidencia: H-07 fue resuelto mediante esta jerarquía y las tres fuentes existen VIGENTES bajo autoridad de Dirección.
+
+FICHA F5-C0-03 — CANON A/B/C → DIRECCIÓN ESTRATÉGICA
+Naturaleza: cable de lectura y consumo de gobierno vigente. Mantiene separada la lectura de la escritura y no concede autoridad a la fuente documental más allá del dominio que ya gobierna.
+
+1. ORIGEN: CANON A/B/C VIGENTES.
+2. OUTPUT: normativa vigente, mandato/asignación vigente y decisiones/resoluciones con provenance.
+3. DESTINO: Dirección Estratégica.
+4. INPUT: contexto gobernado para decidir, revisar, priorizar o autorizar ejecución.
+5. DOMINIO / HECHO: reglas, objetivos/asignaciones y antecedentes directivos vigentes.
+6. FUENTE CANÓNICA: A para normativa; B para objetivo/asignación vigente; C para historial de decisiones. Ninguna nota, chat, UI o contexto histórico sustituye estas capas.
+7. DIRECCIÓN: CANON A/B/C → Dirección Estratégica.
+8. TRIGGER / CADENCIA: lectura bajo demanda y antes de decisiones que dependan de gobierno, prioridad o precedente. Una revisión periódica futura puede añadirse como otra implementación sin cambiar este contrato.
+9. CANAL / TRANSPORTE ACTUAL: lectura documental controlada en Google Drive/Docs.
+10. AUTORIDAD: R = Dirección y nodos autorizados; W/D no viajan en este sentido.
+11. TRANSFORMACIÓN: solo selección/síntesis con provenance; la síntesis no se vuelve fuente canónica.
+12. VALIDACIÓN / ACK: Dirección acepta únicamente documentos VIGENTES y aplica prevalencia A > B > C.
+13. EVIDENCIA / TRAZA: IDs de fuente, estado de vigencia, versión/fecha y decisión consumida cuando aplique.
+14. FALLO / ESCALAMIENTO: si falta vigencia, existe contradicción o una decisión C exige reforma todavía no reflejada en A/B, el hecho se trata como NO EJECUTABLE hasta saneamiento.
+15. ESTADO / CERTEZA: OPERATIVA CONFIRMADA — MANUAL / CONTROLADA. El mecanismo automático hacia la interfaz local no forma parte de este cable y se diseñará aparte.
+
+CIERRE DEL SUBCIRCUITO DE GOBIERNO
+Con F5-C0-02 y F5-C0-03, la rama Dirección Estratégica ↔ CANON A/B/C queda cableada a nivel documental real y manual-controlado. El siguiente frente independiente de Circuito 0 es la proyección de señales: fuentes canónicas por dominio → vista/tablero directivo, sin trasladar canonicidad a la interfaz.
+
+
+FICHA F5-C0-06 — FUENTES CANÓNICAS → VISTA DIRECTIVA / TELEMETRÍA (EL “AHORA”)
+
+Identificador: F5-C0-06
+Nombre: Proyección de Telemetría Consolidada hacia la Cabina de Mando.
+
+PROPÓSITO
+Proyectar hacia la Vista Directiva / “Ahora” el estado vigente y auditable del ecosistema sin trasladar canonicidad, autoridad de escritura ni memoria propietaria a la interfaz. El destino de este cable es específicamente la vista directiva de solo lectura; no se declara que toda la aplicación local sea stateless, porque otros flujos autorizados pueden capturar eventos humanos mediante cables separados.
+
+1. ORIGEN — FUENTES CANÓNICAS POR DOMINIO
+- Gobierno: CANON A / CANON B / CANON C VIGENTES.
+- Tesorería: LEDGER — Caja Central TDT, únicamente para hechos que estén aceptados/conciliados y con su cobertura explícita.
+- Comercial Growth: Pipeline Maestro como fuente canónica del estado comercial vigente.
+- Otros dominios/unidades: solo pueden ingresar cuando exista fuente canónica confirmada y habilitada. TDT Global no se proyecta todavía como estado operativo canónico mientras su gate de nodalidad/fuente siga pendiente.
+
+2. OUTPUT DE ORIGEN
+Paquete estructurado de telemetría directiva con provenance por campo. Cada dato proyectado debe conservar, como mínimo: valor/estado, source_id o fuente canónica, timestamp del hecho o última actualización de la fuente, timestamp de sincronización/proyección, nivel de certeza y estado de cobertura/observabilidad.
+
+3. DESTINO
+Vista Directiva Local / sección “Ahora” en modo consumidor de solo lectura.
+La vista puede renderizar, ordenar, resumir y señalar; no adquiere propiedad del estado que muestra.
+
+4. INPUT / PAYLOAD DEL “AHORA”
+Cuadrante 1 — Semáforo de Gobierno:
+- mandato/objetivo vigente de CANON B;
+- prioridades y asignaciones vigentes;
+- normativa relevante de CANON A cuando condicione la decisión actual;
+- decisiones/resoluciones recientes de CANON C cuando cambien el contexto ejecutable;
+- excepciones de gobierno abiertas.
+
+Cuadrante 2 — Posición de Caja y Runway:
+- movimientos/saldos confirmados que el LEDGER pueda sostener;
+- desglose por moneda original cuando exista;
+- equivalente gerencial USD solo cuando la conversión tenga tasa + fuente + timestamp;
+- runway únicamente si existe base de gasto/obligaciones suficiente para calcularlo;
+- coverage_state obligatorio. Si faltan cuentas, saldos u obligaciones, mostrar POSICIÓN TOTAL DESCONOCIDA / COBERTURA INCOMPLETA, no USD 0 como sustituto.
+
+Cuadrante 3 — Pulso Operativo:
+- estado del Pipeline Maestro Growth y métricas comerciales que tengan fuente y definición válidas;
+- trabajo/outputs operativos confirmados por dominio cuando exista fuente canónica;
+- no incorporar métricas de unidades o sistemas todavía no habilitados como hechos operativos.
+
+Cuadrante 4 — Radar de Anomalías:
+Lista priorizada de excepciones, contradicciones, fallos o estados stale que requieran atención o que reduzcan la confianza de la lectura directiva.
+
+5. PARÁMETROS MÍNIMOS DEL RADAR DE ANOMALÍAS
+Cada anomalía proyectada debe contener:
+1) anomaly_id — identificador estable;
+2) dominio — Gobierno / Verdad / Comercial / Tesorería / Operación / Infraestructura u otro dominio gobernado;
+3) tipo — Autoridad / Fuente de Verdad / Frontera / Frescura / Sincronización / Fallo / Conciliación / Dependencia / Cobertura u otra categoría explícita;
+4) severidad — CRÍTICA / ALTA / MEDIA / INFORMATIVA según impacto definido; no inferir criticidad solo por la dimensión;
+5) objeto_afectado — nodo, fuente, conexión, flujo o métrica afectada;
+6) resumen_condición — qué está ocurriendo y por qué es anomalía;
+7) fuente_evidencia — fuente canónica o evidencia trazable que sustenta la bandera;
+8) detected_at + last_verified_at — cuándo apareció y cuándo fue validada por última vez;
+9) estado — ABIERTA / RECONOCIDA / RESUELTA / STALE-POR-VERIFICAR;
+10) requiere_dirección + siguiente_acción — si exige decisión/escalamiento y cuál es el próximo movimiento verificable;
+11) certeza/cobertura — Confirmado / Parcial / Por verificar y, cuando aplique, alcance observado.
+
+Una anomalía sin fuente/evidencia, timestamp o estado de certeza no puede presentarse como bandera roja confirmada; como máximo aparece como “por verificar”.
+
+6. FUENTE CANÓNICA
+La canonicidad permanece distribuida por dominio. El paquete “Ahora”, cualquier agregador y la UI son proyecciones derivadas. No existe una nueva Single Source of Truth física creada por este cable.
+
+7. DIRECCIÓN Y PERMISOS
+Unidireccional: Fuentes canónicas → Vista Directiva.
+Autoridad de la Vista Directiva en este cable: R únicamente.
+W/E/D sobre fuentes canónicas: NO VIAJAN por F5-C0-06.
+Cualquier acción de usuario que produzca un cambio deberá emitir un evento mediante otro cable con W/E/D explícitos y separados.
+
+8. TRIGGER / CADENCIA
+Objetivo: actualización al abrir/refrescar “Ahora” y/o por mecanismo de sincronización periódico/event-driven cuando exista implementación aprobada.
+La cadencia técnica concreta queda PENDIENTE; no se asume polling, webhook ni daemon sin evidencia.
+
+9. CANAL / TRANSPORTE
+PENDIENTE DE IMPLEMENTACIÓN. Debe reutilizar mecanismos existentes cuando sean suficientes y preservar idempotencia, provenance y aislamiento entre lectura y escritura. No se autoriza crear una base paralela solo para alimentar el dashboard.
+
+10. TRANSFORMACIÓN / NORMALIZACIÓN
+Se permite agregar, resumir, ordenar y derivar señales siempre que cada derivación conserve fuente y regla. La interfaz no puede transformar UNKNOWN/POR VERIFICAR en cero, verde o “sin problemas”.
+
+11. VALIDACIÓN / ACK
+La proyección es válida cuando:
+- cada cuadrante declara fuente y freshness;
+- un dato stale es visible como stale;
+- una fuente no disponible no es sustituida silenciosamente;
+- la interfaz puede borrarse/reconstruirse sin pérdida de verdad;
+- ninguna interacción de F5-C0-06 escribe a la fuente canónica.
+
+12. EVIDENCIA / TRAZA
+La proyección debe permitir reconstruir qué fuentes/versions/timestamps produjeron cada corte del “Ahora”. No es obligatorio persistir una copia completa de cada render; sí debe existir provenance suficiente para auditar la lectura cuando afecte una decisión.
+
+13. FALLO Y ESCALAMIENTO
+- Fuente inaccesible: mostrar NO DISPONIBLE / STALE; no usar cache como verdad fresca.
+- Timestamp vencido: marcar STALE según umbral del dominio.
+- Conflicto entre fuentes: no elegir silenciosamente; elevar anomalía de Fuente de Verdad/Prevalencia.
+- Cobertura incompleta: mostrar alcance parcial y evitar totales aparentes.
+- Error del cliente local: descartar/reconstruir la vista; la fuente permanece intacta.
+
+14. REGLA DE DESECHABILIDAD
+La Vista Directiva / “Ahora” es reemplazable. Su corrupción, reinstalación o pérdida no debe alterar CANON A/B/C, Pipeline Maestro, LEDGER ni otras fuentes propietarias.
+
+15. ESTADO Y CERTEZA
+Estado del contrato: PROPUESTA — DISEÑO CONFIRMADO / IMPLEMENTACIÓN PENDIENTE.
+Certeza: PARCIAL a nivel E2E. Los extremos lógicos están definidos y varias fuentes son reales/canónicas, pero el payload consolidado y su transporte hacia la Vista Directiva todavía no han sido probados de punta a punta.
+Gate de promoción: implementar un corte real del “Ahora” con provenance + freshness + cobertura, verificar solo lectura, simular fuente stale/no disponible y comprobar que la UI puede reconstruirse sin alterar fuentes.
+
+
+16. ESPECIFICACIÓN DETALLADA — CUADRANTE 1: SEMÁFORO DE GOBIERNO
+
+Propósito
+Convertir CANON A/B/C en una lectura directiva compacta y auditable del gobierno vigente, sin crear una nueva fuente de verdad ni permitir que un color sustituya la evidencia.
+
+Cada corte del Semáforo de Gobierno debe contener 11 campos mínimos:
+
+1) governance_snapshot_id — identificador estable del corte de gobierno proyectado.
+
+2) generated_at — timestamp en que se generó la proyección del Semáforo. No sustituye los timestamps de las fuentes.
+
+3) mandate_ref — referencia exacta a CANON B VIGENTE consumido: source_id/document_id + versión/fecha de corte + estado de vigencia. Si no existe un CANON B ejecutable para el contexto actual, no se fabrica mandato.
+
+4) active_objective — objetivo o mandato activo del ciclo, expresado como hecho ejecutable y con la referencia de CANON B que lo sustenta. Debe distinguir meta, ventana temporal y condición de éxito cuando existan.
+
+5) active_priorities_assignments — prioridades, unidad/frente primario, asignaciones y límites vigentes que realmente condicionan la ejecución. No incluir prioridades históricas o propuestas como vigentes.
+
+6) governing_constraints_refs — normas, límites, prohibiciones o condiciones de CANON A que afecten el mandato actual. Debe transportar referencias, no copiar toda la normativa sin necesidad.
+
+7) recent_decisions_refs — decisiones/resoluciones de CANON C relevantes para interpretar el contexto actual, con ID, fecha y efecto. Una decisión C que ordene cambiar A o B no se presenta como nueva norma/mandato hasta que la fuente correspondiente haya sido actualizada.
+
+8) open_governance_exceptions — excepciones, contradicciones o gates abiertos que afecten la capacidad de ejecutar el mandato. Cada excepción debe conservar referencia/evidencia y estado.
+
+9) requires_direction + next_decision — indica si existe una intervención de Dirección requerida ahora y cuál es la decisión o acción directiva mínima necesaria. Si no requiere Dirección, declarar explícitamente NO; no dejar el campo ambiguo.
+
+10) governance_state + state_reason — estado derivado VERDE / AMARILLO / ROJO / GRIS y explicación trazable de por qué se asignó. El color nunca es fuente primaria: resume condiciones observables.
+
+11) freshness_certainty_coverage — para CANON A/B/C relevantes: source_timestamp/version, sync_timestamp, certeza y cobertura. Debe permitir distinguir fuente vigente y fresca, fuente stale, fuente no disponible y dominio no cubierto.
+
+REGLA DETERMINISTA DEL SEMÁFORO
+
+VERDE
+- existe CANON B VIGENTE y ejecutable para el contexto;
+- las restricciones relevantes de CANON A son conocidas y no existe contradicción A > B > C;
+- las decisiones C relevantes son compatibles con A/B o sus reformas ya fueron reflejadas explícitamente;
+- no existe excepción de gobierno abierta que bloquee la ejecución;
+- freshness y cobertura son suficientes para la decisión representada.
+
+AMARILLO
+- el mandato sigue siendo ejecutable, pero existe al menos una condición no bloqueante que requiere atención: fuente stale dentro de tolerancia, cobertura parcial explícita, excepción no crítica, límite pendiente o decisión próxima;
+- AMARILLO no autoriza a ocultar UNKNOWN ni a completar datos por inferencia.
+
+ROJO
+- existe contradicción material entre A/B/C;
+- falta, caducó o quedó OBSOLETO un CANON necesario para ejecutar la decisión actual;
+- una excepción/gate abierto impide continuar sin decisión de Dirección;
+- una decisión C requiere reforma de A/B que todavía no fue materializada y la ejecución depende de esa reforma.
+
+GRIS
+- la cobertura, vigencia o disponibilidad de fuentes es insuficiente para determinar de forma responsable si el estado es VERDE, AMARILLO o ROJO;
+- GRIS significa NO OBSERVABLE / INSUFICIENTE PARA CLASIFICAR, nunca “sin problemas”.
+
+REGLAS DE PRECEDENCIA DEL COLOR
+1. Si existe condición ROJA confirmada, el estado es ROJO.
+2. Si no hay condición ROJA confirmada pero falta cobertura suficiente para clasificar, el estado es GRIS.
+
+CORRECCIÓN DE AUDITORÍA — CIRCUITO 0 — 23/08/2026
+
+1. CRITERIO UNIVERSAL ÚNICO DE PROMOCIÓN
+Los estados de Fase 5 se aplican igual a cualquier conexión, independientemente del dominio o de que el transporte sea manual o automático:
+- PROPUESTA: contrato/diseño existe, pero falta al menos una condición necesaria para probar la conexión real.
+- PROVISIONAL-RESTRINGIDA: existe una conexión real utilizable bajo límites explícitos heredados de certeza, cobertura, autoridad o implementación.
+- OPERATIVA CONFIRMADA: únicamente cuando se cumplen TODOS los mínimos universales siguientes: (a) extremos suficientemente delimitados en F4; (b) mecanismo real de transporte identificado; (c) al menos una instancia E2E real ejecutada a través de ese mecanismo; (d) ACK explícito apropiado al sentido del cable; (e) traza reconstruible con fuente/actor/resultado/timestamp o revisión; (f) autoridad R/W/E/D coherente con F4; (g) comportamiento de fallo/rechazo definido. Los dominios pueden añadir gates —por ejemplo deduplicación y conciliación en caja— pero nunca reducir estos mínimos.
+- BLOQUEADA: conexión detectada o propuesta que no puede autorizarse todavía por conflicto, evidencia insuficiente o autoridad/frontera no saneada.
+- RETIRADA: conexión que deja de operar pero conserva historial.
+
+Regla: MANUAL no significa menos real que AUTOMÁTICO. Una conexión manual puede ser Operativa confirmada si demuestra E2E + ACK + traza bajo autoridad correcta. Una automatización no es Operativa confirmada solo por existir código.
+
+2. REVALIDACIÓN F5-C0-02 — Dirección Estratégica → CANON A/B/C
+Estado conservado: OPERATIVA CONFIRMADA — MANUAL / CONTROLADA.
+Evidencia E2E: existe una decisión directiva formal, DEC-2026-08-23-001, que ratifica A > B > C y produce efectos observables en las tres fuentes; CANON A, B y C existen actualmente como VIGENTES y fueron recuperados con IDs/revisiones concretas durante esta auditoría.
+ACK documentado: para este cable de escritura manual, ACK = la fuente de destino correcta contiene el resultado esperado, conserva vigencia/provenance y puede releerse. La lectura de auditoría confirmó ese estado para A/B/C.
+Traza mínima: DEC-2026-08-23-001 + IDs de CANON A/B/C + revisiones actuales de Drive.
+Resultado: supera el criterio universal por mecanismo manual; no implica automatización.
+
+3. REVALIDACIÓN F5-C0-03 — CANON A/B/C → Dirección Estratégica
+Estado conservado: OPERATIVA CONFIRMADA — MANUAL / CONTROLADA.
+Evidencia E2E: durante la auditoría se recuperaron CANON A/B/C VIGENTES con provenance y revisión, se contrastó su jerarquía A > B > C y la lectura fue utilizada para decidir las correcciones de F4/F5 presentes.
+ACK documentado: para este cable de lectura, ACK = recuperación exitosa de las fuentes vigentes + identificación de su dominio + ausencia de sustitución por contexto histórico + uso de la lectura en una decisión/revisión gobernada.
+Resultado: supera el criterio universal por mecanismo manual. La futura proyección automática a UI continúa siendo F5-C0-06 y no forma parte de C0-03.
+
+4. RECONCILIACIÓN DE AUTORIDAD F5-C0-01
+Declaración vigente única: W y D sobre el LEDGER recaen ACTUALMENTE en Dirección Estratégica. “Función financiera/Tesorería” describe una función delegable futura, no un segundo escritor/decisor vigente. Una automatización puede recibir E/W únicamente mediante delegación explícita y no adquiere D por ejecutar. Esta declaración prevalece sobre formulaciones anteriores más abiertas del campo 10.
+
+5. LECTURA CORREGIDA DEL EXTREMO A — ZELLE / VX22
+La evidencia local reportada por auditoría sobre VX22 impide clasificar Zelle únicamente como placeholder. Se registra como EVIDENCIA TRANSACCIONAL PARCIAL: existe un caso observado de liquidación/comisión vía Zelle, pero falta verificar la evidencia fuente y la identidad/control del vehículo. Por tanto: Zelle ≠ “sin evidencia”; Zelle tampoco = “origen confirmado de F5-C0-01” todavía.
+
+6. CONEXIÓN IMPLÍCITA DETECTADA — F5-IMP-01
+Nombre provisional de inventario: Escritura desde interfaz local → estado comercial/settlement.
+Evidencia reportada: mi-os-personal.html contiene funciones growthRegisterSale / growthRegisterSettlement que mutan estado real/local; el destino exacto y su relación efectiva con Pipeline Maestro requieren contraste.
+Estado: BLOQUEADA — DETECTADA / NO DISEÑADA / NO AUTORIZADA COMO CABLE F5.
+Certeza: PARCIAL.
+Regla: asignar este ID hace visible la conexión implícita; NO diseña su contrato ni autoriza escritura. Antes de cualquier promoción debe delimitarse el destino real, cruzar la autoridad W/E con F4, identificar la fuente canónica afectada y probar una escritura con traza. Hasta entonces no se asume que growth.sales local, settlement local y Pipeline Maestro sean el mismo objeto.
+
+7. EFECTO SOBRE F5-C0-06
+F5-C0-06 permanece PROPUESTA — diseño confirmado / implementación pendiente. Su cláusula “cualquier cambio debe viajar por otro cable” no se interpreta como prueba de que dicho cable ya exista. F5-IMP-01 registra precisamente que hoy hay una escritura implícita reportada que debe ser saneada antes de conectarla a la arquitectura autorizada.
+
+3. Si la lectura es utilizable pero presenta condiciones no bloqueantes de atención, el estado es AMARILLO.
+4. Solo si las condiciones anteriores no aplican puede mostrarse VERDE.
+
+INMUNIDAD DE CANONICIDAD
+- El Semáforo no modifica CANON A/B/C.
+- Cambiar el color en la UI no cambia el gobierno real.
+- Un resumen visual no puede ocultar IDs, vigencia, timestamps ni excepciones que justifican el estado.
+- Si la Vista Directiva desaparece, el gobierno permanece intacto en sus fuentes canónicas.
+
+ESTADO DEL CUADRANTE 1
+Especificación de campos: DEFINIDA.
+Regla de color: DEFINIDA.
+Implementación E2E: PENDIENTE dentro de F5-C0-06.
+Siguiente profundización del payload: Cuadrante 2 — Posición de Caja y Runway.
+

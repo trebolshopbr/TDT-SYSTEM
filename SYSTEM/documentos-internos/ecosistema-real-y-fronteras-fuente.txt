@@ -1,0 +1,1364 @@
+FASE 4 — MAPEO DEL ECOSISTEMA REAL Y FRONTERAS
+La Cartografía del TDT OS
+
+OBJETIVO
+Identificar y representar los componentes que existen actualmente dentro del ecosistema, estableciendo qué función cumplen, qué contienen y dónde comienzan y terminan sus fronteras, antes de definir en la fase siguiente los flujos que los conectan.
+CONTRATO DE LECTURA DE LA FASE
+PREGUNTA: ¿Qué existe realmente hoy, qué es cada cosa, dónde empieza y termina y con qué nivel de certeza la comprendemos?
+FUNCIÓN: Hacer visible el ecosistema real, sus fronteras, nodos e incertidumbres.
+LÍMITE: Esta fase observa, clasifica, delimita y contrasta la realidad actual. No fabrica nodos para completar un modelo, no rellena vacíos con diseño futuro y no define todavía el cableado.
+PROPÓSITO TRANSVERSAL DEL TDT OS: Convertir complejidad viva en comprensión gobernable, sin congelarla ni perder control. Esta fase aporta esa comprensión haciendo visible qué existe realmente, cuáles son sus fronteras y qué incertidumbre permanece.
+
+
+PARTE 1 — INVENTARIO DE NODOS REALES
+Qué existe hoy
+
+Objetivo:
+Registrar los componentes reales del ecosistema y distinguir cuáles superan la Prueba de Nodalidad. La existencia se registra primero; la condición de nodo independiente solo se asigna cuando existen función, frontera y relevancia propias, sin diseñar todavía conexiones, flujos o arquitectura futura.
+
+Regla de la Parte:
+Registrar existencia antes de interpretar relaciones.
+
+REGLA DE ATERRIZAJE Y LECTURA
+Drive = memoria documental y zona de aterrizaje. Registrar primero → preservar evidencia. Fase 4 = comprobar existencia → clasificar → delimitar → contrastar. La ubicación definitiva y el cableado ocurren después.
+Registrar no canoniza. Fase 4 no inventa el sistema futuro: vuelve legible la realidad actual para poder gobernarla.
+
+MODO DE LECTURA PARA EL SISTEMA
+
+Esta Parte 1 debe interpretarse en el siguiente orden lógico:
+1. CAPA 1 — CLASIFICAR: definir las familias posibles de nodos reales.
+2. CAPA 2 — DELIMITAR: aplicar la Matriz Universal a cada nodo o candidato incluido en el inventario, usando el nivel de certeza para separar hechos de hipótesis.
+3. CAPA 3 — CONTRASTAR: comparar nodos relacionados para detectar solapamientos, vacíos y contradicciones.
+4. INSTANCIACIÓN ACTUAL: registrar la realidad conocida utilizando las capas anteriores.
+5. REGLA DE CIERRE: determinar si la cartografía está suficientemente completa para alimentar Fase 5.
+
+Regla estructural: las capas son métodos de lectura del inventario; no son nuevos nodos ni representan flujos entre componentes.
+
+CAPA 1 — FAMILIAS DE NODOS REALES
+Qué tipos de componentes existen dentro del ecosistema
+
+Propósito:
+Construir la taxonomía bajo la cual se clasifica la realidad existente del TDT OS. La pregunta de esta capa es únicamente: ¿qué clase de nodo estoy observando?
+
+Regla:
+Cada elemento se clasifica inicialmente dentro de una familia principal según la función que representa dentro del ecosistema. Si parece pertenecer a varias familias, la mezcla no se resuelve en esta capa; se registra posteriormente mediante la Matriz Universal.
+
+PRUEBA DE NODALIDAD
+Antes de clasificar un proyecto, producto, experimento, participante, capacidad o herramienta como nodo, debe superar cuatro comprobaciones:
+1. EXISTENCIA: hay evidencia de que existe actualmente y no es solo una idea o posibilidad.
+2. FUNCIÓN PROPIA: cumple una función distinguible dentro del ecosistema.
+3. FRONTERA PROPIA: puede separarse conceptualmente de otros componentes sin depender únicamente de un nombre o etiqueta.
+4. RELEVANCIA SISTÉMICA: su existencia, ausencia o estado puede afectar la operación, la información, la autoridad, el valor o una decisión del ecosistema.
+Si no supera estas comprobaciones, se registra como descriptor, capacidad, proyecto, producto, experimento o participante, pero no se fuerza su conversión en nodo.
+
+REGLA DE NATURALEZA VS. FAMILIA
+La naturaleza descriptiva de un elemento —proyecto, producto, sistema, rol, runtime, participante, activo de información, experimento u otra— no crea automáticamente una nueva familia arquitectónica. Las 8 familias se mantienen mientras puedan contener la función real del elemento. Solo se amplía la taxonomía si aparece una función estructural real que no pueda representarse correctamente en ninguna familia existente.
+
+1. UNIDADES ECONÓMICAS EXISTENTES — Qué captura valor
+Concepto: Motores económicos diferenciados que realizan una actividad propia de generación o captura de ingresos.
+Criterio de inclusión: Existe una actividad económica distinguible, con una función propia y una frontera identificable.
+Estado actual: TDT Growth está CONFIRMADO como unidad económica real. TDT Global NO se considera nodo de esta familia mientras no supere la Prueba de Nodalidad; permanece como CANDIDATO POR VERIFICAR.
+
+2. INFRAESTRUCTURA FÍSICA EXISTENTE — Dónde ocurre físicamente la operación
+Concepto: Espacios, activos y recursos tangibles que sostienen una función operativa real.
+Criterio de inclusión: Existe físicamente, tiene una función comprobable y posee suficiente relevancia para considerarlo una pieza independiente del sistema.
+Estado actual: Host local principal (Mac) CONFIRMADO como nodo físico crítico. La categoría permanece abierta para otros nodos físicos que superen la Prueba de Nodalidad.
+
+3. INFRAESTRUCTURA DIGITAL Y SISTEMAS EXISTENTES — Con qué opera digitalmente el ecosistema
+Concepto: Sistemas, entornos, herramientas, cuentas y componentes digitales que actualmente ejecutan o sostienen alguna función del ecosistema.
+Criterio de inclusión: Debe existir materialmente dentro del ecosistema actual y poseer o haber poseído una función sistémica real. Puede encontrarse ACTIVO, STANDBY, PAUSADO, BLOQUEADO o EXPERIMENTAL. No se incluyen herramientas meramente consideradas, teóricas o todavía no construidas.
+
+Regla de memoria para la instanciación de esta familia: registrar sistemas, cuentas, herramientas o componentes digitales que YA EXISTEN, aunque hoy estén ACTIVO, STANDBY, PAUSADO, BLOQUEADO o EXPERIMENTAL. Existencia y estado operativo son dimensiones distintas. No se incluyen elementos teóricos, herramientas solamente evaluadas ni sistemas aún no construidos o contratados.
+
+4. FUENTES DE VERDAD Y ACTIVOS DE INFORMACIÓN — Dónde vive la información válida
+Concepto: Repositorios, bases, documentos, registros o estructuras de información utilizados actualmente como referencia para conocer un hecho o tomar una decisión.
+Criterio de inclusión: Algún nodo real del ecosistema utiliza esa fuente para considerar que determinada información es válida.
+Distinción: Sistema digital = herramienta que hace algo. Fuente de verdad = lugar donde un hecho queda registrado como válido. Un mismo elemento puede cumplir ambas funciones; esa mezcla se detectará posteriormente.
+
+5. ESTRUCTURAS LEGALES Y FINANCIERAS EXISTENTES — Qué habilita responsabilidad legal y movimiento de capital
+Concepto: Vehículos, cuentas, estructuras y mecanismos existentes mediante los cuales el ecosistema puede cobrar, pagar, custodiar capital o asumir obligaciones legales.
+Criterio de inclusión: Debe existir realmente y ejercer actualmente alguna función jurídica, fiscal o financiera.
+
+6. ROLES Y NODOS DE AUTORIDAD EXISTENTES — Quién puede decidir o ejecutar qué
+Concepto: Funciones reales desde las cuales actualmente se ejerce autoridad, aprobación, control, custodia o ejecución.
+Criterio de inclusión: Existe una responsabilidad real ejercida dentro del sistema.
+Regla de identificación: Se registra primero la función, no la identidad personal.
+
+7. CANALES Y MERCADOS EXISTENTES — Por dónde el ecosistema entra en contacto con el mercado
+Concepto: Espacios, plataformas, territorios o mecanismos reales a través de los cuales se adquiere atención, se compra, se vende, se distribuye o se interactúa comercialmente.
+Criterio de inclusión: Debe existir una actividad comercial real o una presencia operativa efectiva en ese canal o mercado.
+
+8. DEPENDENCIAS EXTERNAS CRÍTICAS — Qué está fuera del ecosistema pero condiciona su funcionamiento
+Concepto: Actores, servicios, proveedores, plataformas o infraestructuras externas cuya disponibilidad afecta directamente la capacidad operativa de uno o más nodos internos.
+Criterio de inclusión: El elemento está fuera de la autoridad directa del TDT OS y su ausencia puede interrumpir, degradar o bloquear una función real.
+
+Lectura resumida de la Capa 1:
+1. Unidades económicas → qué captura valor
+2. Infraestructura física → dónde ocurre
+3. Infraestructura digital y sistemas → con qué se ejecuta
+4. Fuentes de verdad e información → dónde se sabe
+5. Legal y financiero → con qué estructura se responsabiliza y mueve capital
+6. Roles y autoridad → quién puede hacer o decidir
+7. Canales y mercados → por dónde entra o sale al mercado
+8. Dependencias externas → de qué depende fuera del sistema
+
+CAPA 2 — DELIMITACIÓN ARQUITECTÓNICA DEL NODO
+¿Cómo delimitamos cada nodo?
+
+Propósito:
+Aplicar una lectura uniforme a cada nodo real identificado en la Capa 1 para comprenderlo individualmente y delimitarlo con suficiente precisión antes de contrastarlo con otros nodos o construir el cableado del sistema.
+
+Regla de la Capa:
+Cada nodo se analiza primero de forma aislada. La prioridad es describir, delimitar, detectar mezcla y clasificar su tratamiento. Si aparecen relaciones con otros nodos, se registran como dependencias o outputs, pero todavía no se diseñan los flujos.
+
+MATRIZ UNIVERSAL DE DELIMITACIÓN
+
+1. QUÉ ES
+Identidad funcional del nodo: qué componente real estamos observando, cuál es su naturaleza y qué función cumple actualmente. Se describe por lo que es hoy, no por lo que podría llegar a ser.
+
+2. A QUÉ FAMILIA PERTENECE
+Ubicación arquitectónica principal del nodo dentro de las familias definidas en la Capa 1. La familia principal es una sola; si parece pertenecer a varias, la posible mezcla se registra sin forzar una solución.
+
+3. ESTADO OPERATIVO
+Indica la situación actual del nodo sin confundirse con su nivel de certeza:
+- ACTIVO: desempeña actualmente una función real.
+- STANDBY: existe y está disponible, pero no opera de forma regular.
+- PAUSADO: su operación está suspendida intencionalmente.
+- BLOQUEADO: existe, pero una condición o dependencia impide su operación.
+- EXPERIMENTAL: existe en prueba o proyección y no es canónico salvo declaración expresa.
+- POR DETERMINAR: existe evidencia del nodo, pero no hay información suficiente para asignar otro estado.
+Regla: ESTADO OPERATIVO y NIVEL DE CERTEZA son independientes. Un nodo puede estar PAUSADO + CONFIRMADO o ACTIVO + PARCIAL.
+
+4. QUÉ AUTORIDAD TIENE
+Delimita los permisos reales del nodo. La autoridad se divide en cuatro niveles:
+- LEER: puede consultar información.
+- ESCRIBIR: puede registrar o modificar información.
+- EJECUTAR: puede producir una acción real.
+- DECIDIR: puede determinar qué debe ocurrir.
+Regla: no asumir que un nodo controla algo solo porque puede observarlo o registrar datos sobre ello.
+
+5. DÓNDE EMPIEZA Y DÓNDE TERMINA — FRONTERA
+La frontera se define obligatoriamente mediante un binomio:
+- INCLUYE: responsabilidades, activos, información o actividades que pertenecen al nodo.
+- EXCLUYE: elementos cercanos o relacionados que explícitamente quedan fuera de su responsabilidad.
+Regla: definir lo que queda fuera es obligatorio para evitar expansión silenciosa de responsabilidades y solapamientos conceptuales.
+
+6. QUÉ FUENTE DE VERDAD USA
+Identifica de dónde obtiene la información que considera válida para operar o decidir. La situación puede clasificarse como fuente clara, múltiple, informal, sin fuente definida o por verificar. En esta capa se registra la realidad; todavía no se corrige.
+
+7. DE QUÉ DEPENDE
+Registra qué necesita el nodo para poder operar. Las dependencias pueden ser humanas, digitales, físicas, financieras, legales o externas. Si aparece una dependencia que aún no está inventariada, se marca como DEPENDENCIA NO MAPEADA.
+
+8. QUÉ PRODUCE
+Identifica qué resultado sale del nodo como consecuencia de operar.
+- OUTPUT PRINCIPAL: salida central que justifica su función.
+- OUTPUTS SECUNDARIOS: consecuencias adicionales relevantes.
+Todavía no se determina quién consume cada output.
+
+9. SI ESTÁ MEZCLANDO FUNCIONES
+Diagnóstico de pureza funcional del nodo:
+- NO MEZCLA: función clara y coherente.
+- MEZCLA PARCIAL: función principal clara con responsabilidades adicionales.
+- MEZCLA EVIDENTE: concentra funciones que pertenecen a dominios diferentes.
+La mezcla se identifica; todavía no se corrige.
+
+10. TRATAMIENTO CONCEPTUAL
+Define cómo debe representarse el nodo dentro de la arquitectura:
+- CONSERVAR TAL CUAL: la realidad y la representación arquitectónica coinciden suficientemente.
+- ADAPTAR: el nodo sigue siendo válido, pero su definición, autoridad o frontera necesita ajuste conceptual.
+- REUBICAR CONCEPTUALMENTE: puede seguir existiendo igual en la realidad, pero debe representarse en otro dominio o con otra función principal.
+Regla: tratamiento conceptual no equivale a una acción de implementación o migración.
+
+11. NIVEL DE CERTEZA
+Cortafuegos epistemológico para impedir que una suposición se convierta en fundamento estructural:
+- CONFIRMADO: existe evidencia suficiente sobre cómo opera el nodo.
+- PARCIAL: conocemos su función general, pero faltan elementos relevantes.
+- POR VERIFICAR: la información no está suficientemente comprobada.
+Regla dura: un nodo POR VERIFICAR puede existir en el mapa, pero no debe convertirse en supuesto estructural de la fase de cableado hasta ser validado.
+
+PLANTILLA UNIVERSAL DE INSTANCIACIÓN
+
+NODO: [Nombre real]
+QUÉ ES:
+FAMILIA PRINCIPAL:
+ESTADO OPERATIVO: Activo / Standby / Pausado / Bloqueado / Experimental / Por determinar
+AUTORIDAD:
+- Leer:
+- Escribir:
+- Ejecutar:
+- Decidir:
+FRONTERA:
+- Incluye:
+- Excluye:
+FUENTE DE VERDAD:
+DEPENDE DE:
+PRODUCE:
+- Principal:
+- Secundarios:
+MEZCLA FUNCIONES: No / Parcial / Evidente
+TRATAMIENTO CONCEPTUAL: Conservar tal cual / Adaptar / Reubicar conceptualmente
+NIVEL DE CERTEZA: Confirmado / Parcial / Por verificar
+
+REGLA DE CIERRE DE LA CAPA 2
+Un nodo no está correctamente mapeado solo porque conocemos su nombre. Está delimitado cuando conocemos su función, familia principal, estado operativo, autoridad, frontera, fuente de verdad, dependencias, outputs, mezcla funcional, tratamiento conceptual y nivel de certeza con suficiente precisión para poder contrastarlo posteriormente sin reinterpretarlo.
+
+CAPA 3 — CONTRASTE SISTÉMICO DE NODOS
+¿Qué ocurre cuando los nodos delimitados conviven dentro del mismo ecosistema?
+
+Propósito:
+Tomar los nodos ya delimitados en la Capa 2 y contrastar sus fronteras, autoridades, fuentes de verdad, dependencias, outputs y niveles de certeza para detectar incompatibilidades estructurales antes de construir el cableado del TDT OS.
+
+Pregunta central:
+¿Las fronteras, autoridades, dependencias y fuentes de verdad de los nodos pueden coexistir sin contradicción?
+
+Regla de la Capa:
+La Capa 3 no diseña conexiones ni decide todavía cómo debería relacionarse un nodo con otro. Su función es identificar y registrar solapamientos, vacíos, contradicciones y anomalías que deben quedar resueltas o suficientemente comprendidas antes de pasar a la fase de cableado.
+
+PRUEBAS DE CONTRASTE
+
+1. CONTRASTE DE FRONTERAS
+Comparar el INCLUYE y EXCLUYE de los nodos que operan sobre una misma responsabilidad, activo, información o dominio.
+
+Preguntas:
+- ¿Dos nodos reclaman la misma responsabilidad o dominio?
+- ¿Dos nodos excluyen una responsabilidad que existe realmente?
+
+Resultados posibles:
+- SIN CONFLICTO
+- SOLAPAMIENTO PARCIAL
+- SOLAPAMIENTO DIRECTO
+- VACÍO DE FRONTERA
+
+La Capa 3 identifica el conflicto; todavía no decide qué nodo debe conservar la responsabilidad.
+
+2. CONTRASTE DE AUTORIDAD
+Comparar los permisos reales definidos en Capa 2: LEER / ESCRIBIR / EJECUTAR / DECIDIR, especialmente cuando dos o más nodos actúan sobre el mismo objeto, dato, estado o decisión.
+
+Criterio:
+La lectura compartida puede ser normal. La escritura, ejecución o decisión duplicada sobre un mismo objeto puede producir una colisión de autoridad.
+
+Resultados posibles:
+- AUTORIDAD COMPATIBLE
+- ESCRITURA DUPLICADA
+- EJECUCIÓN SUPERPUESTA
+- DECISIÓN DUPLICADA
+- AUTORIDAD AMBIGUA
+
+3. CONTRASTE DE FUENTES DE VERDAD
+Comparar qué fuente considera válida cada nodo cuando varios nodos necesitan conocer el mismo hecho.
+
+Pregunta:
+¿Existen dos o más fuentes tratadas como verdad para una misma realidad operativa?
+
+Resultado:
+- FUENTE CONSISTENTE
+- FUENTE MÚLTIPLE COMPATIBLE
+- CONFLICTO DE FUENTE DE VERDAD
+- FUENTE NO DEFINIDA
+
+En esta capa se constata el conflicto; todavía no se determina cuál fuente debe prevalecer.
+
+4. CONTRASTE DE DEPENDENCIAS
+Tomar todos los campos DEPENDE DE registrados en Capa 2 y comprobar que cada dependencia esté identificada dentro del mapa o reconocida como dependencia externa.
+
+Pregunta:
+¿Todo aquello de lo que depende un nodo existe como nodo identificado o dependencia externa conocida?
+
+Resultados posibles:
+- DEPENDENCIA MAPEADA
+- DEPENDENCIA NO MAPEADA
+- DEPENDENCIA AMBIGUA
+- DEPENDENCIA POR VERIFICAR
+
+Una dependencia no mapeada obliga a revisar si falta inventariar un nodo, si la dependencia está mal expresada o si existe una dependencia externa todavía no registrada.
+
+5. CONTRASTE DE OUTPUTS
+Tomar los outputs principales y secundarios registrados en Capa 2 y verificar si existe algún nodo cuya función implique recibir, custodiar, validar, utilizar o transformar ese resultado.
+
+Pregunta:
+¿Existe una salida relevante que aparentemente nadie recibe o asume?
+
+Resultados posibles:
+- OUTPUT CON DESTINO IDENTIFICABLE
+- OUTPUT HUÉRFANO
+- DESTINO AMBIGUO
+- OUTPUT POR VERIFICAR
+
+Todavía no se dibuja la conexión entre productor y receptor; solo se registra la existencia o ausencia de un destino funcional reconocible.
+
+6. DETECCIÓN DE VACÍOS
+Observar el ecosistema como conjunto para identificar responsabilidades reales que ningún nodo reconoce como propias.
+
+Pregunta:
+¿Existe una función, responsabilidad, dato, decisión o custodia necesaria que todos los nodos dejan fuera de sus fronteras?
+
+Resultado:
+- SIN VACÍO
+- VACÍO DE RESPONSABILIDAD
+- VACÍO DE AUTORIDAD
+- VACÍO DE CUSTODIA
+- VACÍO DE INFORMACIÓN
+
+El vacío no se rellena todavía; queda registrado como hallazgo arquitectónico.
+
+7. CONTRASTE DE CERTEZA
+Cruzar los niveles CONFIRMADO / PARCIAL / POR VERIFICAR definidos en Capa 2 con la importancia estructural de cada nodo y sus dependencias.
+
+Pregunta:
+¿Una parte relevante de la arquitectura depende de información o nodos que todavía no están suficientemente validados?
+
+Resultados posibles:
+- CERTEZA SUFICIENTE
+- RIESGO DE CERTEZA PARCIAL
+- RIESGO DE CERTEZA ESTRUCTURAL
+
+Regla dura:
+Una relación crítica no debe convertirse en supuesto de cableado si depende de un nodo POR VERIFICAR sin validación suficiente.
+
+REGISTRO DE HALLAZGOS ARQUITECTÓNICOS
+
+La salida principal de la Capa 3 es un registro de anomalías y hallazgos, no un diagrama de conexiones.
+
+Cada hallazgo debe contener:
+- ID DEL HALLAZGO
+- NODO A
+- NODO B / ÁREA AFECTADA
+- DIMENSIÓN: Frontera / Autoridad / Fuente de verdad / Dependencia / Output / Vacío / Certeza
+- HALLAZGO OBSERVADO
+- EVIDENCIA
+- IMPACTO ARQUITECTÓNICO
+- REQUIERE VERIFICACIÓN: Sí / No
+- ESTADO: Abierto / Aclarado
+- NIVEL DE CERTEZA
+
+HALLAZGOS OBSERVADOS — RONDA DE GOBIERNO 1
+Los siguientes hallazgos ya fueron detectados por gobierno y pasan a formar parte del registro operativo de Capa 3. Se registran sin diseñar todavía la solución ni el cableado.
+
+H-01 — Pipeline Maestro ↔ mi-os-personal.html
+DIMENSIÓN: Fuente de verdad / estado.
+HALLAZGO OBSERVADO: La interfaz local puede quedar desactualizada respecto del Pipeline Maestro; la sincronización es parcial.
+EVIDENCIA: Gobierno confirma Pipeline Maestro como fuente comercial viva y la interfaz local como representación humana no canónica con sincronización parcial.
+IMPACTO ARQUITECTÓNICO: riesgo de que una interfaz muestre un estado comercial distinto del estado válido.
+REQUIERE VERIFICACIÓN: Sí, para determinar alcance y casos concretos de divergencia.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO sobre la existencia del riesgo; PARCIAL sobre su alcance.
+
+H-02 — Rol funcional ↔ ejecutor/runtime
+NODOS/ÁREA: Radar, Investigador y componentes técnicos posibles como OpenFang, Ollama, Claude Code, ChatGPT, Claude u otros. Rol, ejecutor, runtime y servicio de modelos se mantienen como conceptos separados.
+DIMENSIÓN: Frontera / Autoridad.
+HALLAZGO OBSERVADO: Existe riesgo de confundir el contrato funcional del rol con la herramienta, modelo o runtime que lo ejecuta.
+EVIDENCIA: Gobierno confirma Radar e Investigador como contratos funcionales y señala que sus ejecutores pueden cambiar.
+IMPACTO ARQUITECTÓNICO: una sustitución técnica podría alterar erróneamente identidad, permisos o autoridad si rol y ejecutor se modelan como una sola cosa.
+REQUIERE VERIFICACIÓN: Sí, para mapear ejecutores actuales; No para la regla de separación conceptual.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO como principio de separación; PARCIAL sobre ejecutores actuales.
+
+H-03 — Drive / Docs ↔ estado local
+DIMENSIÓN: Fuente de verdad / dependencia.
+HALLAZGO OBSERVADO: La infraestructura documental y los estados locales pueden contener representaciones no sincronizadas o con funciones distintas.
+EVIDENCIA: Drive/Docs está confirmado como infraestructura documental, mientras existen estados e interfaces locales separados.
+IMPACTO ARQUITECTÓNICO: riesgo de asumir que persistencia documental y estado operativo local representan el mismo hecho.
+REQUIERE VERIFICACIÓN: Sí.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: PARCIAL.
+
+H-04 — Bitácora / journal local ↔ Pipeline Maestro
+DIMENSIÓN: Fuente de verdad.
+HALLAZGO OBSERVADO: La historia operativa no debe confundirse con el estado comercial vivo.
+EVIDENCIA: Gobierno confirma Bitácora como historia operativa y Pipeline Maestro como fuente de verdad comercial actual.
+IMPACTO ARQUITECTÓNICO: riesgo de tomar un registro histórico como estado vigente o de sobrescribir historia con lógica de estado vivo.
+REQUIERE VERIFICACIÓN: No para la distinción funcional; Sí para identificar journals locales adicionales.
+ESTADO: Aclarado como regla; inventario relacionado abierto.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+H-05 — Obsidian ↔ fuentes canónicas
+DIMENSIÓN: Fuente de verdad / frontera.
+HALLAZGO OBSERVADO: Obsidian es una proyección relacional experimental y no debe adquirir condición canónica por el hecho de representar información del sistema.
+EVIDENCIA: Gobierno lo clasifica explícitamente como NO CANÓNICO.
+IMPACTO ARQUITECTÓNICO: una migración prematura podría crear una segunda verdad o invertir la relación entre fuente y proyección.
+REQUIERE VERIFICACIÓN: Sí, para alcance de sincronización y contenido actual.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO sobre no-canonicidad; PARCIAL sobre implementación.
+
+H-06 — OpenFang y Ollama ↔ gate de evidencia separado
+DIMENSIÓN: Certeza.
+HALLAZGO OBSERVADO: OpenFang y Ollama representan funciones técnicas distintas. La evidencia actual permite reconocer su existencia material con mayor certeza que en rondas anteriores, pero la existencia de cada componente no demuestra por sí sola su funcionamiento completo ni un ciclo de roles validado.
+EVIDENCIA: Gobierno separa OpenFang como runtime/orquestación y Ollama como servicio local de modelos/embeddings. Existen reportes y verificación humana de ejecución local/servicio activo, pero el gate Collector → artefacto real → consumo Researcher → output trazable continúa abierto.
+IMPACTO ARQUITECTÓNICO: no puede usarse como dependencia de cableado ni como ejecutor asumido de roles.
+REQUIERE VERIFICACIÓN: Sí.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: PARCIAL.
+
+CORRECCIONES DE REALIDAD — RONDA DE GOBIERNO 2
+La Ronda 2 no modifica el método de Fase 4; corrige la representación de la realidad existente.
+R2-01 — TDT Growth: estado operativo corregido a ACTIVO.
+R2-02 — Radar e Investigador: roles ACTIVO; la incertidumbre permanece en el ejecutor técnico, no en la operación del rol.
+R2-03 — Bitácora y Cola de Reanudación: activos de información ACTIVO.
+R2-04 — SYNC: reclasificado a Familia 4 como activo de estado/coordinación. Cualquier mecanismo técnico autónomo de sincronización requerirá nodo separado y evidencia propia.
+R2-05 — TDT Global: retirado de la lista de Unidades Económicas Existentes y mantenido como CANDIDATO POR VERIFICAR hasta superar Prueba de Nodalidad.
+R2-06 — OpenFang y Ollama: separados como candidatos técnicos distintos, ambos sujetos a gate de evidencia.
+R2-07 — Runtime local P0 / sensor-n0: incorporado como subsistema digital ACTIVO y probado.
+R2-08 — Automatizaciones Operativas Actuales: incorporadas como subsistema ACTIVO; su granularidad interna queda PARCIAL hasta aplicar Prueba de Nodalidad a cada automatización cuando corresponda.
+R2-09 — Host local principal (Mac): incorporado como infraestructura física ACTIVA y sistémicamente relevante.
+R2-10 — Claude Code: incorporado como nodo técnico separado de Claude, con estado BLOQUEADO.
+
+REGLA DE CONTRASTE SELECTIVO
+No se comparan todos los nodos contra todos. Dos nodos deben contrastarse cuando comparten al menos uno de estos objetos: misma función, misma decisión, mismo dato, misma fuente, misma dependencia, mismo output o misma frontera funcional. Esto evita convertir la Capa 3 en burocracia sin valor.
+
+REGLA DE CIERRE DE LA CAPA 3
+La Capa 3 está suficientemente completa cuando los nodos delimitados pueden coexistir en el mapa sin contradicciones no identificadas. Los solapamientos, vacíos, conflictos de verdad, dependencias no mapeadas, outputs huérfanos y riesgos de certeza deben estar registrados explícitamente antes de pasar a la fase de conexiones y flujos.
+
+Lectura resumida:
+Capa 1 = Clasificar.
+Capa 2 = Delimitar.
+Capa 3 = Contrastar.
+
+INSTANCIACIÓN ACTUAL DEL INVENTARIO
+
+La sección siguiente contiene los nodos reales ya identificados y las plantillas abiertas para continuar el inventario. No constituye una cuarta capa. Su función es aplicar progresivamente la taxonomía de Capa 1 y la Matriz Universal de Capa 2 sobre la realidad observada.
+
+Regla de lectura: una categoría definida no implica que sus nodos estén instanciados; una plantilla vacía no constituye evidencia de que el nodo exista.
+
+1. UNIDADES ECONÓMICAS EXISTENTES
+
+Concepto:
+Son los motores económicos que existen dentro del ecosistema y que poseen una función diferenciada de captura de valor.
+
+En esta etapa no se analiza todavía cómo intercambian información, capital, clientes, recursos o decisiones con el resto del sistema. Únicamente se establece qué unidad existe y cuál es su frontera funcional.
+
+Criterio de inclusión:
+Una unidad entra en este inventario cuando puede ser identificada como un motor económico diferenciado, con una actividad propia y una función reconocible dentro del ecosistema.
+
+Estado de delimitación: PARCIAL. TDT Growth está CONFIRMADO como unidad económica real. TDT Global se mantiene fuera de la lista de nodos y queda registrado únicamente como CANDIDATO POR VERIFICAR.
+
+1.1 TDT Growth
+QUÉ ES: Unidad económica de servicios que captura valor mediante marketing, growth y desarrollo comercial.
+FAMILIA PRINCIPAL: 1 — Unidades Económicas Existentes.
+ESTADO OPERATIVO: ACTIVO. La actividad actual se evidencia por Pipeline operativo, candidatos, investigación, Next Moves y trabajo comercial en curso.
+AUTORIDAD:
+- Leer: PARCIALMENTE DELIMITADO. Puede consultar información necesaria para su operación; permisos concretos pendientes de precisar por sistema.
+- Escribir: PARCIALMENTE DELIMITADO. Registra actividad comercial y operativa mediante los sistemas autorizados; alcance exacto pendiente.
+- Ejecutar: CONFIRMADO a nivel de prestación de servicios y actividad comercial propia.
+- Decidir: PARCIALMENTE DELIMITADO. Puede decidir dentro de su dominio operativo, sin asumir por ello autoridad de gobierno global.
+FRONTERA:
+- Incluye: operación económica vinculada a prestación de servicios, adquisición comercial, estrategia de growth, gestión de clientes y conocimiento aplicado.
+- Excluye: adquisición, custodia, movimiento o comercialización física de mercancías y cualquier autoridad de gobierno transversal no expresamente asignada.
+FUENTE DE VERDAD: Pipeline Maestro para el estado comercial vivo. Otras fuentes documentales pueden complementar contexto, pero no sustituyen el Pipeline en materia comercial.
+DEPENDE DE: PARCIALMENTE DELIMITADO. Deben confirmarse las dependencias exactas por sistema y rol; Pipeline Maestro aparece ya como dependencia informacional crítica.
+PRODUCE:
+- Principal: servicios y resultados comerciales para clientes.
+- Secundarios: registros comerciales, estados de oportunidad y conocimiento operativo asociado.
+MEZCLA FUNCIONES: PARCIALMENTE POR VERIFICAR. La unidad económica puede contener procesos de varias familias; esos componentes no deben confundirse con la unidad misma.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL como unidad económica, completando la delimitación pendiente de autoridad, dependencias y outputs específicos.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y naturaleza económica; PARCIAL sobre varios campos internos de la Matriz Universal.
+
+RESULTADO DEL BLOQUE
+UNIDADES ECONÓMICAS EXISTENTES
+└── TDT Growth — CONFIRMADO como unidad económica real; delimitación interna PARCIAL.
+
+CANDIDATO / INCERTIDUMBRE NO INSTANCIADA — TDT Global
+TDT Global NO se considera actualmente un nodo de la Familia 1. Existe evidencia histórica relacionada con ecommerce, Trebol Shop, finanzas/liquidez y otras construcciones, pero todavía no se ha demostrado que formen hoy una única unidad económica con función y frontera propias.
+ESTADO: CANDIDATO POR VERIFICAR.
+REGLA: debe superar la Prueba de Nodalidad antes de recibir numeración como unidad económica existente. Hasta entonces, no se utiliza como supuesto estructural ni como contenedor automático de proyectos comerciales históricos.
+
+CANDIDATO / INCERTIDUMBRE NO INSTANCIADA — Sistema WhatsApp 7D
+Existe evidencia material de producto/sistema —documentación, identidad, estado, dirección y artefactos técnicos/comerciales— suficiente para exigir su clasificación. Todavía no se determina si constituye una unidad económica propia, un producto de otra unidad, un componente de Visionarios IA o un activo histórico reutilizable.
+ESTADO: CANDIDATO PARCIAL / REQUIERE PRUEBA DE NODALIDAD.
+REGLA: registrar su existencia y evidencia sin asignarle identidad arquitectónica definitiva por anticipado.
+
+
+2. INFRAESTRUCTURA FÍSICA EXISTENTE
+
+Concepto:
+Conjunto de espacios, activos y recursos tangibles que actualmente sostienen la operación del ecosistema.
+
+Criterio de Inclusión:
+Un elemento entra en este inventario solo cuando existe en el plano físico, tiene una función operativa comprobable y puede delimitarse como un nodo independiente.
+
+Instanciación:
+Cada nodo físico real se registra utilizando la Matriz Universal de Delimitación definida en la Capa 2.
+
+Estado de mapeo: Existe al menos un nodo físico crítico confirmado: el host local principal donde reside parte relevante de la operación técnica. La plantilla se conserva para futuras instanciaciones.
+
+2.1 Host local principal (Mac)
+QUÉ ES: Equipo físico que hospeda componentes locales relevantes del TDT OS, incluyendo UI, scripts, runtime local, journal/estado local y servicios técnicos reportados.
+FAMILIA PRINCIPAL: 2 — Infraestructura Física Existente.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: permite LEER/ESCRIBIR almacenamiento local y EJECUTAR procesos técnicos según permisos; DECIDIR negocio o gobierno: no.
+FRONTERA:
+- Incluye: capacidad física de cómputo, almacenamiento y ejecución local necesaria para los componentes que efectivamente residen en el host.
+- Excluye: identidad de los sistemas que ejecuta, fuentes de verdad externas y autoridad funcional de los roles.
+FUENTE DE VERDAD: no es fuente de verdad por sí mismo; custodia archivos/estados cuya canonicidad depende de cada sistema.
+DEPENDE DE: energía, sistema operativo, almacenamiento, acceso y conectividad cuando corresponde.
+PRODUCE: entorno físico disponible para ejecución y persistencia local.
+MEZCLA FUNCIONES: NO MEZCLA como infraestructura física; puede hospedar múltiples nodos digitales sin convertirse en ellos.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+
+
+2.X. [NOMBRE DEL NODO FÍSICO REAL]
+
+QUÉ ES:
+FAMILIA PRINCIPAL:
+ESTADO OPERATIVO: Activo / Standby / Pausado / Bloqueado / Experimental / Por determinar
+AUTORIDAD:
+- Leer:
+- Escribir:
+- Ejecutar:
+- Decidir:
+FRONTERA:
+- Incluye:
+- Excluye:
+FUENTE DE VERDAD:
+DEPENDE DE:
+PRODUCE:
+- Principal:
+- Secundarios:
+MEZCLA FUNCIONES: No / Parcial / Evidente
+TRATAMIENTO CONCEPTUAL: Conservar tal cual / Adaptar / Reubicar conceptualmente
+NIVEL DE CERTEZA: Confirmado / Parcial / Por verificar
+
+3. INFRAESTRUCTURA DIGITAL Y SISTEMAS EXISTENTES — INSTANCIACIÓN DE GOBIERNO
+
+3.1 Pipeline Maestro
+QUÉ ES: Sistema operativo comercial que además funciona como fuente de verdad para el estado comercial vivo.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER y ESCRIBIR estado comercial según permisos. EJECUTAR acciones externas: no confirmado. DECIDIR Dirección: no.
+FRONTERA:
+- Incluye: representación y actualización del estado comercial vivo.
+- Excluye: documentación general, historia operativa, coordinación global y decisión estratégica.
+FUENTE DE VERDAD: El propio Pipeline Maestro para estado comercial.
+DEPENDE DE: Dependencias técnicas y permisos específicos POR DELIMITAR.
+PRODUCE: estado comercial actualizado, registros de oportunidades y cambios de situación comercial.
+MEZCLA FUNCIONES: PARCIAL — sistema + fuente de verdad comercial.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL, manteniendo explícita su doble función sin convertirlo en verdad global del ecosistema.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+3.2 Drive / Docs
+QUÉ ES: Infraestructura documental y conjunto de documentos utilizados por el ecosistema.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER y ESCRIBIR documentos según permisos. EJECUTAR y DECIDIR: no por sí mismo.
+FRONTERA:
+- Incluye: almacenamiento, edición, archivo y consulta documental.
+- Excluye: condición de fuente de verdad global única. Un documento concreto puede ser fuente válida para un dominio concreto, pero Drive como plataforma no equivale a una verdad universal.
+FUENTE DE VERDAD: Variable según documento y dominio.
+DEPENDE DE: Plataforma externa Google Drive/Docs, acceso y conectividad.
+PRODUCE: documentos, registros y archivos persistentes.
+MEZCLA FUNCIONES: PARCIAL — infraestructura + contenedor de activos de información.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL, separando plataforma de documentos canónicos específicos.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+3.3 mi-os-personal.html
+QUÉ ES: Interfaz local orientada al uso humano del sistema.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO con sincronización PARCIAL.
+AUTORIDAD: LEER/ESCRIBIR estado local o reflejado: PARCIALMENTE DELIMITADO. EJECUTAR y DECIDIR: POR VERIFICAR.
+FRONTERA:
+- Incluye: presentación e interacción local para el operador humano.
+- Excluye: ser fuente de verdad comercial por sí misma.
+FUENTE DE VERDAD: Debe reflejar Pipeline Maestro para estado comercial; la sincronización actual es parcial.
+DEPENDE DE: estado local y mecanismos de sincronización todavía por delimitar.
+PRODUCE: interfaz humana y representación local del estado.
+MEZCLA FUNCIONES: PARCIAL si conserva estado local además de presentar información.
+TRATAMIENTO CONCEPTUAL: ADAPTAR conceptualmente como interfaz/proyección, no como fuente canónica.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y función; PARCIAL sobre sincronización.
+
+COMPONENTES TÉCNICOS CON EXISTENCIA CONFIRMADA Y OPERACIÓN PARCIAL
+
+OpenFang
+QUÉ ES: Runtime/orquestación técnica reportada como posible ejecutor de capacidades o roles.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO según evidencia reportada y verificación humana de ejecución local; el funcionamiento completo permanece PARCIAL.
+FRONTERA PROVISIONAL: orquestación/ejecución técnica; excluye identidad y autoridad de Radar, Investigador u otros roles.
+DEPENDENCIAS: host local, configuración, Ollama/modelos y componentes de ejecución; detalle completo PARCIAL.
+TRATAMIENTO: CONSERVAR como componente técnico separado de los roles funcionales. No asumir que ejecuta Radar/Investigador ni que su ciclo está validado hasta completar el gate de artefacto trazable.
+NIVEL DE CERTEZA: PARCIAL.
+
+Ollama
+QUÉ ES: Servicio local de modelos y/o embeddings, funcionalmente distinto de un runtime de orquestación.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO según evidencia reportada y verificación humana de ejecución local; el funcionamiento completo permanece PARCIAL.
+FRONTERA: servir modelos/embeddings locales; excluye orquestación de roles y autoridad funcional.
+DEPENDENCIAS: host local, modelos y configuración del servicio; detalle operativo PARCIAL.
+TRATAMIENTO: CONSERVAR como servicio local separado de OpenFang y de los roles funcionales. Su funcionamiento no valida por sí solo la orquestación ni el ciclo de trabajo de OpenFang.
+NIVEL DE CERTEZA: PARCIAL.
+
+3.4 Runtime local P0 / sensor-n0
+QUÉ ES: Subsistema técnico local ya probado que sostiene las etapas existentes de snapshot, compiler, publish, UI y journal/apply.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER insumos locales/autorizados; ESCRIBIR y transformar artefactos locales; EJECUTAR etapas técnicas del runtime; DECIDIR estrategia o gobierno: no.
+FRONTERA:
+- Incluye: ejecución técnica del conjunto P0/sensor-n0 y producción/aplicación de artefactos locales asociados.
+- Excluye: autoridad comercial, decisión de Dirección y convertir cada script individual en nodo por defecto.
+FUENTE DE VERDAD: consume fuentes autorizadas según la etapa; sus artefactos locales no constituyen verdad global por sí mismos.
+DEPENDE DE: host local, scripts/componentes, permisos y fuentes de entrada.
+PRODUCE: snapshots, artefactos compilados/publicados, estado presentado en UI y registros/aplicaciones locales.
+MEZCLA FUNCIONES: PARCIAL a nivel de subsistema; los límites internos todavía pueden requerir mayor granularidad.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como subsistema real hasta que alguna pieza interna justifique nodo independiente.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y funcionamiento del conjunto; PARCIAL sobre límites internos.
+
+3.5 Automatizaciones Operativas Actuales
+QUÉ ES: Subsistema de automatizaciones que ya ejecutó rondas operativas y produjo modificaciones reales en el Pipeline Maestro.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER insumos y estados autorizados; ESCRIBIR Pipeline cuando la automatización lo tiene permitido; EJECUTAR rondas automáticas configuradas; DECIDIR estrategia o Dirección: no.
+FRONTERA:
+- Incluye: ejecución automática de tareas operativas configuradas y actualizaciones autorizadas derivadas de esas rondas.
+- Excluye: decisión estratégica, autoridad de gobierno y asumir que todas las automatizaciones tienen idéntica frontera.
+FUENTE DE VERDAD: Pipeline Maestro para estado comercial; configuración/logs para estado de ejecución técnica.
+DEPENDE DE: host/runtime, credenciales, Pipeline y mecanismos de disparo/configuración POR DELIMITAR.
+PRODUCE: actualizaciones operativas, cambios de estado autorizados y registros de ejecución.
+MEZCLA FUNCIONES: PARCIAL. La existencia del subsistema está confirmada, pero debe decidirse por Prueba de Nodalidad si alguna automatización merece nodo individual.
+TRATAMIENTO CONCEPTUAL: ADAPTAR como subsistema hasta delimitar su granularidad interna.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y actividad; PARCIAL sobre composición interna.
+
+3.6 Claude Code
+QUÉ ES: Herramienta/agente técnico de código utilizada sobre el entorno local, con capacidad de producir archivos y outputs técnicos y con un bloqueo operativo propio.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: POR DETERMINAR. El último bloqueo confirmado fue por cuota/runtime; la llegada de la hora prevista de reset no demuestra por sí sola que la capacidad se haya recuperado.
+AUTORIDAD: LEER/ESCRIBIR archivos y contexto técnico según permisos; EJECUTAR tareas técnicas autorizadas; DECIDIR Dirección o estado comercial: no.
+FRONTERA:
+- Incluye: trabajo técnico sobre código, archivos locales y outputs derivados de tareas asignadas.
+- Excluye: ser idéntico a Claude como servicio/modelo y asumir identidad de un rol funcional del TDT OS.
+FUENTE DE VERDAD: archivos/repositorios e instrucciones de tarea dentro de su ámbito; no constituye fuente de verdad comercial.
+DEPENDE DE: host local, acceso/credenciales y servicio externo correspondiente.
+PRODUCE: código, archivos locales y resultados técnicos.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene separado de Claude como capacidad externa y de los roles funcionales.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como nodo técnico separado.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y función; PARCIAL sobre estado operativo actual.
+
+3.7 Obsidian
+QUÉ ES: Proyección relacional experimental del conocimiento/sistema.
+FAMILIA PRINCIPAL: 3 — Infraestructura Digital y Sistemas Existentes.
+ESTADO OPERATIVO: EXPERIMENTAL.
+AUTORIDAD: POR DELIMITAR.
+FRONTERA:
+- Incluye: representación relacional experimental.
+- Excluye: ser fuente canónica o sustituir las fuentes de verdad actuales sin decisión posterior de migración.
+FUENTE DE VERDAD: No es canónica; debe consumir o proyectar fuentes autorizadas.
+DEPENDE DE: materialización y sincronización con fuentes canónicas, todavía por delimitar.
+PRODUCE: visualización/proyección relacional.
+MEZCLA FUNCIONES: Riesgo de confundirse con repositorio canónico.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como experimento/proyección no canónica.
+NIVEL DE CERTEZA: CONFIRMADO como condición experimental reportada; alcance técnico PARCIAL.
+
+4. FUENTES DE VERDAD Y ACTIVOS DE INFORMACIÓN — INSTANCIACIÓN DE GOBIERNO
+
+4.1 Bitácora
+QUÉ ES: Registro de historia operativa.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER y ESCRIBIR historia según permisos. EJECUTAR y DECIDIR: no.
+FRONTERA:
+- Incluye: memoria e historial de hechos, acciones o cambios registrados.
+- Excluye: representar el estado comercial vivo actual.
+FUENTE DE VERDAD: La propia Bitácora para historia registrada, no para estado comercial vivo.
+DEPENDE DE: mecanismos de registro POR DELIMITAR.
+PRODUCE: historial operativo consultable.
+MEZCLA FUNCIONES: NO MEZCLA en su función principal.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+4.2 Cola de Reanudación
+QUÉ ES: Activo de continuidad y gobierno que preserva elementos pendientes de retomarse.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER/ESCRIBIR elementos de reanudación según contrato; ejecución y decisión final corresponden a roles autorizados.
+FRONTERA:
+- Incluye: continuidad, pendientes de reanudación y contexto necesario para retomar trabajo.
+- Excluye: reemplazar Pipeline Maestro, Bitácora o decisión de Dirección.
+FUENTE DE VERDAD: La propia cola para el conjunto de elementos pendientes que formalmente custodia.
+DEPENDE DE: mecanismo de persistencia y disciplina de actualización POR DELIMITAR.
+PRODUCE: lista/estado de pendientes reanudables y contexto de continuidad.
+MEZCLA FUNCIONES: NO MEZCLA en su función principal.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+4.3 SYNC
+QUÉ ES: Activo de información que representa estado y coordinación operativa. La evidencia actual no demuestra que sea un motor ejecutor autónomo.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD:
+- Leer: estado de coordinación que le corresponde.
+- Escribir: estado operativo/coordinación según permisos.
+- Ejecutar: NO CONFIRMADO como mecanismo autónomo.
+- Decidir: no decide estado comercial ni Dirección.
+FRONTERA:
+- Incluye: registro y representación del estado operativo/coordinación dentro de su ámbito.
+- Excluye: sustituir Pipeline Maestro como fuente comercial y asumir que existe un mecanismo técnico de sincronización autónoma no demostrado.
+FUENTE DE VERDAD: El propio SYNC para el estado operativo que formalmente custodia; Pipeline Maestro prevalece para estado comercial.
+DEPENDE DE: persistencia, disciplina de actualización y mecanismos técnicos POR DELIMITAR.
+PRODUCE: estado operativo/coordinación consultable.
+MEZCLA FUNCIONES: PARCIAL si bajo el mismo nombre se está confundiendo el activo de información con un mecanismo técnico de sincronización.
+TRATAMIENTO CONCEPTUAL: REUBICAR CONCEPTUALMENTE desde Familia 3 a Familia 4. Si se demuestra un mecanismo técnico de sincronización autónomo, debe mapearse como nodo separado.
+NIVEL DE CERTEZA: CONFIRMADO sobre su función de estado/coordinación; PARCIAL sobre la implementación técnica.
+
+4.4 Registro Vivo de Bloques
+QUÉ ES: Activo de continuidad temporal que registra cada bloque como apertura → vista del ahora → trabajo → evidencia → cierre → siguiente estado.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER fuentes autorizadas y ESCRIBIR continuidad/estado temporal según su contrato. EJECUTAR y DECIDIR estrategia: no por sí mismo.
+FRONTERA:
+- Incluye: registro temporal de bloques, cambios observados, evidencia, pendientes y punto de reanudación.
+- Excluye: sustituir Pipeline Maestro, SYNC, Bitácora, Cola de Reanudación o las fuentes canónicas de cada dominio.
+FUENTE DE VERDAD: El propio Registro Vivo para el historial temporal que formalmente custodia; no es verdad comercial global.
+DEPENDE DE: lectura de fuentes vigentes y disciplina/mecanismo de actualización.
+PRODUCE: continuidad temporal y vista trazable del estado disponible en cada corte.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene como registro temporal y no absorbe las fuentes que consulta.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y función.
+
+5. ESTRUCTURAS LEGALES Y FINANCIERAS EXISTENTES — ESTADO DE ESTA RONDA
+No se incorporan nuevos nodos legales o financieros por inferencia. La evidencia histórica vinculada a ecommerce, finanzas o liquidez debe superar prueba de nodalidad y validación actual antes de instanciarse aquí.
+
+6. ROLES Y NODOS DE AUTORIDAD EXISTENTES — INSTANCIACIÓN DE GOBIERNO
+
+6.1 Dirección Estratégica
+QUÉ ES: Función de autoridad raíz del TDT OS desde la cual se definen intención, prioridades, límites, riesgo y delegación. Se representa como función del sistema, no como identidad personal.
+FAMILIA PRINCIPAL: 6 — Roles y Nodos de Autoridad Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER la visión estratégica disponible; ESCRIBIR Dirección, criterios y decisiones; EJECUTAR o activar acciones mediante canales autorizados; DECIDIR como autoridad raíz y delegar autoridad dentro de límites definidos.
+FRONTERA:
+- Incluye: dirección estratégica, prioridades, decisiones de gobierno, criterios de riesgo y delegación de autoridad.
+- Excluye: confundirse con una herramienta, modelo, runtime, automatización o ejecutor técnico concreto.
+FUENTE DE VERDAD: utiliza la visión central coherente construida a partir de fuentes canónicas por dominio; no requiere un único repositorio físico.
+DEPENDE DE: evidencia y estado entregados por el sistema, sin depender identitariamente de una herramienta específica.
+PRODUCE: Dirección, decisiones, límites, prioridades y autoridad delegada.
+MEZCLA FUNCIONES: NO MEZCLA como autoridad raíz si se mantiene separada de su implementación operativa.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como función de autoridad raíz.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+6.2 Mission Commander
+QUÉ ES: Identidad funcional cognitiva y ejecutiva que integra contexto, prioridades, coordinación, decisión y ejecución dentro de autoridad delegada por Dirección Estratégica.
+FAMILIA PRINCIPAL: 6 — Roles y Nodos de Autoridad Existentes.
+ESTADO OPERATIVO: ACTIVO.
+AUTORIDAD: LEER contexto y fuentes autorizadas; ESCRIBIR coordinación y outputs operativos según permisos; EJECUTAR coordinación/asignación interna; DECIDIR únicamente dentro de autoridad delegada, progresiva y vigente.
+FRONTERA:
+- Incluye: integrar información, priorizar, coordinar, emitir Next Moves, asignar trabajo y ejercer decisiones delegadas.
+- Excluye: ser la autoridad raíz, ser idéntico a ChatGPT/OpenFang/modelo/automatización concreta o asumir autoridad no delegada.
+FUENTE DE VERDAD: consume fuentes canónicas por dominio y activos de coordinación; no constituye por sí mismo un repositorio canónico global.
+DEPENDE DE: fuentes, ejecutores, runtimes y automatizaciones que pueden cambiar sin alterar su identidad funcional; implementación exacta PARCIAL.
+PRODUCE: prioridades, decisiones delegadas, asignaciones, Next Moves y coordinación ejecutiva.
+MEZCLA FUNCIONES: NO MEZCLA si su función integradora se mantiene separada de las implementaciones que la materializan.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como identidad funcional separada de la implementación técnica.
+NIVEL DE CERTEZA: CONFIRMADO sobre identidad y presencia operativa; PARCIAL sobre autonomía y ejecutor técnico exactos.
+
+6.3 Radar
+QUÉ ES: Rol/capacidad contractual de observación del entorno y generación de señales.
+FAMILIA PRINCIPAL: 6 — Roles y Nodos de Autoridad Existentes.
+ESTADO OPERATIVO: ACTIVO como rol. El ejecutor técnico permanece PARCIAL / POR VERIFICAR.
+AUTORIDAD:
+- Leer: fuentes necesarias para observación.
+- Escribir: reportes/señales según contrato.
+- Ejecutar: observación y análisis asignado.
+- Decidir: NO decide Dirección y NO realiza outreach por definición contractual actual.
+FRONTERA:
+- Incluye: observar, detectar y reportar.
+- Excluye: outreach, decisión estratégica y apropiarse de la identidad del runtime o modelo que lo ejecute.
+FUENTE DE VERDAD: Fuentes consultadas según cada observación; no se declara fuente canónica propia.
+DEPENDE DE: ejecutor/runtime y fuentes, ambos separables del rol.
+PRODUCE: señales y observaciones.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene separado del ejecutor.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL como contrato funcional independiente de tecnología.
+NIVEL DE CERTEZA: CONFIRMADO como contrato.
+
+6.4 Investigador
+QUÉ ES: Rol/capacidad contractual de investigación y producción de análisis.
+FAMILIA PRINCIPAL: 6 — Roles y Nodos de Autoridad Existentes.
+ESTADO OPERATIVO: ACTIVO como rol. El ejecutor técnico permanece PARCIAL / POR VERIFICAR.
+AUTORIDAD:
+- Leer: fuentes necesarias para investigar.
+- Escribir: análisis y resultados de investigación.
+- Ejecutar: investigación asignada.
+- Decidir: no adquiere autoridad de Dirección por el hecho de investigar.
+FRONTERA:
+- Incluye: investigar, contrastar y sintetizar.
+- Excluye: ser idéntico al modelo, SaaS o runtime que lo ejecute y asumir autoridad no delegada.
+FUENTE DE VERDAD: Fuentes de investigación según tarea; no constituye automáticamente fuente canónica del sistema.
+DEPENDE DE: ejecutor/runtime y fuentes de información.
+PRODUCE: investigación, evidencia y síntesis.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene separado del ejecutor.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL como contrato funcional.
+NIVEL DE CERTEZA: CONFIRMADO como contrato.
+
+7. CANALES Y MERCADOS EXISTENTES — ESTADO DE ESTA RONDA
+La realidad actual documenta uso o presencia operativa de Instagram, Web y LinkedIn. Se registran como canales existentes del ecosistema; su condición de nodos independientes, autoridad y fronteras específicas permanecen PARCIAL / POR DELIMITAR. Los proyectos comerciales históricos deben validarse individualmente antes de atribuirles canales actuales por inferencia.
+
+8. DEPENDENCIAS EXTERNAS CRÍTICAS — PARTICIPANTES Y CAPACIDADES POR CLASIFICAR
+Gemini / DeepSeek / NotebookLM / ChatGPT / Claude aparecen en la realidad documentada como participantes, herramientas o capacidades externas. Claude Code se modela por separado como nodo técnico de Familia 3 y no debe confundirse con Claude como servicio/modelo. Ninguno de estos participantes debe convertirse automáticamente en rol del TDT OS.
+Regla de tratamiento: cada uno debe superar la PRUEBA DE NODALIDAD y después clasificarse según su función real. Si su disponibilidad externa condiciona una función interna, puede corresponder a Familia 8. Si solo actúa como herramienta circunstancial o ejecutor intercambiable, esa condición debe registrarse sin confundirla con Radar, Investigador u otro rol funcional.
+Estado de certeza: presencia documentada CONFIRMADA; función arquitectónica individual y criticidad POR DELIMITAR.
+
+CANDIDATOS DE INVENTARIO EXIGIDOS POR GOBIERNO
+Los siguientes elementos siguen pendientes de revisión antes del cierre operativo: Visionarios IA, Sistema WhatsApp 7D, Reinicia Fit, Trebol Shop, Renda Extra y otros componentes locales no cubiertos por los nodos ya instanciados. El runtime local P0 / sensor-n0 y las Automatizaciones Operativas Actuales ya fueron incorporados como subsistemas reales. Sistema WhatsApp 7D posee evidencia material suficiente para exigir Prueba de Nodalidad, pero no se presume todavía como unidad económica independiente ni como pieza separada de Visionarios IA.
+Estado actual de Fase 4: PENDIENTES DE PRUEBA DE NODALIDAD Y CLASIFICACIÓN. No se asigna familia, frontera ni autoridad por inferencia. Cada elemento debe determinar primero si sigue existiendo, cuál es su estado operativo y si constituye un nodo independiente o un componente de otro nodo.
+
+REGLA DE CIERRE DE LA FASE 4
+
+La Cartografía del TDT OS se considera operativamente completa cuando el sistema puede responder qué existe, qué es cada nodo, a qué familia pertenece, cuál es su estado operativo, qué autoridad posee, dónde empieza y termina su frontera, qué fuente de verdad utiliza, de qué depende, qué produce, qué mezcla funcional presenta y con qué nivel de certeza está descrito; además, toda contradicción detectable debe quedar registrada sin diseñar todavía las conexiones.
+
+CRITERIOS DE CIERRE
+
+1. COBERTURA DEL INVENTARIO
+Todo componente relevante conocido debe estar registrado en una familia de la Capa 1. Si aparece un componente necesario pero no identificado, se marca como NODO NO MAPEADO.
+
+2. DELIMITACIÓN INDIVIDUAL COMPLETA
+Cada nodo relevante debe disponer de la Matriz Universal de Capa 2 con información suficiente: Qué es / Familia principal / Estado operativo / Autoridad / Frontera Incluye-Excluye / Fuente de verdad / Dependencias / Outputs / Mezcla funcional / Tratamiento conceptual / Nivel de certeza.
+
+3. AUTORIDAD EXPLÍCITA
+No se acepta una descripción ambigua como “controla” o “gestiona” sin determinar si el nodo puede LEER, ESCRIBIR, EJECUTAR o DECIDIR.
+
+4. FRONTERA EXPLÍCITA
+Todo nodo debe declarar obligatoriamente qué INCLUYE y qué EXCLUYE. Si no puede determinarse lo que queda fuera, el nodo todavía no está suficientemente delimitado.
+
+5. CONTRASTE SISTÉMICO EJECUTADO
+La Capa 3 debe haber revisado, cuando corresponda: solapamientos de frontera, autoridad duplicada, fuentes de verdad conflictivas, dependencias no mapeadas, outputs huérfanos, vacíos de responsabilidad y riesgos de certeza.
+
+6. INCERTIDUMBRE VISIBLE
+Toda información incompleta debe estar marcada como CONFIRMADO / PARCIAL / POR VERIFICAR. Nada POR VERIFICAR puede convertirse en fundamento estructural del cableado sin validación previa.
+
+7. NO CONTAMINACIÓN CON FASE 5
+Fase 4 puede registrar que A depende de X o que A produce Y. No define todavía canal, trigger, frecuencia, API, automatización, dirección técnica del flujo ni mecanismo de transporte. Esa definición pertenece a Fase 5.
+
+REGISTRO DE PENDIENTES OBLIGATORIO
+
+Fase 4 no requiere que todos los problemas estén resueltos para cerrarse; requiere que todo lo no resuelto sea visible y esté clasificado. Los pendientes deben registrarse como: POR VERIFICAR / ESTADO OPERATIVO POR DETERMINAR / NODO NO MAPEADO / FRONTERA AMBIGUA / AUTORIDAD CONFLICTIVA / FUENTE DE VERDAD CONFLICTIVA / DEPENDENCIA PENDIENTE / OUTPUT HUÉRFANO / VACÍO DETECTADO.
+
+Regla: un problema conocido y registrado no impide cerrar la cartografía. Una incertidumbre oculta o una contradicción no registrada sí.
+
+CONTRATO DE SALIDA DE LA FASE 4
+
+La Fase 4 debe entregar cuatro objetos comprensibles por el sistema:
+
+1. CATÁLOGO DE NODOS — Qué existe y a qué familia pertenece.
+2. FICHAS DE DELIMITACIÓN — Qué es cada nodo y cuáles son sus límites, autoridad, verdad, dependencias y outputs.
+3. REGISTRO DE HALLAZGOS ARQUITECTÓNICOS — Dónde existen solapamientos, vacíos, conflictos o anomalías.
+4. REGISTRO DE INCERTIDUMBRES — Qué información todavía no puede tratarse como hecho estructural.
+
+HANDOFF A FASE 5
+
+Entrada autorizada para el Cableado del TDT OS, únicamente después de aprobación de gobierno para CIERRE OPERATIVO: nodos suficientemente validados + familia + estado operativo + fronteras + autoridad + fuentes de verdad + dependencias + outputs + hallazgos + nivel de certeza.
+
+CRITERIO PARA FASE 5: F5 = cableado de la realidad ya delimitada. No debe diseñar un sistema ideal ni resolver por conexión aquello que F4 todavía no pudo afirmar con suficiente certeza.
+REGLA DE ENTRADA AL CABLEADO:
+- CONFIRMADO / suficientemente delimitado en F4 → puede entrar al cableado como hecho.
+- PARCIAL → puede entrar solo como conexión provisional o restringida, con límites explícitos y sin elevar artificialmente su certeza.
+- POR VERIFICAR / incertidumbre estructural → no puede convertirse en conexión asumida, automatización, dependencia o flujo real.
+HERENCIA DE CERTEZA: F5 debe heredar de F4 no solo nodos y dependencias, sino también el nivel de certeza de cada relación.
+ESTADOS DE CABLEADO: CONEXIÓN OPERATIVA CONFIRMADA / CONEXIÓN PROVISIONAL-RESTRINGIDA / CONEXIÓN NO AUTORIZADA TODAVÍA.
+GATE DE CABLEADO: cualquier hallazgo abierto de Capa 3 que afecte una relación crítica funciona como gate. Mientras exista conflicto relevante de frontera, autoridad, fuente de verdad, dependencia o certeza, F5 no puede ocultarlo mediante una conexión técnica.
+REGLA DE FRONTERA F4→F5: F4 determina qué realidad puede tratarse como estructural. F5 solo conecta aquello que recibió permiso epistemológico para ser conectado.
+
+DISTINCIÓN DE ESTADO
+
+CIERRE DE DISEÑO: el marco de Fase 4 está definido cuando existen Capa 1, Capa 2, Capa 3 y esta regla de cierre.
+
+CIERRE OPERATIVO: la Fase 4 solo está ejecutada y lista para cablear cuando el inventario real ha sido instanciado, delimitado y contrastado según los criterios anteriores.
+
+Estado post-sincronización — 23/08/2026: FASE 4 — DISEÑO APROBADO. RONDA DE GOBIERNO 1 — SUPERADA. RONDA DE AJUSTES DE GOBIERNO 2 — INCORPORADA. RONDA DE SINCRONIZACIÓN DEL MOMENTO ACTUAL — INCORPORADA. CIERRE OPERATIVO — PENDIENTE DE REAUDITORÍA DE GOBIERNO. La fase representa la realidad actual sin fabricar nodos ni adelantar cableado. No se autoriza Fase 5, migración ni cambio de fuentes canónicas hasta recibir nuevo dictamen.
+
+RONDA DE LECTURA DEL DRIVE EXTERIOR — 1
+ALCANCE: 00_NÚCLEO + 01_DIRECCIÓN. Lectura desde Fase 4. No se movió, renombró, copió ni reubicó ningún archivo o carpeta.
+
+CRITERIO DE ESTA RONDA
+El Drive exterior se trata como realidad documental a hacer legible, no como estructura a migrar. La ubicación física actual no determina identidad arquitectónica. Carpetas vacías, nombres de archivo y estructuras heredadas no se convierten por sí solos en nodos.
+
+A. 00_NÚCLEO — PRIMERA LECTURA
+OBSERVACIÓN: la carpeta 00_NÚCLEO existe y, en la lectura actual, no contiene elementos visibles.
+LECTURA F4: carpeta vacía ≠ inexistencia del concepto Núcleo. La noción de Núcleo sí aparece documentada dentro de la especificación de Dirección como marco de identidad, propósito, valores, principios, límites y criterios fundamentales.
+ESTADO: CONTENEDOR EXISTENTE / SIN ACTIVO INTERNO OBSERVADO EN ESTA RONDA.
+CERTEZA: CONFIRMADO sobre existencia de la carpeta y ausencia de contenidos visibles; PARCIAL sobre dónde vive hoy la fuente material del Núcleo.
+PENDIENTE: continuar búsqueda antes de afirmar fuente de verdad, nodalidad o ubicación definitiva del Núcleo.
+
+B. 01_DIRECCIÓN — PRIMERA LECTURA
+OBSERVACIÓN DE ESTRUCTURA: la carpeta contiene activos documentales, handoffs y subcarpetas de PRESENTE, PRIORIDADES, DECISIONES, HORIZONTE y varios niveles/inventarios heredados. La coexistencia de capas temporales y conceptuales obliga a distinguir vigencia antes de usar cualquier pieza como fundamento estructural.
+
+EVIDENCIA VIGENTE IDENTIFICADA — contexto_direccion.md
+- Documento declarado VIGENTE · MÍNIMO · REVISABLE.
+- Regla de autoridad: Dirección explícita del fundador > decisiones/contexto vigente > derivaciones del sistema respaldadas por evidencia > historia previa si sigue vigente.
+- Ante contradicción no resoluble: requiere decisión del usuario.
+- Actualización 22/08/2026: objetivo de cash_received USD 3.000 en 7 días, TDT Growth como motor primario, modo de outreach ASSISTED / HUMAN-IN-THE-LOOP y trabajo interno reversible delegable al sistema.
+LECTURA F4: evidencia fuerte que refuerza la existencia y frontera de Dirección Estratégica ya instanciada en Familia 6. La autoridad final no proviene del archivo: el archivo documenta autoridad explícita del usuario/fundador.
+
+ACTIVO DE INFORMACIÓN CANDIDATO — Contexto de Dirección Económica
+QUÉ ES: documento de referencia que conserva la Dirección económica explícita vigente y reglas de autoridad aplicables al ciclo actual.
+FAMILIA PROVISIONAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO como referencia documental vigente.
+AUTORIDAD: puede ser leído y actualizado según gobierno; no ejecuta ni decide por sí mismo.
+FRONTERA:
+- Incluye: objetivo económico vigente, prioridad económica, restricciones, modo de outreach y reglas de escalamiento documentadas.
+- Excluye: sustituir a Dirección Estratégica como autoridad, representar toda la Dirección del sistema o convertir por sí solo una decisión en acción.
+FUENTE DE VERDAD: deriva su validez de Dirección explícita y decisiones vigentes; el documento preserva esa declaración, no crea la autoridad.
+DEPENDE DE: actualización coherente con decisiones explícitas y contexto vigente.
+PRODUCE: contexto económico legible para priorización y razonamiento.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene como activo documental y no se confunde con la función de Dirección.
+TRATAMIENTO CONCEPTUAL: CONSERVAR COMO ACTIVO DE INFORMACIÓN CANDIDATO; completar contraste con otros activos de Dirección antes de cerrar su condición exacta.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia, contenido vigente y función documental; PARCIAL sobre si es la única referencia canónica de Dirección económica.
+
+EVIDENCIA CONCEPTUAL / NO USAR COMO ESTADO ACTUAL AUTOMÁTICO — CAPA 1 — DIRECCIÓN — Arquitectura Cognitiva
+La especificación conserva principios de Dirección: usuario como autoridad final, Núcleo/Presente/Horizonte/Prioridad/Objetivo/Decisión/Criterio, Handoff como frontera, memoria perteneciente al sistema y motor cognitivo reemplazable. También contiene elementos de diseño o estado histórico —por ejemplo proveedor/modelo propuesto e implementación pendiente— que no deben promoverse automáticamente a realidad actual.
+LECTURA F4: evidencia conceptual relevante para fronteras y autoridad; no es por sí sola una fotografía operativa vigente.
+
+ACTIVOS TEMPORALES LEÍDOS
+- PRESENTE — 2026-08-16: se declara explícitamente foto operativa del 16/08, no arquitectura permanente. Se conserva como evidencia histórica/temporal, no como PRESENTE actual.
+- PRIORIDAD ACTIVA — RADAR NIVEL 0 — 18-08-2026: contiene sucesivas actualizaciones del 18/08. Su prioridad fue posteriormente superada por la actualización económica del 22/08; no debe tratarse como prioridad vigente por su nombre.
+- 02_DECISIONES: carpeta observada vacía en esta ronda.
+- 03_HORIZONTE: carpeta observada vacía en esta ronda.
+- 01_PRIORIDADES: contiene al menos el documento de prioridad del 18/08 ya descrito.
+
+REGLA DE LEGIBILIDAD EXTRAÍDA
+UBICACIÓN EN 01_DIRECCIÓN ≠ VIGENCIA ≠ AUTORIDAD ≠ FUENTE ACTUAL. Cada pieza debe conservar fecha, función y estado antes de participar en el mapa.
+
+H-07 — Dirección Estratégica ↔ activos documentales de 01_DIRECCIÓN
+DIMENSIÓN: Fuente de verdad / Certeza / Frontera.
+HALLAZGO OBSERVADO: 01_DIRECCIÓN mezcla físicamente especificaciones conceptuales, fotos temporales, prioridades históricas, handoffs y una referencia económica vigente. La carpeta es una organización humana útil, pero no puede tratarse como una única fuente temporal homogénea.
+EVIDENCIA: contexto_direccion.md contiene actualización vigente del 22/08; PRESENTE está fechado 16/08 y se define como foto; PRIORIDAD ACTIVA contiene prioridades del 18/08; CAPA 1 — DIRECCIÓN distingue conceptos validados de implementación pendiente.
+IMPACTO ARQUITECTÓNICO: riesgo de que un consumidor tome un archivo antiguo o conceptual como Dirección vigente, o confunda la función Dirección con sus documentos de soporte.
+REQUIERE VERIFICACIÓN: Sí, hasta completar lectura ordenada de los subniveles, handoffs y restantes activos de 01_DIRECCIÓN.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO sobre coexistencia de capas temporales/funcionales distintas; PARCIAL sobre inventario completo.
+
+COBERTURA DEL DRIVE EXTERIOR — ESTADO DE RECORRIDO
+00_NÚCLEO: PRIMERA LECTURA HECHA — carpeta vacía; fuente material del Núcleo pendiente de localizar.
+01_DIRECCIÓN: PRIMERA LECTURA HECHA — estructura y activos clave identificados; subniveles/handoffs pendientes de lectura individual.
+02_CONSTRUCCIÓN: PENDIENTE.
+03_ECOSISTEMA_DIGITAL: PENDIENTE.
+04_PARTICIPANTES: PENDIENTE.
+05_RITUALES_Y_CICLOS: PENDIENTE.
+06_SEÑALES_Y_MÉTRICAS: PENDIENTE.
+07_ACTIVOS_COMPARTIDOS: PENDIENTE.
+08_REFERENCIAS: PENDIENTE.
+90_HISTÓRICO: PENDIENTE.
+Documentos raíz 00–10 y activos operativos sueltos fuera de TDT OS: PENDIENTES DE LECTURA ORDENADA según relevancia y evitando duplicar lo ya cubierto.
+
+REGLA DE CONTINUIDAD
+La próxima lectura exterior continúa desde lo pendiente sin alterar ubicación física. F4 solo amplía legibilidad, clasificación, delimitación y certeza. Cualquier decisión sobre referencia, sincronización, conexión, transformación o movimiento queda reservada a F5.
+
+RONDA DE LECTURA DEL DRIVE EXTERIOR — 2
+ALCANCE: 02_CONSTRUCCIÓN. Lectura desde Fase 4. No se movió, renombró, copió ni reubicó ningún archivo o carpeta.
+
+OBSERVACIÓN DE ESTRUCTURA
+02_CONSTRUCCIÓN contiene actualmente cinco documentos visibles en raíz y cuatro subcarpetas: 00_LABORATORIO, 01_MÉTODOS_Y_FRAMEWORKS, 02_EXPERIMENTOS_Y_PROTOTIPOS y 03_APRENDIZAJES. Las cuatro subcarpetas están vacías en la lectura actual. Su existencia organiza intención/uso humano, pero no constituye por sí sola evidencia de nodos, capacidades o procesos activos.
+
+DOCUMENTOS VISIBLES EN RAÍZ
+- CAPA 2 — ACCIÓN — Arquitectura Operativa.
+- HANDOFF — PRIORITY COMPILER + ORQUESTADOR 7 FASES — RADAR N0.
+- HANDOFF — DIRECCIÓN ECONÓMICA MÍNIMA + CONTEXT COMPILER v0.1.
+- HANDOFF — NÚCLEO DE DECISIÓN COMERCIAL + ANALIZADOR DE OPORTUNIDADES v0.1.
+- HANDOFF — ENRIQUECIMIENTO COMERCIAL VERTICAL SLICE v0.1.
+
+LECTURA F4 — NATURALEZA DE 02_CONSTRUCCIÓN
+La carpeta funciona como zona documental de construcción, especificación, handoffs e intentos de implementación. No existe evidencia suficiente para tratar “02_CONSTRUCCIÓN” como un único nodo operativo. Tampoco sus subcarpetas vacías deben instanciarse como nodos por nombre.
+
+ACTIVO DE INFORMACIÓN CANDIDATO — CAPA 2 — ACCIÓN — Arquitectura Operativa
+QUÉ ES: especificación conceptual fechada 16/08/2026 sobre cómo Dirección podría convertirse en trabajo ejecutable mediante Work Compiler, Scheduler/Orchestrator, Executor, State & Traceability y una State Machine transversal.
+FAMILIA PROVISIONAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO DE VIGENCIA: PARCIAL / REQUIERE CONTRASTE. El propio documento declara FUNDAMENTOS EN VALIDACIÓN, ARQUITECTURA OPERATIVA EN PULIDO e IMPLEMENTACIÓN TÉCNICA PENDIENTE.
+FRONTERA:
+- Incluye: principios, responsabilidades, semántica de estado/evento/evidencia, separación preparar/ejecutar/verificar, human-in-the-loop y diseño conceptual de Acción.
+- Excluye: demostrar que hoy existe un único “Action Runtime” materializado exactamente con esos módulos; demostrar que Work Compiler, Scheduler, Executor o State Machine son nodos independientes actuales.
+TRATAMIENTO CONCEPTUAL: conservar como evidencia de diseño y origen conceptual. Contrastar sus responsabilidades con los componentes reales ya mapeados —Mission Commander, runtime local P0/sensor-n0, automatizaciones, Claude Code, Pipeline y otros— sin copiar la arquitectura conceptual como realidad actual.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia y contenido de la especificación; PARCIAL sobre correspondencia con la implementación actual.
+
+LECTURA DE HANDOFFS
+1. PRIORITY COMPILER + ORQUESTADOR 7 FASES — RADAR N0
+Documento de instrucción para una implementación mínima sobre la versión local de ese momento. Define Priority Compiler y una primera corrida R0+R8; incluso excluye explícitamente OpenFang en esa demostración. Por fecha y alcance se trata como evidencia de una etapa de construcción, no como fotografía automática del runtime actual.
+
+2. NÚCLEO DE DECISIÓN COMERCIAL + ANALIZADOR DE OPORTUNIDADES v0.1
+Documento del 18/08 que define un conjunto de responsabilidades comerciales: Analizador, Valorador, priorización económica, Compilador Comercial y memoria/feedback. El propio documento aclara que NO implica cinco softwares separados. Su valor para F4 es demostrar que estas funciones fueron diseñadas y algunas reportadas como implementadas; no basta para convertir cada responsabilidad en nodo real independiente.
+
+3. ENRIQUECIMIENTO COMERCIAL VERTICAL SLICE v0.1
+Documento del 18/08 marcado PREPARADO · REQUIERE EJECUCIÓN LOCAL / CLAUDE CODE. Registra como REPORTADAS implementaciones previas y 207 pruebas en verde, pero conserva validación económica real pendiente y un bloqueo de acceso al payload real de señal N0. Es evidencia de construcción, especificación y estado reportado; no prueba por sí solo ejecución local posterior ni cierre del slice.
+
+4. DIRECCIÓN ECONÓMICA MÍNIMA + CONTEXT COMPILER v0.1
+El archivo aparece en el listado de 02_CONSTRUCCIÓN, pero en esta ronda no fue recuperable por el conector al intentar abrirlo. No se infiere borrado, corrupción ni inexistencia; queda como ACTIVO REFERENCIADO / LECTURA PENDIENTE hasta resolver acceso o hallar otra referencia válida.
+
+REGLA EXTRAÍDA — HANDOFF ≠ RESULTADO
+Un handoff demuestra que existió una instrucción, alcance o autorización documentada. No demuestra por sí mismo que la implementación ocurrió, que sigue vigente ni que produjo el resultado esperado. Para F4 debe separarse: HANDOFF PREPARADO / IMPLEMENTACIÓN REPORTADA / IMPLEMENTACIÓN VERIFICADA / RESULTADO VERIFICADO.
+
+H-08 — Arquitectura conceptual de Acción ↔ componentes reales actuales
+DIMENSIÓN: Frontera / Identidad / Certeza.
+HALLAZGO OBSERVADO: la especificación Capa 2 — Acción describe un Action/Execution Runtime conceptual con módulos internos, mientras F4 ya reconoce componentes reales distintos que hoy cubren partes de esas responsabilidades. No existe evidencia suficiente para afirmar que el bloque conceptual antiguo sea hoy un único nodo material ni que sus submódulos conserven identidad independiente.
+EVIDENCIA: la propia especificación declara implementación pendiente y conceptos en validación; F4 contiene runtime local P0/sensor-n0, Automatizaciones Operativas Actuales, Mission Commander y Claude Code como piezas separadas con grados distintos de certeza.
+IMPACTO ARQUITECTÓNICO: riesgo de heredar una arquitectura conceptual anterior como si fuera inventario real y duplicar identidades o autoridades.
+REQUIERE VERIFICACIÓN: Sí.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO sobre la existencia del solapamiento conceptual; PARCIAL sobre el mapeo exacto responsabilidad→implementación actual.
+
+H-09 — Handoffs de construcción ↔ evidencia de ejecución
+DIMENSIÓN: Certeza / Estado.
+HALLAZGO OBSERVADO: 02_CONSTRUCCIÓN conserva instrucciones y handoffs con estados y afirmaciones de implementación de distintos momentos. El hecho de que un handoff exista o diga “autorizado”, “reportado implementado” o “preparado” no equivale a ejecución o resultado verificado actual.
+EVIDENCIA: el Vertical Slice se declara explícitamente preparado pero no ejecutado localmente; otros documentos distinguen reporte, pruebas y validación real pendiente.
+IMPACTO ARQUITECTÓNICO: riesgo de elevar historia de construcción a estado operativo vigente o de instanciar capacidades no verificadas.
+REQUIERE VERIFICACIÓN: Sí, solo cuando una capacidad concreta sea necesaria para cerrar F4.
+ESTADO: Abierto.
+NIVEL DE CERTEZA: CONFIRMADO sobre la distinción semántica; PARCIAL sobre el estado actual de cada incremento histórico.
+
+COBERTURA DEL DRIVE EXTERIOR — ACTUALIZACIÓN
+00_NÚCLEO: PRIMERA LECTURA HECHA.
+01_DIRECCIÓN: PRIMERA LECTURA HECHA; subniveles/handoffs restantes pendientes.
+02_CONSTRUCCIÓN: PRIMERA LECTURA HECHA a nivel raíz y subcarpetas; tres handoffs y la especificación principal leídos; un handoff referenciado no recuperable queda pendiente.
+03_ECOSISTEMA_DIGITAL: SIGUIENTE BLOQUE DE LECTURA.
+04_PARTICIPANTES: PENDIENTE.
+05_RITUALES_Y_CICLOS: PENDIENTE.
+06_SEÑALES_Y_MÉTRICAS: PENDIENTE.
+07_ACTIVOS_COMPARTIDOS: PENDIENTE.
+08_REFERENCIAS: PENDIENTE.
+90_HISTÓRICO: PENDIENTE.
+Documentos raíz 00–10 y activos operativos sueltos: PENDIENTES de lectura ordenada, evitando volver a instanciar lo que F4 ya comprende.
+
+SIGUIENTE PUNTO DE RECORRIDO F4
+03_ECOSISTEMA_DIGITAL. Objetivo: hacer legibles sistemas, herramientas, cuentas, servicios y artefactos digitales que sigan existiendo, separando existencia real, rol funcional, implementación, dependencia externa y estado operativo. Sin mover nada y sin diseñar todavía su integración.
+
+RONDA DE LECTURA DEL DRIVE EXTERIOR — 3
+ALCANCE: 03_ECOSISTEMA_DIGITAL — primera lectura estructural. No se movió, renombró, copió ni reubicó ningún elemento.
+
+ESTRUCTURA OBSERVADA
+03_ECOSISTEMA_DIGITAL contiene cuatro contenedores humanos:
+- 00_HERRAMIENTAS
+- 01_IA_Y_AGENTES
+- 02_AUTOMATIZACIONES
+- 03_INFRAESTRUCTURA_Y_STACK
+
+02_AUTOMATIZACIONES y 03_INFRAESTRUCTURA_Y_STACK aparecen vacíos en esta ronda. Esto no invalida la existencia de automatizaciones o infraestructura ya demostradas en otras fuentes: solo indica que esos contenedores documentales no contienen activos visibles actualmente.
+
+00_HERRAMIENTAS — CONTENIDO OBSERVADO
+Contiene carpetas nominales para ChatGPT, Claude, Google Drive, Google Docs, Google Sheets, Notion, Obsidian, Google Calendar, Gemini y NotebookLM.
+LECTURA F4: estas carpetas son organización documental por herramienta/plataforma. Su existencia NO prueba por sí sola uso actual, criticidad, nodalidad ni autoridad de la herramienta correspondiente.
+
+MUESTRA DE CONTENIDO REAL
+- ChatGPT contiene al menos “TAREA ACTIVA — ChatGPT — Orquestación Misión Caja 7D”.
+- Claude contiene al menos “TAREA ACTIVA — Claude + Claude Code — Vertical Slice Comercial”.
+- Gemini contiene ficha operativa, tarea activa y respuestas relacionadas con P0.1.
+- NotebookLM contiene ficha de herramienta, pruebas, sincronización, tarea activa y respuestas/auditorías.
+Por tanto, estas carpetas sí funcionan como repositorios de evidencia de participación/uso en distintos momentos, pero carpeta documental ≠ servicio externo ≠ rol funcional ≠ ejecutor técnico.
+
+01_IA_Y_AGENTES — CONTENIDO OBSERVADO
+Contiene SOL/RESP del Investigador y una subcarpeta Investigador con su ficha de “Capacidad de Investigación Delegada” y una solicitud reciente para Misión Caja 7D.
+LECTURA F4: refuerza la existencia documental y operativa del rol Investigador ya instanciado en Familia 6. No crea un segundo Investigador ni convierte automáticamente la carpeta, la IA ejecutora o los documentos SOL/RESP en nodos independientes.
+
+REGLA DE LEGIBILIDAD EXTRAÍDA
+TAXONOMÍA FÍSICA DEL DRIVE ≠ TAXONOMÍA ARQUITECTÓNICA.
+Que Gemini esté bajo HERRAMIENTAS, Investigador bajo IA_Y_AGENTES o Claude comparta una tarea con Claude Code refleja una organización humana/documental; F4 debe seguir separando herramienta, servicio/modelo externo, rol funcional, ejecutor, runtime y activo de información.
+
+H-10 — Taxonomía física 03_ECOSISTEMA_DIGITAL ↔ identidad arquitectónica
+DIMENSIÓN: Frontera / Identidad.
+HALLAZGO OBSERVADO: la estructura física agrupa por conveniencia categorías como herramientas, IA/agentes, automatizaciones y stack, pero varios elementos cruzan esas etiquetas o representan naturalezas distintas.
+EVIDENCIA: ChatGPT, Claude, Gemini y NotebookLM tienen carpetas documentales bajo HERRAMIENTAS; Investigador aparece bajo IA_Y_AGENTES; Claude Code aparece documentalmente junto a Claude aunque F4 ya los separa conceptualmente.
+IMPACTO ARQUITECTÓNICO: riesgo de convertir nombres de carpetas en familias/nodos y heredar mezclas entre rol, herramienta, ejecutor y servicio externo.
+REQUIERE VERIFICACIÓN: No para la regla de separación; Sí para la clasificación individual de cada participante/capacidad.
+ESTADO: Aclarado como regla; inventario individual abierto.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+H-11 — Carpeta de herramienta ↔ existencia/uso del servicio
+DIMENSIÓN: Certeza / Fuente de verdad.
+HALLAZGO OBSERVADO: una carpeta nominal puede estar vacía, contener historia, tareas o outputs. Por tanto, no puede usarse sola para afirmar estado operativo actual de la herramienta o servicio.
+EVIDENCIA: algunos contenedores tienen tareas/respuestas fechadas; otros solo aparecen como carpetas nominales en esta primera lectura; 02_AUTOMATIZACIONES y 03_INFRAESTRUCTURA_Y_STACK están vacíos aunque F4 posee evidencia externa de automatizaciones y runtime local reales.
+IMPACTO ARQUITECTÓNICO: evitar falsos negativos (“carpeta vacía = no existe”) y falsos positivos (“carpeta existe = herramienta activa”).
+REQUIERE VERIFICACIÓN: Sí, por elemento cuando su estado sea estructuralmente relevante.
+ESTADO: Abierto como regla de inventario individual.
+NIVEL DE CERTEZA: CONFIRMADO sobre la limitación documental.
+
+EFECTO SOBRE CANDIDATOS YA EXISTENTES EN F4
+- ChatGPT / Claude / Gemini / NotebookLM: presencia documental reforzada; función arquitectónica y criticidad siguen requiriendo delimitación individual. No se promueven automáticamente a roles.
+- Investigador: la evidencia exterior refuerza el rol ya CONFIRMADO; quedan separados rol, ejecutor y documentos SOL/RESP.
+- Automatizaciones Operativas Actuales: no se degradan por encontrar vacío el contenedor 02_AUTOMATIZACIONES; su existencia sigue apoyada por evidencia operativa ya registrada en F4.
+- Runtime/stack local: tampoco se degrada por el vacío de 03_INFRAESTRUCTURA_Y_STACK; la carpeta no es la fuente exclusiva de esa realidad.
+
+COBERTURA DEL DRIVE EXTERIOR — ACTUALIZACIÓN
+00_NÚCLEO: PRIMERA LECTURA HECHA.
+01_DIRECCIÓN: PRIMERA LECTURA HECHA; profundidad pendiente.
+02_CONSTRUCCIÓN: PRIMERA LECTURA HECHA; profundidad selectiva pendiente.
+03_ECOSISTEMA_DIGITAL: PRIMERA LECTURA ESTRUCTURAL HECHA; clasificación individual de herramientas/participantes pendiente solo cuando aporte a cierre de F4.
+04_PARTICIPANTES: SIGUIENTE BLOQUE DE LECTURA.
+05_RITUALES_Y_CICLOS: PENDIENTE.
+06_SEÑALES_Y_MÉTRICAS: PENDIENTE.
+07_ACTIVOS_COMPARTIDOS: PENDIENTE.
+08_REFERENCIAS: PENDIENTE.
+90_HISTÓRICO: PENDIENTE.
+Documentos raíz 00–10 y activos operativos sueltos: PENDIENTES de lectura ordenada.
+
+SIGUIENTE PUNTO DE RECORRIDO F4
+04_PARTICIPANTES. Objetivo: distinguir personas, roles, IAs, servicios y capacidades documentadas sin convertir participante en rol ni rol en herramienta por la ubicación física del archivo.
+
+
+
+
+
+
+
+CONSOLIDACIÓN METODOLÓGICA — CARTOGRAFÍA Y DIAGNÓSTICO PREVIO AL CABLEADO
+
+LECTURA COMPACTA DE FASE 4
+La Fase 4 se ejecuta en tres movimientos secuenciales y no intercambiables:
+1. PARTE 1A — DESCUBRIR FAMILIAS: identificar qué tipos de cosas existen realmente.
+2. PARTE 1B — INSTANCIAR NODOS: aplicar una matriz uniforme a cada nodo real para comprenderlo aisladamente.
+3. PARTE 2 — DIAGNOSTICAR: contrastar nodos para detectar solapamientos, vacíos, conflictos y huérfanos antes de autorizar cableado.
+
+Esta lectura compacta NO reemplaza las Capas 1, 2 y 3 ya definidas. Es su traducción operativa:
+- Parte 1A = Capa 1 — Clasificar.
+- Parte 1B = Capa 2 — Delimitar.
+- Parte 2 = Capa 3 — Contrastar.
+
+PARTE 1A — DESCUBRIR FAMILIAS / CATÁLOGO DE BÚSQUEDA
+Pregunta: ¿Qué tipos de cosas existen realmente dentro del ecosistema?
+
+Las ocho familias canónicas se mantienen:
+1. Unidades Económicas Existentes — motores diferenciados de captura de valor.
+2. Infraestructura Física Existente — espacios, activos y recursos físicos con función operativa real.
+3. Infraestructura Digital y Sistemas Existentes — herramientas, cuentas, runtimes, entornos y sistemas que participan realmente en la operación.
+4. Fuentes de Verdad y Activos de Información — lugares donde un hecho se registra o consulta como válido dentro de un dominio.
+5. Estructuras Legales y Financieras — vehículos reales para movilizar capital, cobrar, pagar o asumir obligaciones.
+6. Roles y Nodos de Autoridad — funciones reales desde las que se decide, ejecuta, controla o custodia algo; la función se separa de la persona o herramienta que la materializa.
+7. Canales y Mercados Existentes — puntos reales de adquisición, venta, distribución o contacto con mercado.
+8. Dependencias Externas Críticas — entidades, plataformas o servicios fuera de autoridad directa cuya ausencia degrada una función real.
+
+Regla: la familia es un catálogo para buscar realidad, no una obligación de encontrar un nodo en cada categoría. Una familia vacía no se rellena con diseño futuro.
+
+PARTE 1B — INSTANCIAR NODOS / MATRIZ UNIVERSAL COMPACTA
+Para cada nodo real se exige como mínimo:
+1. QUÉ ES — identidad y función actual.
+2. CAPA / FAMILIA PRINCIPAL — dónde pertenece arquitectónicamente.
+3. AUTORIDAD — qué puede leer, escribir, ejecutar o decidir realmente.
+4. FRONTERA — Incluye / Excluye.
+5. FUENTE DE VERDAD — qué información considera válida para operar dentro de su dominio.
+6. DEPENDE DE — inputs, actores, sistemas, activos o servicios que necesita.
+7. PRODUCE — output principal y outputs secundarios relevantes.
+8. MEZCLA FUNCIONES — No mezcla / Mezcla parcial / Mezcla evidente.
+9. TRATAMIENTO CONCEPTUAL — Conservar tal cual / Adaptar / Reubicar conceptualmente.
+
+CORTAFUEGOS ADICIONALES OBLIGATORIOS DE FASE 4
+La versión compacta anterior conserva dos campos adicionales de la matriz completa ya vigente:
+10. ESTADO OPERATIVO — Activo / Standby / Pausado / Bloqueado / Experimental / Por determinar.
+11. NIVEL DE CERTEZA — Confirmado / Parcial / Por verificar.
+
+Razonamiento: existencia, estado y certeza no son la misma cosa. Un nodo puede existir y estar pausado; puede estar activo y aun así tener fronteras parciales. Eliminar estos dos campos permitiría que hipótesis o historia se eleven accidentalmente a realidad estructural.
+
+PARTE 2 — FRONTERAS, SOLAPAMIENTOS Y VACÍOS / DIAGNÓSTICO
+Las cinco pruebas de estrés compactas son:
+A. SOLAPAMIENTO — ¿dos nodos reclaman la misma responsabilidad, frontera o capacidad?
+B. VACÍO — ¿existe una responsabilidad crítica que ningún nodo reconoce como propia?
+C. FUENTE DE VERDAD CONFLICTIVA — ¿dos nodos usan verdades incompatibles para el mismo hecho?
+D. DEPENDENCIA HUÉRFANA — ¿un nodo depende de algo que no está mapeado ni reconocido como dependencia externa?
+E. OUTPUT HUÉRFANO — ¿un nodo produce algo relevante que aparentemente nadie recibe, custodia, valida o utiliza?
+
+PRUEBAS COMPLEMENTARIAS QUE SE CONSERVAN
+Además de esas cinco pruebas, Fase 4 mantiene explícitamente:
+F. CONTRASTE DE AUTORIDAD — detectar escritura, ejecución o decisión duplicada sobre el mismo objeto.
+G. CONTRASTE DE CERTEZA — detectar si una parte estructural depende de nodos o relaciones todavía parciales o por verificar.
+
+Estas dos pruebas no agregan burocracia: protegen el cableado contra dos errores diferentes que las otras cinco no capturan por completo — colisión de autoridad y falsa certeza.
+
+RESULTADO FINAL DE FASE 4
+La salida no es todavía un mapa de conexiones. Es una cartografía diagnóstica donde cada nodo tiene:
+- familia;
+- identidad y estado;
+- autoridad;
+- frontera explícita;
+- fuente de verdad;
+- dependencias;
+- outputs;
+- mezcla funcional;
+- tratamiento conceptual;
+- nivel de certeza;
+- hallazgos de contraste aplicables.
+
+El Mapa del Ecosistema Real queda listo para cableado únicamente cuando las contradicciones relevantes están identificadas y los elementos POR VERIFICAR no son utilizados como hechos estructurales.
+
+REGLA DE PUREZA DE FASE 4
+Fase 4 descubre y diagnostica. No diseña el sistema ideal, no fabrica nodos faltantes, no asigna canales técnicos, no crea automatizaciones y no resuelve un vacío inventando una conexión. Su producto es realidad legible con incertidumbre visible.
+
+
+CONTRATO OPERATIVO COMPACTO — CAPA 3: AUDITORÍA DE COMPATIBILIDAD PREVIA AL CABLEADO
+
+PROPÓSITO
+Hacer chocar las afirmaciones de los nodos ya delimitados en Capa 2 para detectar incompatibilidades estructurales antes de diseñar flujos o conexiones en Fase 5.
+
+REGLA DE GOBIERNO
+Capa 3 no diseña soluciones, no reasigna responsabilidades y no traza flujos. Toda colisión, vacío, contradicción o dependencia incierta se registra únicamente como HALLAZGO ARQUITECTÓNICO.
+
+LAS 7 PRUEBAS DE CONTRASTE
+1. FRONTERAS: comparar INCLUYE/EXCLUYE para detectar solapamientos de frontera o vacíos operativos.
+2. AUTORIDAD: comparar LEER / ESCRIBIR / EJECUTAR / DECIDIR sobre objetos compartidos para detectar colisiones de autoridad.
+3. FUENTES DE VERDAD: comprobar si nodos que necesitan conocer el mismo hecho usan fuentes incompatibles.
+4. DEPENDENCIAS: cruzar DEPENDE DE con el inventario para detectar dependencias no mapeadas, ambiguas o por verificar.
+5. OUTPUTS: comprobar si cada salida relevante posee receptor, custodio, validador o destino funcional identificable.
+6. VACÍOS: detectar responsabilidades críticas que ningún nodo reconoce como propias.
+7. CERTEZA: comprobar si una pieza estructuralmente crítica depende de nodos o relaciones PARCIALES / POR VERIFICAR.
+
+REGLA DE APLICACIÓN SELECTIVA
+No se contrastan todos los nodos contra todos. Las pruebas se aplican cuando los nodos comparten función, dato, decisión, fuente, dependencia, output o frontera funcional.
+
+OUTPUT DE CAPA 3 — REGISTRO DE HALLAZGOS ARQUITECTÓNICOS
+Cada hallazgo debe conservar como mínimo: ID; Nodo A; Nodo B/Objeto; dimensión evaluada; resultado/tipo de hallazgo; evidencia exacta; impacto arquitectónico; requiere verificación; estado Abierto/Aclarado; nivel de certeza.
+
+SECUENCIA CONSOLIDADA DE FASE 4
+CAPA 1 — CLASIFICAR: ¿qué familias de nodos existen? → 8 familias.
+CAPA 2 — DELIMITAR: ¿qué es cada nodo y hasta dónde llega? → Matriz Universal + Estado Operativo + Nivel de Certeza.
+CAPA 3 — CONTRASTAR: ¿las definiciones pueden coexistir limpiamente? → 7 pruebas + Registro de Hallazgos.
+RESULTADO FASE 4: cartografía de la realidad suficientemente depurada para solicitar autorización de cableado.
+
+PRECISIÓN DE CIERRE
+“Lista para Fase 5” no significa Fase 5 autorizada. Significa que el mapa cumple los criterios de cierre operativo y puede someterse al gate de gobierno correspondiente. Los hallazgos críticos abiertos siguen funcionando como gates y no pueden ser ocultados mediante cableado técnico.
+
+
+GATE FORMAL DE TRANSICIÓN F4 → F5
+
+Regla de transición:
+
+1. FASE 4 CERRADA.
+Fase 4 solo puede declararse cerrada cuando todos los nodos relevantes están inventariados y suficientemente delimitados, los contrastes aplicables de Capa 3 han sido ejecutados y el Registro de Hallazgos H-XX está completo para el alcance aprobado.
+
+2. CRITERIO DEL GATE DE GOBIERNO.
+No puede autorizarse el diseño de flujos de Fase 5 mientras permanezca abierto cualquier hallazgo clasificado como CRÍTICO en las dimensiones de AUTORIDAD, FUENTE DE VERDAD o FRONTERA.
+
+Un hallazgo crítico de esas dimensiones funciona como bloqueo de transición. No puede ocultarse, compensarse ni resolverse implícitamente mediante una conexión técnica.
+
+3. ENTRADA AUTORIZADA A FASE 5.
+Fase 5 solo puede tomar pares de nodos cuyas fronteras y niveles de certeza hayan sido previamente saneados o explícitamente delimitados en Fase 4.
+
+Una relación puede entrar al diseño de cableado únicamente si:
+- los nodos involucrados están suficientemente identificados y delimitados;
+- no existe una colisión crítica abierta de Autoridad, Fuente de Verdad o Frontera entre ellos o sobre el objeto compartido;
+- la certeza de la relación está expresada y no se eleva artificialmente;
+- cualquier restricción o provisionalidad heredada de F4 se conserva visible en F5.
+
+4. REGLA DE HERENCIA.
+Fase 5 no reabre ni reinterpreta silenciosamente la identidad de los nodos. Hereda de F4 sus fronteras, autoridad, fuentes de verdad, dependencias, outputs, hallazgos relevantes y niveles de certeza. Si para diseñar un flujo aparece una contradicción nueva, el asunto regresa al registro de hallazgos y al Gate de Gobierno antes de continuar.
+
+Lectura compacta:
+F4 cerrada → Gate de Gobierno superado → pares de nodos habilitados → F5 puede diseñar cableado.
+
+Estado de esta regla: FIJADA COMO CONDICIÓN DE TRANSICIÓN. Su existencia no declara por sí misma que Fase 4 esté cerrada ni que Fase 5 esté autorizada.
+
+
+CRITERIOS DE CLASIFICACIÓN DEL GATE F4 → F5
+
+Objetivo: clasificar cada hallazgo H-XX según su efecto real sobre la posibilidad de diseñar flujos en Fase 5.
+
+GRUPO 1 — BLOQUEA F5 (CRÍTICO)
+Afecta de forma no resuelta Autoridad (Leer / Escribir / Ejecutar / Decidir), Frontera (Incluye / Excluye) o Fuente de Verdad. Si dos nodos disputan quién puede actuar, dónde termina una responsabilidad o qué dato es canónico, el flujo nacería estructuralmente corrupto. Debe resolverse antes de cablear la relación afectada y, cuando compromete una función transversal de gobierno, antes de abrir el Gate global.
+
+GRUPO 2 — NO BLOQUEA F5 (TOLERABLE / DEUDA TÉCNICA)
+El hallazgo afecta optimización, sincronización, duplicación de herramientas, limpieza documental o procesos manuales, pero la autoridad, frontera y fuente de origen necesarias para el flujo ya son unívocas. Puede permanecer abierto y documentado sin impedir el diseño del cableado.
+
+GRUPO 3 — REQUIERE EVIDENCIA PREVIA
+La certeza disponible no permite determinar si existe una colisión real o solo una anomalía de mapeo. Incluye nodos o dependencias con estado Parcial / Por verificar cuando falta evidencia para afirmar identidad, frontera, autoridad, existencia operativa o dependencia real. La relación afectada no puede cablearse hasta obtener evidencia suficiente. Este grupo no equivale automáticamente a un bloqueo global: bloquea el par o dependencia concreta; se vuelve bloqueo global únicamente si esa relación es estructuralmente indispensable para la Fase 5.
+
+REGLA DE CLASIFICACIÓN
+La dimensión del hallazgo por sí sola no determina la criticidad. Un hallazgo puede tocar Fuente de Verdad o Frontera y, aun así, ser Grupo 2 si la jerarquía ya está resuelta y el problema residual no crea ambigüedad para el flujo. La clasificación se decide por la pregunta: “¿Podemos definir origen, destino, autoridad y verdad del flujo sin asumir algo ambiguo o no demostrado?”
+
+RESULTADO DE PRIMERA CLASIFICACIÓN DEL REGISTRO ACTUAL
+Grupo 1 — Bloquea F5: H-07.
+Grupo 2 — No bloquea F5: H-01, H-04, H-05, H-09, H-10.
+Grupo 3 — Requiere evidencia previa: H-02, H-03, H-06, H-08, H-11.
+
+La clasificación no resuelve el hallazgo. Solo determina su tratamiento frente al Gate F4 → F5.
+
+
+RESOLUCIÓN H-07 — JERARQUÍA DE CANONICIDAD DOCUMENTAL
+Fecha: 23/08/2026
+Estado: RESUELTO.
+
+Se fija una jerarquía directiva de tres capas:
+A — Normativa y Políticas del Ecosistema → CANON A — Repositorio Maestro de Gobierno.
+B — Mandatos Estratégicos y Asignación Vigente → CANON B — Matriz de Objetivos y Asignación Vigente.
+C — Historial de Decisiones y Resoluciones → CANON C — Registro de Decisiones y Resoluciones.
+
+Reglas de prevalencia: A > B > C. Una entrada de C no modifica silenciosamente A o B; toda reforma exige actualización explícita de la fuente canónica afectada.
+Estados documentales: BORRADOR / VIGENTE / OBSOLETO. Solo VIGENTE posee autoridad operativa.
+Autoridad de escritura/decisión sobre A, B y C: Dirección Estratégica. Los demás nodos consumen estas fuentes en lectura salvo delegación futura expresa.
+El antiguo contexto mixto de Dirección fue retirado como fuente ejecutable y conservado como histórico/reemplazado.
+
+DICTAMEN DEL GATE F4 → F5
+H-07 era el único bloqueador crítico abierto identificado en la primera auditoría del Gate. Al quedar resuelto, el conteo de bloqueadores críticos abiertos en Autoridad / Fuente de Verdad / Frontera pasa a 0.
+GATE GLOBAL F4 → F5: SUPERADO.
+
+Alcance del dictamen: superar el Gate global autoriza el diseño de Fase 5. No autoriza cablear relaciones afectadas por hallazgos Grupo 3 sin la evidencia previa correspondiente. Esas restricciones permanecen locales a cada relación.
+
+HANDOFF A FASE 5
+Fase 5 puede definir su contrato conceptual e instanciar posteriormente solo pares de nodos saneados o suficientemente delimitados. La certeza, autoridad, frontera y fuente canónica se heredan obligatoriamente desde Fase 4.
+
+ADDENDUM POST-GATE — DELIMITACIÓN F4 DE NODOS MATERIALIZADOS DESPUÉS DEL CIERRE — 23/08/2026
+
+RAZÓN DEL ADDENDUM
+Una auditoría de Circuito 0 detectó que CANON A/B/C fueron creados/ratificados al resolver H-07 y que LEDGER — Caja Central TDT fue materializado ya dentro del trabajo de Fase 5, pero no habían recibido una instanciación explícita mediante la Matriz Universal de Fase 4. La mención de CANON A/B/C en la resolución H-07 no sustituía esa delimitación. Este addendum no reescribe el cierre histórico de F4 ni crea una excepción a su Regla de Entrada: incorpora realidad nueva usando el mismo método F4 antes de seguir utilizándola como fundamento de conexiones.
+
+PRUEBA DE NODALIDAD — RESULTADO
+CANON A, CANON B, CANON C y LEDGER — Caja Central TDT superan la Prueba de Nodalidad: (1) existen materialmente en Drive; (2) poseen función propia distinguible; (3) poseen frontera funcional propia; (4) su estado afecta gobierno, información o decisiones del ecosistema. Se instancian como nodos de Familia 4 — Fuentes de Verdad y Activos de Información. Su plataforma física subyacente continúa siendo Drive/Docs/Sheets y no se confunde con el nodo informacional.
+
+4.5 CANON A — Repositorio Maestro de Gobierno
+QUÉ ES: activo de información canónico que gobierna normativa y políticas ratificadas del ecosistema y funciona como índice rector de canonicidad de Capa A.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO / VIGENTE.
+AUTORIDAD: Leer = nodos autorizados. Escribir = únicamente Dirección Estratégica o delegado expresamente autorizado para materializar una decisión; la autoridad D sobre la norma permanece en Dirección Estratégica. Ejecutar = no por sí mismo. Decidir = el documento no decide; registra normativa decidida por Dirección.
+FRONTERA — Incluye: reglas de asignación de capital, límites de riesgo, estructura de autoridad/delegación, condiciones ratificadas de financiación y reglas de gobierno. Excluye: objetivos/prioridades del ciclo, historial de decisiones, ejecución operativa y autoridad personal de Dirección.
+FUENTE DE VERDAD: el propio CANON A VIGENTE para normativa/política ratificada de Capa A.
+DEPENDE DE: decisión explícita de Dirección, CANON C cuando una reforma de A deba quedar registrada, Drive/Docs y control de vigencia.
+PRODUCE: normativa vigente e índice de fuentes ratificadas.
+MEZCLA FUNCIONES: NO MEZCLA si se mantiene como activo informacional y no se confunde con Dirección ni con Drive como plataforma.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+4.6 CANON B — Matriz de Objetivos y Asignación Vigente
+QUÉ ES: activo de información canónico que representa objetivos, prioridades, asignaciones y límites vigentes del ciclo con versión/fecha de corte.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO / VIGENTE.
+AUTORIDAD: Leer = nodos autorizados. Escribir = Dirección Estratégica o delegado expresamente autorizado para materializar un mandato; D sobre prioridades/asignaciones permanece en Dirección. Ejecutar = no por sí mismo. Decidir = el documento no decide.
+FRONTERA — Incluye: objetivo activo, prioridad de unidad/frente, modo de ejecución y asignaciones/límites vigentes o explícitamente POR DEFINIR. Excluye: normativa de Capa A, historial de decisiones de Capa C, métricas observadas y ejecución operativa.
+FUENTE DE VERDAD: el propio CANON B VIGENTE para mandato/asignación ejecutable del ciclo.
+DEPENDE DE: Dirección Estratégica, compatibilidad con CANON A, Drive/Docs y control de versión/vigencia.
+PRODUCE: mandato operativo vigente y restricciones/asignaciones del ciclo.
+MEZCLA FUNCIONES: NO MEZCLA.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+4.7 CANON C — Registro de Decisiones y Resoluciones
+QUÉ ES: activo de información canónico de historial auditable de decisiones directivas y resoluciones; opera bajo regla lógica APPEND-ONLY.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO / VIGENTE.
+AUTORIDAD: Leer = nodos autorizados. Escribir = Dirección Estratégica o mecanismo expresamente delegado para registrar una decisión autorizada. Ejecutar = no por sí mismo. Decidir = no; conserva decisiones ya autorizadas por Dirección.
+FRONTERA — Incluye: ID, fecha, decisión, autorizador, capa afectada, efecto y evidencia/referencia. Excluye: modificar silenciosamente CANON A/B, sustituir normativa/mandato vigente y ejecutar acciones por sí mismo.
+FUENTE DE VERDAD: el propio CANON C para historial de decisiones/resoluciones formalmente registradas.
+DEPENDE DE: decisiones explícitas de Dirección, Drive/Docs y disciplina append-only lógica.
+PRODUCE: historial auditable de decisiones, correcciones y revocaciones por referencia.
+MEZCLA FUNCIONES: NO MEZCLA.
+TRATAMIENTO CONCEPTUAL: CONSERVAR TAL CUAL.
+NIVEL DE CERTEZA: CONFIRMADO.
+
+4.8 LEDGER — Caja Central TDT
+QUÉ ES: registro financiero central creado para custodiar representaciones normalizadas de eventos financieros aceptados/conciliados, preservando provenance y valores originales. No es una cuenta bancaria ni una pasarela.
+FAMILIA PRINCIPAL: 4 — Fuentes de Verdad y Activos de Información.
+ESTADO OPERATIVO: ACTIVO COMO CONTENEDOR / SIN MOVIMIENTOS CONFIRMADOS.
+AUTORIDAD: Leer = nodos autorizados. Escribir = actualmente Dirección Estratégica; cualquier función de Tesorería o automatización solo podrá escribir por delegación explícita. Ejecutar movimiento de dinero = NO. Decidir reclasificaciones/correcciones materiales = Dirección mientras no exista delegación vigente.
+FRONTERA — Incluye: registros normalizados aceptados/conciliados, moneda/monto original, conversiones trazables cuando existan y estado de cobertura. Excluye: comprobante transaccional original, custodia material del dinero, iniciar pagos/cobros, sustituir bancos/pasarelas y contabilidad estatutaria/legal no ratificada.
+FUENTE DE VERDAD: el LEDGER solo para la representación normalizada de eventos que hayan sido aceptados/conciliados. Para existencia, monto, moneda y momento del movimiento crudo prevalece la fuente transaccional autorizada.
+DEPENDE DE: Drive/Sheets, fuentes transaccionales verificables, reglas de validación/conciliación y autoridad de escritura explícita.
+PRODUCE: eventos financieros normalizados y vistas agregadas con cobertura explícita; mientras el inventario financiero sea incompleto no produce una posición patrimonial total confiable.
+MEZCLA FUNCIONES: PARCIAL — registro/sistema + fuente de verdad de su representación normalizada.
+TRATAMIENTO CONCEPTUAL: CONSERVAR como registro central con frontera explícita; no elevarlo a vehículo financiero.
+NIVEL DE CERTEZA: CONFIRMADO sobre existencia, identidad y frontera; PARCIAL sobre cobertura financiera y uso E2E con transacciones reales.
+
+CONTRASTE SELECTIVO DEL ADDENDUM
+- CANON A/B/C ↔ Dirección Estratégica: AUTORIDAD COMPATIBLE. Los documentos no adquieren D; Dirección conserva decisión y W/D de canonicidad según dominio.
+- CANON A ↔ B ↔ C: FUENTES MÚLTIPLES COMPATIBLES POR DOMINIO, con prevalencia A > B > C y prohibición de que C reforme silenciosamente A/B.
+- LEDGER ↔ fuentes transaccionales: FUENTE MÚLTIPLE COMPATIBLE si se conserva la separación hecho crudo vs representación normalizada aceptada. La cobertura/operación E2E permanece PARCIAL y funciona como gate local de F5-C0-01.
+- LEDGER ↔ cuentas/pasarelas: FRONTERA COMPATIBLE; LEDGER registra, no custodia ni mueve capital.
+
+H-12 — Nodos materializados post-F4 usados en F5 antes de delimitación explícita
+DIMENSIÓN: Certeza / Entrada F4→F5.
+HALLAZGO OBSERVADO: CANON A/B/C y LEDGER habían sido utilizados por Circuito 0 sin una Matriz Universal explícita posterior a su creación.
+EVIDENCIA: resolución H-07 mencionaba CANON A/B/C, pero no contenía sus fichas completas; LEDGER fue creado después del Gate original.
+IMPACTO ARQUITECTÓNICO: riesgo de violar la Regla de Entrada de F5 y elevar realidad creada durante F5 sin permiso epistemológico F4.
+REQUIERE VERIFICACIÓN: No, después de este addendum para identidad/frontera; Sí localmente para cobertura E2E del LEDGER.
+ESTADO: ACLARADO / RESUELTO mediante delimitación ex post de realidad nueva.
+NIVEL DE CERTEZA: CONFIRMADO sobre CANON A/B/C; CONFIRMADO identidad + PARCIAL cobertura operacional del LEDGER.
+
+EFECTO SOBRE EL GATE
+El Gate global F4→F5 permanece SUPERADO para el alcance ya autorizado. Este addendum sanea específicamente la entrada de CANON A/B/C y LEDGER. No promueve F5-C0-01: su relación financiera sigue heredando la certeza más débil del origen y de la cobertura E2E. 
+
+

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TDT · System</title>
+<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&display=swap">
+<style>
+:root{color-scheme:dark;--text:#F2F2F2;--muted:#8A8A8A;--line:#2E2E2E;--sans:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:#000;color:var(--text);font:15px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.page{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:72px 20px;gap:28px}
+h1{margin:0;font-size:34px;font-weight:500;letter-spacing:-.035em;line-height:1}
+input{width:168px;height:52px;background:#000;border:1px solid var(--line);border-radius:0;color:var(--text);text-align:center;font:400 22px/1 var(--mono);letter-spacing:.6em;padding-left:.6em}
+input:focus{outline:none;border-color:var(--text)}
+input:disabled{opacity:.5}
+.msg{min-height:16px;margin:-12px 0 0;font:400 11px/1.4 var(--mono);color:#FF6B6B;text-align:center}
+.shake{animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+</style>
+<main class="page">
+  <h1>System</h1>
+  <form id="f" autocomplete="off">
+    <input id="pin" type="password" inputmode="numeric" pattern="\d{4}" maxlength="4" aria-label="PIN" autofocus required>
+  </form>
+  <p class="msg" id="msg" role="status" aria-live="polite"></p>
+</main>
+<script>
+// PIN de System: lo comprueba el servidor local (SYSTEM/runtime). Esta página no lo guarda.
+(function(){
+  var f=document.getElementById('f'),p=document.getElementById('pin'),m=document.getElementById('msg');
+  fetch('/_tdt/session').then(function(r){if(r.status===204)location.replace('dashboard.html')});
+  function fallo(t){m.textContent=t||'';p.value='';p.disabled=false;p.classList.remove('shake');void p.offsetWidth;p.classList.add('shake');p.focus()}
+  function enviar(){
+    if(!/^\d{4}$/.test(p.value))return;
+    p.disabled=true;m.textContent='';
+    fetch('/_tdt/pin',{method:'POST',body:p.value}).then(function(r){
+      if(r.status===204){location.replace('dashboard.html');return}
+      return r.text().then(function(t){
+        if(r.status===429)fallo('Bloqueado '+t+' min');
+        else if(r.status===503)fallo('PIN sin configurar');
+        else fallo();
+      });
+    }).catch(function(){fallo('Sin conexión con el sistema local')});
+  }
+  p.addEventListener('input',function(){p.value=p.value.replace(/\D/g,'').slice(0,4);if(p.value.length===4)enviar()});
+  f.addEventListener('submit',function(e){e.preventDefault();enviar()});
+})();
+</script>
+</html>

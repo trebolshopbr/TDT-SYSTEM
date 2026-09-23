@@ -1,0 +1,87 @@
+CANON C — REGISTRO DE DECISIONES Y RESOLUCIONES
+Estado: VIGENTE
+Autoridad de escritura: Dirección Estratégica
+Modo lógico: APPEND-ONLY
+
+1. PROPÓSITO
+Conservar el historial auditable de decisiones directivas y resoluciones ante excepciones escaladas.
+
+2. REGLA APPEND-ONLY
+Las entradas anteriores no se reescriben para cambiar la historia. Una corrección o revocación se registra como una nueva decisión que referencia el ID anterior.
+La inmutabilidad es una regla de gobierno y trazabilidad; Google Docs no constituye por sí mismo un bloqueo técnico de edición.
+
+3. CAMPOS MÍNIMOS
+ID / Fecha / Decisión / Autorizador / Capa afectada / Efecto / Evidencia o referencia.
+
+DEC-2026-08-23-001
+Fecha: 23/08/2026
+Decisión: Ratificar la Jerarquía de Canonicidad Documental de Dirección A > B > C; resolver H-07; retirar autoridad ejecutable a los contextos mixtos anteriores; autorizar la apertura conceptual de Fase 5 una vez actualizado el Gate F4→F5.
+Autorizador: Dirección Estratégica.
+Capa afectada: Gobierno / Dirección / transición F4→F5.
+Efecto: CANON A gobierna normativa; CANON B gobierna objetivos y asignaciones vigentes; CANON C conserva decisiones. Solo fuentes VIGENTES alimentan Fase 5.
+Evidencia: resolución explícita de Dirección del 23/08/2026.
+
+4. REGLA DE EFECTO
+Registrar una decisión en CANON C no modifica silenciosamente CANON A o CANON B. Cuando una decisión cambie normativa o mandato vigente, la fuente correspondiente debe actualizarse explícitamente.
+
+DEC-2026-08-31-001
+Fecha: 31/08/2026
+Decisión: Ratificar como regla de gobierno que los aprendizajes relevantes surgidos del uso real del TDT OS —fallos, fricciones, aciertos, correcciones, evidencia, pendientes y cambios de criterio— deben quedar asentados en Drive dentro de la fuente que corresponda, en lugar de permanecer únicamente en una conversación.
+Autorizador: Dirección Estratégica.
+Capa afectada: Gobierno / Memoria / Continuidad / Coordinación Drive → Interfaz.
+Efecto: El Coordinador debe tratar el asentamiento documental como parte del cierre de un aprendizaje. Debe enrutar cada hallazgo según su naturaleza: CANON para reglas o decisiones; fuente operativa para estado; ficha de rol para cambios de operación del participante; marco de producto para criterios de experiencia; histórico/bitácora para patrimonio. No duplicar una misma verdad en varias fuentes ni convertir el chat en repositorio canónico. TT aporta criterio y nueva realidad; no debe actuar como transportista manual de aprendizajes ya identificados por el sistema.
+Evidencia: reentrada real de TT después de varios días fuera; la auditoría mostró que recuperar sólo el frente reciente podía dejar fuera contexto estructural ya asentado, incluyendo la transición F4→F5 ya ocurrida. La corrección se produjo ampliando lectura y precedencia de Drive.
+
+
+DEC-2026-09-05-001
+Fecha: 05/09/2026
+Decisión: Ratificar la sincronización periódica y la reentrada como capacidades de gobierno del TDT SYSTEM. Coordinador, IMP y Claude deben declarar estado, freshness, evidencia, bloqueos, desconocidos, CANON drift y handoff mediante una plantilla compatible; el Coordinador reconcilia antes de cambios estructurales relevantes. Cada constructor puede proponer mejoras mediante CAPABILITY DELTA, pero proponer no autoriza implementar. La meta futura es un heartbeat diario de freshness y una reentrada comprensible en menos de 60 segundos cuando sea técnicamente viable.
+Autorizador: TT / Dirección Estratégica.
+Capa afectada: Gobierno / Continuidad / Coordinación / Memoria / Arquitectura Viva.
+Efecto: El sistema no debe depender de reconstrucción manual después de ausencias. Snapshots, manifests y checkpoints son artefactos derivados con timestamp y nunca sustituyen fuentes propietarias. TT no debe actuar como transportista manual de contexto ya conocido por el sistema. La mejora continua recorre OBSERVADO → PROPUESTO → EVIDENCIA → PRIORIZADO → TESTEADO → ADOPTADO → CANONIZADO → VISIBLE/OPERATIVO.
+Evidencia: documento SINCRONÍA TDT SYSTEM — COORDINADOR · IMP · CLAUDE — SESIÓN 3 — 05-09-2026 y ESTADO RECONCILIADO — TDT SYSTEM — 05-09-2026.
+
+DEC-2026-09-05-002
+Fecha: 05/09/2026
+Decisión: Ratificar el estado de producto de TDT SYSTEM como sistema personal funcional en uso, no como prototipo general. AHORA debe representar presente relevante derivado de fuentes; la complejidad técnica no domina la portada; privacidad visual de personas, sesión/bloque/cronómetro/foco y captura rápida son requisitos vigentes. Arquitectura Viva/Capacidades se autoriza como profundidad secundaria basada en Registry/evidencia real y no reemplaza AHORA ni Mapa/Estructura.
+Autorizador: TT / Dirección Estratégica.
+Capa afectada: Producto / Interfaz / Gobierno de representación.
+Efecto: El Lienzo deja de ser dirección principal del Mapa; Estructura es la entrada visible actual. Toda capacidad que afecte decisión u operación debe poder traducirse a lenguaje fundador: qué es, para qué sirve, estado y qué habilita. No se hardcodean conexiones no verificadas.
+Evidencia: integración final reportada y verificada por Claude; reconciliación 05-09-2026; decisiones directas de TT durante Sesión 3.
+
+DEC-2026-09-05-003
+Fecha: 05/09/2026
+Decisión: Renovar la Capa B vencida del ciclo 22/08→29/08 y abrir un nuevo corte desde 05/09/2026. El mandato actual es operar realidad y recuperar liquidez de corto plazo sin mezclar caja personal con capital u operación de Global Shop. Growth conserva función de motor principal de caja de corto plazo; Frontier puede validar/monetizar en paralelo; Global Shop mantiene prioridad estratégica de coordinación, evidencia y decisiones de socios/capital sin asumir dinero no confirmado; Trading/Kevin permanece sujeto a respuesta/evidencia. El trabajo de sistema se limita a Gates, sincronización y capacidades directamente ligadas a operación, evitando prototipado abierto.
+Autorizador: TT / Dirección Estratégica.
+Capa afectada: B — Mandatos y Asignación Vigente / Operación / Negocios.
+Efecto: CANON B debe actualizarse explícitamente. No se inventa objetivo monetario exacto: queda POR DEFINIR hasta instrucción de TT. La revisión del corte es diaria y ante cambio material de realidad.
+Evidencia: Sesión 3, bloque operativo 05-09, estado reconciliado 05-09 y dirección explícita de TT de volver a operar negocios reales.
+
+
+DEC-2026-09-05-004 — CORE DATA CONTRACT / REGISTRY V0
+
+DECISIÓN
+TDT SYSTEM adopta un Core Data Contract / Registry V0 interno como proyección derivada y reemplazable del índice existente. No constituye una fuente canónica nueva ni desplaza Drive o las fuentes de dominio.
+
+REGLAS
+- identidad estable por tipo + entity_id;
+- record types ENTITY / STATE / EVENT / SOURCE / DECISION;
+- provenance obligatoria;
+- HECHO / PERCEPCIÓN / CONTEXTO / HIPÓTESIS / DECISIÓN no se mezclan;
+- certeza CONFIRMED / INFERRED / UNKNOWN;
+- freshness CURRENT / STALE / UNKNOWN / ERROR;
+- vigencia operativa CURRENT_STATE / AS_RECORDED / HISTORICAL / UNKNOWN se evalúa separadamente de freshness;
+- decisiones requieren clasificación DECISION;
+- percepciones no pueden elevarse a estado confirmado por derivación;
+- Sessions/Captures sólo ingresan desde recibos confirmados sin duplicados;
+- sesiones y bloques son entidades distintas.
+
+PRINCIPIO NUEVO CONSOLIDADO
+FRESHNESS DE EVIDENCIA ≠ VIGENCIA OPERATIVA.
+
+PRIMER CONSUMIDOR APROBADO
+REENTRY + DAILY SYNCHRONIZATION como proyección humana del Registry. No exponer Registry crudo o telemetría técnica a TT.
+
+ESTADO
+APROBADO · IMPLEMENTADO INTERNAMENTE · PROYECCIÓN VISUAL PENDIENTE.
+
