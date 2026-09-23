@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-50: #ecfdf3;
+  --color-brand-100: #d1fae1;
+  --color-brand-200: #a7f3c8;
+  --color-brand-300: #6ee7a8;
+  --color-brand-400: #34d385;
+  --color-brand-500: #10b96b;
+  --color-brand-600: #059657;
+  --color-brand-700: #047848;
+  --color-brand-800: #065f3b;
+  --color-brand-900: #064e32;
+  --color-brand-950: #022c1c;
+
+  --color-ink-50: #f7f8f8;
+  --color-ink-100: #eef0f0;
+  --color-ink-200: #dfe2e2;
+  --color-ink-300: #c4c9c9;
+  --color-ink-400: #969d9d;
+  --color-ink-500: #6b7373;
+  --color-ink-600: #535a5a;
+  --color-ink-700: #3f4545;
+  --color-ink-800: #252a2a;
+  --color-ink-900: #161a1a;
+  --color-ink-950: #0c0f0f;
+}
+
+@layer base {
+  html {
+    @apply bg-ink-50 text-ink-900 antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  input,
+  select,
+  textarea {
+    @apply text-sm;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
