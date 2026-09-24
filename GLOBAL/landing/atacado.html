@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TDT GLOBAL · Atacado</title>
+<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --surface: #0A0A0A;
+  --card: #111;
+  --line: #1A1A1A;
+  --line-2: #262626;
+  --text: #F4F3EF;
+  --muted: #5A5A5A;
+  --muted-2: #3A3A3A;
+  --photo: #EEECEA;
+  --ok: #4ADE80;
+  --vol: #E8E650;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: var(--bg); color: var(--text); font: 14px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+body.intro { height: 100%; overflow: hidden; user-select: none; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
+img { display: block; max-width: 100%; }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- Portada ---------- */
+.stage { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; }
+.top { position: absolute; top: 0; left: 0; right: 0; padding: 28px 36px; z-index: 20; }
+.top a { font: 400 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .15s; }
+.top a:hover { color: var(--text); }
+.hero { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.logo-lockup { display: flex; flex-direction: column; align-items: center; }
+.logo { display: block; width: clamp(280px, 48vw, 560px); max-width: 90vw; height: auto; color: var(--text); }
+.unit-tag { margin-top: 14px; font: 600 clamp(22px, 4.2vw, 44px)/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; padding-left: .38em; }
+.door {
+  margin-top: 56px; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--text); color: #000;
+  border: 1px solid var(--text);
+  transition: background .2s, transform .2s, box-shadow .2s;
+}
+.door svg { width: 30px; height: 30px; }
+.door:hover { background: #dddbd5; transform: translateY(-3px); box-shadow: 0 12px 40px rgba(244,243,239,.12); }
+
+/* ---------- App ---------- */
+.app { display: none; }
+body.loja .app { display: block; }
+body.loja .stage { display: none; }
+.fixa { position: sticky; top: 0; z-index: 30; }
+.bar {
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: rgba(0,0,0,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.brand svg { width: 46px; height: auto; }
+.brand span { font: 600 11px/1 var(--sans); letter-spacing: .32em; }
+.search { flex: 1; display: flex; max-width: 440px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.search input { flex: 1; min-width: 0; padding: 8px 14px; background: transparent; border: none; outline: none; font-size: 14px; }
+.search button { padding: 0 13px; border: none; background: transparent; cursor: pointer; display: grid; place-items: center; color: var(--muted); transition: color .15s; }
+.search button:hover { color: var(--text); }
+.search svg { width: 15px; height: 15px; }
+.bar-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.perfil-pill { font-size: 12px; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line-2); color: var(--muted); transition: color .15s, border-color .15s; }
+.perfil-pill:hover { color: var(--text); border-color: var(--muted-2); }
+.icon-btn { position: relative; width: 36px; height: 36px; border-radius: 8px; display: grid; place-items: center; border: 1px solid transparent; transition: border-color .15s, background .15s; }
+.icon-btn:hover { border-color: var(--line-2); background: var(--surface); }
+.icon-btn svg { width: 18px; height: 18px; }
+.badge { position: absolute; top: 1px; right: -2px; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 999px; background: var(--text); color: #000; font: 600 10px/17px var(--sans); text-align: center; animation: badgePop .25s cubic-bezier(.34,1.56,.64,1); }
+@keyframes badgePop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.proto { font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); border: 1px dashed var(--line-2); border-radius: 999px; padding: 5px 9px; }
+.volume-strip { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; padding: 9px 16px; background: var(--vol); color: #000; font-size: 13px; }
+.volume-strip b { font-weight: 700; }
+.volume-strip a { padding: 5px 12px; border-radius: 6px; background: #000; color: var(--vol); font-weight: 600; font-size: 12px; transition: opacity .15s; }
+.volume-strip a:hover { opacity: .85; }
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.view { padding-top: 24px; padding-bottom: 80px; }
+section.block { margin-top: 44px; }
+.head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.02em; }
+h1 { font-size: clamp(22px, 3vw, 34px); line-height: 1.1; }
+h2 { font-size: 16px; }
+h3 { font-size: 13px; }
+.more { font-size: 12px; color: var(--muted); }
+.more:hover { color: var(--text); }
+.muted { color: var(--muted); }
+.eyebrow { font: 400 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.pend { display: inline-flex; align-items: center; font: 400 11px/1.4 var(--mono); color: var(--muted); border: 1px dashed var(--line-2); border-radius: 6px; padding: 3px 7px; }
+.panel { padding: 18px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.empty { padding: 22px; border-radius: var(--radius); border: 1px dashed var(--line-2); color: var(--muted); text-align: center; font-size: 13px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 18px; border-radius: 8px; border: 1px solid var(--text); background: var(--text); color: #000; font-weight: 600; font-size: 13px; cursor: pointer; transition: opacity .15s, transform .15s; }
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+.btn.ghost:hover { border-color: var(--muted-2); opacity: 1; transform: none; }
+.btn.full { width: 100%; }
+.btn.sm { padding: 7px 12px; font-size: 12px; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--muted); font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.link-btn:hover { color: var(--text); }
+.ident h1 { margin-bottom: 6px; }
+.entradas { display: grid; grid-template-columns: 3fr 1fr; gap: 10px; margin-top: 20px; }
+.entradas .label { display: block; font: 400 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.perfis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 8px; }
+.entradas > div:last-child .perfil { height: calc(100% - 18px); }
+.perfil { display: flex; flex-direction: column; gap: 10px; padding: 16px; min-height: 128px; text-align: left; border-radius: var(--radius-lg); background: var(--card); border: 1px solid var(--line-2); cursor: pointer; transition: border-color .2s, background .2s, transform .2s; }
+.perfil:hover { border-color: var(--muted-2); transform: translateY(-2px); }
+.perfil.on { background: var(--text); color: #000; border-color: var(--text); }
+.perfil.on .muted { color: #555; }
+.perfil svg { width: 20px; height: 20px; }
+.perfil b { font-size: 14px; font-weight: 600; }
+.perfil span { font-size: 12px; }
+.terms { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; margin-top: 18px; }
+.terms div { background: var(--surface); padding: 13px 15px; display: flex; flex-direction: column; gap: 6px; }
+.terms small { font: 400 10px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+.acard { display: flex; flex-direction: column; border-radius: var(--radius-lg); background: var(--card); border: 1px solid var(--line); overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+.acard:hover { border-color: var(--line-2); box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+.acard .top-row { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 14px; }
+.acard .ph { width: 92px; height: 92px; border-radius: 10px; background: var(--photo); display: grid; place-items: center; padding: 8px; }
+.acard .ph img, .th img, .pdp-pic img { mix-blend-mode: multiply; object-fit: contain; max-height: 100%; }
+.acard .nm { font-weight: 500; font-size: 13px; line-height: 1.3; }
+.acard .nm:hover { text-decoration: underline; text-underline-offset: 3px; }
+.acard .price { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.acard .price b { font-size: 15px; font-weight: 700; letter-spacing: -.02em; }
+.kv { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); }
+.kv div { padding: 9px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; border-bottom: 1px solid var(--line); }
+.kv div:nth-child(odd) { border-right: 1px solid var(--line); }
+.kv small { font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tiers { width: 100%; border-collapse: collapse; font-size: 12px; }
+.tiers th, .tiers td { padding: 7px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+.tiers th { font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.tiers td:last-child, .tiers th:last-child { text-align: right; }
+.tiers td[colspan] { text-align: left; }
+.acard .actions { display: grid; grid-template-columns: 1fr auto; gap: 8px; padding: 12px 14px; margin-top: auto; }
+.acard .actions .btn { padding: 9px 12px; font-size: 12px; }
+.signal { display: inline-flex; gap: 6px; align-items: center; font-size: 12px; }
+.signal i { width: 6px; height: 6px; border-radius: 50%; background: var(--ok); display: inline-block; }
+.cats { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.cat { display: grid; grid-template-columns: 68px 1fr auto; gap: 12px; align-items: center; padding: 12px; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line); transition: border-color .2s; }
+.cat:hover { border-color: var(--line-2); }
+.th { width: 68px; height: 68px; border-radius: 9px; background: var(--photo); display: grid; place-items: center; padding: 6px; }
+.table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+.table th, .table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.table th { font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 400; background: var(--card); }
+.table tr:last-child td { border-bottom: 0; }
+.table .th { width: 42px; height: 42px; }
+.table-wrap { overflow-x: auto; border-radius: var(--radius-lg); }
+.crumbs { font-size: 12px; color: var(--muted); margin-bottom: 14px; display: flex; gap: 8px; flex-wrap: wrap; padding-top: 22px; }
+.crumbs a:hover { color: var(--text); }
+.pdp { display: grid; grid-template-columns: 300px 1fr 320px; grid-template-areas: "pic info buy"; gap: 20px; align-items: start; }
+.pdp > :nth-child(1) { grid-area: pic; } .pdp > :nth-child(2) { grid-area: info; } .pdp > :nth-child(3) { grid-area: buy; }
+.pdp-pic { aspect-ratio: 1; border-radius: var(--radius-lg); background: var(--photo); display: grid; place-items: center; padding: 28px; overflow: hidden; }
+.pdp-pic img { transition: transform .5s cubic-bezier(.25,.8,.25,1); }
+.pdp-pic:hover img { transform: scale(1.05); }
+.stack { display: flex; flex-direction: column; gap: 12px; }
+.qty-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--muted); }
+.field input, .field select, .field textarea { padding: 10px 12px; border-radius: 8px; outline: none; background: var(--card); border: 1px solid var(--line-2); min-width: 0; transition: border-color .15s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--muted-2); }
+.seg { display: inline-flex; align-self: flex-start; border: 1px solid var(--line-2); border-radius: 8px; overflow: hidden; }
+.seg button { padding: 8px 12px; background: transparent; border: 0; cursor: pointer; font-size: 12px; transition: background .15s; }
+.seg button.on { background: var(--text); color: #000; }
+.seg button:disabled { opacity: .4; cursor: not-allowed; }
+.r { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+.r.t { font-size: 15px; font-weight: 700; padding-top: 10px; border-top: 1px solid var(--line); }
+.cta-volume { padding: 16px; border-radius: var(--radius-lg); background: var(--vol); color: #000; display: flex; flex-direction: column; gap: 8px; }
+.cta-volume b { font-weight: 700; }
+.cta-volume .btn { background: #000; color: var(--vol); border-color: #000; font-weight: 700; }
+.sticky.vol .cta-volume { order: -1; }
+.two { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+.sticky { position: sticky; top: 110px; display: flex; flex-direction: column; gap: 10px; }
+.fields { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+.fields .field { grid-column: span 6; }
+.fields .s2 { grid-column: span 2; } .fields .s3 { grid-column: span 3; } .fields .s4 { grid-column: span 4; }
+.step h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.step h3 i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--line-2); display: grid; place-items: center; font-size: 11px; color: var(--muted); }
+.pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.pick label { display: grid; grid-template-columns: auto 44px 1fr; gap: 10px; align-items: center; padding: 10px; border-radius: 8px; border: 1px solid var(--line-2); cursor: pointer; font-size: 13px; transition: border-color .15s; }
+.pick label:has(input:checked) { border-color: var(--muted-2); }
+.pick .th { width: 44px; height: 44px; }
+input[type=checkbox], input[type=radio] { accent-color: #fff; }
+.vol-row { display: grid; grid-template-columns: 1fr 140px 160px; gap: 10px; align-items: end; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.vol-row:last-child { border-bottom: 0; }
+.err { color: #f87171; font-size: 13px; }
+.track { display: grid; grid-template-columns: repeat(4, 1fr); margin: 6px 0; }
+.track div { position: relative; padding-top: 20px; font-size: 12px; color: var(--muted); }
+.track div::before { content: ""; position: absolute; top: 5px; left: 0; right: 0; height: 2px; background: var(--line); }
+.track div::after { content: ""; position: absolute; top: 0; left: 0; width: 12px; height: 12px; border-radius: 50%; background: #000; border: 2px solid var(--line); }
+.track div.done { color: var(--text); }
+.track div.done::before, .track div.done::after { background: var(--text); border-color: var(--text); }
+.list { display: grid; gap: 8px; }
+.list a { display: flex; justify-content: space-between; gap: 16px; padding: 14px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); transition: border-color .2s; }
+.list a:hover { border-color: var(--line-2); }
+.foot { border-top: 1px solid var(--line); padding: 24px 0 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.foot a:hover { color: var(--text); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 18px; border-radius: 999px; background: var(--text); color: #000; font-size: 13px; font-weight: 600; transition: opacity .2s, transform .25s cubic-bezier(.34,1.56,.64,1); z-index: 50; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 1080px) { .pdp { grid-template-columns: 240px 1fr; grid-template-areas: "pic buy" "info info"; } }
+@media (max-width: 860px) {
+  .entradas { grid-template-columns: 1fr; }
+  .perfis { grid-template-columns: 1fr 1fr; }
+  .entradas > div:last-child .perfil { height: auto; }
+  .terms { grid-template-columns: 1fr 1fr; }
+  .pdp, .two { grid-template-columns: 1fr; }
+  .pdp { grid-template-areas: "pic" "buy" "info"; }
+  .pdp-pic { max-width: 300px; }
+  .sticky { position: static; }
+  .bar { flex-wrap: wrap; }
+  .search { order: 3; max-width: none; flex-basis: 100%; }
+  .proto, .perfil-pill { display: none; }
+  .volume-strip { flex-wrap: nowrap; gap: 10px; padding: 8px 12px; font-size: 12px; }
+  .volume-strip a { padding: 5px 10px; white-space: nowrap; }
+  .bar { padding-top: 8px; padding-bottom: 8px; row-gap: 8px; }
+  .vol-row { grid-template-columns: 1fr 1fr; }
+  .vol-row > :first-child { grid-column: 1 / -1; }
+  .fields .s2, .fields .s3, .fields .s4 { grid-column: span 6; }
+}
+</style>
+</head>
+<body class="intro">
+
+<!-- Portada: logo y un solo ícono -->
+<div class="stage">
+  <header class="top"><a href="global.html">← Global</a></header>
+  <main class="hero">
+    <div class="logo-lockup">
+      <svg class="logo" viewBox="0 0 830 259" fill="currentColor" role="img" aria-label="TDT">
+        <path d="M0 0H270V52H0Z"/>
+        <path d="M108 52L162 89V259H108Z"/>
+        <path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/>
+        <path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/>
+        <path d="M669 52L723 89V259H669Z"/>
+      </svg>
+      <div class="unit-tag">ATACADO</div>
+    </div>
+    <a class="door" href="#/atacado" aria-label="Entrar no atacado">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 12h7v8H4zM13 12h7v8h-7zM8.5 4h7v8h-7z"/><path d="M7.5 12v2.5M16.5 12v2.5M12 4v2.5"/></svg>
+    </a>
+  </main>
+</div>
+
+<!-- Atacado (protótipo) -->
+<div class="app">
+  <div class="fixa">
+  <header class="bar">
+    <a class="brand" href="#/atacado" aria-label="TDT Atacado">
+      <svg viewBox="0 0 830 259" fill="currentColor" aria-hidden="true"><path d="M0 0H270V52H0Z"/><path d="M108 52L162 89V259H108Z"/><path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/><path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/><path d="M669 52L723 89V259H669Z"/></svg>
+      <span>ATACADO</span>
+    </a>
+    <form class="search" id="barSearch" role="search">
+      <input name="q" type="search" placeholder="Buscar produtos para revender" aria-label="Buscar produtos">
+      <button type="submit" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+    </form>
+    <div class="bar-actions">
+      <a class="perfil-pill" href="#/catalogo" style="color:var(--text)">Catálogo</a>
+      <span class="proto">Protótipo</span>
+      <a class="perfil-pill" id="perfilPill" href="#/atacado?trocar=1" hidden></a>
+      <a class="icon-btn" href="#/conta" aria-label="Minha conta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.5-5 8-5s6.5 1.5 8 5"/></svg>
+      </a>
+      <a class="icon-btn" href="#/pedido" aria-label="Pedido">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 12h7v8H4zM13 12h7v8h-7zM8.5 4h7v8h-7z"/></svg>
+        <span class="badge num" id="pedidoCount" hidden>0</span>
+      </a>
+    </div>
+  </header>
+  <div class="volume-strip"><b>Precisa de um volume maior?</b><a href="#/proposta">Solicitar condição comercial</a></div>
+  </div>
+
+  <main class="wrap view" id="view"></main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <a href="global.html">← TDT Global</a>
+      <span>Protótipo local · nenhum pedido é processado · catálogo copiado do banco em 24/09/2026</span>
+    </div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- Dados ----------
+   Produtos, fotos, preço de varejo (Shop) e vendas no varejo copiados do banco da Global em 24/09/2026.
+   Ainda NÃO existem: preço de atacado, escalas, unidade/caixa, pedido mínimo, estoque, reposição e kits.
+   Esses campos ficam em null / [] e a interface mostra "a definir"; nada de margens ou preços inventados. */
+const PRODUTOS = [
+  { id: 'aiwa-boombox-plus', nome: 'AIWA Boombox Plus AWS-BBS-01B', categoria: 'audio', precoShop: 1250, vendasVarejo: 8, chegou: '2026-09-22',
+    foto: 'https://drnjdufklfihowrjxfdd.supabase.co/storage/v1/object/public/productos/540feaee-a966-45ba-af10-c743abc49e90/b1b9968f-099e-4522-b256-335c0dd7bfaa.png',
+    escalas: [], unidadesPorCaixa: null, minimo: null, estoque: null, reposicao: null },
+  { id: 'echo-show-8', nome: 'Amazon Echo Show 8', categoria: 'casa', precoShop: 1220, vendasVarejo: 3, chegou: '2026-09-22',
+    foto: 'https://drnjdufklfihowrjxfdd.supabase.co/storage/v1/object/public/productos/540feaee-a966-45ba-af10-c743abc49e90/b048791a-74d6-4305-9548-8f48b137acf9.png',
+    escalas: [], unidadesPorCaixa: null, minimo: null, estoque: null, reposicao: null },
+  { id: 'echo-show-5', nome: 'Amazon Alexa Echo Show 5', categoria: 'casa', precoShop: 800, vendasVarejo: 2, chegou: '2026-09-22',
+    foto: 'https://drnjdufklfihowrjxfdd.supabase.co/storage/v1/object/public/productos/540feaee-a966-45ba-af10-c743abc49e90/bd34e553-c672-4015-ad97-4cb9bdb33155.png',
+    escalas: [], unidadesPorCaixa: null, minimo: null, estoque: null, reposicao: null }
+];
+// Formato esperado de uma escala quando existir: { desde: 10, preco: 999.00 } (preço por unidade).
+const CATEGORIAS = { audio: 'Áudio', casa: 'Casa inteligente' };
+const KITS = []; // Só aparecem quando existirem de verdade.
+// Condições gerais do atacado: ainda não definidas.
+const CONDICOES = { pedidoMinimo: null, pagamento: null, prazoEntrega: null, notaFiscal: null, quemCompra: null };
+const PERFIS = {
+  comecar: { nome: 'Quero começar a revender', desc: 'Produtos com venda comprovada para dar o primeiro passo.', icon: '<path d="M12 4v16M4 12h16"/>' },
+  jaVendo: { nome: 'Já vendo', desc: 'Oportunidades e reposição para o que já gira.', icon: '<path d="M4 16l5-5 4 4 7-7M15 8h5v5"/>' },
+  loja: { nome: 'Tenho uma loja', desc: 'Reposição rápida e categorias para a sua vitrine.', icon: '<path d="M4 9h16l-1.5-5h-13zM5 9v11h14V9M10 20v-5h4v5"/>' },
+  volume: { nome: 'Compro em grande volume', desc: 'Condição comercial sob medida para sua empresa.', icon: '<path d="M4 12h7v8H4zM13 12h7v8h-7zM8.5 4h7v8h-7z"/>' }
+};
+const STATUS_PEDIDO = ['Recebido', 'Condições confirmadas', 'Faturado', 'Enviado'];
+const STATUS_PROPOSTA = ['Enviada', 'Em análise', 'Condição enviada', 'Fechada'];
+
+/* ---------- Estado (só neste navegador) ---------- */
+const ler = (k, d) => { try { return JSON.parse(sessionStorage.getItem(k)) ?? d; } catch { return d; } };
+const gravar = (k, v) => { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {} };
+let perfil = ler('tdtAtacadoPerfil', null);
+let pedido = ler('tdtAtacadoPedido', {});      // { id: quantidade em unidades }
+let pedidos = ler('tdtAtacadoPedidos', []);
+let propostas = ler('tdtAtacadoPropostas', []);
+function salvar() {
+  gravar('tdtAtacadoPerfil', perfil); gravar('tdtAtacadoPedido', pedido);
+  gravar('tdtAtacadoPedidos', pedidos); gravar('tdtAtacadoPropostas', propostas);
+  atualizarBarra();
+}
+
+/* ---------- Utilidades ---------- */
+const brl = n => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const acha = id => PRODUTOS.find(p => p.id === id);
+const pend = t => `<span class="pend">${t}</span>`;
+const dataBR = iso => new Date(iso).toLocaleDateString('pt-BR');
+const menorPreco = p => p.escalas.length ? p.escalas.reduce((a, e) => e.preco < a.preco ? e : a) : null;
+const precoPara = (p, q) => { const e = [...p.escalas].sort((a, b) => b.desde - a.desde).find(e => q >= e.desde); return e ? e.preco : null; };
+let toastTimer;
+function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
+function atualizarBarra() {
+  const n = Object.keys(pedido).length, b = document.getElementById('pedidoCount');
+  b.textContent = n; b.hidden = !n;
+  const pill = document.getElementById('perfilPill');
+  pill.hidden = !perfil; if (perfil) pill.textContent = PERFIS[perfil].nome + ' · trocar';
+}
+function adicionar(id, q) {
+  if (!(q > 0)) return;
+  pedido[id] = (pedido[id] || 0) + q; salvar(); toast(q + ' un. adicionadas ao pedido');
+}
+
+/* ---------- Componentes ---------- */
+function blocoPreco(p) {
+  const m = menorPreco(p);
+  return m
+    ? `<b class="num">${brl(m.preco)}</b><span class="muted" style="font-size:12px">por unidade · desde ${m.desde} un.</span>`
+    : `<span class="pend">preço de atacado a definir</span>`;
+}
+function tabelaEscalas(p) {
+  return `<table class="tiers"><thead><tr><th>Quantidade</th><th>Preço / un.</th></tr></thead><tbody>
+    ${p.escalas.length ? p.escalas.map(e => `<tr><td class="num">desde ${e.desde} un.</td><td class="num">${brl(e.preco)}</td></tr>`).join('')
+      : `<tr><td colspan="2">${pend('escalas de quantidade a definir')}</td></tr>`}
+  </tbody></table>`;
+}
+function card(p) {
+  return `<article class="acard">
+    <div class="top-row">
+      <a class="ph" href="#/produto/${p.id}"><img src="${p.foto}" alt="${esc(p.nome)}" loading="lazy"></a>
+      <div>
+        <span class="eyebrow">${CATEGORIAS[p.categoria]}</span><br>
+        <a class="nm" href="#/produto/${p.id}">${esc(p.nome)}</a>
+        <div class="price">${blocoPreco(p)}</div>
+      </div>
+    </div>
+    ${tabelaEscalas(p)}
+    <div class="kv">
+      <div><small>Embalagem</small>${p.unidadesPorCaixa ? `<span class="num">Caixa com ${p.unidadesPorCaixa} un.</span>` : pend('un./caixa a definir')}</div>
+      <div><small>Pedido mínimo</small>${p.minimo ? `<span class="num">${p.minimo} un.</span>` : pend('a definir')}</div>
+      <div><small>Estoque</small>${p.estoque !== null ? `<span class="num">${p.estoque} un.</span>` : pend('a confirmar')}</div>
+      <div><small>Reposição</small>${p.reposicao ? esc(p.reposicao) : pend('a definir')}</div>
+      <div><small>Varejo (Shop)</small><span class="num">${brl(p.precoShop)} / un.</span></div>
+      <div><small>Venda comprovada</small><span class="signal"><i></i><span class="num">${p.vendasVarejo}</span> vendas no varejo</span></div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="#/produto/${p.id}">Comprar para revender</a>
+      <a class="btn ghost" href="#/proposta?p=${p.id}" title="Condição para grande volume">Volume</a>
+    </div>
+  </article>`;
+}
+function termos() {
+  const c = CONDICOES;
+  return `<div class="terms">
+    <div><small>Pedido mínimo</small>${c.pedidoMinimo ? esc(c.pedidoMinimo) : pend('a definir')}</div>
+    <div><small>Pagamento</small>${c.pagamento ? esc(c.pagamento) : pend('a definir')}</div>
+    <div><small>Prazo de entrega</small>${c.prazoEntrega ? esc(c.prazoEntrega) : pend('a definir')}</div>
+    <div><small>Nota fiscal</small>${c.notaFiscal ? esc(c.notaFiscal) : pend('a definir')}</div>
+    <div><small>Quem pode comprar</small>${c.quemCompra ? esc(c.quemCompra) : pend('CNPJ / CPF a definir')}</div>
+  </div>`;
+}
+
+/* ---------- Seções da home ---------- */
+function secMaisVendidos() {
+  const lista = [...PRODUTOS].sort((a, b) => b.vendasVarejo - a.vendasVarejo);
+  return `<section class="block"><div class="head"><h2>Mais vendidos</h2><span class="more">vendas reais no varejo</span></div>
+    <div class="table-wrap"><table class="table"><thead><tr><th>#</th><th></th><th>Produto</th><th>Vendas varejo</th><th>Varejo (Shop)</th><th>Atacado</th><th>Mínimo</th><th></th></tr></thead><tbody>
+    ${lista.map((p, i) => `<tr>
+      <td class="num muted">${i + 1}</td>
+      <td><span class="th"><img src="${p.foto}" alt="" loading="lazy"></span></td>
+      <td><a href="#/produto/${p.id}"><b>${esc(p.nome)}</b></a></td>
+      <td class="num">${p.vendasVarejo}</td>
+      <td class="num">${brl(p.precoShop)}</td>
+      <td>${menorPreco(p) ? `<span class="num">${brl(menorPreco(p).preco)}</span>` : pend('a definir')}</td>
+      <td>${p.minimo ? `<span class="num">${p.minimo} un.</span>` : pend('a definir')}</td>
+      <td><a class="more" href="#/produto/${p.id}">Ver →</a></td>
+    </tr>`).join('')}
+    </tbody></table></div></section>`;
+}
+function secOportunidades() {
+  const lista = [...PRODUTOS].sort((a, b) => b.vendasVarejo - a.vendasVarejo);
+  return `<section class="block"><div class="head"><h2>Oportunidades</h2><span class="more">demanda comprovada no varejo · sem margem estimada</span></div>
+    <div class="grid">${lista.map(card).join('')}</div></section>`;
+}
+function secNovidades() {
+  return `<section class="block"><div class="head"><h2>Novidades</h2><span class="more">entraram no catálogo em ${dataBR(PRODUTOS[0].chegou + 'T12:00:00Z')}</span></div>
+    <div class="grid">${[...PRODUTOS].sort((a, b) => b.chegou.localeCompare(a.chegou)).map(card).join('')}</div></section>`;
+}
+function secReposicao() {
+  const ids = [...new Set(pedidos.flatMap(x => x.itens.map(i => i.id)))];
+  return `<section class="block"><div class="head"><h2>Reposição</h2><span class="more">o que você já comprou, para repor</span></div>
+    ${ids.length ? `<div class="list">${ids.map(id => { const p = acha(id); const ult = [...pedidos].reverse().find(x => x.itens.some(i => i.id === id)); const q = ult.itens.find(i => i.id === id).q;
+      return `<a href="#/produto/${id}"><span style="display:flex;gap:12px;align-items:center"><span class="th" style="width:44px;height:44px"><img src="${p.foto}" alt=""></span><span><b>${esc(p.nome)}</b><br><span class="muted">Último pedido: <span class="num">${q}</span> un. · ${dataBR(ult.data)}</span></span></span><button class="btn ghost" data-repor="${id}" data-q="${q}">Repor ${q} un.</button></a>`; }).join('')}</div>`
+      : `<div class="empty">Seus pedidos de atacado aparecem aqui para repor em um clique.</div>`}</section>`;
+}
+function secCategorias() {
+  return `<section class="block"><div class="head"><h2>Categorias</h2><span class="more">o que convém revender</span></div>
+    <div class="cats">${Object.entries(CATEGORIAS).map(([id, nome]) => {
+      const itens = PRODUTOS.filter(p => p.categoria === id), vendas = itens.reduce((a, p) => a + p.vendasVarejo, 0);
+      return `<a class="cat" href="#/categoria/${id}"><span class="th"><img src="${itens[0].foto}" alt=""></span><span><b>${nome}</b><br><span class="muted"><span class="num">${itens.length}</span> produto${itens.length > 1 ? 's' : ''} · <span class="num">${vendas}</span> vendas no varejo</span></span><span class="more">→</span></a>`;
+    }).join('')}</div></section>`;
+}
+function secKits() {
+  return KITS.length ? `<section class="block"><div class="head"><h2>Kits para começar</h2></div><div class="grid">${KITS.map(card).join('')}</div></section>` : '';
+}
+const ORDEM = {
+  comecar: [secKits, secMaisVendidos, secOportunidades, secCategorias, secNovidades],
+  jaVendo: [secOportunidades, secMaisVendidos, secReposicao, secNovidades, secCategorias],
+  loja: [secReposicao, secMaisVendidos, secCategorias, secOportunidades, secNovidades],
+  volume: [secMaisVendidos, secCategorias, secOportunidades],
+  nenhum: [secMaisVendidos, secOportunidades, secNovidades, secReposicao, secCategorias, secKits]
+};
+
+function botaoPerfil(id) {
+  const p = PERFIS[id];
+  return `<button class="perfil ${perfil === id ? 'on' : ''}" data-perfil="${id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${p.icon}</svg><b>${p.nome}</b><span class="muted">${p.desc}</span></button>`;
+}
+
+/* ---------- Telas ---------- */
+function telaHome(trocar) {
+  const escolher = !perfil || trocar;
+  const ident = `<section class="ident">
+    <span class="eyebrow">Atacado · revenda e grandes volumes</span>
+    <h1 style="margin-top:10px">${escolher ? 'Como você quer comprar?' : esc(PERFIS[perfil].desc)}</h1>
+    ${escolher ? '<p class="muted" style="margin:0">Escolha seu perfil e mostramos primeiro o que faz sentido para você.</p>' : ''}
+    <div class="entradas">
+      <div><span class="label">Revenda</span><div class="perfis">${['comecar', 'jaVendo', 'loja'].map(botaoPerfil).join('')}</div></div>
+      <div><span class="label">Grandes volumes / Empresas</span><div class="perfis">${botaoPerfil('volume')}</div></div>
+    </div>
+    ${perfil && !escolher ? `<div class="row-btns" style="margin-top:16px"><a class="btn" href="#/catalogo">Ver catálogo</a></div>` : ''}
+    ${termos()}
+  </section>`;
+  const destaqueVolume = perfil === 'volume' ? `<section class="block"><div class="cta-volume"><b style="font-size:17px">Condição comercial para sua empresa</b><span>Diga os produtos e o volume; respondemos com uma proposta.</span><div><a class="btn" href="#/proposta">Solicitar condição comercial</a></div></div></section>` : '';
+  return ident + destaqueVolume + ORDEM[perfil || 'nenhum'].map(f => f()).join('');
+}
+
+function telaLista(titulo, itens) {
+  return `<div class="crumbs"><a href="#/atacado">Atacado</a><span>/</span><span>${esc(titulo)}</span></div>
+  ${perfil === 'volume' ? `<div class="cta-volume" style="margin-bottom:16px"><b>Grandes volumes</b><span style="font-size:13px">Escolha os produtos e, em cada um, solicite a condição comercial.</span></div>` : ''}
+  <div class="head"><h1>${esc(titulo)}</h1><span class="more num">${itens.length} resultado${itens.length === 1 ? '' : 's'}</span></div>
+  <div class="row-btns" style="margin:12px 0 18px"><a class="btn ghost" href="#/catalogo">Todos</a>${Object.entries(CATEGORIAS).map(([id, n]) => `<a class="btn ghost" href="#/categoria/${id}">${n}</a>`).join('')}</div>
+  ${itens.length ? `<div class="grid">${itens.map(card).join('')}</div>` : '<div class="empty">Nenhum produto encontrado.</div>'}`;
+}
+
+function telaProduto(p) {
+  const temCaixa = !!p.unidadesPorCaixa;
+  return `<div class="crumbs"><a href="#/atacado">Atacado</a><span>/</span><a href="#/categoria/${p.categoria}">${CATEGORIAS[p.categoria]}</a><span>/</span><span>${esc(p.nome)}</span></div>
+  <span class="eyebrow">${CATEGORIAS[p.categoria]} · oportunidade</span>
+  <h1 style="margin:8px 0 18px">${esc(p.nome)}</h1>
+  <div class="pdp">
+    <div class="stack">
+      <div class="pdp-pic"><img src="${p.foto}" alt="${esc(p.nome)}"></div>
+      <div class="panel stack">
+        <h3>Venda comprovada</h3>
+        <span class="signal"><i></i><span class="num">${p.vendasVarejo}</span> vendas no varejo (Shopee)</span>
+        <span class="muted" style="font-size:12px">Sem margem de revenda estimada: só mostramos números reais.</span>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div class="panel stack">
+        <h3>Preço por quantidade</h3>
+        ${tabelaEscalas(p)}
+        <div class="r"><span class="muted">Preço no varejo (Shop)</span><span class="num">${brl(p.precoShop)} / un.</span></div>
+        <div class="r"><span class="muted">Comparação varejo × atacado</span><span>${menorPreco(p) ? '' : pend('quando houver preço de atacado')}</span></div>
+      </div>
+      <div class="panel" style="padding:0">
+        <div class="kv" style="border-top:0">
+          <div><small>Embalagem</small>${temCaixa ? `<span class="num">Caixa com ${p.unidadesPorCaixa} un.</span>` : pend('un./caixa a definir')}</div>
+          <div><small>Pedido mínimo</small>${p.minimo ? `<span class="num">${p.minimo} un.</span>` : pend('a definir')}</div>
+          <div><small>Estoque</small>${p.estoque !== null ? `<span class="num">${p.estoque} un.</span>` : pend('a confirmar')}</div>
+          <div><small>Reposição</small>${p.reposicao ? esc(p.reposicao) : pend('a definir')}</div>
+        </div>
+      </div>
+      <div class="panel stack">
+        <h3>Condições</h3>
+        ${termos()}
+      </div>
+    </div>
+
+    <div class="stack sticky ${perfil === 'volume' ? 'vol' : ''}">
+      <form class="panel stack" id="qtdForm" data-id="${p.id}">
+        <h3>Quantidade</h3>
+        <div class="seg" role="group" aria-label="Unidade de compra">
+          <button type="button" class="on" data-modo="un">Unidades</button>
+          <button type="button" data-modo="cx" ${temCaixa ? '' : 'disabled title="Unidades por caixa a definir"'}>Caixas</button>
+        </div>
+        <div class="qty-row">
+          <label class="field">Quantidade<input name="q" type="number" min="1" step="1" value="${p.minimo || 1}" class="num"></label>
+          <label class="field">Em unidades<input name="un" class="num" readonly tabindex="-1"></label>
+        </div>
+        <div class="r"><span class="muted">Preço por unidade</span><span id="pUn">—</span></div>
+        <div class="r t"><span>Subtotal</span><span id="pSub">—</span></div>
+        <span class="muted" style="font-size:12px" id="pMin"></span>
+        <button class="btn full" type="submit">Comprar para revender</button>
+        <span class="muted" style="font-size:12px">Sem preço de atacado definido, o pedido é enviado para confirmação de preço e condições.</span>
+      </form>
+      <div class="cta-volume">
+        <b>Precisa de um volume maior?</b>
+        <span style="font-size:13px">Condição comercial sob medida para empresas.</span>
+        <div><a class="btn" href="#/proposta?p=${p.id}">Solicitar condição comercial</a></div>
+      </div>
+    </div>
+  </div>
+  <section class="block"><div class="head"><h2>Outras oportunidades</h2></div>
+    <div class="grid">${PRODUTOS.filter(x => x.id !== p.id).map(card).join('')}</div></section>`;
+}
+function calcularQtd() {
+  const f = document.getElementById('qtdForm'); if (!f) return;
+  const p = acha(f.dataset.id), modoCx = f.querySelector('[data-modo="cx"]').classList.contains('on');
+  const q = Math.max(0, Math.floor(Number(f.q.value) || 0)), un = modoCx ? q * p.unidadesPorCaixa : q;
+  f.un.value = un + ' un.';
+  const pu = precoPara(p, un);
+  document.getElementById('pUn').innerHTML = pu ? `<span class="num">${brl(pu)}</span>` : pend('a confirmar');
+  document.getElementById('pSub').innerHTML = pu ? `<span class="num">${brl(pu * un)}</span>` : pend('a confirmar');
+  document.getElementById('pMin').textContent = p.minimo ? (un < p.minimo ? `Faltam ${p.minimo - un} un. para o pedido mínimo.` : 'Pedido mínimo atingido.') : 'Pedido mínimo a definir.';
+  return un;
+}
+
+function itensPedido() { return Object.entries(pedido).map(([id, q]) => ({ p: acha(id), q })).filter(x => x.p && x.q > 0); }
+function telaPedido() {
+  const itens = itensPedido();
+  if (!itens.length) return `<h1>Pedido de atacado</h1><div class="empty" style="margin-top:18px">Seu pedido está vazio. <a href="#/atacado" style="text-decoration:underline">Ver oportunidades</a></div>`;
+  const semPreco = itens.some(x => !precoPara(x.p, x.q));
+  const total = itens.reduce((a, x) => a + (precoPara(x.p, x.q) || 0) * x.q, 0);
+  const unidades = itens.reduce((a, x) => a + x.q, 0);
+  return `<h1 style="margin-bottom:18px">Pedido de atacado</h1>
+  <form class="two" id="pedidoForm" novalidate>
+    <div class="stack">
+      <div class="table-wrap"><table class="table"><thead><tr><th></th><th>Produto</th><th>Quantidade</th><th>Embalagem</th><th>Preço / un.</th><th>Subtotal</th><th></th></tr></thead><tbody>
+        ${itens.map(({ p, q }) => { const pu = precoPara(p, q); return `<tr>
+          <td><span class="th" style="width:44px;height:44px"><img src="${p.foto}" alt=""></span></td>
+          <td><a href="#/produto/${p.id}"><b>${esc(p.nome)}</b></a></td>
+          <td><input class="num" type="number" min="1" value="${q}" data-edit="${p.id}" aria-label="Quantidade" style="width:84px;padding:7px 9px;border-radius:8px;background:var(--card);border:1px solid var(--line-2)"></td>
+          <td>${p.unidadesPorCaixa ? `<span class="num">${Math.ceil(q / p.unidadesPorCaixa)} cx</span>` : pend('a definir')}</td>
+          <td>${pu ? `<span class="num">${brl(pu)}</span>` : pend('a confirmar')}</td>
+          <td>${pu ? `<span class="num">${brl(pu * q)}</span>` : pend('a confirmar')}</td>
+          <td><button type="button" class="link-btn" data-rm="${p.id}">Remover</button></td>
+        </tr>`; }).join('')}
+      </tbody></table></div>
+
+      <div class="panel step"><h3><i>1</i>Dados da empresa</h3>
+        <div class="fields">
+          <label class="field s3">CNPJ<input name="cnpj" required inputmode="numeric" maxlength="18" class="num"></label>
+          <label class="field s3">Razão social<input name="razao" required></label>
+          <label class="field s3">Contato<input name="contato" required autocomplete="name"></label>
+          <label class="field s3">E-mail<input name="email" type="email" required autocomplete="email"></label>
+        </div>
+      </div>
+      <div class="panel step"><h3><i>2</i>Entrega</h3>
+        <div class="fields">
+          <label class="field s2">CEP<input name="cep" required inputmode="numeric" maxlength="9" class="num"></label>
+          <label class="field s3">Cidade<input name="cidade" required></label>
+          <label class="field s2" style="grid-column:span 1">UF<input name="uf" required maxlength="2"></label>
+        </div>
+        <p class="muted" style="font-size:12px;margin:10px 0 0">Frete e prazo: ${pend('a confirmar com o pedido')}</p>
+      </div>
+      <div class="panel step"><h3><i>3</i>Condições</h3>${termos()}
+        <label style="display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:13px"><input type="checkbox" name="aceite" required style="margin-top:3px"><span>Entendo que o pedido fica sujeito à confirmação de preço, estoque e condições antes do faturamento.</span></label>
+      </div>
+    </div>
+    <div class="panel sticky">
+      <h3>Resumo</h3>
+      <div class="r"><span class="muted">Produtos</span><span class="num">${itens.length}</span></div>
+      <div class="r"><span class="muted">Unidades</span><span class="num">${unidades}</span></div>
+      <div class="r"><span class="muted">Pedido mínimo</span><span>${CONDICOES.pedidoMinimo ? esc(CONDICOES.pedidoMinimo) : pend('a definir')}</span></div>
+      <div class="r"><span class="muted">Frete</span><span>${pend('a confirmar')}</span></div>
+      <div class="r t"><span>Total</span><span>${semPreco ? pend('a confirmar') : `<span class="num">${brl(total)}</span>`}</span></div>
+      <p class="err" id="pedidoErr" hidden></p>
+      <button class="btn full" type="submit">${semPreco ? 'Enviar pedido para confirmação' : 'Enviar pedido'}</button>
+      <span class="muted" style="font-size:12px;text-align:center">Protótipo: nada é enviado nem cobrado.</span>
+    </div>
+  </form>`;
+}
+
+function telaProposta(pre) {
+  const escolhidos = pre ? [pre] : [];
+  return `<div class="crumbs"><a href="#/atacado">Atacado</a><span>/</span><span>Grandes volumes</span></div>
+  <span class="eyebrow">Grandes volumes / empresas</span>
+  <h1 style="margin:8px 0 18px">Solicitar condição comercial</h1>
+  <form class="two" id="propostaForm" novalidate>
+    <div class="stack">
+      <div class="panel step"><h3><i>1</i>Produtos de interesse</h3>
+        <div class="pick">${PRODUTOS.map(p => `<label><input type="checkbox" name="prod" value="${p.id}" ${escolhidos.includes(p.id) ? 'checked' : ''}><span class="th"><img src="${p.foto}" alt=""></span><span>${esc(p.nome)}</span></label>`).join('')}</div>
+        <label class="field" style="margin-top:10px">Outro produto que você procura (opcional)<input name="outro" placeholder="Descreva o produto"></label>
+      </div>
+      <div class="panel step"><h3><i>2</i>Volume</h3>
+        <div id="volumes"></div>
+      </div>
+      <div class="panel step"><h3><i>3</i>Condição comercial desejada</h3>
+        <div class="fields">
+          <label class="field s3">Forma de pagamento<select name="pagto"><option>A combinar</option><option>À vista</option><option>Faturado (prazo)</option></select></label>
+          <label class="field s3">Prazo de entrega desejado<select name="prazo"><option>A combinar</option><option>Até 15 dias</option><option>Até 30 dias</option><option>Mais de 30 dias</option></select></label>
+          <label class="field">Observações<textarea name="obs" rows="3" placeholder="Destino, embalagem, marca, frequência…"></textarea></label>
+        </div>
+      </div>
+      <div class="panel step"><h3><i>4</i>Empresa</h3>
+        <div class="fields">
+          <label class="field s3">CNPJ<input name="cnpj" required inputmode="numeric" maxlength="18" class="num"></label>
+          <label class="field s3">Razão social<input name="razao" required></label>
+          <label class="field s2">Contato<input name="contato" required autocomplete="name"></label>
+          <label class="field s2">E-mail<input name="email" type="email" required autocomplete="email"></label>
+          <label class="field s2">Telefone<input name="tel" required inputmode="tel" autocomplete="tel"></label>
+          <label class="field s2">UF de entrega<input name="uf" required maxlength="2"></label>
+        </div>
+      </div>
+    </div>
+    <div class="panel sticky">
+      <h3>Sua solicitação</h3>
+      <div class="r"><span class="muted">Produtos</span><span class="num" id="sProd">0</span></div>
+      <div class="r"><span class="muted">Unidades por pedido</span><span class="num" id="sUn">0</span></div>
+      <div class="r"><span class="muted">Prazo de resposta</span><span>${pend('a definir')}</span></div>
+      <p class="err" id="propErr" hidden></p>
+      <button class="btn full" type="submit">Enviar solicitação</button>
+      <span class="muted" style="font-size:12px;text-align:center">Protótipo: nada é enviado.</span>
+    </div>
+  </form>`;
+}
+function desenharVolumes() {
+  const f = document.getElementById('propostaForm'); if (!f) return;
+  const box = document.getElementById('volumes'), antes = {};
+  box.querySelectorAll('[data-vol]').forEach(i => antes[i.dataset.vol + i.name] = i.value);
+  const ids = [...f.querySelectorAll('[name=prod]:checked')].map(i => i.value);
+  box.innerHTML = ids.length ? ids.map(id => `<div class="vol-row"><b>${esc(acha(id).nome)}</b>
+    <label class="field">Unidades<input data-vol="${id}" name="q" type="number" min="1" class="num" value="${antes[id + 'q'] || ''}"></label>
+    <label class="field">Frequência<select data-vol="${id}" name="freq">${['Compra única', 'Mensal', 'Trimestral'].map(o => `<option ${antes[id + 'freq'] === o ? 'selected' : ''}>${o}</option>`).join('')}</select></label></div>`).join('')
+    : '<p class="muted" style="margin:0;font-size:13px">Selecione os produtos para informar o volume.</p>';
+  resumoProposta();
+}
+function resumoProposta() {
+  const f = document.getElementById('propostaForm'); if (!f) return;
+  document.getElementById('sProd').textContent = f.querySelectorAll('[name=prod]:checked').length;
+  document.getElementById('sUn').textContent = [...f.querySelectorAll('[data-vol][name=q]')].reduce((a, i) => a + (Number(i.value) || 0), 0);
+}
+
+function telaDetalhe(tipo, reg, novo) {
+  if (!reg) return '<div class="empty">Não encontrado. <a href="#/conta" style="text-decoration:underline">Minha conta</a></div>';
+  const etapas = tipo === 'pedido' ? STATUS_PEDIDO : STATUS_PROPOSTA;
+  return `<div class="crumbs"><a href="#/conta">Minha conta</a><span>/</span><span class="num">${reg.numero}</span></div>
+  <h1 style="margin-bottom:4px">${novo ? (tipo === 'pedido' ? 'Pedido enviado' : 'Solicitação enviada') : (tipo === 'pedido' ? 'Pedido ' : 'Proposta ') + reg.numero}</h1>
+  <p class="muted" style="margin:0 0 18px"><span class="num">${reg.numero}</span> · ${dataBR(reg.data)} · ${esc(reg.razao)}</p>
+  <div class="two">
+    <div class="stack">
+      <div class="panel"><h3 style="margin-bottom:12px">Acompanhamento</h3>
+        <div class="track">${etapas.map((s, i) => `<div class="${i <= reg.status ? 'done' : ''}">${s}</div>`).join('')}</div>
+        ${reg.status < 3 ? `<button class="link-btn" data-avancar="${tipo}:${reg.numero}" style="margin-top:12px">Simular próximo status (protótipo)</button>` : ''}
+      </div>
+      <div class="table-wrap"><table class="table"><thead><tr><th>Produto</th><th>Unidades</th>${tipo === 'proposta' ? '<th>Frequência</th>' : '<th>Preço / un.</th>'}</tr></thead><tbody>
+        ${reg.itens.map(i => `<tr><td>${esc(acha(i.id).nome)}</td><td class="num">${i.q}</td><td>${tipo === 'proposta' ? esc(i.freq) : pend('a confirmar')}</td></tr>`).join('')}
+        ${reg.outro ? `<tr><td colspan="3">Outro: ${esc(reg.outro)}</td></tr>` : ''}
+      </tbody></table></div>
+    </div>
+    <div class="panel sticky">
+      <h3>${tipo === 'pedido' ? 'Resumo' : 'Condição pedida'}</h3>
+      ${tipo === 'pedido'
+        ? `<div class="r"><span class="muted">Unidades</span><span class="num">${reg.itens.reduce((a, i) => a + i.q, 0)}</span></div><div class="r"><span class="muted">Entrega</span><span>${esc(reg.cidade)}/${esc(reg.uf)}</span></div><div class="r t"><span>Total</span><span>${pend('a confirmar')}</span></div><button class="btn full" data-repetir="${reg.numero}">Repetir pedido</button>`
+        : `<div class="r"><span class="muted">Pagamento</span><span>${esc(reg.pagto)}</span></div><div class="r"><span class="muted">Prazo</span><span>${esc(reg.prazo)}</span></div><div class="r"><span class="muted">Resposta</span><span>${pend('prazo a definir')}</span></div>`}
+      <a class="more" href="#/atacado" style="text-align:center">Voltar ao atacado</a>
+    </div>
+  </div>`;
+}
+
+function telaConta() {
+  return `<h1 style="margin-bottom:18px">Minha conta</h1>
+  <section><div class="head"><h2>Pedidos de atacado</h2></div>
+    ${pedidos.length ? `<div class="list">${[...pedidos].reverse().map(x => `<a href="#/ver/pedido/${x.numero}"><span><b class="num">${x.numero}</b><br><span class="muted">${dataBR(x.data)} · <span class="num">${x.itens.reduce((a, i) => a + i.q, 0)}</span> un.</span></span><span class="muted">${STATUS_PEDIDO[x.status]}</span></a>`).join('')}</div>` : '<div class="empty">Nenhum pedido ainda.</div>'}
+  </section>
+  <section class="block"><div class="head"><h2>Propostas</h2></div>
+    ${propostas.length ? `<div class="list">${[...propostas].reverse().map(x => `<a href="#/ver/proposta/${x.numero}"><span><b class="num">${x.numero}</b><br><span class="muted">${dataBR(x.data)} · <span class="num">${x.itens.length}</span> produto(s)</span></span><span class="muted">${STATUS_PROPOSTA[x.status]}</span></a>`).join('')}</div>` : '<div class="empty">Nenhuma solicitação de condição comercial ainda.</div>'}
+  </section>
+  ${secReposicao()}`;
+}
+
+/* ---------- Navegação interna ----------
+   A rota vive aqui. O endereço do navegador (#...) é atualizado quando dá; se a página
+   for aberta como arquivo solto (data:, file:), o navegador bloqueia isso e a navegação segue igual. */
+let rotaInterna = location.hash || '#/';
+const hashAtual = () => rotaInterna;
+function ir(h) {
+  rotaInterna = h;
+  try { if (location.hash !== h) history.pushState(null, '', h); } catch {}
+  render();
+}
+const sincronizar = () => { rotaInterna = location.hash || '#/'; render(); };
+window.addEventListener('hashchange', sincronizar);
+window.addEventListener('popstate', sincronizar);
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.target.closest('button')) return;
+  e.preventDefault(); ir(a.getAttribute('href'));
+}, true);
+
+/* ---------- Roteador ---------- */
+let recem = null;
+function render() {
+  const [rota, query] = hashAtual().slice(1).split('?');
+  const partes = rota.split('/').filter(Boolean), params = new URLSearchParams(query || '');
+  const intro = !partes.length;
+  document.body.classList.toggle('intro', intro);
+  document.body.classList.toggle('loja', !intro);
+  if (intro) return;
+  const [tela, a, b] = partes;
+  let html;
+  if (tela === 'busca') {
+    const q = params.get('q')?.trim() || '';
+    html = telaLista(q ? `Busca: “${q}”` : 'Todos os produtos', q ? PRODUTOS.filter(p => (p.nome + ' ' + CATEGORIAS[p.categoria]).toLowerCase().includes(q.toLowerCase())) : PRODUTOS);
+  }
+  else if (tela === 'catalogo') html = telaLista('Catálogo', PRODUTOS);
+  else if (tela === 'categoria' && CATEGORIAS[a]) html = telaLista(CATEGORIAS[a], PRODUTOS.filter(p => p.categoria === a));
+  else if (tela === 'produto' && acha(a)) html = telaProduto(acha(a));
+  else if (tela === 'pedido') html = telaPedido();
+  else if (tela === 'proposta') html = telaProposta(acha(params.get('p')) ? params.get('p') : null);
+  else if (tela === 'ver' && a === 'pedido') html = telaDetalhe('pedido', pedidos.find(x => x.numero === b), recem === b);
+  else if (tela === 'ver' && a === 'proposta') html = telaDetalhe('proposta', propostas.find(x => x.numero === b), recem === b);
+  else if (tela === 'conta') html = telaConta();
+  else html = telaHome(params.get('trocar') === '1');
+  document.getElementById('view').innerHTML = html;
+  calcularQtd(); desenharVolumes();
+  window.scrollTo(0, 0);
+  if (tela !== 'busca') document.querySelector('#barSearch input').value = '';
+}
+
+/* ---------- Ações ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  if (t.dataset.perfil) {
+    perfil = t.dataset.perfil; salvar();
+    ir(perfil === 'volume' ? '#/catalogo' : '#/atacado');
+  }
+  if (t.dataset.modo) {
+    t.parentElement.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === t)); calcularQtd();
+  }
+  if (t.dataset.rm) { delete pedido[t.dataset.rm]; salvar(); render(); }
+  if (t.dataset.repor) { e.preventDefault(); adicionar(t.dataset.repor, Number(t.dataset.q)); }
+  if (t.dataset.repetir) {
+    pedidos.find(x => x.numero === t.dataset.repetir).itens.forEach(i => { pedido[i.id] = (pedido[i.id] || 0) + i.q; });
+    salvar(); ir('#/pedido');
+  }
+  if (t.dataset.avancar) {
+    const [tipo, num] = t.dataset.avancar.split(':'), lista = tipo === 'pedido' ? pedidos : propostas, reg = lista.find(x => x.numero === num);
+    if (reg.status < 3) { reg.status++; salvar(); render(); }
+  }
+});
+document.addEventListener('input', e => {
+  if (e.target.closest('#qtdForm')) calcularQtd();
+  if (e.target.dataset.edit) { const q = Math.floor(Number(e.target.value)); if (q > 0) { pedido[e.target.dataset.edit] = q; salvar(); } }
+  if (e.target.closest('#propostaForm')) resumoProposta();
+});
+document.addEventListener('change', e => {
+  if (e.target.name === 'prod') desenharVolumes();
+  if (e.target.dataset.edit) render();
+});
+function faltando(f) { return [...f.querySelectorAll('[required]')].filter(i => i.type === 'checkbox' ? !i.checked : !i.value.trim()); }
+const cnpjOk = v => v.replace(/\D/g, '').length === 14;
+document.addEventListener('submit', e => {
+  const f = e.target; e.preventDefault();
+  if (f.id === 'barSearch') { const q = f.q.value.trim(); ir('#/busca' + (q ? '?q=' + encodeURIComponent(q) : '')); }
+  if (f.id === 'qtdForm') { adicionar(f.dataset.id, calcularQtd()); }
+  if (f.id === 'pedidoForm') {
+    const err = document.getElementById('pedidoErr'), falta = faltando(f);
+    const msg = falta.some(i => i.type !== 'checkbox') ? 'Preencha os dados da empresa e da entrega.'
+      : !cnpjOk(f.cnpj.value) ? 'Confira o CNPJ: são 14 números.'
+      : f.cep.value.replace(/\D/g, '').length !== 8 ? 'Confira o CEP: são 8 números.'
+      : falta.length ? 'Confirme que o pedido fica sujeito à confirmação de condições.' : '';
+    if (msg) { err.hidden = false; err.textContent = msg; return; }
+    const numero = 'ATC-' + String(pedidos.length + 1).padStart(4, '0');
+    pedidos.push({ numero, data: new Date().toISOString(), status: 0, razao: f.razao.value.trim(), cidade: f.cidade.value.trim(), uf: f.uf.value.trim().toUpperCase(),
+      itens: itensPedido().map(x => ({ id: x.p.id, q: x.q })) });
+    pedido = {}; salvar(); recem = numero; ir('#/ver/pedido/' + numero);
+  }
+  if (f.id === 'propostaForm') {
+    const err = document.getElementById('propErr');
+    const ids = [...f.querySelectorAll('[name=prod]:checked')].map(i => i.value);
+    const vols = ids.map(id => ({ id, q: Number(f.querySelector(`[data-vol="${id}"][name=q]`).value) || 0, freq: f.querySelector(`[data-vol="${id}"][name=freq]`).value }));
+    const msg = !ids.length && !f.outro.value.trim() ? 'Escolha pelo menos um produto ou descreva o que procura.'
+      : vols.some(v => v.q < 1) ? 'Informe as unidades de cada produto.'
+      : faltando(f).length ? 'Preencha os dados da empresa.'
+      : !cnpjOk(f.cnpj.value) ? 'Confira o CNPJ: são 14 números.' : '';
+    if (msg) { err.hidden = false; err.textContent = msg; return; }
+    const numero = 'PRP-' + String(propostas.length + 1).padStart(4, '0');
+    propostas.push({ numero, data: new Date().toISOString(), status: 0, razao: f.razao.value.trim(), pagto: f.pagto.value, prazo: f.prazo.value, outro: f.outro.value.trim(), itens: vols });
+    salvar(); recem = numero; ir('#/ver/proposta/' + numero);
+  }
+});
+atualizarBarra();
+render();
+</script>
+</body>
+</html>

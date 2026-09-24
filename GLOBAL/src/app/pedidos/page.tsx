@@ -58,7 +58,9 @@ export default async function PedidosPage({
 
   const { data: pedidos } = await query;
 
-  const totalMonto = (pedidos ?? []).reduce((acc, p) => acc + Number(p.monto), 0);
+  const totalMonto = (pedidos ?? [])
+    .filter((p) => p.estado !== "cancelado")
+    .reduce((acc, p) => acc + Number(p.monto), 0);
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">

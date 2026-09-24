@@ -4,18 +4,48 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
-export default function NuevoCierreForm({ userId }: { userId: string }) {
+function texto(n: number) {
+  return n > 0 ? n.toFixed(2) : "";
+}
+
+export default function NuevoCierreForm({
+  userId,
+  fechaInicial,
+  ventasIniciales,
+  gastosIniciales,
+}: {
+  userId: string;
+  fechaInicial: string;
+  ventasIniciales: number;
+  gastosIniciales: number;
+}) {
   const router = useRouter();
   const supabase = createClient();
 
-  const [fecha, setFecha] = useState(new Date().toISOString().slice(0, 10));
+  const [fecha, setFecha] = useState(fechaInicial);
   const [efectivoInicial, setEfectivoInicial] = useState("");
   const [efectivoFinal, setEfectivoFinal] = useState("");
-  const [totalVentas, setTotalVentas] = useState("");
-  const [totalGastos, setTotalGastos] = useState("");
+  const [totalVentas, setTotalVentas] = useState(texto(ventasIniciales));
+  const [totalGastos, setTotalGastos] = useState(texto(gastosIniciales));
+  const [totalesEditados, setTotalesEditados] = useState(false);
   const [notas, setNotas] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Al cambiar la fecha, vuelve a traer los totales reales de ese día (si no se corrigieron a mano).
+  async function handleFechaChange(nueva: string) {
+    setFecha(nueva);
+    if (totalesEditados || !nueva) return;
+
+    const [{ data: ventas }, { data: gastos }] = await Promise.all([
+      supabase.from("ventas_plataforma").select("monto").eq("fecha", nueva),
+      supabase.from("gastos").select("monto").eq("fecha", nueva),
+    ]);
+    const sumar = (filas: { monto: number | string }[] | null) =>
+      (filas ?? []).reduce((acc, f) => acc + Number(f.monto), 0);
+    setTotalVentas(texto(sumar(ventas)));
+    setTotalGastos(texto(sumar(gastos)));
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -54,7 +84,7 @@ export default function NuevoCierreForm({ userId }: { userId: string }) {
           type="date"
           required
           value={fecha}
-          onChange={(e) => setFecha(e.target.value)}
+          onChange={(e) => handleFechaChange(e.target.value)}
           className="w-full rounded-md border border-neutral-700 px-3 py-2 text-sm outline-none focus:border-white"
         />
       </label>
@@ -90,7 +120,10 @@ export default function NuevoCierreForm({ userId }: { userId: string }) {
             type="number"
             step="0.01"
             value={totalVentas}
-            onChange={(e) => setTotalVentas(e.target.value)}
+            onChange={(e) => {
+              setTotalesEditados(true);
+              setTotalVentas(e.target.value);
+            }}
             className="w-full rounded-md border border-neutral-700 px-3 py-2 text-sm outline-none focus:border-white"
           />
         </label>
@@ -100,7 +133,10 @@ export default function NuevoCierreForm({ userId }: { userId: string }) {
             type="number"
             step="0.01"
             value={totalGastos}
-            onChange={(e) => setTotalGastos(e.target.value)}
+            onChange={(e) => {
+              setTotalesEditados(true);
+              setTotalGastos(e.target.value);
+            }}
             className="w-full rounded-md border border-neutral-700 px-3 py-2 text-sm outline-none focus:border-white"
           />
         </label>

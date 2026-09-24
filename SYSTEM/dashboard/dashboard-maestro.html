@@ -255,6 +255,7 @@ li.open>.old-list{display:flex}
 .qvs{display:inline-flex;align-items:center;gap:4px}.qv{display:inline-flex;cursor:help}
 .fin{opacity:.5}.ia-chip.fin{opacity:.6}
 .rol-hace{max-width:560px;padding:14px 18px;border-radius:14px;border:1px solid var(--edge);background:var(--glass)}
+.rol-hace .carril{margin:0 0 8px;color:var(--muted);font-size:12.5px;line-height:1.5}
 .rol-hace ul{list-style:none;margin:0;padding:0}
 .rol-hace li{display:flex;gap:10px;padding:6px 0;color:var(--soft);font-size:13.5px;line-height:1.5}
 .rol-hace li::before{content:"";width:5px;height:5px;margin-top:9px;border-radius:50%;background:rgba(255,255,255,.4);flex:none}
@@ -265,6 +266,9 @@ li.open>.old-list{display:flex}
 .node.claude:hover{background:color-mix(in srgb,var(--claude) 20%,transparent)}
 .ai-card[data-ai="claude-code"]{border-color:color-mix(in srgb,var(--claude) 55%,transparent);background:radial-gradient(320px 160px at 100% 0%,color-mix(in srgb,var(--claude) 16%,transparent),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
 .ai-card[data-ai="claude-code"] .ai-icon{color:var(--claude);border-color:color-mix(in srgb,var(--claude) 60%,transparent);background:color-mix(in srgb,var(--claude) 14%,transparent)}
+.qb.conn{display:inline-flex;align-items:center;gap:8px;border-radius:99px;padding:2px 12px 2px 3px}
+.chat-nombre{color:var(--soft);font-size:12.5px;line-height:1}
+.qb.conn:hover .chat-nombre{color:var(--text)}
 .qb{cursor:pointer;border:0;background:none;padding:0;border-radius:50%}
 .qb:hover{filter:brightness(1.25)}
 .qb.on{outline:1.5px solid rgba(255,255,255,.55);outline-offset:2px}
@@ -331,13 +335,15 @@ const I={
  sistema:'<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>',
  memoria:'<path d="M9.5 4A2.5 2.5 0 007 6.5v.4A3 3 0 005 12a3 3 0 002 5.1v.4A2.5 2.5 0 009.5 20c1.4 0 2.5-1.1 2.5-2.5v-11C12 5.1 10.9 4 9.5 4z"/><path d="M14.5 4A2.5 2.5 0 0117 6.5v.4a3 3 0 012 5.1 3 3 0 01-2 5.1v.4a2.5 2.5 0 01-5 0v-11C12 5.1 13.1 4 14.5 4z"/><path d="M7 9h2M15 9h2M7 15h2M15 15h2"/>',
  infraestructura:'<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/>',
+ local:'<path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>',
  mapa:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
  automatizacion:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+ servicios:'<path d="M7 18a4 4 0 010-8 5 5 0 019.6-1A4.5 4.5 0 0117 18z"/>',
  promt:'<path d="M4 4h16v13H9l-5 4z"/><path d="M8 8l2 2-2 2M13 12h3"/>'
 };
 const svg=id=>'<svg viewBox="0 0 24 24">'+I[id]+'</svg>';
 const NAV=[['Ahora',['inicio','direccion']],['Negocios',['global','growth','digital','personal']],['Sistema',['sistema','memoria','infraestructura','automatizacion']]];
-const NAMES={inicio:'Inicio',mapa:'',direccion:'Dirección',global:'Global',growth:'Growth',digital:'Digital',personal:'Personal',sistema:'Arquitectura',memoria:'Memoria viva',infraestructura:'Infraestructura',automatizacion:'IA y automatización',promt:'Promt'};
+const NAMES={inicio:'Inicio',local:'Local',mapa:'',direccion:'Dirección',global:'Global',growth:'Growth',digital:'Digital',personal:'Personal',sistema:'Arquitectura',memoria:'Memoria viva',infraestructura:'Infraestructura',automatizacion:'IA',servicios:'Servicios',promt:'Promt'};
 const UNITS=[
  {id:'global',name:'Global',desc:'Comercio · sourcing · logística',on:1,state:'App operando',links:[[LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login','Abrir app →','pri','_blank'],['/global.html','Landing','sec','_top']]},
  {id:'growth',name:'Growth',desc:'Crecimiento · ventas',on:0,state:'Solo landing',links:[['/growth.html','Landing','sec','_top']]},
@@ -358,7 +364,7 @@ const SYSTEM=[
 ];
 const DETAIL={
  direccion:{title:'Dirección',desc:'Qué hacer ahora, sin reconstruirlo en la cabeza.',blocks:[['Ahora',['Caja de esta semana','Decisión sólo de TT','Quién espera respuesta','Qué bloquea a otro','Qué no se hace esta semana']],['Horizontes',['7 días · cambio concreto','30 días · primer resultado','90 días · devolución de capital','12 meses · dirección general']],['Entradas',['Decisiones','Presente','Prioridades','Inbox']]]},
- global:{title:'Global',desc:'Comercio · ecommerce · sourcing · logística.',blocks:[['Operación',['Trebol Shop','Productos','Proveedores','Sourcing']],['Control',['Economics','Compras','Logística','Capital inmovilizado']]]},
+ global:{title:'Global',desc:'Comercio · sourcing · logística.',blocks:[['Segmentos',['Shop','Atacadista','Imports','Oficina']]]},
  growth:{title:'Growth',desc:'Crecimiento · ventas · inteligencia comercial.',blocks:[['Comercial',['Clientes','Inteligencia','Ventas']],['Ejecución',['Oferta','Marketing','Delivery','Economía']]]},
  digital:{title:'Digital',desc:'Conocimiento · productos · mentoría · oportunidades.',blocks:[['Producto',['Identidad','Landing','Ofertas','Productos digitales']],['Conversión',['Audiencia','Captación','Checkout / cobro','Entrega y recurrencia']]]},
  personal:{title:'Personal',desc:'Todo lo relacionado con la imagen de TT.',blocks:[['Hoy',['Prototipo de landing · operador-no-guru']]]},
@@ -375,7 +381,7 @@ const DETAIL={
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Navegación en tres niveles: lectura arriba, negocios al centro y gobierno abajo.
 const navBtn=(id,sub=false)=>'<button data-page="'+id+'" class="'+(sub?'nav-sub':'')+'" title="'+NAMES[id]+'">'+svg(id)+'<span>'+NAMES[id]+'</span></button>';
-document.getElementById('nav').innerHTML=['inicio','mapa','memoria','automatizacion'].map(id=>navBtn(id)).join('')+navBtn('promt',true)+'<div class="grow"></div>'+['global','growth','digital'].map(id=>navBtn(id)).join('')+'<div class="grow"></div>'+['direccion','personal','sistema','infraestructura'].map(id=>navBtn(id)).join('');
+document.getElementById('nav').innerHTML=['inicio','mapa','memoria','automatizacion'].map(id=>navBtn(id)).join('')+navBtn('promt',true)+navBtn('servicios',true)+'<div class="grow"></div>'+['global','growth','digital'].map(id=>navBtn(id)).join('')+'<div class="grow"></div>'+['local','direccion','personal','sistema','infraestructura'].map(id=>navBtn(id)).join('');
 const pill=u=>'<span class="pill'+(u.on?' on':'')+'"><i></i>'+u.state+'</span>';
 const links=u=>u.links.map(l=>'<a class="btn '+l[2]+'" href="'+l[0]+'" target="'+l[3]+'"'+(l[3]==='_blank'?' rel="noopener"':'')+'>'+l[1]+'</a>').join('');
 const cards=()=>SYSTEM.map(x=>'<button class="card hover system-card" data-detail="'+x[0]+'"><span class="tag">'+x[1]+'</span><strong>'+x[2]+'</strong><p>'+x[3]+'</p></button>').join('');
@@ -415,7 +421,116 @@ function projectView(name,id,app){
  const dashboard=app?'<a class="btn pri" href="'+app+'" target="_blank" rel="noopener">Abrir dashboard operativo →</a>':'<span class="btn off" title="Todavía no existe">Dashboard operativo pendiente</span>';
  return '<header class="unit-head"><div><h1>'+esc(name)+'</h1></div><div class="unit-actions"><a class="btn sec" href="/'+id+'.html" target="_top">Ver landing</a>'+dashboard+'</div></header>';
 }
-function globalView(){return projectView('Global','global',LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login')}
+const ESCUDO_G='<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
+const ROL_META={'claude-code':['Claude Code local',1,'claude'],'claude-nube':['Claude Code nube',1,'claude'],'gpt-chrome':['GPT Chrome',0,''],'gpt-work':['Codex Work',0,''],'antigravity-ide':['Antigravity IDE',2,'']};
+// Un rol: su nombre, la herramienta que lo cumple (con el avatar de su chat) y, al tocar el avatar, su carril y qué hace.
+function rolNodo(r,idp,ia){
+ const CHEV='<svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+ const m=ROL_META[r.herramienta]||[r.herramienta,1,''];
+ const h=ia&&ia.herramientas&&ia.herramientas[r.herramienta];
+ const chats=h?h.activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
+ const avs=chats.map(a=>'<button type="button" class="qv qb conn'+(a.estado==='terminado'?' fin':'')+'" data-detalle="'+idp+'" title="'+esc(a.agente.nombre+' · toca para ver qué hace')+'">'+avatar(a.agente,'av-xs')+(a.agente.nombre!==r.nombre?'<span class="chat-nombre">'+esc(a.agente.nombre)+'</span>':'')+'</button>').join('');
+ return '<li><button type="button" class="node" data-fold>'+CHEV+'<svg viewBox="0 0 24 24">'+ESCUDO_G+'</svg><b>'+esc(r.nombre)+'</b></button><ul>'
+  +'<li><span class="node'+(m[2]?' '+m[2]:'')+'"><svg viewBox="0 0 24 24">'+AI_TOOLS[m[1]][2]+'</svg><b>'+esc(m[0])+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
+  +(r.hace.length?'<li id="'+idp+'"'+(chats.length?' hidden':'')+'><div class="rol-hace">'+(r.carril?'<p class="carril">Carril: '+esc(r.carril)+'</p>':'')+'<ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
+  +'</ul></li>';
+}
+const GLOBAL_SECCIONES=[
+ {
+  nombre:'Shop',
+  para:'Consumidor final',
+  resuelve:'Productos por unidad a precio minorista',
+  accion:'Comprar',
+  href:'/shop.html',
+  icono:'<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>'
+ },
+ {
+  nombre:'Atacado',
+  para:'Revendedores, tiendas y empresas',
+  resuelve:'Productos en cantidad con precio y condiciones diferenciadas',
+  accion:'Comprar para revender / Cotizar volumen',
+  href:'/atacado.html',
+  icono:'<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>'
+ },
+ {
+  nombre:'Imports',
+  para:'Empresas con operaciones mayores',
+  resuelve:'Estructuración de operaciones comerciales internacionales',
+  accion:'Estructurar operación',
+  href:'/imports.html',
+  icono:'<path d="M2 20a2.4 2.4 0 002 1 2.4 2.4 0 002-1 2.4 2.4 0 012-1 2.4 2.4 0 012 1 2.4 2.4 0 002 1 2.4 2.4 0 002-1"/><path d="M4 18L2 13h20l-2 5"/><polyline points="12 13 12 3 16 6 12 6"/>'
+ },
+ {
+  nombre:'Login',
+  para:'Socios / equipo de Global',
+  resuelve:'Gestión interna de toda la empresa',
+  accion:'Entrar',
+  href:LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login',
+  icono:'<rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="6" x2="9.01" y2="6"/><line x1="15" y1="6" x2="15.01" y2="6"/><line x1="9" y1="10" x2="9.01" y2="10"/><line x1="15" y1="10" x2="15.01" y2="10"/><line x1="9" y1="14" x2="9.01" y2="14"/><line x1="15" y1="14" x2="15.01" y2="14"/><line x1="9" y1="18" x2="15" y2="18"/>'
+ }
+];
+function renderGlobalNodos(){
+ const CHEV='<svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+ return GLOBAL_SECCIONES.map(s=>'<li>'
+  +'<button type="button" class="node" data-fold>'+CHEV+'<svg viewBox="0 0 24 24">'+s.icono+'</svg><b>'+esc(s.nombre)+'</b></button>'
+  +'<ul><li><div class="rol-hace" style="margin-top:6px;max-width:540px">'
+  +'<p style="margin:0 0 6px;font-size:12.5px;color:var(--muted)">Para quién: <span style="color:var(--text);font-weight:500">'+esc(s.para)+'</span></p>'
+  +'<p style="margin:0 0 10px;font-size:12.5px;color:var(--muted)">Resuelve: <span style="color:var(--soft)">'+esc(s.resuelve)+'</span></p>'
+  +'<a class="btn pri" href="'+s.href+'" target="_blank" style="display:inline-flex;align-items:center;height:32px;padding:0 14px;font-size:12px;border-radius:6px">'+esc(s.accion)+' →</a>'
+  +'</div></li></ul>'
+  +'</li>').join('');
+}
+function globalView(){
+ return projectView('Global','global',LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login')
+  +'<section class="dir-section" style="margin-top:24px"><header><h2>Ahora</h2><span id="globalAhoraEstado" style="color:var(--muted);font:11px/1 var(--mono)">ESTADO OPERATIVO</span></header>'
+  +'<div class="dir-grid">'
+  +'<article class="card dir-field"><label for="ga-prioridad">Prioridad</label><textarea id="ga-prioridad" data-ga="prioridad" placeholder="Vacío"></textarea></article>'
+  +'<article class="card dir-field"><label for="ga-decision">Decisión</label><textarea id="ga-decision" data-ga="decision" placeholder="Vacío"></textarea></article>'
+  +'<article class="card dir-field"><label for="ga-espera">Espera</label><textarea id="ga-espera" data-ga="espera" placeholder="Vacío"></textarea></article>'
+  +'<article class="card dir-field"><label for="ga-bloqueo">Bloqueo</label><textarea id="ga-bloqueo" data-ga="bloqueo" placeholder="Vacío"></textarea></article>'
+  +'</div>'
+  +'<div style="margin-top:10px;display:flex;justify-content:flex-end"><button class="btn pri" id="guardarGlobalAhora" style="height:32px;padding:0 16px;font-size:12px">Guardar Ahora</button></div>'
+  +'</section>'
+  +'<section class="card tree" style="margin-top:24px"><ul>'+renderGlobalNodos()+'</ul></section>'
+  +'<section id="globalRoles"></section>';
+}
+let GLOBAL_DIR_DATA=null;
+function cargarGlobalAhora(){
+ fetch('/_tdt/direccion?sub=global',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(e=>{
+  if(!e||!e.estado)return;
+  GLOBAL_DIR_DATA=e.estado;
+  ['prioridad','decision','espera','bloqueo'].forEach(k=>{
+   const el=document.querySelector('[data-ga="'+k+'"]');
+   if(el)el.value=GLOBAL_DIR_DATA.ahora?.[k]||'';
+  });
+  const st=document.getElementById('globalAhoraEstado');
+  if(st&&GLOBAL_DIR_DATA.actualizado)st.textContent='ACTUALIZADO '+new Date(GLOBAL_DIR_DATA.actualizado).toLocaleTimeString('es');
+ }).catch(()=>{});
+}
+function guardarGlobalAhoraFn(){
+ if(!GLOBAL_DIR_DATA)GLOBAL_DIR_DATA={ahora:{},horizontes:{},inbox:[]};
+ if(!GLOBAL_DIR_DATA.ahora)GLOBAL_DIR_DATA.ahora={};
+ ['prioridad','decision','espera','bloqueo'].forEach(k=>{
+  const el=document.querySelector('[data-ga="'+k+'"]');
+  if(el)GLOBAL_DIR_DATA.ahora[k]=el.value;
+ });
+ const btn=document.getElementById('guardarGlobalAhora');
+ if(btn)btn.textContent='Guardando…';
+ fetch('/_tdt/direccion?sub=global',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(GLOBAL_DIR_DATA)}).then(r=>r.ok?r.json():null).then(e=>{
+  if(e&&e.estado)GLOBAL_DIR_DATA=e.estado;
+  if(btn){btn.textContent='Guardado';setTimeout(()=>{btn.textContent='Guardar Ahora'},1500)}
+  const st=document.getElementById('globalAhoraEstado');
+  if(st)st.textContent='ACTUALIZADO '+new Date().toLocaleTimeString('es');
+ }).catch(()=>{if(btn)btn.textContent='Error'});
+}
+function cargarGlobalRoles(){
+ Promise.all([fetch('/_tdt/roles',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([ro,ia])=>{
+  const c=document.getElementById('globalRoles');if(!c)return;
+  const rs=ro&&ro.roles?ro.roles.filter(r=>r.area==='Global'):[];
+  if(!rs.length){c.innerHTML='';return}
+  c.innerHTML='<section class="card tree" style="margin-top:24px"><ul><li><button type="button" class="node root" data-fold><svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>'+fsvg+'<b>Roles</b></button><ul>'+rs.map((r,i)=>rolNodo(r,'rg-'+i,ia)).join('')+'</ul></li></ul></section>';
+ });
+}
 function growthView(){return projectView('Growth','growth','')}
 function digitalView(){return projectView('Digital','digital','')}
 const AI_TOOLS=[
@@ -453,12 +568,22 @@ function pintarIa(){
   +'<footer>Actualizado '+esc(ago(a.actualizado))+(a.fuente?' · fuente: '+esc(a.fuente):'')+'</footer></article>';
  }).join('');
 }
-function cargarIa(){fetch('/_tdt/ia',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{IA_DATA=e;pintarIa()}).catch(()=>{IA_DATA=null;pintarIa()})}
+function cargarIa(){fetch('/_tdt/ia',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{IA_DATA=e;const t=document.getElementById('iaArbol');if(t)t.innerHTML=arbolIaHtml(e);pintarIa()}).catch(()=>{IA_DATA=null;pintarIa()})}
+// Árbol IA → Claude, GPT, Antigravity, cada herramienta con el avatar de sus chats registrados.
+const HERR=[['Claude',1,[['Claude Code local','claude-code'],['Claude Code nube','claude-nube']]],['GPT',0,[['GPT Chrome','gpt-chrome'],['Codex Work','gpt-work']]],['Antigravity IDE',2,[['Antigravity IDE','antigravity-ide']]]];
+function arbolIaHtml(ia){
+ const CHEV='<svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
+ const nodoIa=(nombre,icono,id,clase)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
+  return '<span class="node'+(clase?' '+clase:'')+'"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
+ return '<section class="card tree" style="margin-top:20px"><ul><li class="open"><button type="button" class="node root" data-fold>'+CHEV+fsvg+'<b>IA</b></button><ul>'+HERR.map(([nombre,i,hijos])=>hijos.length===1
+  ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1],i===1?'claude':'')+'</li>'
+  :'<li><button type="button" class="node'+(i===1?' claude':'')+'" data-fold>'+CHEV+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id,i===1?'claude':'')+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
+}
 function aiView(){
- return '<header class="view-head"><h1>IA y automatización</h1></header><section class="ai-grid">'+AI_TOOLS.map(x=>'<button type="button" class="card ai-card" data-ai="'+aiId(x[0])+'"><div class="ai-top"><div class="ai-icon"><svg viewBox="0 0 24 24" role="img" aria-label="'+esc(x[0])+'">'+x[2]+'</svg></div><span class="ai-meta"><span class="ai-avs" data-ai-av="'+aiId(x[0])+'"></span><span class="ai-count" data-ai-count="'+aiId(x[0])+'">·</span></span></div><div><h2>'+esc(x[0])+'</h2><p>'+esc(x[1])+'</p></div></button>').join('')+'</section><section class="ai-detalle" id="aiDetalle"></section>';
+ return '<header class="view-head"><h1>IA</h1></header><section id="iaArbol"></section><section class="ai-grid">'+AI_TOOLS.map(x=>'<button type="button" class="card ai-card" data-ai="'+aiId(x[0])+'"><div class="ai-top"><div class="ai-icon"><svg viewBox="0 0 24 24" role="img" aria-label="'+esc(x[0])+'">'+x[2]+'</svg></div><span class="ai-meta"><span class="ai-avs" data-ai-av="'+aiId(x[0])+'"></span><span class="ai-count" data-ai-count="'+aiId(x[0])+'">·</span></span></div><div><h2>'+esc(x[0])+'</h2><p>'+esc(x[1])+'</p></div></button>').join('')+'</section><section class="ai-detalle" id="aiDetalle"></section>';
 }
 function promtView(){
- return '<header class="view-head"><p class="eyebrow">IA y automatización</p><h1>Promt</h1><p>Biblioteca de instrucciones preparadas y registro de cuáles ya se usaron.</p><div class="promt-test">El contenido actual es una prueba inicial. Esta pantalla queda preparada para ordenar nuevos prompts por sector.</div></header><div class="row" style="margin-top:22px"><span class="pill" id="promtEstado"><i></i>Leyendo…</span></div><section class="promt-layout"><div class="promt-column"><div class="promt-section-head"><h2>Preparados por sector</h2><span id="promtPreparadosTotal">·</span></div><div class="promt-stack" id="promtPreparados"></div></div><div class="promt-column"><div class="promt-section-head"><h2>Usados</h2><span id="promtUsosTotal">·</span></div><div class="card promt-history" id="promtUsos"></div></div></section>';
+ return '<header class="view-head"><p class="eyebrow">IA</p><h1>Promt</h1><p>Biblioteca de instrucciones preparadas y registro de cuáles ya se usaron.</p><div class="promt-test">El contenido actual es una prueba inicial. Esta pantalla queda preparada para ordenar nuevos prompts por sector.</div></header><div class="row" style="margin-top:22px"><span class="pill" id="promtEstado"><i></i>Leyendo…</span></div><section class="promt-layout"><div class="promt-column"><div class="promt-section-head"><h2>Preparados por sector</h2><span id="promtPreparadosTotal">·</span></div><div class="promt-stack" id="promtPreparados"></div></div><div class="promt-column"><div class="promt-section-head"><h2>Usados</h2><span id="promtUsosTotal">·</span></div><div class="card promt-history" id="promtUsos"></div></div></section>';
 }
 function cargarPromt(){
  const estado=document.getElementById('promtEstado'),preparados=document.getElementById('promtPreparados'),usos=document.getElementById('promtUsos');if(!estado||!preparados||!usos)return;
@@ -516,29 +641,15 @@ function cargarMapa(){
   };
   const rama=c=>{const hijos=(c.children||[]).filter(h=>h.dir);
    return '<li>'+node(c.name,S[c.name],'top',hijos.length>0,hijos.length,c.name)+(hijos.length?'<ul>'+hijos.map(h=>'<li>'+node(h.name,S[c.name+'/'+h.name],'',false,0,c.name+'/'+h.name)+'</li>').join('')+'</ul>':'')+'</li>'};
-  // Segundo nodo del mapa: IA → Claude, GPT, Antigravity (cada herramienta con el avatar de sus chats registrados).
-  const HERR=[['Claude',1,[['Claude Code local','claude-code'],['Claude Code nube','claude-nube']]],['GPT',0,[['GPT Chrome','gpt-chrome'],['Codex Work','gpt-work']]],['Antigravity IDE',2,[['Antigravity IDE','antigravity-ide']]]];
-  const nodoIa=(nombre,icono,id,clase)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
-   return '<span class="node'+(clase?' '+clase:'')+'"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
-  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([nombre,i,hijos])=>hijos.length===1
-    ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1],i===1?'claude':'')+'</li>'
-    :'<li><button type="button" class="node'+(i===1?' claude':'')+'" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id,i===1?'claude':'')+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
   // Tercer nodo del mapa: Roles. Por ahora solo el primero.
   const ESCUDO='<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
   const ROLES=(ro&&ro.roles&&ro.roles.length?ro.roles:[{nombre:'Guardián del sistema',hace:[]}]);
   // Cada rol muestra qué herramienta lo cumple (con el avatar de su chat) y qué hace, leído de su archivo.
-  // Herramienta de cada rol: nombre, ícono (índice en AI_TOOLS) y color de familia.
-  const META={'claude-code':['Claude Code local',1,'claude'],'claude-nube':['Claude Code nube',1,'claude'],'gpt-chrome':['GPT Chrome',0,''],'gpt-work':['Codex Work',0,''],'antigravity-ide':['Antigravity IDE',2,'']};
-  const rama_rol=(r,n)=>{
-   const m=META[r.herramienta]||[r.herramienta,1,''];
-   const h=ia&&ia.herramientas&&ia.herramientas[r.herramienta];
-   const chats=h?h.activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
-   const avs=chats.map(a=>'<button type="button" class="qv qb'+(a.estado==='terminado'?' fin':'')+'" data-detalle="rd-'+n+'" title="'+esc(a.agente.nombre+' · toca para ver qué hace')+'">'+avatar(a.agente,'av-xs')+'</button>').join('');
-   return '<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+ESCUDO+'</svg><b>'+esc(r.nombre)+'</b></button><ul>'
-    +'<li><span class="node'+(m[2]?' '+m[2]:'')+'"><svg viewBox="0 0 24 24">'+AI_TOOLS[m[1]][2]+'</svg><b>'+esc(m[0])+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
-    +(r.hace.length?'<li id="rd-'+n+'"'+(chats.length?' hidden':'')+'><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
-    +'</ul></li>'};
-  const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(rama_rol).join('')+'</ul></li></ul></section>';
+  // Roles agrupados por área. Las áreas sin roles todavía se muestran vacías.
+  const AREAS=['System','Global','Growth','Digital','Personal'];
+  const grupo=ar=>{const rs=ROLES.map((r,i)=>[r,i]).filter(([r])=>(r.area||'System')===ar);
+   return rs.length?'<li>'+node(ar,'','',true,rs.length)+'<ul>'+rs.map(([r,i])=>rolNodo(r,'rd-'+i,ia)).join('')+'</ul></li>':'<li>'+node(ar,'','',false)+'</li>'};
+  const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+AREAS.map(grupo).join('')+'</ul></li></ul></section>';
   // Cuarto nodo del mapa: Servicios (Vercel, GitHub, Supabase, Namecheap), leídos de SYSTEM/servicios/registro.json.
   const ICO_SERV={vercel:'<path d="M12 4l9 16H3z"/>',github:'<circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 7v10M18 11c0 4-6 3-11 6"/>',supabase:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',namecheap:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>'};
   const PUNTO='<circle cx="12" cy="12" r="3"/>';
@@ -547,7 +658,8 @@ function cargarMapa(){
    const cab='<span class="ico-b" data-info title="Qué es"><svg viewBox="0 0 24 24">'+ic+'</svg></span><b>'+esc(n.nombre)+'</b>'+(txt?'<em>'+esc(txt)+'</em>':'');
    return n.hijos&&n.hijos.length?'<li><button type="button" class="node" data-fold>'+chev+cab+'</button><ul>'+n.hijos.map(h=>ramaServ(h,PUNTO)).join('')+'</ul></li>':'<li><span class="node">'+cab+'</span></li>'};
   const arbolServ=sv&&sv.servicios&&sv.servicios.length?'<section class="card tree serv" style="margin-top:12px"><ul><li>'+node('Servicios','','root',true)+'<ul>'+sv.servicios.map(x=>ramaServ(x,ICO_SERV[x.id]||PUNTO)).join('')+'</ul></li></ul></section>':'';
-  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles+arbolServ;
+  const arbolLocal='<section class="card tree"><ul><li class="open">'+node('Local','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>';
+  cuerpo.innerHTML=window.__pagina==='local'?arbolLocal:window.__pagina==='servicios'?arbolServ.replace('<ul><li>','<ul><li class="open">'):arbolRoles;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }
 function architecture(){return '<header class="view-head"><button class="back" data-page="inicio">← Inicio</button><h1>Arquitectura</h1><p>El mapa que ordena Dirección, negocios, memoria, infraestructura y ejecución.</p></header><div class="section-head"><h2>Áreas</h2><span>'+SYSTEM.length+'</span></div><section class="system-grid">'+cards()+'</section>'}
@@ -560,13 +672,15 @@ function detail(id,from){
 function render(next,detailId){
  const page=next||'inicio';
  document.querySelectorAll('#nav [data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
- const promtNav=document.querySelector('#nav [data-page="promt"]');if(promtNav)promtNav.classList.toggle('open',IA_SUB_OPEN);
+ document.querySelectorAll('#nav .nav-sub').forEach(n=>n.classList.toggle('open',IA_SUB_OPEN));
  const title=detailId?DETAIL[detailId]?.title:(page in NAMES?NAMES[page]:(DETAIL[page]?.title||page));
  document.getElementById('crumb').innerHTML='System'+(title?' <span style="opacity:.4">/</span> <b>'+esc(title)+'</b>':'');
  document.body.classList.toggle('inicio',page==='inicio'&&!detailId);
  const app=document.getElementById('app');
- app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():page==='mapa'?mapa():page==='memoria'?memoryView():page==='automatizacion'?aiView():page==='promt'?promtView():page==='direccion'?directionView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
- if(page==='mapa'&&!detailId)cargarMapa();
+ app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():(page==='mapa'||page==='local'||page==='servicios')?mapa():page==='memoria'?memoryView():page==='automatizacion'?aiView():page==='promt'?promtView():page==='direccion'?directionView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
+ window.__pagina=page;
+ if(page==='global'&&!detailId){cargarGlobalRoles();cargarGlobalAhora();}
+ if((page==='mapa'||page==='local'||page==='servicios')&&!detailId)cargarMapa();
  if(page==='memoria'&&!detailId)cargarMemoria();
  if(page==='automatizacion'&&!detailId)cargarIa();
  if(page==='promt'&&!detailId)cargarPromt();
@@ -584,11 +698,12 @@ document.addEventListener('click',e=>{
  if(e.target.closest('#mapaRefrescar')){cargarMapa();return}
  if(e.target.closest('#memoriaRefrescar')){cargarMemoria();return}
  if(e.target.closest('#direccionGuardar')){guardarDireccion();return}
+ if(e.target.closest('#guardarGlobalAhora')){guardarGlobalAhoraFn();return}
  const borrar=e.target.closest('[data-inbox-delete]');if(borrar&&DIR_DATA){DIR_DATA.inbox=DIR_DATA.inbox.filter(x=>x.id!==borrar.dataset.inboxDelete);renderDireccionListas();guardarDireccion();return}
  const m=e.target.closest('[data-memory]');if(m){const panel=document.getElementById('memory-'+m.dataset.memory),was=panel.classList.contains('open');document.querySelectorAll('.memory-content.open').forEach(x=>x.classList.remove('open'));if(!was)panel.classList.add('open');return}
  const f=e.target.closest('[data-fold]');if(f){f.parentElement.classList.toggle('open');return}
  const d=e.target.closest('[data-detail]');if(d){render('sistema',d.dataset.detail);return}
- const p=e.target.closest('button[data-page]');if(p){const destino=p.dataset.page,actual=document.querySelector('#nav button.active')?.dataset.page;if(destino==='automatizacion'){IA_SUB_OPEN=!(actual==='automatizacion'&&IA_SUB_OPEN);render('automatizacion');return}if(destino!=='promt')IA_SUB_OPEN=false;render(destino)}
+ const p=e.target.closest('button[data-page]');if(p){const destino=p.dataset.page,actual=document.querySelector('#nav button.active')?.dataset.page;if(destino==='automatizacion'){IA_SUB_OPEN=!(actual==='automatizacion'&&IA_SUB_OPEN);render('automatizacion');return}if(destino!=='promt'&&destino!=='servicios')IA_SUB_OPEN=false;render(destino)}
 });
 document.addEventListener('submit',e=>{
  if(e.target.id!=='direccionInbox')return;e.preventDefault();if(!DIR_DATA)return;

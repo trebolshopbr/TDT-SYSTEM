@@ -108,6 +108,85 @@
               ]
             }
           ]
+        },
+        {
+          "id": "gpt-work-datos",
+          "titulo": "Datos",
+          "estado": "activo",
+          "responsable": "Codex · familia GPT-6; identificador exacto del modelo y nivel de esfuerzo no expuestos en esta sesión",
+          "haciendo": "Auditoría terminada; esperando instrucción de TT sobre alineación del archivo local y stock pendiente.",
+          "hecho": [
+            "Leyó completos SYSTEM/roles/datos.md, AGENTS.md, SYSTEM/memoria/LEEME.md y el registro de agentes.",
+            "Revisó 20260924010019_pedidos_cancelar_y_excluir_ajustan_venta.sql, funciones previas, permisos y formularios. Confirmó que crear un pedido cancelado sigue registrando venta; no ejecutó SQL ni aplicó migraciones.",
+            "Verificó en solo lectura Supabase Global: tres funciones y triggers activos coinciden con la migración local; el alta cancelada ya está corregida. Venta del 20/09 correcta: 650 bruto, 31 comisión, 619 neto, cantidad 1. Trece pedidos y trece ventas sin faltantes, duplicados ni diferencias. Trece escenarios de la migración aplicada pasaron en PostgreSQL local aislado (PGlite); no se probaron permisos con sesiones de usuario. Detectó desfase de versión local/remota y stock negativo preexistente. No modificó la base real."
+          ],
+          "siguiente": "Alinear la versión local 20260924010019 con la aplicada 20260924041817, sin volver a aplicar SQL; conciliar stock físico por separado.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/ia/agentes/registro.json"
+          ],
+          "fuente": "SYSTEM/roles/datos.md y pedido directo de TT",
+          "actualizado": "2026-09-24T08:05:45.460351+00:00",
+          "agente": {
+            "nombre": "Datos",
+            "simbolo": "▤",
+            "color": "#06B6D4",
+            "forma": "cuadrado",
+            "lema": "Cuido los datos y verifico cada cambio."
+          }
+        },
+        {
+          "id": "gpt-work-global-producto",
+          "titulo": "Global · Producto",
+          "estado": "terminado",
+          "responsable": "GPT-6 · Codex",
+          "haciendo": "Compras con proveedores registrados y comprobantes adjuntos; identificación manual retirada.",
+          "hecho": [
+            "Leyó completos el rol Global · Producto, AGENTS.md, la entrada de memoria, el registro de agentes y el estado de Dirección.",
+            "Registró el nombre y la identidad visual asignados para esta sesión.",
+            "Corrigió márgenes pendientes y el resumen para excluir productos sin precio o costo válido.",
+            "Añadió señales de datos pendientes, disponibilidad en catálogo, vista previa del margen y errores de carga con reintento.",
+            "Validó la ficha y el costo en USD, y exigió confirmación de una fila al guardar.",
+            "15 pruebas aisladas pasaron; build y TypeScript correctos; lint sin errores y con 3 avisos preexistentes. No se modificaron registros comerciales ni se publicó.",
+            "Verificó con sesión iniciada Productos, Márgenes, ficha AIWA y Catálogo: 3 costos pendientes y stocks -6, -2, -2. Revisó Márgenes y ficha a 375 px; sin guardar ni alterar datos.",
+            "Añadió acceso desde Catálogo y filtro Custos pendentes en Productos, con formulario exclusivo de costo BRL/USD y opción Deixar para depois.",
+            "El formulario de costos actualiza solo costo, moneda, costo original y cambio; conserva precio y stock.",
+            "21 pruebas aisladas pasadas, build correcto, lint sin errores (3 avisos previos). Navegación y validación de campo requerido comprobadas en navegador; ficha a 375 px. Sin escrituras a datos comerciales.",
+            "Catálogo muestra Estoque a conferir para saldos negativos. Migración existente 0017 prevé edición por socios; aplicación efectiva y cuenta de Paulo no verificadas.",
+            "Retiró todo el contenido operativo de Catálogo, dejando solo el título y el acceso protegido. Productos y datos conservados.",
+            "Construyó portada comercial con búsqueda y fichas propias en /catalogo/[id], usando solo nombre, foto y precio de referencia del cadastro existente.",
+            "Descripciones, características y categorías quedan pendientes; todo se presenta en preparación. No hay edición comercial ni compartir en este prototipo.",
+            "Build correcto; lint focalizado y TypeScript sin errores. 20 pruebas existentes de Productos pasadas. Búsqueda, ficha y vuelta verificadas en navegador; portada y ficha revisadas a 375 px.",
+            "Reemplazó la portada explicativa por selección con cards/lista, búsqueda, categoría, estados y avance por ficha.",
+            "Implementó editor de nombre comercial, categoría, descripción, público, destaques, características, fuentes, revisión y opciones de presentación.",
+            "Borradores guardados solo en el navegador y por cuenta, explícitos en UI; vista previa con precio opcional. No cambia Productos ni escribe en Supabase.",
+            "25 pruebas de Catálogo y Productos pasadas. Build, TypeScript y lint sin errores (2 avisos ajenos preexistentes). Guardado local y recarga verificados con datos existentes; filtros, búsqueda, editor, preview y móvil comprobados.",
+            "Registró la lista de costos y fórmula de contribución/resultado definida por TT, con regla de BRL y cambio del día de pago para gastos USD.",
+            "Construyó Productos → Compras y costos: registro por lote, pagos de movimiento, evidencias, cambio por pago y costo unitario con pendientes explícitos.",
+            "Preparó migración sin aplicar con revisiones, permisos, validación y guardado atómico; dejó contrato para Datos y Operación.",
+            "Verificó 41 pruebas aisladas, build y lint; revisó escritorio y móvil sin crear compras reales.",
+            "Preparó verificar-activacion.sql y entrega concreta de activación; la pantalla sigue sin guardado. SQL de aceptación no ejecutado.",
+            "Aplicó compras_lotes versión 20260924063146; 21 comprobaciones SQL pasadas y botón habilitado en navegador. Sin compras de prueba persistidas. Guardado completo con usuario aún pendiente.",
+            "Retiró contenido explicativo de la lista de compras y pasó el alcance del costo a ayuda desplegable.",
+            "Activó proveedores y comprobantes privados (10 MB); selección/alta en ficha, carga al guardar y apertura autenticada. 50 pruebas aisladas pasadas."
+          ],
+          "siguiente": "Registrar un proveedor real y guardar la primera compra con comprobante.",
+          "bloqueos": [],
+          "archivos": [
+            "GLOBAL/src/app/productos/",
+            "GLOBAL/src/app/catalogo/",
+            "GLOBAL/src/app/plataformas/",
+            "GLOBAL/public/products/"
+          ],
+          "fuente": "SYSTEM/roles/global-producto.md y pedido directo de TT",
+          "actualizado": "2026-09-24T06:54:52.097792+00:00",
+          "agente": {
+            "nombre": "global producto",
+            "simbolo": "▦",
+            "color": "#F472B6",
+            "forma": "cuadrado",
+            "lema": "Productos reales, evidencia clara."
+          }
         }
       ]
     },
@@ -201,6 +280,51 @@
             "forma": "hexagono",
             "lema": "Sostengo la estructura; verifico antes de dar por cierto."
           }
+        },
+        {
+          "id": "claude-code-global-operacion",
+          "titulo": "Global · Operación",
+          "estado": "activo",
+          "responsable": "Claude Opus 5.5 (Claude Code)",
+          "haciendo": "Prototipos de Shop, Atacado e Imports listos en local; esperando revisión de TT.",
+          "hecho": [
+            "Leyó completos SYSTEM/roles/global-operacion.md y AGENTS.md.",
+            "Confirmó su rol y sus límites ante TT.",
+            "Auditó en solo lectura pedidos, ventas y gastos de Supabase global.",
+            "Corrigió fechas a horario de Brasil y el aviso de pedidos sin costo en Finanzas, Gastos y formularios; tsc y eslint sin errores.",
+            "Insertó la venta faltante del pedido del 20/09 (aprobado por TT).",
+            "Corrigió el total de Pedidos para no sumar cancelados.",
+            "Aplicó con el sí de TT la migración pedidos_cancelar_y_excluir_ajustan_venta en Supabase global y la probó con rollback: creación cancelada, cancelación, reactivación y exclusión ajustan venta y stock.",
+            "Probó en pantalla despesa en USD y fechar caixa (datos de prueba borrados).",
+            "Fechar caixa ahora rellena vendas y despesas del día con datos reales, corregibles a mano.",
+            "Agregó login automático solo en local (DEV_LOGIN_* en .env.local) con permiso de TT.",
+            "Agregó a Finanzas la tabla Resultado por producto y plataforma (base de la ficha económica).",
+            "Dejó en Meu escritório los 4 pendientes visibles para todos.",
+            "Shop (GLOBAL/landing/shop.html): icono de carrito en la portada y prototipo navegable Home, Busca/Categoria, Produto, Carrinho, Checkout, Pedido y Pós-compra, con los 3 productos reales y sin datos inventados.",
+            "Atacado (GLOBAL/landing/atacadista.html): icono de cajas en la portada y prototipo con identificación por perfil, tarjeta mayorista densa, pedido de revenda y flujo de grandes volumes hasta la propuesta; sin precios de atacado ni márgenes inventados.",
+            "Imports (GLOBAL/landing/imports.html): icono de globo en la portada; página pública por zonas (hero de operación, mercados y rutas, tipos, cómo trabajamos, Tríplice Fronteira, capacidad confirmada, solicitud y seguimiento), formulario de operación y vista Operação # con fases, ruta física, carga, fornecedor, documentos, costos, datas ETD/ETA, pendencias, responsables, eventos y excepciones; nada no confirmado se muestra como confirmado.",
+            "Atacado: prototipo movido a GLOBAL/landing/atacado.html (nombre oficial, el que enlaza global.html); atacadista.html queda como redirección.",
+            "Ajustó Atacado (entradas Revenda / Grandes volumes, pantalla Catálogo, grandes volumes pasa por catálogo y producto) e Imports (pantalla de Proposta con aprobar o pedir ajuste) para seguir los recorridos definidos por TT; los 3 recorridos verificados de punta a punta.",
+            "Shop: a los lados del carrito (tienda propia) agregó Mercado Livre, Shopee y TikTok Shop, los marketplaces activos de Plataformas; sus enlaces quedan a definir."
+          ],
+          "siguiente": "Ajustes de TT sobre Shop, Atacado e Imports.",
+          "bloqueos": [],
+          "archivos": [
+            "GLOBAL/src/app/pedidos/",
+            "GLOBAL/src/app/finanzas/",
+            "GLOBAL/landing/shop.html",
+            "GLOBAL/landing/atacado.html",
+            "GLOBAL/landing/imports.html"
+          ],
+          "fuente": "SYSTEM/roles/global-operacion.md y pedido directo de TT",
+          "actualizado": "2026-09-24T08:59:44Z",
+          "agente": {
+            "nombre": "global operacion",
+            "simbolo": "$",
+            "color": "#A3E635",
+            "forma": "rombo",
+            "lema": "Los números tienen que cuadrar."
+          }
         }
       ]
     },
@@ -208,35 +332,150 @@
       "nombre": "Antigravity IDE",
       "activos": [
         {
+          "id": "antigravity-ide-digital-experiencia",
+          "titulo": "Digital · Experiencia",
+          "estado": "activo",
+          "responsable": "digital experiencia · Antigravity IDE (Gemini 3.7 Flash)",
+          "haciendo": "Landing de TDT Digital completada en DIGITAL/landing/digital.html con catálogo segmentado, tarjetas de entregables, checkout interactivo y entrega inmediata.",
+          "hecho": [
+            "Leyó completos SYSTEM/roles/digital-experiencia.md, AGENTS.md, la memoria del sistema y el estado de Dirección.",
+            "Confirmó su rol, carril exclusivo (DIGITAL/) y límites ante TT.",
+            "Registró su identidad visual y operativa en antigravity-ide.",
+            "Diseñó e implementó la landing completa de TDT Digital en DIGITAL/landing/digital.html con estética refinada en modo oscuro puro y acentos #38BDF8.",
+            "Construyó el catálogo modular con filtros por categoría (Sistemas, Playbooks, Automatizaciones y Suite Completa All-Access).",
+            "Detalló entregables exactos, precios transparentes, sellos de entrega instantánea y garantía incondicional de 7 días.",
+            "Implementó el flujo modal de Checkout ágil simulado (tarjeta, Pix, PayPal) con confirmación en vivo y generación de token de acceso.",
+            "Diseñó la pantalla de Entrega Inmediata post-pago con copia de token, descarga de archivos y acceso al área de miembros."
+          ],
+          "siguiente": "Revisión visual de TT en http://localhost:8790/digital.html y definición de productos adicionales o pasarela definitiva.",
+          "bloqueos": [],
+          "archivos": [
+            "DIGITAL/",
+            "DIGITAL/landing/digital.html"
+          ],
+          "fuente": "SYSTEM/roles/digital-experiencia.md y pedido directo de TT",
+          "actualizado": "2026-09-24T11:08:00Z",
+          "agente": {
+            "nombre": "digital experiencia",
+            "simbolo": "❖",
+            "color": "#38BDF8",
+            "forma": "rombo",
+            "lema": "Claridad en la oferta, entrega sin fricción."
+          }
+        },
+        {
+          "id": "antigravity-ide-growth-experiencia",
+          "titulo": "Growth · Experiencia",
+          "estado": "activo",
+          "responsable": "growth experiencia · Antigravity IDE (Gemini 3.7 Flash)",
+          "haciendo": "Landing de TDT Growth completada y operativa en local con Hero, 3 pilares, métricas y embudo diagnóstico reactivo. Esperando feedback visual de TT.",
+          "hecho": [
+            "Leyó completos SYSTEM/roles/growth-experiencia.md, AGENTS.md, la memoria del sistema y el estado de Dirección.",
+            "Confirmó su rol, carril exclusivo (GROWTH/) y límites ante TT.",
+            "Registró su identidad visual y operativa en antigravity-ide.",
+            "Diseñó e implementó la landing completa de TDT Growth en GROWTH/landing/growth.html.",
+            "Construyó el hero de alto impacto enfocado en aceleración de ventas y caja con métricas clave (+3.4x CVR, -42% CAC).",
+            "Estructuró los 3 pilares de servicio: 01 Captación Sistemática, 02 Embudos & Oferta, 03 Escala & Recompra.",
+            "Implementó el embudo interactivo de diagnóstico/calificación en 3 pasos con barra de progreso y resumen en tiempo real.",
+            "Añadió sección comparativa (Agencia Tradicional vs TDT Growth) y navegación fluida adaptada a desktop y mobile."
+          ],
+          "siguiente": "Revisión visual de TT en http://localhost:8790/growth.html y ajustes sobre el embudo.",
+          "bloqueos": [],
+          "archivos": [
+            "GROWTH/",
+            "GROWTH/landing/growth.html"
+          ],
+          "fuente": "SYSTEM/roles/growth-experiencia.md y pedido directo de TT",
+          "actualizado": "2026-09-24T10:55:00Z",
+          "agente": {
+            "nombre": "growth experiencia",
+            "simbolo": "⚡",
+            "color": "#10B981",
+            "forma": "hexagono",
+            "lema": "Conversión ágil, experiencia impecable."
+          }
+        },
+        {
+          "id": "antigravity-ide-global-experiencia",
+          "titulo": "Global · Experiencia",
+          "estado": "activo",
+          "responsable": "global experiencia · Antigravity IDE (Gemini 3.8 Flash, nivel medio)",
+          "haciendo": "Rediseño visual integral y depuración CSS de los 3 módulos públicos de Global (Shop, Atacado e Imports) conservando 100% su lógica transaccional y router.",
+          "hecho": [
+            "Leyó completos SYSTEM/roles/global-experiencia.md y AGENTS.md.",
+            "Confirmó su rol, carril y límites de Global · Experiencia ante TT.",
+            "Registró su identidad visual y operativa en antigravity-ide.",
+            "Transformó las tarjetas de la oficina en accesos directos interactivos a /pedidos y /finanzas con transiciones sutiles.",
+            "Diseñó un skeleton animado oscuro en loading.tsx que replica la estructura exacta de la oficina.",
+            "Ajustó el selector de períodos para una interacción limpia.",
+            "Creó NavLinks con detección de página activa en tiempo real y desplazamiento horizontal fluido para pantallas chicas.",
+            "Integró el imagotipo oficial TDT GLOBAL en la barra superior (topbar) y en la pantalla de login.",
+            "Modernizó el diseño del login (tarjeta oscura, focus limpio, botón idéntico a la landing y retorno al inicio).",
+            "Verificó compilación de Next.js (build en 1.5s) y ESLint con 0 errores en el carril.",
+            "Estableció en global.html los 3 segmentos comerciales oficiales de TT: Shop, Atacadista e Imports, junto a Oficina.",
+            "Creó y configuró las landings dedicadas shop.html, atacadista.html, imports.html y oficina.html con estética uniforme y enlaces de regreso.",
+            "Habilitó las rutas en server.mjs y verificó que responden 200 OK en local.",
+            "Retiró todas las descripciones laterales en global.html para un menú ultra-limpio con solo los nombres y sus flechas.",
+            "Limpió shop.html, atacadista.html, imports.html y oficina.html dejando únicamente el logo TDT y el nombre en negro sobre fondo puro, sin textos ni tarjetas extra.",
+            "Reemplazó en el dashboard maestro (vista Global) las 9 secciones conceptuales previas por los 4 apartados oficiales (Shop, Atacadista, Imports, Oficina) con sus respectivos iconos y estado Vacío plegable.",
+            "Integró la definición estratégica de TT en decisiones.md y en los 4 nodos de Global (Shop, Atacado, Imports, Login) con público, propuesta y botón de acción directa.",
+            "Implementó el panel operativo 'Ahora' (Prioridad, Decisión, Espera, Bloqueo) en la vista Global conectado en vivo a global.json con persistencia y botón de guardado.",
+            "Verificó el flujo integral del Camino Revenda en Atacado: reordenamiento por perfil, tarjetas B2B, botón Caixas bloqueado por falta de empaque definido, validación de CNPJ a 14 dígitos, simulación de estados y reposición en 1 clic.",
+            "Verificó el flujo del Camino Grandes Volumes: navegación con aviso en catálogo, priorización de Solicitar condição comercial en producto, armado de propuesta multi-producto con unidades y frecuencias, y consolidación en Minha conta (pedidos, propuestas y reposición rápida).",
+            "Verificó el flujo completo de Imports: recorrido por zonas públicas (ruta animada de 7 etapas, esquema de Tríplice Fronteira, mercados confirmados vs a definir), formulario de estructuración reactivo, panel de operación (#IMP-0001) con 8 fases, avance de propuesta, pedidos de ajuste, aprobación, resolución de excepciones y búsqueda por número en seguimiento.",
+            "Completó el rediseño visual de Shop (tienda curada premium, paleta cálida, tarjetas inmersivas, franja de confianza y compra ágil sin alterar JS/sessionStorage).",
+            "Completó el rediseño visual de Atacado (precisión B2B, acento amarillo de volumen, escalas de cantidad, signal dots y flujo corporativo).",
+            "Completó el rediseño visual de Imports (control operativo/logístico, paleta azul/acero, grilla técnica, badges de fases y seguimiento).",
+            "Depuró CSS duplicado y normalizó estilos en shop.html, atacado.html e imports.html, y redirigió limpiamente atacadista.html a atacado.html."
+          ],
+          "siguiente": "Avanzar con la integración del panel de control de Global en el Dashboard Maestro y estructurar el Login de la app.",
+          "bloqueos": [],
+          "archivos": [
+            "GLOBAL/src/app/",
+            "GLOBAL/src/app/login/",
+            "GLOBAL/src/app/admin/",
+            "GLOBAL/src/components/",
+            "GLOBAL/landing/global.html",
+            "GLOBAL/landing/shop.html",
+            "GLOBAL/landing/atacado.html",
+            "GLOBAL/landing/imports.html",
+            "SYSTEM/dashboard/dashboard-maestro.html",
+            "SYSTEM/direccion/global.json",
+            "SYSTEM/memoria/decisiones.md",
+            "SYSTEM/runtime/server.mjs"
+          ],
+          "fuente": "SYSTEM/roles/global-experiencia.md y pedido directo de TT",
+          "actualizado": "2026-09-24T10:30:00Z",
+          "agente": {
+            "nombre": "global experiencia",
+            "simbolo": "◫",
+            "color": "#FFE600",
+            "forma": "hexagono",
+            "lema": "Estilo coherente, oficina rápida."
+          }
+        },
+        {
           "id": "antigravity-ide-publicador",
           "titulo": "Publicador",
           "estado": "activo",
           "responsable": "publicador · Antigravity IDE (Gemini Flash), sesión local con TT",
-          "haciendo": "Esperando autenticación de GitHub para completar el push a main",
+          "haciendo": "Esperando la orden de TT",
           "hecho": [
             "Leyó completo publicador.md y AGENTS.md.",
             "Confirmó el rol de Publicador y sus límites ante TT.",
             "Registró su identidad visual y operativa en antigravity-ide.",
             "Revisó git status y comprobó ausencia de claves, .env y archivos pesados.",
             "Ejecutó y validó las pruebas de runtime (3/3 pasaron).",
-            "Creó el commit local en main con roles, servicios, mapa, servidor, pruebas y bitácora."
+            "Creó el commit local en main con roles, servicios, mapa, servidor, pruebas y bitácora.",
+            "Comprobó que origin/main en GitHub quedó actualizado y sincronizado."
           ],
-          "siguiente": "Confirmar sincronización con origin/main en cuanto se complete el push.",
-          "bloqueos": [
-            "La terminal requiere credenciales de GitHub (https://github.com) no guardadas en el llavero."
-          ],
+          "siguiente": "Esperar la orden de TT para verificar o publicar.",
+          "bloqueos": [],
           "archivos": [
-            "SYSTEM/roles/publicador.md",
-            "SYSTEM/servicios/registro.json",
-            "SYSTEM/runtime/servicios.mjs",
-            "SYSTEM/runtime/server.mjs",
-            "SYSTEM/runtime/tests/ia.test.mjs",
-            "SYSTEM/memoria/bitacora.md",
-            "SYSTEM/memoria/mapa.md",
             "SYSTEM/ia/agentes/registro.json"
           ],
           "fuente": "SYSTEM/roles/publicador.md y pedido directo de TT",
-          "actualizado": "2026-09-24T02:08:00Z",
+          "actualizado": "2026-09-24T02:39:30Z",
           "agente": {
             "nombre": "publicador",
             "simbolo": "✦",
@@ -323,6 +562,28 @@
             "color": "#168C6B",
             "forma": "circulo",
             "lema": "Ordenar sin decidir."
+          }
+        },
+        {
+          "id": "gpt-chrome-global-direccion",
+          "titulo": "Global · Dirección",
+          "estado": "activo",
+          "responsable": "Global · Dirección · GPT Chrome",
+          "haciendo": "Esperando que TT le cuente qué está pasando hoy en Global",
+          "hecho": [],
+          "siguiente": "Esperar el relato de TT.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/direccion/global.json"
+          ],
+          "fuente": "Pedido directo de TT",
+          "actualizado": "2026-09-24T03:32:38Z",
+          "agente": {
+            "nombre": "Global · Dirección",
+            "simbolo": "G·D",
+            "color": "#B0805A",
+            "forma": "hexagono",
+            "lema": "Orden antes de decidir."
           }
         }
       ]

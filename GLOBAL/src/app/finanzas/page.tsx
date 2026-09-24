@@ -10,8 +10,9 @@ function formatMoney(n: number) {
   });
 }
 
-function toISODate(d: Date) {
-  return d.toISOString().slice(0, 10);
+// Fecha de hoy en horario de Brasil (AAAA-MM-DD), sin depender del huso del servidor.
+function hoyBR() {
+  return new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
 }
 
 const PERIODOS = [
@@ -22,32 +23,32 @@ const PERIODOS = [
 ];
 
 function calcularInicio(periodo: string) {
-  const hoy = new Date();
+  const hoy = hoyBR();
 
-  if (periodo === "dia") return toISODate(hoy);
+  if (periodo === "dia") return hoy;
 
   if (periodo === "semana") {
-    const diaSemana = (hoy.getDay() + 6) % 7;
-    const inicio = new Date(hoy);
-    inicio.setDate(hoy.getDate() - diaSemana);
-    return toISODate(inicio);
+    const base = new Date(hoy + "T00:00:00Z");
+    const diaSemana = (base.getUTCDay() + 6) % 7;
+    base.setUTCDate(base.getUTCDate() - diaSemana);
+    return base.toISOString().slice(0, 10);
   }
 
-  if (periodo === "anio") return `${hoy.getFullYear()}-01-01`;
+  if (periodo === "anio") return `${hoy.slice(0, 4)}-01-01`;
 
-  return toISODate(hoy).slice(0, 7) + "-01";
+  return hoy.slice(0, 7) + "-01";
 }
 
 function formatRangoLabel(inicio: string, periodo: string) {
-  const inicioDate = new Date(inicio + "T00:00:00");
-  const hoy = new Date();
-  const opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short" };
+  const inicioDate = new Date(inicio + "T12:00:00Z");
+  const hoy = new Date(hoyBR() + "T12:00:00Z");
+  const opts: Intl.DateTimeFormatOptions = { day: "numeric", month: "short", timeZone: "UTC" };
 
   if (periodo === "dia") {
-    return hoy.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric" });
+    return hoy.toLocaleDateString("pt-BR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   }
   if (periodo === "anio") {
-    return `Ano ${hoy.getFullYear()}`;
+    return `Ano ${hoy.getUTCFullYear()}`;
   }
   return `${inicioDate.toLocaleDateString("pt-BR", opts)} — ${hoy.toLocaleDateString("pt-BR", opts)}`;
 }
@@ -179,7 +180,9 @@ export default async function FinanzasPage({
         .gte("fecha", inicio),
       supabase
         .from("pedidos")
-        .select("cantidad, estado, productos(costo)")
+        .select(
+          "cantidad, estado, monto, monto_neto, comision_plataforma, productos(nombre, costo), plataformas(nombre)",
+        )
         .gte("fecha", inicio),
       supabase.from("gastos").select("monto").gte("fecha", inicio),
       supabase
@@ -205,7 +208,11 @@ export default async function FinanzasPage({
     (pedidos ?? []) as unknown as {
       cantidad: number;
       estado: string;
-      productos: { costo: number } | null;
+      monto: number;
+      monto_neto: number;
+      comision_plataforma: number;
+      productos: { nombre: string; costo: number } | null;
+      plataformas: { nombre: string } | null;
     }[]
   ).filter((p) => p.estado !== "cancelado");
 
@@ -213,6 +220,47 @@ export default async function FinanzasPage({
     const costoUnitario = p.productos?.costo ? Number(p.productos.costo) : 0;
     return acc + costoUnitario * p.cantidad;
   }, 0);
+
+  const pedidosSinCosto = pedidosValidos.filter((p) => !Number(p.productos?.costo)).length;
+
+  // Resultado por producto y plataforma (base de la Ficha Económica de una oportunidad).
+  const oportunidades = new Map<
+    string,
+    {
+      producto: string;
+      plataforma: string;
+      unidades: number;
+      bruto: number;
+      comision: number;
+      neto: number;
+      costo: number;
+      sinCosto: boolean;
+    }
+  >();
+  for (const p of pedidosValidos) {
+    const producto = p.productos?.nombre ?? "Sem produto";
+    const plataforma = p.plataformas?.nombre ?? "—";
+    const clave = `${producto}||${plataforma}`;
+    const fila = oportunidades.get(clave) ?? {
+      producto,
+      plataforma,
+      unidades: 0,
+      bruto: 0,
+      comision: 0,
+      neto: 0,
+      costo: 0,
+      sinCosto: false,
+    };
+    const costoUnitario = Number(p.productos?.costo) || 0;
+    fila.unidades += p.cantidad;
+    fila.bruto += Number(p.monto);
+    fila.comision += Number(p.comision_plataforma);
+    fila.neto += Number(p.monto_neto);
+    fila.costo += costoUnitario * p.cantidad;
+    if (!costoUnitario) fila.sinCosto = true;
+    oportunidades.set(clave, fila);
+  }
+  const filasOportunidad = [...oportunidades.values()].sort((a, b) => b.neto - a.neto);
 
   const lucroReal = totalNeto - costoProdutos - totalGastos;
 
@@ -280,10 +328,12 @@ export default async function FinanzasPage({
         />
       </div>
 
-      {costoProdutos === 0 && totalNeto > 0 && (
+      {pedidosSinCosto > 0 && (
         <div className="mb-6 rounded-xl border border-amber-900 bg-amber-950/40 px-4 py-3 text-sm text-amber-300">
-          Nenhum pedido deste período tem custo de produto cadastrado — o lucro
-          real pode estar superestimado.{" "}
+          {pedidosSinCosto === pedidosValidos.length
+            ? "Nenhum pedido deste período tem custo de produto cadastrado"
+            : `${pedidosSinCosto} de ${pedidosValidos.length} pedidos deste período estão sem custo de produto`}{" "}
+          — o lucro real pode estar superestimado.{" "}
           <Link href="/productos" className="font-medium underline">
             Completar custos
           </Link>
@@ -326,6 +376,64 @@ export default async function FinanzasPage({
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Resultado por produto e plataforma */}
+      <div className="mb-6 overflow-hidden rounded-xl border border-neutral-800 bg-black">
+        <div className="border-b border-neutral-800 px-6 py-4">
+          <h2 className="text-sm font-medium text-neutral-400">
+            Resultado por produto e plataforma
+          </h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm">
+            <thead className="border-b border-neutral-800 bg-neutral-950 text-neutral-400">
+              <tr>
+                <th className="px-4 py-3 font-medium">Produto</th>
+                <th className="px-4 py-3 font-medium">Plataforma</th>
+                <th className="px-4 py-3 font-medium">Un.</th>
+                <th className="px-4 py-3 font-medium">Bruto</th>
+                <th className="px-4 py-3 font-medium">Comissão</th>
+                <th className="px-4 py-3 font-medium">Líquido</th>
+                <th className="px-4 py-3 font-medium">Custo</th>
+                <th className="px-4 py-3 font-medium">Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filasOportunidad.map((f) => (
+                <tr key={`${f.producto}-${f.plataforma}`} className="border-b border-neutral-900 last:border-0">
+                  <td className="px-4 py-3">{f.producto}</td>
+                  <td className="px-4 py-3 text-neutral-400">{f.plataforma}</td>
+                  <td className="px-4 py-3">{f.unidades}</td>
+                  <td className="px-4 py-3">{formatMoney(f.bruto)}</td>
+                  <td className="px-4 py-3 text-red-400">− {formatMoney(f.comision)}</td>
+                  <td className="px-4 py-3">{formatMoney(f.neto)}</td>
+                  <td className="px-4 py-3">{f.sinCosto ? "—" : formatMoney(f.costo)}</td>
+                  <td
+                    className={`px-4 py-3 font-medium ${
+                      f.sinCosto ? "text-amber-300" : f.neto - f.costo >= 0 ? "text-emerald-400" : "text-red-400"
+                    }`}
+                  >
+                    {formatMoney(f.neto - f.costo)}
+                    {f.sinCosto && " *"}
+                  </td>
+                </tr>
+              ))}
+              {!filasOportunidad.length && (
+                <tr>
+                  <td className="px-4 py-6 text-center text-neutral-500" colSpan={8}>
+                    Sem pedidos neste período.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+        {filasOportunidad.some((f) => f.sinCosto) && (
+          <p className="border-t border-neutral-800 px-6 py-3 text-xs text-amber-300">
+            * Sem custo de produto cadastrado: o resultado é igual ao líquido.
+          </p>
+        )}
       </div>
 
       {/* Fechamentos recentes */}

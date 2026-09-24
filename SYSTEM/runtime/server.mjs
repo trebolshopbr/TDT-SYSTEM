@@ -19,6 +19,16 @@ export function createTdtServer({root,verifyUser,pinStore=null,requirePin=true})
  const landing=resolve(root,'SYSTEM/landing-sistema'),system=resolve(root,'SYSTEM/dashboard');
  const projectLanding={
   '/global.html':resolve(root,'GLOBAL/landing'),
+  '/shop.html':resolve(root,'GLOBAL/landing'),
+  '/atacadista.html':resolve(root,'GLOBAL/landing'),
+  '/atacado.html':resolve(root,'GLOBAL/landing'),
+  '/imports.html':resolve(root,'GLOBAL/landing'),
+  '/oficina.html':resolve(root,'GLOBAL/landing'),
+  '/mayorista.html':resolve(root,'GLOBAL/landing'),
+  '/importaciones.html':resolve(root,'GLOBAL/landing'),
+  '/productos.html':resolve(root,'GLOBAL/landing'),
+  '/negocios.html':resolve(root,'GLOBAL/landing'),
+  '/sourcing.html':resolve(root,'GLOBAL/landing'),
   '/personal.html':resolve(root,'PERSONAL/landing/operador-no-guru'),
   '/growth.html':resolve(root,'GROWTH/landing'),
   '/digital.html':resolve(root,'DIGITAL/landing')
@@ -106,13 +116,14 @@ export function createTdtServer({root,verifyUser,pinStore=null,requirePin=true})
    }
    if(path==='/_tdt/direccion'){
     if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
-    if(req.method==='GET')return respond(res,200,JSON.stringify(await leerDireccion(root)),{'Content-Type':'application/json'});
+    const sub=url.searchParams.get('sub')==='global'?'global':'estado';
+    if(req.method==='GET')return respond(res,200,JSON.stringify(await leerDireccion(root,sub)),{'Content-Type':'application/json'});
     if(req.method!=='PUT'||req.headers.origin!==origin)return respond(res,403,'Origen no permitido');
     const entrada=JSON.parse(String(await body(req)));
-    return respond(res,200,JSON.stringify({estado:await guardarDireccion(root,entrada)}),{'Content-Type':'application/json'});
+    return respond(res,200,JSON.stringify({estado:await guardarDireccion(root,entrada,sub)}),{'Content-Type':'application/json'});
    }
    if(path==='/index.html')return respond(res,301,'',{'Location':'/'});
-   if(path.startsWith('/sistema/')||path==='/'||/^\/(tdtsystem|proyectos|dashboard|system|personal|global|growth|digital)\.html$/.test(path)||/^\/(auth|config)\.js$/.test(path)||path.startsWith('/marca/')){
+   if(path.startsWith('/sistema/')||path==='/'||/^\/(tdtsystem|proyectos|dashboard|system|personal|global|growth|digital|shop|atacadista|atacado|imports|oficina|mayorista|importaciones|productos|negocios|sourcing)\.html$/.test(path)||/^\/(auth|config)\.js$/.test(path)||path.startsWith('/marca/')){
     if(!['GET','HEAD'].includes(req.method))return respond(res,405,'Método no permitido');
     const base=path.startsWith('/sistema/')?system:projectLanding[path]??landing;
     const rel=path.startsWith('/sistema/')?path.slice(9):path==='/'?'tdtsystem.html':path.slice(1);

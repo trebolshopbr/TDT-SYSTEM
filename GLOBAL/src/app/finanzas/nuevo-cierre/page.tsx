@@ -10,6 +10,16 @@ export default async function NuevoCierrePage() {
     redirect("/login");
   }
 
+  const hoy = new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
+
+  const [{ data: ventasHoy }, { data: gastosHoy }] = await Promise.all([
+    supabase.from("ventas_plataforma").select("monto").eq("fecha", hoy),
+    supabase.from("gastos").select("monto").eq("fecha", hoy),
+  ]);
+
+  const sumar = (filas: { monto: number | string }[] | null) =>
+    (filas ?? []).reduce((acc, f) => acc + Number(f.monto), 0);
+
   return (
     <main className="mx-auto w-full max-w-md flex-1 px-6 py-10">
       <h1 className="mb-1 text-2xl font-semibold">Fechar caixa</h1>
@@ -17,7 +27,12 @@ export default async function NuevoCierrePage() {
         Resumo do dia: caixa, vendas e despesas
       </p>
 
-      <NuevoCierreForm userId={user.id} />
+      <NuevoCierreForm
+        userId={user.id}
+        fechaInicial={hoy}
+        ventasIniciales={sumar(ventasHoy)}
+        gastosIniciales={sumar(gastosHoy)}
+      />
     </main>
   );
 }

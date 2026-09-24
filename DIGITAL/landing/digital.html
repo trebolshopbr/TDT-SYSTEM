@@ -1,126 +1,1321 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TDT DIGITAL</title>
-<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap">
-<style>
-:root {
-  color-scheme: dark;
-  --bg: #000000;
-  --field: #0E0E0E;
-  --line-2: #2E2E2E;
-  --text: #F2F2F2;
-  --muted: #8A8A8A;
-  --dim: #555555;
-  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
-}
-* { box-sizing: border-box; }
-html, body { min-height: 100%; height: 100%; margin: 0; overflow: hidden; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font: 15px/1.5 var(--sans);
-  -webkit-font-smoothing: antialiased;
-  position: relative;
-  user-select: none;
-}
-a { color: inherit; text-decoration: none; }
-button { background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
-a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-offset: 4px; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TDT DIGITAL · Sistemas, Playbooks & Entrega Inmediata</title>
+  <link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050608;
+      --bg-surface: #0a0d14;
+      --bg-card: #0f131d;
+      --bg-card-hover: #151a27;
+      --border: #1c2436;
+      --border-subtle: #141b2b;
+      --border-focus: #38BDF8;
+      
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      
+      --accent: #38BDF8;
+      --accent-glow: rgba(56, 189, 248, 0.16);
+      --accent-light: #7DD3FC;
+      --accent-dark: #0284C7;
+      --accent-badge: rgba(56, 189, 248, 0.12);
+      
+      --emerald: #10B981;
+      --emerald-bg: rgba(16, 185, 129, 0.12);
+      
+      --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+      
+      --container: 1140px;
+    }
 
-.stage {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
 
-.top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 28px 36px;
-  z-index: 20;
-}
-.top a {
-  font: 400 11px/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  transition: color 0.15s;
-}
-.top a:hover { color: var(--text); }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(ellipse 90% 50% at 50% -20%, rgba(56, 189, 248, 0.12), transparent 70%),
+        radial-gradient(circle 600px at 90% 20%, rgba(14, 165, 233, 0.05), transparent 80%),
+        var(--bg);
+      display: flex;
+      flex-direction: column;
+    }
 
-.hero {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.logo-lockup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.logo {
-  display: block;
-  width: clamp(280px, 48vw, 560px);
-  max-width: 90vw;
-  height: auto;
-  color: var(--text);
-}
-.unit-tag {
-  margin-top: 14px;
-  font: 600 clamp(22px, 4.2vw, 44px)/1 var(--sans);
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: var(--text);
-  padding-left: 0.38em;
-}
+    a { color: inherit; text-decoration: none; }
+    button { background: none; border: 0; color: inherit; cursor: pointer; font-family: inherit; }
 
-.btns {
-  margin-top: 36px;
-  display: flex;
-  gap: 12px;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  height: 44px;
-  padding: 0 24px;
-  font: 500 14px/1 var(--sans);
-  border: 1px solid var(--line-2);
-  color: var(--text);
-  transition: background 0.15s, border-color 0.15s;
-}
-.btn:hover { border-color: var(--muted); }
-.btn.pri { background: var(--text); color: #000; border-color: var(--text); }
-.btn.pri:hover { background: #fff; }
-</style>
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-<div class="stage">
-  <header class="top">
-    <a href="/">← TDT</a>
+    /* Top Navigation */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: rgba(5, 6, 8, 0.82);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .top-nav {
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .back-hub {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s ease;
+    }
+
+    .back-hub:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .logo-badge {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-badge .brand-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .logo-badge .unit-pill {
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-badge);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.15s ease;
+    }
+
+    .nav-link:hover { color: var(--text); }
+
+    .btn-nav {
+      font-size: 12px;
+      font-weight: 600;
+      font-family: var(--mono);
+      letter-spacing: 0.04em;
+      color: #000;
+      background: var(--accent);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.18s ease;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    .btn-nav:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 72px 0 54px;
+      text-align: center;
+      position: relative;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.22);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--accent-light);
+      margin-bottom: 24px;
+      animation: pulseGlow 4s infinite ease-in-out;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { border-color: rgba(56, 189, 248, 0.22); box-shadow: 0 0 0 rgba(56, 189, 248, 0); }
+      50% { border-color: rgba(56, 189, 248, 0.45); box-shadow: 0 0 20px rgba(56, 189, 248, 0.15); }
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 5.2vw, 56px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      max-width: 820px;
+      margin: 0 auto 20px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, #FFF 30%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 18px);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 640px;
+      margin: 0 auto 36px;
+      font-weight: 400;
+    }
+
+    .hero-highlights {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+
+    .highlight-item svg {
+      color: var(--emerald);
+      flex-shrink: 0;
+    }
+
+    /* Filters / Segment selector */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 36px 0 44px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-muted);
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn:hover {
+      color: var(--text);
+      border-color: var(--border);
+      background: var(--bg-card);
+    }
+
+    .filter-btn.active {
+      color: #000;
+      background: var(--text);
+      border-color: var(--text);
+      font-weight: 600;
+    }
+
+    /* Catalog / Product Cards */
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 72px;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.25s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 24px var(--accent-glow);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .category-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      background: var(--accent-badge);
+      padding: 3px 9px;
+      border-radius: 4px;
+    }
+
+    .badge-instant {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--emerald);
+      background: var(--emerald-bg);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .product-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .deliverables-box {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      flex-grow: 1;
+    }
+
+    .deliverables-title {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .deliverables-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .deliverables-list li {
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .deliverables-list li svg {
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-subtle);
+      margin-top: auto;
+    }
+
+    .price-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .price-original {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      text-decoration: line-through;
+    }
+
+    .price-current {
+      font-family: var(--mono);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .price-current span {
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .btn-buy {
+      background: var(--accent);
+      color: #000;
+      font-weight: 600;
+      font-size: 13px;
+      font-family: var(--mono);
+      letter-spacing: 0.03em;
+      padding: 10px 18px;
+      border-radius: 7px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.18s ease;
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .btn-buy:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    /* Featured / Bundle Ribbon */
+    .card-featured {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, var(--bg-card) 100%);
+    }
+
+    .ribbon {
+      position: absolute;
+      top: 14px;
+      right: -32px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 34px;
+      transform: rotate(45deg);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Trust & Guarantee Banner */
+    .trust-section {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 72px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 28px;
+    }
+
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .trust-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--accent-badge);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+    }
+
+    .trust-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .trust-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Interactive Checkout Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .checkout-modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 480px;
+      padding: 32px;
+      position: relative;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: var(--text-muted);
+      padding: 6px;
+      border-radius: 6px;
+      transition: color 0.15s;
+    }
+
+    .btn-close:hover { color: var(--text); }
+
+    .modal-header {
+      margin-bottom: 24px;
+    }
+
+    .modal-step-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .order-summary {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .order-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      max-width: 260px;
+    }
+
+    .order-price {
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-light);
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      font-family: var(--mono);
+    }
+
+    .form-input {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      color: var(--text);
+      font-family: var(--sans);
+      transition: border-color 0.15s;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .payment-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .payment-opt {
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      padding: 10px 8px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .payment-opt.active {
+      border-color: var(--accent);
+      color: var(--text);
+      background: var(--accent-badge);
+    }
+
+    .btn-submit-pay {
+      width: 100%;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .btn-submit-pay:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .secure-note {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: var(--mono);
+    }
+
+    /* Success / Immediate Delivery Screen (Within Modal) */
+    .delivery-state {
+      display: none;
+      text-align: center;
+    }
+
+    .delivery-state.active {
+      display: block;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .success-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--emerald-bg);
+      border: 1px solid var(--emerald);
+      color: var(--emerald);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+    }
+
+    .delivery-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .delivery-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+
+    .access-token-box {
+      background: var(--bg-surface);
+      border: 1px dashed var(--accent);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .token-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .token-code {
+      font-family: var(--mono);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .download-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .btn-download-primary {
+      background: var(--emerald);
+      color: #000;
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.15s;
+    }
+
+    .btn-download-primary:hover {
+      background: #34D399;
+      transform: translateY(-1px);
+    }
+
+    .btn-download-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.15s;
+    }
+
+    .btn-download-secondary:hover {
+      border-color: var(--text-muted);
+      color: var(--text);
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: auto;
+      border-top: 1px solid var(--border-subtle);
+      padding: 36px 0;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    @media (max-width: 680px) {
+      .hero { padding: 48px 0 36px; }
+      .hero-highlights { flex-direction: column; gap: 12px; }
+      .catalog-grid { grid-template-columns: 1fr; }
+      .checkout-modal { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <header class="top-bar">
+    <div class="container top-nav">
+      <div class="brand-group">
+        <a href="/" class="back-hub">← TDT</a>
+        <div class="logo-badge">
+          <span class="brand-title">TDT</span>
+          <span class="unit-pill">DIGITAL</span>
+        </div>
+      </div>
+      <nav class="nav-actions">
+        <a href="#catalogo" class="nav-link">Catálogo</a>
+        <a href="#garantia" class="nav-link">Garantía</a>
+        <button class="btn-nav" onclick="openCheckout('tdt-bundle')">ACCESO TOTAL</button>
+      </nav>
+    </div>
   </header>
 
-  <main class="hero">
-    <div class="logo-lockup">
-      <svg class="logo" viewBox="0 0 830 259" fill="currentColor" role="img" aria-label="TDT">
-        <path d="M0 0H270V52H0Z"/>
-        <path d="M108 52L162 89V259H108Z"/>
-        <path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/>
-        <path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/>
-        <path d="M669 52L723 89V259H669Z"/>
-      </svg>
-      <div class="unit-tag">DIGITAL</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        ENTREGA DIGITAL INSTANTÁNEA & ACCESO 24/7
+      </div>
+      
+      <h1 class="hero-title">
+        Sistemas probados y herramientas operativas para <span>escalar sin fricción</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Infoproductos, playbooks y automatizaciones construidas para operadores reales. Sin teoría vacía: descargas, instalas y operas de inmediato.
+      </p>
+
+      <div class="hero-highlights">
+        <div class="highlight-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Acceso instantáneo en pantalla y por email
+        </div>
+        <div class="highlight-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Garantía incondicional de 7 días
+        </div>
+        <div class="highlight-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          Actualizaciones continuas incluidas
+        </div>
+      </div>
+
+      <!-- Segment Filter -->
+      <div class="filter-bar" id="catalogo">
+        <button class="filter-btn active" onclick="filterCatalog('all', this)">Todos los productos</button>
+        <button class="filter-btn" onclick="filterCatalog('sistemas', this)">Sistemas & Plantillas</button>
+        <button class="filter-btn" onclick="filterCatalog('playbooks', this)">Playbooks de Ejecución</button>
+        <button class="filter-btn" onclick="filterCatalog('automatizaciones', this)">Automatizaciones</button>
+      </div>
     </div>
+  </section>
+
+  <!-- Catalog Section -->
+  <main class="container">
+    <div class="catalog-grid" id="productGrid">
+
+      <!-- Product 1: Core OS -->
+      <article class="product-card" data-category="sistemas">
+        <div class="card-top">
+          <span class="category-tag">Sistemas</span>
+          <span class="badge-instant">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Instantáneo
+          </span>
+        </div>
+        <h2 class="product-title">TDT Core Business OS</h2>
+        <p class="product-desc">Sistema operativo de control para dueños de negocio. Panel unificado de caja diaria, cálculo automático de márgenes reales y control de stock.</p>
+        
+        <div class="deliverables-box">
+          <div class="deliverables-title">Qué recibes al comprar:</div>
+          <ul class="deliverables-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Template de control operativo en Notion & Sheets
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Esquema de base de datos relacional y lógica de caja
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Video manual de implementación en 15 minutos
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-group">
+            <span class="price-original">$89 USD</span>
+            <span class="price-current">$47 <span>USD / pago único</span></span>
+          </div>
+          <button class="btn-buy" onclick="openCheckout('core-os')">
+            ACCEDER AHORA →
+          </button>
+        </div>
+      </article>
+
+      <!-- Product 2: Playbook Imports -->
+      <article class="product-card" data-category="playbooks">
+        <div class="card-top">
+          <span class="category-tag">Playbooks</span>
+          <span class="badge-instant">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Instantáneo
+          </span>
+        </div>
+        <h2 class="product-title">Playbook: Importaciones & E-commerce</h2>
+        <p class="product-desc">Guía paso a paso desde la selección de proveedores verificados hasta la nacionalización y venta a escala en Mercado Livre, Shopee y TikTok Shop.</p>
+        
+        <div class="deliverables-box">
+          <div class="deliverables-title">Qué recibes al comprar:</div>
+          <ul class="deliverables-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              8 Módulos prácticos de ejecución directa (PDF & Video)
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Calculadora de aranceles aduaneros y margen de venta
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Checklist de validación de proveedores de confianza
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-group">
+            <span class="price-original">$150 USD</span>
+            <span class="price-current">$97 <span>USD / pago único</span></span>
+          </div>
+          <button class="btn-buy" onclick="openCheckout('imports-playbook')">
+            ACCEDER AHORA →
+          </button>
+        </div>
+      </article>
+
+      <!-- Product 3: Automations Pack -->
+      <article class="product-card" data-category="automatizaciones">
+        <div class="card-top">
+          <span class="category-tag">Automatizaciones</span>
+          <span class="badge-instant">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Instantáneo
+          </span>
+        </div>
+        <h2 class="product-title">Growth Automations & Bots Stack</h2>
+        <p class="product-desc">Blueprints listos para importar: recuperación de carritos por WhatsApp, calificación automática de leads y sincronización de ventas multi-plataforma.</p>
+        
+        <div class="deliverables-box">
+          <div class="deliverables-title">Qué recibes al comprar:</div>
+          <ul class="deliverables-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              5 Escenarios listos para importar en Make & Typebot
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Copywriting probado para secuencias de conversión
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Webhooks pre-configurados para pasarelas de pago
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-group">
+            <span class="price-original">$120 USD</span>
+            <span class="price-current">$67 <span>USD / pago único</span></span>
+          </div>
+          <button class="btn-buy" onclick="openCheckout('automations-pack')">
+            ACCEDER AHORA →
+          </button>
+        </div>
+      </article>
+
+      <!-- Product 4: Featured Full Bundle -->
+      <article class="product-card card-featured" data-category="sistemas playbooks automatizaciones">
+        <div class="ribbon">MÁS ELEGIDO</div>
+        <div class="card-top">
+          <span class="category-tag">Bundle Completo</span>
+          <span class="badge-instant">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Acceso Total
+          </span>
+        </div>
+        <h2 class="product-title">TDT Digital All-Access Suite</h2>
+        <p class="product-desc">La colección completa de sistemas, playbooks, herramientas y automatizaciones de TDT. Incluye acceso de por vida y soporte prioritario.</p>
+        
+        <div class="deliverables-box">
+          <div class="deliverables-title">Todo incluido en un solo paquete:</div>
+          <ul class="deliverables-list">
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              TDT Core Business OS (Completo)
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Playbook de Importaciones & E-commerce
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Growth Automations Stack & Bots
+            </li>
+            <li>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Actualizaciones futuras de por vida sin costo extra
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <div class="price-group">
+            <span class="price-original">$359 USD</span>
+            <span class="price-current">$147 <span>USD / pago único</span></span>
+          </div>
+          <button class="btn-buy" style="background: #FFF; color: #000;" onclick="openCheckout('tdt-bundle')">
+            OBTENER PAQUETE →
+          </button>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Trust & Guarantee -->
+    <section class="trust-section" id="garantia">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3 class="trust-title">Entrega Inmediata</h3>
+          <p class="trust-desc">En cuanto se confirma la transacción recibes el token de acceso en pantalla y la copia con todos los archivos en tu correo.</p>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3 class="trust-title">7 Días de Garantía</h3>
+          <p class="trust-desc">Si el material no aporta claridad directa a tu negocio, te devolvemos el 100% de tu dinero sin preguntas.</p>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h3 class="trust-title">Checkout Encriptado</h3>
+          <p class="trust-desc">Tus datos viajan con encriptación SSL de 256 bits y son procesados por pasarelas de pago auditadas y seguras.</p>
+        </div>
+      </div>
+    </section>
   </main>
-</div>
+
+  <!-- Checkout / Delivery Interactive Modal -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="checkout-modal">
+      <button class="btn-close" onclick="closeCheckout()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- Step 1: Payment Checkout Form -->
+      <div id="checkoutFormState">
+        <div class="modal-header">
+          <div class="modal-step-tag">CHECKOUT RÁPIDO · PASO 1 DE 2</div>
+          <h3 class="modal-title">Confirmar acceso inmediato</h3>
+        </div>
+
+        <div class="order-summary">
+          <div class="order-name" id="modalProductName">TDT Core Business OS</div>
+          <div class="order-price" id="modalProductPrice">$47 USD</div>
+        </div>
+
+        <form id="payForm" onsubmit="processPayment(event)">
+          <div class="form-group">
+            <label class="form-label">TU EMAIL (DONDE RECIBIRÁS LOS ACCESOS)</label>
+            <input type="email" class="form-input" id="buyerEmail" placeholder="operador@negocio.com" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">NOMBRE O RAZÓN COMERCIAL</label>
+            <input type="text" class="form-input" id="buyerName" placeholder="Tu nombre" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">MÉTODO DE PAGO</label>
+            <div class="payment-methods">
+              <div class="payment-opt active" onclick="selectPayment(this)">Tarjeta / Stripe</div>
+              <div class="payment-opt" onclick="selectPayment(this)">Pix (Brasil)</div>
+              <div class="payment-opt" onclick="selectPayment(this)">PayPal</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit-pay" id="btnPay">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+            <span id="btnPayText">PAGAR Y DESCARGAR AHORA</span>
+          </button>
+        </form>
+
+        <div class="secure-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Pago seguro 256-bit SSL · Garantía incondicional de 7 días
+        </div>
+      </div>
+
+      <!-- Step 2: Immediate Delivery Success Screen -->
+      <div class="delivery-state" id="deliveryState">
+        <div class="success-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+
+        <h3 class="delivery-title">¡Acceso concedido!</h3>
+        <p class="delivery-subtitle">Hemos emitido tus credenciales y enviado un respaldo a <strong id="confirmedEmail" style="color:var(--text)">tu email</strong>.</p>
+
+        <div class="access-token-box">
+          <div class="token-label">TOKEN DE ACCESO DIGITAL</div>
+          <div class="token-code">
+            <span id="generatedToken">TDT-DIG-8942-X9</span>
+            <button onclick="copyToken()" style="color:var(--accent); font-size:11px; font-weight:600;">COPIAR</button>
+          </div>
+        </div>
+
+        <div class="download-actions">
+          <button class="btn-download-primary" onclick="simulateDownload()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            DESCARGAR ARCHIVOS (ZIP)
+          </button>
+          <button class="btn-download-secondary" onclick="simulateDashboardAccess()">
+            ABRIR ÁREA DE MIEMBROS →
+          </button>
+        </div>
+
+        <div class="secure-note" style="color: var(--text-muted)">
+          Guarda este comprobante. Tu acceso permanente está activo.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="container site-footer">
+    <div class="footer-left">
+      <span>TDT DIGITAL · SISTEMAS & PRODUCTOS DIGITALES</span>
+    </div>
+    <div>
+      <span>TDT ECOSYSTEM · OPERACIÓN CONFIRMADA</span>
+    </div>
+  </footer>
+
+  <!-- Logic & Interactions Script -->
+  <script>
+    const products = {
+      'core-os': {
+        name: 'TDT Core Business OS',
+        price: '$47 USD'
+      },
+      'imports-playbook': {
+        name: 'Playbook: Importaciones & E-commerce',
+        price: '$97 USD'
+      },
+      'automations-pack': {
+        name: 'Growth Automations & Bots Stack',
+        price: '$67 USD'
+      },
+      'tdt-bundle': {
+        name: 'TDT Digital All-Access Suite',
+        price: '$147 USD'
+      }
+    };
+
+    function filterCatalog(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const cardCats = card.getAttribute('data-category');
+        if (category === 'all' || cardCats.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function openCheckout(productId) {
+      const prod = products[productId] || products['core-os'];
+      document.getElementById('modalProductName').textContent = prod.name;
+      document.getElementById('modalProductPrice').textContent = prod.price;
+      
+      // Reset form & delivery state
+      document.getElementById('checkoutFormState').style.display = 'block';
+      document.getElementById('deliveryState').classList.remove('active');
+      document.getElementById('btnPayText').textContent = `PAGAR ${prod.price} Y DESCARGAR`;
+      
+      document.getElementById('checkoutModal').classList.add('active');
+    }
+
+    function closeCheckout() {
+      document.getElementById('checkoutModal').classList.remove('active');
+    }
+
+    function selectPayment(element) {
+      document.querySelectorAll('.payment-opt').forEach(opt => opt.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    function processPayment(event) {
+      event.preventDefault();
+      const email = document.getElementById('buyerEmail').value;
+      const btn = document.getElementById('btnPay');
+      
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
+      btn.innerHTML = `
+        <svg class="spin" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation: spin 0.8s linear infinite"><circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle><path d="M12 2a10 10 0 0 1 10 10"></path></svg>
+        PROCESANDO PAGO SEGURO...
+      `;
+
+      // Simulación de respuesta inmediata de pasarela
+      setTimeout(() => {
+        document.getElementById('confirmedEmail').textContent = email;
+        const randomToken = 'TDT-DIG-' + Math.floor(1000 + Math.random() * 9000) + '-OK';
+        document.getElementById('generatedToken').textContent = randomToken;
+
+        document.getElementById('checkoutFormState').style.display = 'none';
+        document.getElementById('deliveryState').classList.add('active');
+        
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }, 1200);
+    }
+
+    function copyToken() {
+      const token = document.getElementById('generatedToken').textContent;
+      navigator.clipboard.writeText(token);
+      alert('Token de acceso copiado al portapapeles: ' + token);
+    }
+
+    function simulateDownload() {
+      alert('Descarga iniciada: Paquete digital descargándose con éxito.');
+    }
+
+    function simulateDashboardAccess() {
+      alert('Acceso al área de miembros habilitado con tu token.');
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeCheckout();
+    });
+  </script>
+
+  <style>
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+  </style>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TDT GLOBAL · Sourcing</title>
+<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #000000;
+  --card: #0A0A0A;
+  --line-1: #1A1A1A;
+  --line-2: #262626;
+  --text: #F2F2F2;
+  --muted: #8A8A8A;
+  --dim: #555555;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { min-height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  user-select: none;
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-offset: 4px; }
+
+/* Navegación superior fija */
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 32px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.top a {
+  font: 400 11px/1 var(--mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.15s;
+}
+.top a:hover { color: var(--text); }
+.top .brand-sub {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 0.12em;
+  color: var(--dim);
+}
+
+/* Escenario principal centrado */
+.stage {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 24px 60px;
+}
+
+/* Bloque Hero Lockup */
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.logo {
+  display: block;
+  width: clamp(200px, 36vw, 360px);
+  max-width: 90vw;
+  height: auto;
+  color: var(--text);
+}
+.unit-tag {
+  margin-top: 14px;
+  font: 600 clamp(18px, 3.2vw, 30px)/1 var(--sans);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text);
+  padding-left: 0.32em;
+}
+.unit-sub {
+  margin: 10px 0 0;
+  font: 400 14px/1 var(--sans);
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Card de Cimientos */
+.foundation-card {
+  width: 100%;
+  max-width: 680px;
+  background: var(--card);
+  border: 1px solid var(--line-1);
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Fila de estado y cabecera de la tarjeta */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line-1);
+}
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 11px/1 var(--mono);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #EAB308;
+  box-shadow: 0 0 8px rgba(234, 179, 8, 0.4);
+}
+.badge-label {
+  font: 400 11px/1 var(--mono);
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+
+/* Resumen del cimiento */
+.card-summary {
+  margin: 0;
+  font: 400 16px/1.6 var(--sans);
+  color: #D4D4D4;
+}
+
+/* Cuadrícula de pilares */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .pillars-grid { grid-template-columns: 1fr; gap: 14px; }
+  .foundation-card { padding: 24px; }
+  .top { padding: 20px 24px; }
+}
+.pillar {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line-1);
+  border-radius: 8px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.15s, background 0.15s;
+}
+.pillar:hover {
+  border-color: var(--line-2);
+  background: rgba(255, 255, 255, 0.035);
+}
+.pillar-num {
+  font: 500 10px/1 var(--mono);
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+.pillar h4 {
+  margin: 0;
+  font: 500 14px/1.3 var(--sans);
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.pillar p {
+  margin: 0;
+  font: 400 12.5px/1.45 var(--sans);
+  color: var(--muted);
+}
+
+/* Fila de acción */
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 10px;
+}
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 20px;
+  font: 500 13px/1 var(--sans);
+  letter-spacing: -0.01em;
+  background: #FFFFFF;
+  color: #000000;
+  border-radius: 6px;
+  border: 1px solid #FFFFFF;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
+}
+.btn-action:hover {
+  background: #E5E5E5;
+  transform: translateY(-1px);
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a href="global.html">← Global</a>
+  <span class="brand-sub">TDT GLOBAL · CANAL 03</span>
+</header>
+
+<div class="stage">
+  <main class="hero">
+    <div class="logo-lockup">
+      <svg class="logo" viewBox="0 0 830 259" fill="currentColor" role="img" aria-label="TDT">
+        <path d="M0 0H270V52H0Z"/>
+        <path d="M108 52L162 89V259H108Z"/>
+        <path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/>
+        <path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/>
+        <path d="M669 52L723 89V259H669Z"/>
+      </svg>
+      <div class="unit-tag">SOURCING</div>
+      <p class="unit-sub">Búsqueda y abastecimiento</p>
+    </div>
+  </main>
+
+  <section class="foundation-card" aria-label="Cimientos de Sourcing">
+    <div class="card-header">
+      <div class="status-pill">
+        <span class="dot"></span>
+        <span>Abastecimiento internacional</span>
+      </div>
+      <span class="badge-label">ORIGEN & CONTROL</span>
+    </div>
+
+    <p class="card-summary">
+      Búsqueda directa en origen, negociación con fabricantes y coordinación logística internacional hasta destino.
+    </p>
+
+    <div class="pillars-grid">
+      <article class="pillar">
+        <span class="pillar-num">01</span>
+        <h4>Fábricas validadas</h4>
+        <p>Identificación y filtro de proveedores confiables en origen.</p>
+      </article>
+
+      <article class="pillar">
+        <span class="pillar-num">02</span>
+        <h4>Control de calidad</h4>
+        <p>Inspección de muestras y verificación técnica antes del embarque.</p>
+      </article>
+
+      <article class="pillar">
+        <span class="pillar-num">03</span>
+        <h4>Cadena logística</h4>
+        <p>Gestión integral de tránsito, aduana y recepción en destino.</p>
+      </article>
+    </div>
+
+    <div class="card-actions">
+      <a class="btn-action" href="https://wa.me/?text=Hola,%20me%20comunico%20desde%20TDT%20Global%20para%20solicitar%20un%20servicio%20de%20sourcing%20y%20abastecimiento." target="_blank" rel="noopener">
+        <span>Iniciar solicitud de sourcing</span>
+        <span>→</span>
+      </a>
+    </div>
+  </section>
+</div>
+
+</body>
+</html>

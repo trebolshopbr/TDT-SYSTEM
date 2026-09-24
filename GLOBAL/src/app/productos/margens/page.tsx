@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import LoadError from "../_components/load-error";
+import { calcularMargem, resumirMargens, valorPositivo } from "../_lib/valores";
 import { createClient, getSessionUser } from "@/lib/supabase/server";
 
 function formatMoney(n: number) {
@@ -18,30 +20,23 @@ export default async function MargensPage() {
     redirect("/login");
   }
 
-  const { data: productos } = await supabase
+  const { data: productos, error } = await supabase
     .from("productos")
     .select("id, nombre, sku, precio, costo, moneda_costo, costo_original, tipo_cambio_costo, activo")
     .order("nombre");
 
-  const linhas = (productos ?? []).map((p) => {
-    const precio = Number(p.precio);
-    const costo = Number(p.costo);
-    const margemValor = precio - costo;
-    const margemPercentual = precio > 0 ? (margemValor / precio) * 100 : 0;
-    return { ...p, precio, costo, margemValor, margemPercentual };
-  });
+  if (error) return <LoadError title="Margens por produto" />;
 
-  const totalCusto = linhas.reduce((acc, l) => acc + l.costo, 0);
-  const totalPreco = linhas.reduce((acc, l) => acc + l.precio, 0);
-  const margemMediaGeral = totalPreco > 0 ? ((totalPreco - totalCusto) / totalPreco) * 100 : 0;
+  const linhas = (productos ?? []).map((p) => ({ ...p, margem: calcularMargem(p.precio, p.costo) }));
+  const resumo = resumirMargens(productos ?? []);
 
   return (
     <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-10">
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h1 className="mb-1 text-2xl font-semibold">Margens por produto</h1>
           <p className="text-sm text-neutral-400">
-            Comparativo entre custo de compra e preço de venda
+            Venda menos custo de compra. Não desconta comissões, frete, impostos ou outras despesas.
           </p>
         </div>
         <Link
@@ -53,17 +48,19 @@ export default async function MargensPage() {
       </div>
 
       <div className="mb-6 rounded-xl border border-neutral-800 bg-black p-5">
-        <p className="mb-1 text-xs text-neutral-400">Margem média do catálogo</p>
+        <p className="mb-1 text-xs text-neutral-400">Margem de compra e venda</p>
         <p
           className={`text-2xl font-semibold ${
-            margemMediaGeral >= 0 ? "text-emerald-400" : "text-red-400"
+            resumo.percentual === null ? "text-neutral-400" : resumo.percentual >= 0 ? "text-emerald-400" : "text-red-400"
           }`}
         >
-          {margemMediaGeral.toFixed(1)}%
+          {resumo.percentual === null ? "Pendente" : `${resumo.percentual.toFixed(1)}%`}
         </p>
+        <p className="mt-2 text-sm text-neutral-400">{resumo.incluidos} de {linhas.length} produtos com preço e custo preenchidos. {resumo.pendentes} pendente(s).</p>
+        <p className="mt-1 text-xs text-neutral-500">Calculada sobre a soma dos preços, com uma unidade de cada produto válido, incluindo inativos. Não representa o lucro das vendas.</p>
       </div>
 
-      <div className="overflow-hidden rounded-xl border border-neutral-800 bg-black">
+      <div className="overflow-x-auto rounded-xl border border-neutral-800 bg-black">
         <table className="w-full text-left text-sm">
           <thead className="border-b border-neutral-800 bg-neutral-950 text-neutral-400">
             <tr>
@@ -85,8 +82,8 @@ export default async function MargensPage() {
                   )}
                 </td>
                 <td className="px-4 py-3">
-                  {l.costo === 0 ? (
-                    <span className="text-amber-400">não cadastrado</span>
+                  {valorPositivo(l.costo) === null ? (
+                    <span className="text-amber-400">Custo pendente</span>
                   ) : (
                     <>
                       {formatMoney(l.costo)}
@@ -98,20 +95,20 @@ export default async function MargensPage() {
                     </>
                   )}
                 </td>
-                <td className="px-4 py-3">{formatMoney(l.precio)}</td>
+                <td className="px-4 py-3">{valorPositivo(l.precio) === null ? "Preço pendente" : formatMoney(Number(l.precio))}</td>
                 <td
                   className={`px-4 py-3 font-medium ${
-                    l.margemValor >= 0 ? "text-emerald-400" : "text-red-400"
+                    l.margem === null ? "text-neutral-500" : l.margem.valor >= 0 ? "text-emerald-400" : "text-red-400"
                   }`}
                 >
-                  {formatMoney(l.margemValor)}
+                  {l.margem === null ? "Pendente" : formatMoney(l.margem.valor)}
                 </td>
                 <td
                   className={`px-4 py-3 font-medium ${
-                    l.margemValor >= 0 ? "text-emerald-400" : "text-red-400"
+                    l.margem === null ? "text-neutral-500" : l.margem.valor >= 0 ? "text-emerald-400" : "text-red-400"
                   }`}
                 >
-                  {l.margemPercentual.toFixed(1)}%
+                  {l.margem === null ? "Pendente" : `${l.margem.percentual.toFixed(1)}%`}
                 </td>
                 <td className="px-4 py-3">
                   <Link

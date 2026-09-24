@@ -89,24 +89,54 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
   padding-left: 0.38em; /* óptico para centrado exacto */
 }
 
-.btns {
+.options-nav {
   margin-top: 36px;
+  width: 100%;
+  max-width: 220px;
+}
+.options-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 2px;
 }
-.btn {
-  display: inline-flex;
+.opt {
+  display: flex;
   align-items: center;
-  height: 44px;
-  padding: 0 24px;
-  font: 500 14px/1 var(--sans);
-  border: 1px solid var(--line-2);
-  color: var(--text);
-  transition: background 0.15s, border-color 0.15s;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  color: var(--muted);
+  font: 500 15px/1.3 var(--sans);
+  letter-spacing: -0.01em;
+  transition: color 0.15s, transform 0.15s, background 0.15s;
+  text-decoration: none;
 }
-.btn:hover { border-color: var(--muted); }
-.btn.pri { background: #000; color: #fff; border-color: #fff; }
-.btn.pri:hover { background: #fff; color: #000; }
+.opt:hover, .opt:focus-visible {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  transform: translateX(4px);
+}
+.opt .arrow {
+  color: var(--dim);
+  font-family: var(--mono);
+  font-size: 14px;
+  transition: color 0.15s, transform 0.15s;
+}
+.opt:hover .arrow, .opt:focus-visible .arrow {
+  color: #fff;
+  transform: translateX(2px);
+}
+.opt .label {
+  color: var(--text);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.opt.opt-login:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
 </style>
 
 <div class="stage">
@@ -126,13 +156,38 @@ a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-
       <div class="unit-tag">GLOBAL</div>
     </div>
 
-    <div class="btns">
-      <a class="btn pri" id="loginGlobal" href="https://global.tdt.systems/login">Login →</a>
-      <script>
-      if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
-        document.getElementById('loginGlobal').href = 'http://localhost:3000/login';
-      }
-      </script>
-    </div>
+    <nav class="options-nav" aria-label="Accesos Global">
+      <ul class="options-list">
+        <li>
+          <a class="opt" href="shop.html">
+            <span class="arrow">→</span>
+            <span class="label">Shop</span>
+          </a>
+        </li>
+        <li>
+          <a class="opt" href="atacado.html">
+            <span class="arrow">→</span>
+            <span class="label">Atacado</span>
+          </a>
+        </li>
+        <li>
+          <a class="opt" href="imports.html">
+            <span class="arrow">→</span>
+            <span class="label">Imports</span>
+          </a>
+        </li>
+        <li>
+          <a class="opt opt-login" id="loginGlobal" href="https://global.tdt.systems/login">
+            <span class="arrow">→</span>
+            <span class="label">Login</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <script>
+    if (/^(localhost|127\.0\.0\.1)$/.test(location.hostname)) {
+      document.getElementById('loginGlobal').href = 'http://localhost:3000/login';
+    }
+    </script>
   </main>
 </div>

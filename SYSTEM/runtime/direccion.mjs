@@ -21,18 +21,21 @@ async function decisiones(root) {
   return [...text.matchAll(/^- (.+)$/gm)].slice(0, 8).map(m => m[1]);
 }
 
-export async function leerDireccion(root) {
-  const archivo = resolve(root, 'SYSTEM/direccion/estado.json');
-  const estado = normalizar(JSON.parse(await readFile(archivo, 'utf8')));
+export async function leerDireccion(root, sub = 'estado') {
+  const file = sub === 'global' ? 'global.json' : 'estado.json';
+  const archivo = resolve(root, `SYSTEM/direccion/${file}`);
+  const estado = normalizar(JSON.parse(await readFile(archivo, 'utf8').catch(() => '{}')));
   return { estado, decisiones: await decisiones(root) };
 }
 
-export async function guardarDireccion(root, entrada) {
-  const archivo = resolve(root, 'SYSTEM/direccion/estado.json');
-  const anterior = normalizar(JSON.parse(await readFile(archivo, 'utf8')));
+export async function guardarDireccion(root, entrada, sub = 'estado') {
+  const file = sub === 'global' ? 'global.json' : 'estado.json';
+  const archivo = resolve(root, `SYSTEM/direccion/${file}`);
+  const anterior = normalizar(JSON.parse(await readFile(archivo, 'utf8').catch(() => '{}')));
   const estado = normalizar(entrada);
   estado.actualizado = new Date().toISOString();
-  await appendFile(resolve(root, 'SYSTEM/direccion/historial.ndjson'), JSON.stringify({ fecha: estado.actualizado, estado: anterior }) + '\n');
+  const hist = sub === 'global' ? 'historial-global.ndjson' : 'historial.ndjson';
+  await appendFile(resolve(root, `SYSTEM/direccion/${hist}`), JSON.stringify({ fecha: estado.actualizado, estado: anterior }) + '\n').catch(() => {});
   const temporal = archivo + '.tmp';
   await writeFile(temporal, JSON.stringify(estado, null, 2) + '\n');
   await rename(temporal, archivo);

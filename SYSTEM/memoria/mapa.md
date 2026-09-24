@@ -50,6 +50,19 @@ Explicación en palabras simples de cada carpeta. El apartado de carpetas del da
 - `_registro` — Registros automáticos
 - `_registro/runtime` — Lo que el motor anota mientras está prendido
 - `TDT_REVISION` — Lo viejo, guardado aparte para revisar con calma
+- `SYSTEM/deploy` — El armado de la portada antes de publicarla
+- `SYSTEM/direccion` — Tus prioridades y decisiones, lo que ordena Faro
+- `SYSTEM/roles` — Qué le toca a cada IA: un archivo por rol
+- `SYSTEM/servicios` — Los servicios de afuera donde vive todo: Vercel, GitHub, Supabase y Namecheap
+- `_registro/deploy-landing` — El paquete ya armado de la portada, listo para publicar
+- `TDT_REVISION/01-GLOBAL` — Lo viejo de Global, guardado
+- `TDT_REVISION/02-GROWTH` — Lo viejo de Growth, guardado
+- `TDT_REVISION/03-DIGITAL` — Lo viejo de Digital, guardado
+- `TDT_REVISION/04-PERSONAL` — Lo viejo de tu imagen, guardado
+- `TDT_REVISION/05-SYSTEM-ADMIN-Y-CAPITAL` — Lo viejo de System, administración y capital
+- `TDT_REVISION/06-MEMORIA-COGNITIVA-Y-SENSORES` — Lo viejo de memoria y sensores
+- `TDT_REVISION/growth-app-prueba-2026-09-23` — La app de prueba de Growth que nunca se usó
+- `TDT_REVISION/login-supabase-system-2026-09-23` — El acceso viejo de System con usuario y contraseña
 
 ## Direcciones locales
 
@@ -82,7 +95,7 @@ Las claves están en `.env.local` y `config.js`, nunca en esta carpeta. El Supab
 - Escucha solo en 127.0.0.1. `/sistema/` (dashboard maestro) exige la sesión que abre el PIN, guardada en una cookie HttpOnly con SameSite=Strict.
 - No publicar este servidor de desarrollo como servidor de producción.
 
-## Apartado de carpetas (dashboard maestro, sin título, ícono de carpeta)
+## Apartado Local (dashboard maestro, ícono de carpeta encima de Dirección)
 
 - Está debajo de Inicio y se ve como un árbol de carpetas con explicaciones simples (sección "Mapa simple" arriba). Lee en vivo, desde `/_tdt/estructura` (`SYSTEM/runtime/estructura.mjs`, solo con la sesión del PIN), las carpetas de TDT NUEVO (3 niveles, sin node_modules ni archivos ocultos), las descripciones de la tabla "Carpetas" de este archivo, el estado de las direcciones locales y las carpetas de `~/TDT_REVISION`. Nunca muestra el contenido de los archivos.
 - El mapa también muestra el avatar de cada IA sobre las carpetas donde trabaja, según el campo `archivos` de su entrada en el registro de IA. Para aparecer en una carpeta, la IA anota ahí sus archivos.

@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TDT GLOBAL · Imports</title>
+<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #000;
+  --surface: #080B0F;
+  --card: #0D1118;
+  --line: #161D26;
+  --line-2: #222C38;
+  --text: #EDF0F4;
+  --muted: #5A6470;
+  --muted-2: #3A424C;
+  --pend: #FBBF24;
+  --exc: #F87171;
+  --ok-c: #4ADE80;
+  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+  --radius: 10px;
+  --radius-lg: 14px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body { background: var(--bg); color: var(--text); font: 14px/1.55 var(--sans); -webkit-font-smoothing: antialiased; }
+body.intro { height: 100%; overflow: hidden; user-select: none; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 1px solid var(--text); outline-offset: 3px; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+/* ---------- Portada ---------- */
+.stage { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; }
+.top { position: absolute; top: 0; left: 0; right: 0; padding: 28px 36px; z-index: 20; }
+.top a { font: 400 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); transition: color .15s; }
+.top a:hover { color: var(--text); }
+.hero-intro { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.logo { display: block; width: clamp(280px, 48vw, 560px); max-width: 90vw; height: auto; color: var(--text); }
+.unit-tag { margin-top: 14px; font: 600 clamp(22px, 4.2vw, 44px)/1 var(--sans); letter-spacing: .38em; text-transform: uppercase; padding-left: .38em; }
+.door {
+  margin-top: 56px; width: 76px; height: 76px; border-radius: 50%;
+  display: grid; place-items: center; background: transparent; color: var(--text);
+  border: 1px solid var(--line-2);
+  transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+}
+.door svg { width: 30px; height: 30px; }
+.door:hover { border-color: var(--text); background: rgba(237,240,244,.06); transform: translateY(-3px); box-shadow: 0 0 40px rgba(237,240,244,.06); }
+
+/* ---------- App ---------- */
+.app { display: none; }
+body.loja .app { display: block; }
+body.loja .stage { display: none; }
+.bar {
+  position: sticky; top: 0; z-index: 30;
+  display: flex; align-items: center; gap: 20px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: rgba(0,0,0,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.brand svg { width: 46px; height: auto; }
+.brand span { font: 600 11px/1 var(--sans); letter-spacing: .32em; }
+.nav { display: flex; gap: 2px; margin-left: auto; }
+.nav a {
+  padding: 7px 11px; border-radius: 7px; font-size: 13px; color: var(--muted);
+  transition: color .15s, background .15s;
+}
+.nav a:hover { color: var(--text); background: var(--card); }
+.proto { font: 400 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); border: 1px dashed var(--line-2); border-radius: 999px; padding: 5px 9px; flex-shrink: 0; }
+
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 40px); }
+.view { padding-bottom: 80px; }
+section.zone { padding: 64px 0 0; scroll-margin-top: 64px; }
+.zone-head { display: grid; grid-template-columns: 200px 1fr; gap: 24px; margin-bottom: 24px; align-items: baseline; }
+.label { font: 400 10px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.015em; }
+h1 { font-size: clamp(28px, 4.2vw, 50px); line-height: 1.05; }
+h2 { font-size: clamp(18px, 2.2vw, 24px); line-height: 1.15; }
+h3 { font-size: 13px; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.pend { display: inline-flex; align-items: center; gap: 6px; font: 400 11px/1.4 var(--mono); color: var(--pend); border: 1px dashed rgba(251,191,36,.3); border-radius: 6px; padding: 2px 7px; white-space: nowrap; }
+.ok { display: inline-flex; align-items: center; gap: 6px; font: 400 11px/1.4 var(--mono); color: var(--text); border: 1px solid var(--line-2); border-radius: 6px; padding: 2px 7px; }
+.dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; background: currentColor; }
+.panel { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); }
+.panel-h { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+.panel-b { padding: 16px; }
+.empty { padding: 22px; border: 1px dashed var(--line-2); border-radius: var(--radius); color: var(--muted); text-align: center; font-size: 13px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 8px; border: 1px solid var(--text); background: var(--text); color: #000; font-weight: 600; cursor: pointer; transition: opacity .15s, transform .15s; }
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: var(--text); border-color: var(--line-2); }
+.btn.ghost:hover { border-color: var(--muted-2); opacity: 1; transform: none; }
+.btn.sm { padding: 7px 13px; font-size: 13px; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.link-btn { background: none; border: 0; padding: 0; color: var(--muted); font-size: 12px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.link-btn:hover { color: var(--text); }
+
+/* Tablas */
+.table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.table th, .table td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+.table th { font: 400 10px/1.2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+.table tr:last-child td { border-bottom: 0; }
+.table td.r, .table th.r { text-align: right; }
+.scroll-x { overflow-x: auto; }
+
+/* Hero de operación: grid con fondo */
+.op-hero {
+  position: relative; padding: 72px 0 56px; border-bottom: 1px solid var(--line); overflow: hidden;
+}
+.op-hero::before {
+  content: "";  position: absolute; inset: 0;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at 70% 40%, #000 20%, transparent 75%);
+  opacity: .5; pointer-events: none;
+}
+.op-hero .inner { position: relative; display: grid; grid-template-columns: 1fr; gap: 28px; }
+.op-hero p.lead { font-size: 16px; color: #8D98A6; max-width: 600px; line-height: 1.7; }
+.route { margin-top: 12px; padding: 24px 16px 16px; border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); }
+.route svg { width: 100%; height: auto; display: block; }
+.route .dash { stroke-dasharray: 6 8; animation: flow 1.6s linear infinite; }
+.route-list { display: none; list-style: none; margin: 0; padding: 0; }
+.route-list li { position: relative; padding: 7px 0 7px 26px; font-size: 14px; }
+.route-list li::before { content: ""; position: absolute; left: 5px; top: 0; bottom: 0; width: 2px; background: var(--line-2); }
+.route-list li:first-child::before { top: 50%; } .route-list li:last-child::before { bottom: 50%; }
+.route-list li::after { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: #000; border: 2px solid var(--text); }
+@keyframes flow { to { stroke-dashoffset: -28; } }
+@media (prefers-reduced-motion: reduce) { .route .dash { animation: none; } }
+
+/* Proceso */
+.process { display: grid; grid-template-columns: repeat(8, 1fr); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+.process div { padding: 16px 14px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; background: var(--surface); }
+.process div:last-child { border-right: 0; }
+.process small { font: 400 10px/1 var(--mono); color: var(--muted); }
+.process b { font-size: 13px; font-weight: 600; }
+.process span { font-size: 12px; color: var(--muted); }
+
+/* Triple Frontera */
+.tri { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; }
+.map { padding: 0; overflow: hidden; }
+.map svg { width: 100%; height: auto; display: block; }
+.facts { display: flex; flex-direction: column; }
+.facts div { display: grid; grid-template-columns: 150px 1fr; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 13px; }
+.facts div:last-child { border-bottom: 0; }
+
+/* Mercados */
+.markets { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* Formularios */
+.two { display: grid; grid-template-columns: 1fr 320px; gap: 20px; align-items: start; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.fields { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--muted); grid-column: span 6; }
+.field.s2 { grid-column: span 2; } .field.s3 { grid-column: span 3; } .field.s4 { grid-column: span 4; }
+.field input, .field select, .field textarea { padding: 10px 12px; border-radius: 8px; outline: none; background: var(--card); border: 1px solid var(--line-2); min-width: 0; transition: border-color .15s; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--muted-2); }
+.req::after { content: " *"; color: var(--text); }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opt { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line-2); font-size: 13px; cursor: pointer; color: var(--text); transition: border-color .15s, background .15s; }
+.opt:has(input:checked) { border-color: var(--muted-2); background: var(--card); }
+input[type=radio], input[type=checkbox] { accent-color: #fff; }
+.sticky { position: sticky; top: 72px; }
+.kv { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.kv:last-child { border-bottom: 0; }
+.err { color: var(--exc); font-size: 13px; }
+
+/* Operación */
+.op-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; flex-wrap: wrap; padding: 28px 0 20px; border-bottom: 1px solid var(--line); }
+.phase { display: grid; grid-template-columns: repeat(8, 1fr); gap: 4px; margin: 20px 0 8px; }
+.phase div { font-size: 11px; color: var(--muted); padding-top: 10px; border-top: 3px solid var(--line-2); transition: border-color .2s; }
+.phase div.done { color: var(--text); border-top-color: var(--text); }
+.phase div.now { color: var(--text); border-top-color: var(--pend); }
+.track { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); margin: 8px 0 4px; }
+.track div { position: relative; padding-top: 26px; font-size: 12px; color: var(--muted); text-align: center; }
+.track div::before { content: ""; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: var(--line-2); }
+.track div:first-child::before { left: 50%; } .track div:last-child::before { right: 50%; }
+.track div::after { content: ""; position: absolute; top: 2px; left: 50%; transform: translateX(-50%); width: 14px; height: 14px; border-radius: 50%; background: #000; border: 2px solid var(--line-2); }
+.track div.done { color: var(--text); }
+.track div.done::before { background: var(--text); }
+.track div.done::after { background: var(--text); border-color: var(--text); }
+.track div.now::after { background: var(--pend); border-color: var(--pend); box-shadow: 0 0 0 5px rgba(251,191,36,.15); }
+.track small { display: block; font: 400 10px/1.3 var(--mono); color: var(--muted); margin-top: 2px; }
+.op-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 20px; }
+.op-grid .wide { grid-column: span 2; }
+.events { list-style: none; margin: 0; padding: 0; }
+.events li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.events li:last-child { border-bottom: 0; }
+.events li.exc { color: var(--exc); }
+.pend-list { list-style: none; margin: 0; padding: 0; }
+.pend-list li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.pend-list li:last-child { border-bottom: 0; }
+.pend-list .dot { color: var(--pend); margin-top: 7px; flex-shrink: 0; }
+.exc-box { border: 1px solid rgba(248,113,113,.35); background: rgba(248,113,113,.05); border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.list { display: grid; gap: 8px; }
+.list a { display: flex; justify-content: space-between; gap: 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: border-color .2s; }
+.list a:hover { border-color: var(--line-2); }
+.crumbs { font-size: 12px; color: var(--muted); padding-top: 22px; display: flex; gap: 8px; }
+.crumbs a:hover { color: var(--text); }
+.foot { border-top: 1px solid var(--line); margin-top: 64px; padding: 24px 0 40px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+.foot a:hover { color: var(--text); }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 10px 18px; border-radius: 999px; background: var(--text); color: #000; font-size: 13px; font-weight: 600; transition: opacity .2s, transform .25s cubic-bezier(.34,1.56,.64,1); z-index: 50; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+@media (max-width: 980px) {
+  .process { grid-template-columns: repeat(4, 1fr); }
+  .process div:nth-child(4) { border-right: 0; }
+  .process div:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+  .tri, .markets, .two { grid-template-columns: 1fr; }
+  .op-grid { grid-template-columns: 1fr 1fr; }
+  .sticky { position: static; }
+}
+@media (max-width: 720px) {
+  .route svg { display: none; }
+  .route-list { display: block; }
+  .nav { display: none; }
+  .proto { margin-left: auto; }
+  .zone-head { grid-template-columns: 1fr; gap: 8px; }
+  .process { grid-template-columns: 1fr 1fr; }
+  .process div { border-right: 0; border-bottom: 1px solid var(--line); }
+  .phase { grid-template-columns: repeat(4, 1fr); row-gap: 12px; }
+  .track { grid-template-columns: 1fr; gap: 0; }
+  .track div { text-align: left; padding: 6px 0 6px 28px; }
+  .track div::before { top: 0; bottom: 0; left: 7px; right: auto; width: 2px; height: auto; }
+  .track div:first-child::before { top: 50%; left: 7px; } .track div:last-child::before { bottom: 50%; right: auto; }
+  .track div::after { top: 50%; left: 1px; transform: translateY(-50%); }
+  .op-grid { grid-template-columns: 1fr; }
+  .op-grid .wide { grid-column: auto; }
+  .fields .field.s2, .fields .field.s3, .fields .field.s4 { grid-column: span 6; }
+  .facts div { grid-template-columns: 1fr; gap: 2px; }
+  .events li { grid-template-columns: 1fr; gap: 2px; }
+}
+</style>
+</head>
+<body class="intro">
+
+<!-- Portada: logo y un solo ícono -->
+<div class="stage">
+  <header class="top"><a href="global.html">← Global</a></header>
+  <main class="hero-intro">
+    <svg class="logo" viewBox="0 0 830 259" fill="currentColor" role="img" aria-label="TDT">
+      <path d="M0 0H270V52H0Z"/>
+      <path d="M108 52L162 89V259H108Z"/>
+      <path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/>
+      <path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/>
+      <path d="M669 52L723 89V259H669Z"/>
+    </svg>
+    <div class="unit-tag">IMPORTS</div>
+    <a class="door" href="#/imports" aria-label="Entrar em Imports">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.4 3.6 5.2 3.6 8.5s-1.2 6.1-3.6 8.5M12 3.5C9.6 5.9 8.4 8.7 8.4 12s1.2 6.1 3.6 8.5"/></svg>
+    </a>
+  </main>
+</div>
+
+<!-- Imports (protótipo) -->
+<div class="app">
+  <header class="bar">
+    <a class="brand" href="#/imports" aria-label="TDT Imports">
+      <svg viewBox="0 0 830 259" fill="currentColor" aria-hidden="true"><path d="M0 0H270V52H0Z"/><path d="M108 52L162 89V259H108Z"/><path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/><path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/><path d="M669 52L723 89V259H669Z"/></svg>
+      <span>IMPORTS</span>
+    </a>
+    <nav class="nav">
+      <a href="#/imports?s=mercados">Mercados e rotas</a>
+      <a href="#/imports?s=tipos">Operações</a>
+      <a href="#/imports?s=processo">Como trabalhamos</a>
+      <a href="#/imports?s=fronteira">Tríplice Fronteira</a>
+      <a href="#/acompanhar">Acompanhar</a>
+    </nav>
+    <span class="proto">Protótipo</span>
+    <a class="btn sm" href="#/solicitar">Estruturar operação</a>
+  </header>
+
+  <main class="wrap view" id="view"></main>
+
+  <footer class="wrap">
+    <div class="foot">
+      <a href="global.html">← TDT Global</a>
+      <span>Protótipo local · nenhuma operação é registrada · só aparece como confirmado o que já está confirmado</span>
+    </div>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- Fonte ----------
+   Confirmado: Imports atende empresas com operações maiores e a ação principal é "Estruturar operação"
+   (SYSTEM/memoria/decisiones.md). Destino Brasil: a Global já vende no Brasil.
+   Ainda NÃO confirmado: origens, rotas, modais, serviços, capacidade, prazos e custos.
+   A interface mostra "a confirmar" em vez de inventar. */
+const MERCADOS = [
+  { tipo: 'Destino', nome: 'Brasil', estado: 'ok', nota: 'A Global já vende no Brasil.' },
+  { tipo: 'Origem', nome: null, estado: 'pend', nota: 'Países de origem a definir.' },
+  { tipo: 'Rotas', nome: null, estado: 'pend', nota: 'Rotas e pontos de entrada a definir.' },
+  { tipo: 'Modais', nome: null, estado: 'pend', nota: 'Marítimo, aéreo e rodoviário a confirmar.' }
+];
+const TIPOS = [
+  { nome: 'Importação com fornecedor do cliente', resolve: 'Você já tem o fornecedor; estruturamos o caminho até o destino.' },
+  { nome: 'Sourcing e importação', resolve: 'Encontrar o fornecedor na origem e trazer a carga.' },
+  { nome: 'Consolidação de carga', resolve: 'Juntar compras de vários fornecedores em um embarque.' },
+  { nome: 'Operação via Tríplice Fronteira', resolve: 'Operações que passam por Foz do Iguaçu, Ciudad del Este ou Puerto Iguazú.' },
+  { nome: 'Distribuição no destino', resolve: 'Transporte interno e entrega depois do desembaraço.' }
+];
+const SERVICOS_CONFIRMADOS = []; // Só entra aqui o que estiver validado.
+const FASES = ['Necessidade', 'Análise', 'Proposta', 'Operação', 'Carga', 'Fronteira / aduana', 'Entrega', 'Fechamento'];
+const FASES_TXT = [
+  'Você conta o que precisa trazer, de onde e para onde.',
+  'Avaliamos viabilidade, rota, modal, documentos e riscos.',
+  'Proposta com etapas, prazos, custos previstos e responsáveis.',
+  'Com a proposta aprovada, a operação é aberta e acompanhada.',
+  'Coleta, embarque e trânsito com eventos registrados.',
+  'Conferência documental, tributos e liberação.',
+  'Transporte interno até o endereço de destino.',
+  'Custos reais, documentos finais e encerramento.'
+];
+const ETAPAS = ['Origem', 'Coleta', 'Embarque', 'Trânsito', 'Aduana', 'Transporte interno', 'Entrega'];
+const DOCS = ['Proforma invoice', 'Commercial invoice', 'Packing list', 'Ficha técnica / fotos', 'Certificados do produto'];
+const DOCS_OPERACAO = [
+  { nome: 'Conhecimento de embarque (BL / AWB / CRT)', etapa: 2 },
+  { nome: 'Declaração e desembaraço', etapa: 4 },
+  { nome: 'Comprovante de entrega', etapa: 6 }
+];
+const CUSTOS = ['Produto / fornecedor', 'Frete internacional', 'Seguro', 'Tributos de importação', 'Despacho aduaneiro', 'Transporte interno'];
+// Sequência usada só para simular o avanço no protótipo.
+const PASSOS = [
+  { fase: 1, etapa: -1, ev: 'Análise iniciada' },
+  { fase: 2, etapa: -1, ev: 'Proposta enviada ao cliente' },
+  { fase: 3, etapa: -1, ev: 'Proposta aprovada · operação aberta' },
+  { fase: 4, etapa: 0, ev: 'Carga pronta na origem' },
+  { fase: 4, etapa: 1, ev: 'Coleta realizada' },
+  { fase: 4, etapa: 2, ev: 'Carga embarcada' },
+  { fase: 4, etapa: 3, ev: 'Carga em trânsito' },
+  { fase: 5, etapa: 4, ev: 'Carga na aduana' },
+  { fase: 6, etapa: 5, ev: 'Liberada · transporte interno' },
+  { fase: 6, etapa: 6, ev: 'Carga entregue' },
+  { fase: 7, etapa: 6, ev: 'Operação encerrada' }
+];
+
+/* ---------- Estado (só neste navegador) ---------- */
+const ler = (k, d) => { try { return JSON.parse(sessionStorage.getItem(k)) ?? d; } catch { return d; } };
+const gravar = (k, v) => { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch {} };
+let operacoes = ler('tdtImportsOperacoes', []);
+const salvar = () => gravar('tdtImportsOperacoes', operacoes);
+
+/* ---------- Utilidades ---------- */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pend = t => `<span class="pend"><span class="dot"></span>${t}</span>`;
+const ok = t => `<span class="ok"><span class="dot"></span>${t}</span>`;
+const quando = iso => new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+const dia = iso => new Date(iso).toLocaleDateString('pt-BR');
+let toastTimer;
+function toast(m) { const t = document.getElementById('toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 1800); }
+function zona(id, label, titulo, corpo) {
+  return `<section class="zone" id="${id}"><div class="zone-head"><span class="label">${label}</span><h2>${titulo}</h2></div>${corpo}</section>`;
+}
+
+/* ---------- Visuais ---------- */
+function rotaSvg(ativa = -1) {
+  const n = ETAPAS.length, x = i => 40 + i * (920 / (n - 1));
+  return `<svg viewBox="0 0 1000 120" role="img" aria-label="Etapas físicas de uma operação">
+    <line x1="40" y1="46" x2="960" y2="46" stroke="#262D36" stroke-width="2"/>
+    ${ativa < 0 ? `<line class="dash" x1="40" y1="46" x2="960" y2="46" stroke="#F2F2F2" stroke-width="2"/>`
+      : `<line x1="40" y1="46" x2="${x(ativa)}" y2="46" stroke="#F2F2F2" stroke-width="2"/>`}
+    ${ETAPAS.map((e, i) => `<g>
+      <circle cx="${x(i)}" cy="46" r="${i === ativa ? 9 : 7}" fill="${ativa >= 0 && i < ativa ? '#F2F2F2' : i === ativa ? '#FBBF24' : '#000'}" stroke="${ativa >= 0 && i <= ativa ? (i === ativa ? '#FBBF24' : '#F2F2F2') : '#F2F2F2'}" stroke-width="2"/>
+      <text x="${x(i)}" y="86" fill="${ativa < 0 || i <= ativa ? '#F2F2F2' : '#8A9099'}" font-family="Geist, sans-serif" font-size="14" text-anchor="middle">${e}</text>
+      <text x="${x(i)}" y="20" fill="#8A9099" font-family="Geist Mono, monospace" font-size="11" text-anchor="middle">${String(i + 1).padStart(2, '0')}</text>
+    </g>`).join('')}
+  </svg>`;
+}
+// Esquema (sem escala) da confluência dos rios Paraná e Iguaçu.
+function fronteiraSvg() {
+  return `<svg viewBox="0 0 480 340" role="img" aria-label="Esquema da Tríplice Fronteira">
+    <defs><pattern id="g" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" stroke="#1A1F26"/></pattern></defs>
+    <rect width="480" height="340" fill="url(#g)"/>
+    <path d="M232 0 C 222 60, 244 110, 228 170 S 236 280, 224 340" fill="none" stroke="#3B4A5C" stroke-width="16" stroke-linecap="round"/>
+    <path d="M480 212 C 420 204, 380 226, 330 214 S 262 200, 230 196" fill="none" stroke="#3B4A5C" stroke-width="11" stroke-linecap="round"/>
+    <text x="238" y="40" fill="#8A9099" font-family="Geist Mono, monospace" font-size="10" transform="rotate(84 238 40)">RIO PARANÁ</text>
+    <text x="360" y="238" fill="#8A9099" font-family="Geist Mono, monospace" font-size="10">RIO IGUAÇU</text>
+    <text x="70" y="150" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="15" font-weight="600" letter-spacing="3">PARAGUAI</text>
+    <text x="330" y="110" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="15" font-weight="600" letter-spacing="3">BRASIL</text>
+    <text x="318" y="300" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="15" font-weight="600" letter-spacing="3">ARGENTINA</text>
+    <line x1="200" y1="128" x2="262" y2="128" stroke="#F2F2F2" stroke-width="2"/>
+    <text x="268" y="124" fill="#8A9099" font-family="Geist Mono, monospace" font-size="9">PONTE DA AMIZADE</text>
+    <line x1="292" y1="186" x2="292" y2="236" stroke="#F2F2F2" stroke-width="2"/>
+    <text x="298" y="252" fill="#8A9099" font-family="Geist Mono, monospace" font-size="9">PONTE TANCREDO NEVES</text>
+    <circle cx="184" cy="128" r="5" fill="#F2F2F2"/><text x="176" y="112" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="12" text-anchor="end">Ciudad del Este</text>
+    <circle cx="282" cy="150" r="5" fill="#F2F2F2"/><text x="290" y="166" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="12">Foz do Iguaçu</text>
+    <circle cx="270" cy="262" r="5" fill="#F2F2F2"/><text x="262" y="282" fill="#F2F2F2" font-family="Geist, sans-serif" font-size="12" text-anchor="end">Puerto Iguazú</text>
+    <circle cx="230" cy="196" r="8" fill="none" stroke="#FBBF24" stroke-width="2"/>
+    <text x="16" y="326" fill="#8A9099" font-family="Geist Mono, monospace" font-size="9">ESQUEMA SEM ESCALA</text>
+  </svg>`;
+}
+
+/* ---------- Página pública ---------- */
+function telaImports() {
+  return `
+  <section class="op-hero">
+    <div class="inner">
+      <span class="label">Global Imports · empresas com operações maiores</span>
+      <h1>Sua operação internacional,<br>da necessidade à entrega.</h1>
+      <p class="lead">Cada operação com etapas, documentos, custos, responsáveis e exceções visíveis — não só a carga em movimento.</p>
+      <div class="row-btns"><a class="btn" href="#/solicitar">Estruturar operação</a><a class="btn ghost" href="#/acompanhar">Acompanhar operação</a></div>
+      <div class="panel route">${rotaSvg()}<ol class="route-list">${ETAPAS.map(e => `<li>${e}</li>`).join('')}</ol></div>
+    </div>
+  </section>
+
+  ${zona('mercados', 'Mercados e rotas', 'Onde operamos', `<div class="markets">
+    <div class="panel scroll-x"><table class="table"><thead><tr><th>Item</th><th>Definição</th><th class="r">Estado</th></tr></thead><tbody>
+      ${MERCADOS.map(m => `<tr><td>${m.tipo}</td><td>${m.nome ? `<b>${esc(m.nome)}</b><br>` : ''}<span class="muted">${esc(m.nota)}</span></td><td class="r">${m.estado === 'ok' ? ok('confirmado') : pend('a definir')}</td></tr>`).join('')}
+    </tbody></table></div>
+    <div class="panel panel-b" style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+      <span class="label">Rota base</span>
+      <svg viewBox="0 0 440 90" role="img" aria-label="Origem a definir até Brasil">
+        <circle cx="30" cy="40" r="8" fill="none" stroke="#FBBF24" stroke-width="2" stroke-dasharray="3 3"/>
+        <line class="dash" x1="46" y1="40" x2="394" y2="40" stroke="#8A9099" stroke-width="2" style="stroke-dasharray:6 8;animation:flow 1.6s linear infinite"/>
+        <circle cx="410" cy="40" r="8" fill="#F2F2F2"/>
+        <text x="30" y="76" fill="#FBBF24" font-family="Geist Mono, monospace" font-size="11" text-anchor="middle">ORIGEM ?</text>
+        <text x="410" y="76" fill="#F2F2F2" font-family="Geist Mono, monospace" font-size="11" text-anchor="middle">BRASIL</text>
+      </svg>
+      <p class="muted" style="font-size:13px">Quando as rotas forem confirmadas, elas aparecem aqui com origem, ponto de entrada e modal.</p>
+    </div>
+  </div>`)}
+
+  ${zona('tipos', 'Tipos de operação', 'O que uma operação pode ser', `<div class="panel scroll-x"><table class="table">
+    <thead><tr><th>Tipo</th><th>O que resolve</th><th class="r">Disponibilidade</th></tr></thead><tbody>
+    ${TIPOS.map(t => `<tr><td><b>${esc(t.nome)}</b></td><td class="muted">${esc(t.resolve)}</td><td class="r">${pend('a confirmar')}</td></tr>`).join('')}
+    </tbody></table></div>`)}
+
+  ${zona('processo', 'Como trabalhamos', 'Oito fases, uma operação', `<div class="process">
+    ${FASES.map((f, i) => `<div><small>${String(i + 1).padStart(2, '0')}</small><b>${f}</b><span>${FASES_TXT[i]}</span></div>`).join('')}
+  </div>`)}
+
+  ${zona('fronteira', 'Tríplice Fronteira', 'Brasil, Paraguai e Argentina', `<div class="tri">
+    <div class="panel map">${fronteiraSvg()}</div>
+    <div class="panel facts">
+      <div><span class="label">Onde</span><span>Confluência dos rios Paraná e Iguaçu.</span></div>
+      <div><span class="label">Cidades</span><span>Foz do Iguaçu (BR) · Ciudad del Este (PY) · Puerto Iguazú (AR)</span></div>
+      <div><span class="label">Ligações</span><span>Ponte da Amizade (BR–PY) · Ponte Tancredo Neves (BR–AR)</span></div>
+      <div><span class="label">Operação Global</span><span>${pend('como a Global opera na fronteira: a definir')}</span></div>
+      <div><span class="label">Parceiros locais</span><span>${pend('a confirmar')}</span></div>
+    </div>
+  </div>`)}
+
+  ${zona('capacidade', 'Capacidade', 'Serviços confirmados', SERVICOS_CONFIRMADOS.length
+    ? `<div class="panel"><table class="table"><tbody>${SERVICOS_CONFIRMADOS.map(s => `<tr><td>${esc(s)}</td><td class="r">${ok('confirmado')}</td></tr>`).join('')}</tbody></table></div>`
+    : `<div class="empty">Nenhum serviço confirmado ainda. Esta seção só mostra o que já está validado.</div>`)}
+
+  ${zona('solicitar', 'Solicitação', 'Conte a sua necessidade', `<div class="panel panel-b" style="display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center">
+    <div><p style="margin-bottom:10px">Origem, destino, carga, quantidade, peso/volume, fornecedor, modal, prazo e documentação. Com isso começa a análise.</p>
+    <div class="opts">${['Origem', 'Destino', 'Carga', 'Quantidade', 'Peso / volume', 'Fornecedor', 'Modal', 'Prazo', 'Documentos'].map(x => `<span class="ok">${x}</span>`).join('')}</div></div>
+    <a class="btn" href="#/solicitar">Estruturar operação</a>
+  </div>`)}
+
+  ${zona('acompanhamento', 'Seguimento', 'Acompanhar uma operação', buscaOperacao())}`;
+}
+function buscaOperacao() {
+  return `<form class="panel panel-b" id="buscaOp" style="display:flex;gap:10px;flex-wrap:wrap">
+    <label class="field" style="flex:1;min-width:220px">Número da operação<input name="n" class="mono" placeholder="IMP-0001" autocomplete="off"></label>
+    <button class="btn" type="submit" style="align-self:flex-end">Abrir operação</button>
+  </form><p class="err" id="buscaErr" hidden style="margin-top:8px"></p>`;
+}
+
+/* ---------- Solicitação ---------- */
+function telaSolicitar() {
+  return `<div class="crumbs"><a href="#/imports">Imports</a><span>/</span><span>Estruturar operação</span></div>
+  <div style="padding:14px 0 22px"><span class="label">Solicitação de operação</span><h1 style="margin-top:8px">Estruturar operação</h1></div>
+  <form class="two" id="solicitacao" novalidate>
+    <div class="stack">
+      <div class="panel"><div class="panel-h"><h3>Rota</h3></div><div class="panel-b fields">
+        <label class="field s3"><span class="req">Origem (país / cidade)</span><input name="origem" required placeholder="Ex.: país e cidade do fornecedor"></label>
+        <label class="field s3"><span class="req">Destino (país / cidade)</span><input name="destino" required value="Brasil, "></label>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Carga</h3></div><div class="panel-b fields">
+        <label class="field"><span class="req">Produto / carga</span><input name="carga" required placeholder="O que será importado"></label>
+        <label class="field s2"><span class="req">Quantidade</span><input name="quantidade" required type="number" min="1" class="mono"></label>
+        <label class="field s2">Unidade<select name="unidade"><option>unidades</option><option>caixas</option><option>pallets</option><option>contêineres</option></select></label>
+        <label class="field s2" style="grid-column:span 1">Peso (kg)<input name="peso" type="number" min="0" step="0.1" class="mono"></label>
+        <label class="field s2" style="grid-column:span 1">Volume (m³)<input name="volume" type="number" min="0" step="0.01" class="mono"></label>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Fornecedor</h3></div><div class="panel-b stack">
+        <div class="opts"><label class="opt"><input type="radio" name="temFornecedor" value="sim">Já tenho fornecedor</label><label class="opt"><input type="radio" name="temFornecedor" value="nao" checked>Ainda não tenho</label></div>
+        <label class="field" id="fornCampo" hidden>Fornecedor (nome e país)<input name="fornecedor"></label>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Modal e prazo</h3></div><div class="panel-b stack">
+        <div class="opts">${['Marítimo', 'Aéreo', 'Rodoviário', 'Ainda não sei'].map((m, i) => `<label class="opt"><input type="radio" name="modal" value="${m}" ${i === 3 ? 'checked' : ''}>${m}</label>`).join('')}</div>
+        <div class="fields"><label class="field s3">Prazo desejado de entrega<input name="prazo" type="date"></label><label class="field s3">Urgência<select name="urgencia"><option>Normal</option><option>Alta</option><option>Sem urgência</option></select></label></div>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Documentação disponível</h3><span class="muted" style="font-size:12px">marque o que você já tem</span></div><div class="panel-b opts">
+        ${DOCS.map(d => `<label class="opt"><input type="checkbox" name="docs" value="${d}">${d}</label>`).join('')}
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Observações</h3></div><div class="panel-b fields">
+        <label class="field"><textarea name="obs" rows="3" placeholder="Restrições, embalagem, certificações, frequência…"></textarea></label>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Empresa</h3></div><div class="panel-b fields">
+        <label class="field s3"><span class="req">Empresa</span><input name="empresa" required autocomplete="organization"></label>
+        <label class="field s3">CNPJ<input name="cnpj" inputmode="numeric" maxlength="18" class="mono"></label>
+        <label class="field s2"><span class="req">Contato</span><input name="contato" required autocomplete="name"></label>
+        <label class="field s2"><span class="req">E-mail</span><input name="email" type="email" required autocomplete="email"></label>
+        <label class="field s2">Telefone<input name="tel" inputmode="tel" autocomplete="tel"></label>
+      </div></div>
+    </div>
+    <div class="panel sticky"><div class="panel-h"><h3>Resumo</h3></div><div class="panel-b">
+      <div class="kv"><span class="muted">Rota</span><span id="rRota">—</span></div>
+      <div class="kv"><span class="muted">Carga</span><span id="rCarga">—</span></div>
+      <div class="kv"><span class="muted">Modal</span><span id="rModal">Ainda não sei</span></div>
+      <div class="kv"><span class="muted">Documentos</span><span id="rDocs" class="mono">0 / ${DOCS.length}</span></div>
+      <div class="kv"><span class="muted">Próxima fase</span><span>Análise</span></div>
+      <p class="err" id="solErr" hidden style="margin:10px 0 0"></p>
+      <button class="btn" type="submit" style="width:100%;margin-top:14px">Enviar para análise</button>
+      <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">Protótipo: nada é enviado.</p>
+    </div></div>
+  </form>`;
+}
+function resumoSolicitacao() {
+  const f = document.getElementById('solicitacao'); if (!f) return;
+  const o = f.origem.value.trim(), d = f.destino.value.trim();
+  document.getElementById('rRota').textContent = o || d ? `${o || '?'} → ${d || '?'}` : '—';
+  document.getElementById('rCarga').textContent = f.carga.value.trim() ? `${f.quantidade.value || '?'} ${f.unidade.value} · ${f.carga.value.trim()}` : '—';
+  document.getElementById('rModal').textContent = f.modal.value;
+  document.getElementById('rDocs').textContent = `${f.querySelectorAll('[name=docs]:checked').length} / ${DOCS.length}`;
+  document.getElementById('fornCampo').hidden = f.temFornecedor.value !== 'sim';
+}
+
+/* ---------- Operação ---------- */
+function pendencias(op) {
+  const p = [];
+  DOCS.filter(d => !op.docs.includes(d) && ['Proforma invoice', 'Commercial invoice', 'Packing list'].includes(d)).forEach(d => p.push(`Enviar ${d}`));
+  if (!op.fornecedor) p.push(op.temFornecedor === 'sim' ? 'Informar dados do fornecedor' : 'Definir fornecedor (sourcing)');
+  if (!op.peso && !op.volume) p.push('Informar peso ou volume da carga');
+  if (op.modal === 'Ainda não sei') p.push('Definir modal na análise');
+  if (op.fase < 2) p.push('Cotar custos previstos');
+  if (op.fase < 3) p.push('Atribuir responsável da Global');
+  op.excecoes.filter(e => !e.resolvida).forEach(e => p.push('Resolver exceção: ' + e.txt));
+  return p;
+}
+function telaOperacao(op, nova) {
+  if (!op) return `<div class="crumbs"><a href="#/acompanhar">Acompanhar</a></div><div class="empty" style="margin-top:20px">Operação não encontrada.</div>`;
+  const pends = pendencias(op), abertas = op.excecoes.filter(e => !e.resolvida);
+  const fim = op.passo >= PASSOS.length;
+  const docStatus = d => op.docs.includes(d) ? ok('informado pelo cliente') : pend('pendente');
+  return `<div class="crumbs"><a href="#/acompanhar">Minhas operações</a><span>/</span><span class="mono">${op.numero}</span></div>
+  <div class="op-head">
+    <div><span class="label">${nova ? 'Solicitação recebida' : 'Operação'}</span><h1 class="mono" style="margin-top:6px">Operação #${op.numero}</h1>
+      <p class="muted" style="margin-top:6px">${esc(op.origem)} → ${esc(op.destino)} · ${esc(op.empresa)}</p></div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      ${abertas.length ? `<span class="pend" style="color:var(--exc);border-color:rgba(248,113,113,.4)"><span class="dot"></span>${abertas.length} exceção aberta</span>` : ''}
+      <span class="ok"><span class="dot"></span>${FASES[op.fase]}</span>
+    </div>
+  </div>
+
+  ${op.fase === 2 && !fim ? `<div class="panel panel-b" style="margin-top:16px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-color:var(--text)"><span><b>Proposta disponível</b><br><span class="muted" style="font-size:13px">Revise e aprove para abrir a operação.</span></span><a class="btn" href="#/proposta/${op.numero}">Ver proposta</a></div>` : ''}
+  <div class="phase">${FASES.map((f, i) => `<div class="${i < op.fase || fim ? 'done' : i === op.fase ? 'now' : ''}">${f}</div>`).join('')}</div>
+
+  <div class="panel" style="margin-top:14px"><div class="panel-h"><h3>Rota física</h3><span class="muted" style="font-size:12px">${op.etapa < 0 ? 'começa após a proposta aprovada' : ETAPAS[op.etapa]}</span></div>
+    <div class="panel-b"><div class="track">${ETAPAS.map((e, i) => {
+      const t = op.eventos.find(x => x.etapa === i);
+      return `<div class="${i < op.etapa || fim ? 'done' : i === op.etapa ? 'now' : ''}">${e}${t ? `<small>${quando(t.t)}</small>` : ''}</div>`; }).join('')}</div>
+    <div class="row-btns" style="margin-top:16px">
+      ${op.passo === 2 ? '<span class="muted" style="font-size:12px">Aguardando aprovação da proposta pelo cliente.</span>'
+        : op.passo < PASSOS.length ? `<button class="link-btn" data-avancar="${op.numero}">Simular próximo evento (protótipo)</button>` : ''}
+      <button class="link-btn" data-excecao="${op.numero}">Simular exceção (protótipo)</button>
+    </div></div>
+  </div>
+
+  <div class="op-grid">
+    <div class="panel"><div class="panel-h"><h3>Carga</h3></div><div class="panel-b">
+      <div class="kv"><span class="muted">Produto</span><span>${esc(op.carga)}</span></div>
+      <div class="kv"><span class="muted">Quantidade</span><span class="mono">${esc(op.quantidade)} ${esc(op.unidade)}</span></div>
+      <div class="kv"><span class="muted">Peso</span><span>${op.peso ? `<span class="mono">${esc(op.peso)} kg</span>` : pend('a informar')}</span></div>
+      <div class="kv"><span class="muted">Volume</span><span>${op.volume ? `<span class="mono">${esc(op.volume)} m³</span>` : pend('a informar')}</span></div>
+      <div class="kv"><span class="muted">Modal</span><span>${op.modal === 'Ainda não sei' ? pend('a definir') : esc(op.modal)}</span></div>
+    </div></div>
+
+    <div class="panel"><div class="panel-h"><h3>Fornecedor</h3></div><div class="panel-b">
+      ${op.fornecedor ? `<div class="kv"><span class="muted">Fornecedor</span><span>${esc(op.fornecedor)}</span></div><div class="kv"><span class="muted">Origem</span><span>informado pelo cliente</span></div>`
+        : `<p class="muted" style="font-size:13px;margin-bottom:10px">${op.temFornecedor === 'sim' ? 'O cliente tem fornecedor, mas não informou os dados.' : 'Sem fornecedor: entra em sourcing na análise.'}</p>${pend('a definir')}`}
+    </div></div>
+
+    <div class="panel"><div class="panel-h"><h3>Datas</h3></div><div class="panel-b">
+      <div class="kv"><span class="muted">Solicitação</span><span class="mono">${dia(op.data)}</span></div>
+      <div class="kv"><span class="muted">Prazo desejado</span><span>${op.prazo ? `<span class="mono">${dia(op.prazo + 'T12:00:00')}</span>` : '—'}</span></div>
+      <div class="kv"><span class="muted">ETD (saída)</span><span>${pend('a definir')}</span></div>
+      <div class="kv"><span class="muted">ETA (chegada)</span><span>${pend('a definir')}</span></div>
+    </div></div>
+
+    <div class="panel wide"><div class="panel-h"><h3>Documentos</h3><span class="muted mono" style="font-size:12px">${op.docs.length} / ${DOCS.length} do cliente</span></div>
+      <table class="table"><tbody>
+        ${DOCS.map(d => `<tr><td>${d}</td><td class="r">${docStatus(d)}</td></tr>`).join('')}
+        ${DOCS_OPERACAO.map(d => `<tr><td>${d.nome}</td><td class="r">${op.etapa >= d.etapa ? ok('emitido') : `<span class="muted" style="font-size:12px">na etapa ${ETAPAS[d.etapa]}</span>`}</td></tr>`).join('')}
+      </tbody></table></div>
+
+    <div class="panel"><div class="panel-h"><h3>Pendências</h3><span class="mono muted" style="font-size:12px">${pends.length}</span></div><div class="panel-b">
+      ${pends.length ? `<ul class="pend-list">${pends.map(p => `<li><span class="dot"></span><span>${esc(p)}</span></li>`).join('')}</ul>` : '<p class="muted" style="font-size:13px">Nenhuma pendência.</p>'}
+    </div></div>
+
+    <div class="panel wide"><div class="panel-h"><h3>Custos</h3><span class="muted" style="font-size:12px">sem valores até a cotação</span></div>
+      <div class="scroll-x"><table class="table"><thead><tr><th>Item</th><th class="r">Previsto</th><th class="r">Real</th></tr></thead><tbody>
+        ${CUSTOS.map(c => `<tr><td>${c}</td><td class="r">${pend('a cotar')}</td><td class="r muted">—</td></tr>`).join('')}
+        <tr><td><b>Total</b></td><td class="r">${pend('a cotar')}</td><td class="r muted">—</td></tr>
+      </tbody></table></div></div>
+
+    <div class="panel"><div class="panel-h"><h3>Responsáveis</h3></div><div class="panel-b">
+      <div class="kv"><span class="muted">Cliente</span><span>${esc(op.contato)}</span></div>
+      <div class="kv"><span class="muted">E-mail</span><span>${esc(op.email)}</span></div>
+      <div class="kv"><span class="muted">Global</span><span>${op.fase >= 3 ? ok('atribuído') : pend('a atribuir')}</span></div>
+      <div class="kv"><span class="muted">Despachante</span><span>${pend('a definir')}</span></div>
+    </div></div>
+
+    <div class="panel wide"><div class="panel-h"><h3>Eventos</h3><span class="mono muted" style="font-size:12px">${op.eventos.length}</span></div><div class="panel-b">
+      <ul class="events">${[...op.eventos].reverse().map(e => `<li class="${e.exc ? 'exc' : ''}"><span class="mono muted">${quando(e.t)}</span><span>${esc(e.txt)}</span></li>`).join('')}</ul>
+    </div></div>
+
+    <div class="panel"><div class="panel-h"><h3>Exceções</h3><span class="mono muted" style="font-size:12px">${abertas.length} aberta(s)</span></div><div class="panel-b stack">
+      ${op.excecoes.length ? op.excecoes.map((e, i) => `<div class="exc-box" style="${e.resolvida ? 'opacity:.55' : ''}"><b>${esc(e.txt)}</b><span class="muted">${quando(e.t)} · ${e.resolvida ? 'resolvida' : 'aberta'}</span>${e.resolvida ? '' : `<button class="link-btn" data-resolver="${op.numero}:${i}" style="align-self:flex-start">Marcar como resolvida</button>`}</div>`).join('')
+        : '<p class="muted" style="font-size:13px">Sem exceções. Retenções, atrasos e divergências aparecem aqui com dono e prazo.</p>'}
+    </div></div>
+
+    <div class="panel wide"><div class="panel-h"><h3>Observações do cliente</h3></div><div class="panel-b"><p class="${op.obs ? '' : 'muted'}" style="font-size:13px">${op.obs ? esc(op.obs) : 'Sem observações.'}</p></div></div>
+  </div>`;
+}
+function telaProposta(op) {
+  if (!op) return `<div class="crumbs"><a href="#/acompanhar">Acompanhar</a></div><div class="empty" style="margin-top:20px">Operação não encontrada.</div>`;
+  const volta = `<a href="#/operacao/${op.numero}">Operação #${op.numero}</a>`;
+  if (op.fase < 2) return `<div class="crumbs">${volta}<span>/</span><span>Proposta</span></div><div class="empty" style="margin-top:20px">A proposta fica disponível depois da análise.</div>`;
+  const aprovada = op.fase >= 3;
+  return `<div class="crumbs">${volta}<span>/</span><span>Proposta</span></div>
+  <div class="op-head">
+    <div><span class="label">Proposta</span><h1 class="mono" style="margin-top:6px">Proposta #${op.numero}</h1>
+      <p class="muted" style="margin-top:6px">${esc(op.origem)} → ${esc(op.destino)} · ${esc(op.empresa)}</p></div>
+    ${aprovada ? ok('aprovada') : pend('aguardando sua aprovação')}
+  </div>
+  <div class="two" style="margin-top:20px">
+    <div class="stack">
+      <div class="panel"><div class="panel-h"><h3>Escopo</h3></div><div class="panel-b">
+        <div class="kv"><span class="muted">Tipo de operação</span><span>${pend('a confirmar')}</span></div>
+        <div class="kv"><span class="muted">Rota</span><span>${esc(op.origem)} → ${esc(op.destino)}</span></div>
+        <div class="kv"><span class="muted">Carga</span><span class="mono">${esc(op.quantidade)} ${esc(op.unidade)} · ${esc(op.carga)}</span></div>
+        <div class="kv"><span class="muted">Modal</span><span>${op.modal === 'Ainda não sei' ? pend('a definir') : esc(op.modal)}</span></div>
+        <div class="kv"><span class="muted">Fornecedor</span><span>${op.fornecedor ? esc(op.fornecedor) : pend('sourcing a definir')}</span></div>
+      </div></div>
+      <div class="panel"><div class="panel-h"><h3>Etapas incluídas</h3></div><div class="panel-b"><div class="track">${ETAPAS.map(e => `<div>${e}</div>`).join('')}</div></div></div>
+      <div class="panel"><div class="panel-h"><h3>Custos previstos</h3><span class="muted" style="font-size:12px">sem valores até a cotação</span></div>
+        <div class="scroll-x"><table class="table"><tbody>
+          ${CUSTOS.map(c => `<tr><td>${c}</td><td class="r">${pend('a cotar')}</td></tr>`).join('')}
+          <tr><td><b>Total previsto</b></td><td class="r">${pend('a cotar')}</td></tr>
+        </tbody></table></div></div>
+      <div class="panel"><div class="panel-h"><h3>Documentos necessários</h3></div>
+        <table class="table"><tbody>${DOCS.map(d => `<tr><td>${d}</td><td class="r">${op.docs.includes(d) ? ok('já informado') : pend('pendente')}</td></tr>`).join('')}</tbody></table></div>
+    </div>
+    <div class="panel sticky"><div class="panel-h"><h3>Condições</h3></div><div class="panel-b">
+      <div class="kv"><span class="muted">Prazo desejado</span><span>${op.prazo ? `<span class="mono">${dia(op.prazo + 'T12:00:00')}</span>` : '—'}</span></div>
+      <div class="kv"><span class="muted">ETD / ETA</span><span>${pend('a definir')}</span></div>
+      <div class="kv"><span class="muted">Pagamento</span><span>${pend('a definir')}</span></div>
+      <div class="kv"><span class="muted">Responsável Global</span><span>${pend('a atribuir')}</span></div>
+      <div class="kv"><span class="muted">Validade</span><span>${pend('a definir')}</span></div>
+      ${aprovada ? `<a class="btn" href="#/operacao/${op.numero}" style="width:100%;margin-top:14px">Ir para a operação</a>`
+        : `<button class="btn" data-aprovar="${op.numero}" style="width:100%;margin-top:14px">Aprovar proposta</button>
+           <form id="ajusteForm" data-num="${op.numero}" style="margin-top:12px" class="stack">
+             <label class="field">Pedir ajuste<textarea name="txt" rows="2" placeholder="O que precisa mudar?"></textarea></label>
+             <button class="btn ghost" type="submit">Enviar ajuste</button>
+           </form>`}
+      <p class="muted" style="font-size:12px;margin-top:10px;text-align:center">Protótipo: nada é enviado.</p>
+    </div></div>
+  </div>`;
+}
+
+function telaAcompanhar() {
+  return `<div class="crumbs"><a href="#/imports">Imports</a><span>/</span><span>Acompanhar</span></div>
+  <div style="padding:14px 0 22px"><span class="label">Seguimento para cliente</span><h1 style="margin-top:8px">Minhas operações</h1></div>
+  ${buscaOperacao()}
+  <div style="margin-top:20px">${operacoes.length
+    ? `<div class="list">${[...operacoes].reverse().map(o => `<a href="#/operacao/${o.numero}"><span><b class="mono">#${o.numero}</b><br><span class="muted">${esc(o.origem)} → ${esc(o.destino)} · ${esc(o.carga)}</span></span><span style="text-align:right"><span class="ok">${FASES[o.fase]}</span><br><span class="muted mono" style="font-size:12px">${dia(o.data)}</span></span></a>`).join('')}</div>`
+    : '<div class="empty">Nenhuma operação ainda. <a href="#/solicitar" style="text-decoration:underline">Estruturar operação</a></div>'}</div>`;
+}
+
+/* ---------- Navegação interna ----------
+   A rota vive aqui. O endereço do navegador (#...) é atualizado quando dá; se a página
+   for aberta como arquivo solto (data:, file:), o navegador bloqueia isso e a navegação segue igual. */
+let rotaInterna = location.hash || '#/';
+const hashAtual = () => rotaInterna;
+function ir(h) {
+  rotaInterna = h;
+  try { if (location.hash !== h) history.pushState(null, '', h); } catch {}
+  render();
+}
+const sincronizar = () => { rotaInterna = location.hash || '#/'; render(); };
+window.addEventListener('hashchange', sincronizar);
+window.addEventListener('popstate', sincronizar);
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a || e.target.closest('button')) return;
+  e.preventDefault(); ir(a.getAttribute('href'));
+}, true);
+
+/* ---------- Roteador ---------- */
+let recem = null;
+function render() {
+  const [rota, query] = hashAtual().slice(1).split('?');
+  const partes = rota.split('/').filter(Boolean), params = new URLSearchParams(query || '');
+  const intro = !partes.length;
+  document.body.classList.toggle('intro', intro);
+  document.body.classList.toggle('loja', !intro);
+  if (intro) return;
+  const [tela, a] = partes, view = document.getElementById('view');
+  if (tela === 'solicitar') view.innerHTML = telaSolicitar();
+  else if (tela === 'operacao') view.innerHTML = telaOperacao(operacoes.find(o => o.numero === a), recem === a);
+  else if (tela === 'proposta') view.innerHTML = telaProposta(operacoes.find(o => o.numero === a));
+  else if (tela === 'acompanhar') view.innerHTML = telaAcompanhar();
+  else view.innerHTML = telaImports();
+  resumoSolicitacao();
+  const alvo = params.get('s') && document.getElementById(params.get('s'));
+  if (alvo) alvo.scrollIntoView(); else window.scrollTo(0, 0);
+}
+
+/* ---------- Ações ---------- */
+document.addEventListener('input', e => { if (e.target.closest('#solicitacao')) resumoSolicitacao(); });
+document.addEventListener('change', e => { if (e.target.closest('#solicitacao')) resumoSolicitacao(); });
+document.addEventListener('click', e => {
+  const t = e.target.closest('button'); if (!t) return;
+  const busca = n => operacoes.find(o => o.numero === n);
+  if (t.dataset.avancar) {
+    const op = busca(t.dataset.avancar), p = PASSOS[op.passo];
+    op.fase = p.fase; op.etapa = p.etapa; op.passo++;
+    op.eventos.push({ t: new Date().toISOString(), txt: p.ev, etapa: p.etapa >= 0 && !op.eventos.some(x => x.etapa === p.etapa) ? p.etapa : undefined });
+    salvar(); render(); toast(p.ev);
+  }
+  if (t.dataset.aprovar) {
+    const op = busca(t.dataset.aprovar), p = PASSOS[2];
+    op.fase = p.fase; op.etapa = p.etapa; op.passo = 3;
+    op.eventos.push({ t: new Date().toISOString(), txt: 'Proposta aprovada pelo cliente · operação aberta' });
+    salvar(); ir('#/operacao/' + op.numero); toast('Proposta aprovada');
+  }
+  if (t.dataset.excecao) {
+    const op = busca(t.dataset.excecao), onde = op.etapa >= 0 ? ETAPAS[op.etapa] : FASES[op.fase];
+    const txt = `Exceção simulada em ${onde}: conferência documental adicional`;
+    op.excecoes.push({ t: new Date().toISOString(), txt, resolvida: false });
+    op.eventos.push({ t: new Date().toISOString(), txt, exc: true });
+    salvar(); render();
+  }
+  if (t.dataset.resolver) {
+    const [n, i] = t.dataset.resolver.split(':'), op = busca(n);
+    op.excecoes[i].resolvida = true;
+    op.eventos.push({ t: new Date().toISOString(), txt: 'Exceção resolvida' });
+    salvar(); render();
+  }
+});
+document.addEventListener('submit', e => {
+  const f = e.target; e.preventDefault();
+  if (f.id === 'buscaOp') {
+    const n = f.n.value.trim().toUpperCase().replace(/^#/, ''), err = document.getElementById('buscaErr');
+    if (operacoes.some(o => o.numero === n)) ir('#/operacao/' + n);
+    else { err.hidden = false; err.textContent = n ? `Não encontramos a operação ${n} neste navegador.` : 'Digite o número da operação.'; }
+  }
+  if (f.id === 'ajusteForm') {
+    const txt = f.txt.value.trim(); if (!txt) { f.txt.focus(); return; }
+    const op = operacoes.find(o => o.numero === f.dataset.num);
+    op.eventos.push({ t: new Date().toISOString(), txt: 'Cliente pediu ajuste na proposta: ' + txt });
+    salvar(); ir('#/operacao/' + op.numero); toast('Ajuste enviado');
+  }
+  if (f.id === 'solicitacao') {
+    const err = document.getElementById('solErr');
+    const falta = [...f.querySelectorAll('[required]')].filter(i => !i.value.trim() || (i.name === 'destino' && i.value.trim() === 'Brasil,'));
+    if (falta.length) { err.hidden = false; err.textContent = 'Preencha origem, destino, carga, quantidade e os dados da empresa.'; falta[0].focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test(f.email.value.trim())) { err.hidden = false; err.textContent = 'Confira o e-mail.'; f.email.focus(); return; }
+    const numero = 'IMP-' + String(operacoes.length + 1).padStart(4, '0'), agora = new Date().toISOString();
+    operacoes.push({
+      numero, data: agora, fase: 0, etapa: -1, passo: 0,
+      origem: f.origem.value.trim(), destino: f.destino.value.trim(), carga: f.carga.value.trim(),
+      quantidade: f.quantidade.value, unidade: f.unidade.value, peso: f.peso.value, volume: f.volume.value,
+      temFornecedor: f.temFornecedor.value, fornecedor: f.temFornecedor.value === 'sim' ? f.fornecedor.value.trim() : '',
+      modal: f.modal.value, prazo: f.prazo.value, urgencia: f.urgencia.value,
+      docs: [...f.querySelectorAll('[name=docs]:checked')].map(i => i.value), obs: f.obs.value.trim(),
+      empresa: f.empresa.value.trim(), contato: f.contato.value.trim(), email: f.email.value.trim(),
+      eventos: [{ t: agora, txt: 'Solicitação recebida · necessidade registrada' }], excecoes: []
+    });
+    salvar(); recem = numero; ir('#/operacao/' + numero);
+  }
+});
+render();
+</script>
+</body>
+</html>

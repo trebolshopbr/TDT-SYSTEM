@@ -26,7 +26,22 @@ export async function updateSession(request: NextRequest) {
   );
 
   const { data } = await supabase.auth.getClaims();
-  const user = data?.claims?.sub ? data.claims : null;
+  let user = data?.claims?.sub ? data.claims : null;
+
+  // Solo en local (npm run dev): entra solo con el usuario de .env.local. En producción
+  // NODE_ENV no es "development" y estas variables no existen, así que el login sigue siendo real.
+  if (
+    !user &&
+    process.env.NODE_ENV === "development" &&
+    process.env.DEV_LOGIN_EMAIL &&
+    process.env.DEV_LOGIN_PASSWORD
+  ) {
+    const { data: sesion } = await supabase.auth.signInWithPassword({
+      email: process.env.DEV_LOGIN_EMAIL,
+      password: process.env.DEV_LOGIN_PASSWORD,
+    });
+    if (sesion?.session) user = sesion.session.user as unknown as typeof user;
+  }
 
   const isAuthRoute = request.nextUrl.pathname.startsWith("/login");
   const isPublicAsset = request.nextUrl.pathname.startsWith("/_next");

@@ -1,5 +1,9 @@
 # Rol: Dirección
 
+## Área
+
+System
+
 ## Herramienta
 
 gpt-chrome

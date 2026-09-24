@@ -26,7 +26,9 @@ export default function NuevoGastoForm({ userId }: { userId: string }) {
   const router = useRouter();
   const supabase = createClient();
 
-  const [fecha, setFecha] = useState(new Date().toISOString().slice(0, 10));
+  const [fecha, setFecha] = useState(
+    new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" }),
+  );
   const [moneda, setMoneda] = useState<"BRL" | "USD">("BRL");
   const [monto, setMonto] = useState("");
   const [valorUsd, setValorUsd] = useState("");

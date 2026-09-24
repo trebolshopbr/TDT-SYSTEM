@@ -1,126 +1,1344 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>TDT GROWTH</title>
-<link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap">
-<style>
-:root {
-  color-scheme: dark;
-  --bg: #000000;
-  --field: #0E0E0E;
-  --line-2: #2E2E2E;
-  --text: #F2F2F2;
-  --muted: #8A8A8A;
-  --dim: #555555;
-  --sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --mono: "Geist Mono", ui-monospace, Menlo, monospace;
-}
-* { box-sizing: border-box; }
-html, body { min-height: 100%; height: 100%; margin: 0; overflow: hidden; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font: 15px/1.5 var(--sans);
-  -webkit-font-smoothing: antialiased;
-  position: relative;
-  user-select: none;
-}
-a { color: inherit; text-decoration: none; }
-button { background: none; border: 0; color: inherit; cursor: pointer; padding: 0; }
-a:focus-visible, button:focus-visible { outline: 1px solid var(--text); outline-offset: 4px; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TDT GROWTH · Aceleración, Adquisición & Embudos Comerciales</title>
+  <link rel="icon" href="marca/tdt-icono.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050505;
+      --bg-card: #0c0c0e;
+      --bg-card-hover: #131317;
+      --border: #1f1f26;
+      --border-focus: #10B981;
+      --border-subtle: #17171c;
+      
+      --text: #F4F4F5;
+      --text-muted: #8E8E98;
+      --text-dim: #52525B;
+      
+      --accent: #10B981;
+      --accent-glow: rgba(16, 185, 129, 0.18);
+      --accent-light: #34D399;
+      --accent-dark: #065F46;
+      
+      --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono: "Geist Mono", ui-monospace, Menlo, monospace;
+      
+      --container: 1120px;
+    }
 
-.stage {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #000;
-}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html {
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
 
-.top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  padding: 28px 36px;
-  z-index: 20;
-}
-.top a {
-  font: 400 11px/1 var(--mono);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  transition: color 0.15s;
-}
-.top a:hover { color: var(--text); }
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(16, 185, 129, 0.12), transparent 70%),
+        radial-gradient(circle at 100% 80%, rgba(16, 185, 129, 0.05), transparent 40%),
+        var(--bg);
+    }
 
-.hero {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.logo-lockup {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.logo {
-  display: block;
-  width: clamp(280px, 48vw, 560px);
-  max-width: 90vw;
-  height: auto;
-  color: var(--text);
-}
-.unit-tag {
-  margin-top: 14px;
-  font: 600 clamp(22px, 4.2vw, 44px)/1 var(--sans);
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: var(--text);
-  padding-left: 0.38em;
-}
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    
+    /* Top Navigation */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 4vw, 48px);
+      background: rgba(5, 5, 5, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+    }
 
-.btns {
-  margin-top: 36px;
-  display: flex;
-  gap: 12px;
-}
-.btn {
-  display: inline-flex;
-  align-items: center;
-  height: 44px;
-  padding: 0 24px;
-  font: 500 14px/1 var(--sans);
-  border: 1px solid var(--line-2);
-  color: var(--text);
-  transition: background 0.15s, border-color 0.15s;
-}
-.btn:hover { border-color: var(--muted); }
-.btn.pri { background: var(--text); color: #000; border-color: var(--text); }
-.btn.pri:hover { background: #fff; }
-</style>
+    .topbar-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
 
-<div class="stage">
-  <header class="top">
-    <a href="/">← TDT</a>
+    .back-btn {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.02);
+      transition: all 0.2s ease;
+    }
+    .back-btn:hover {
+      color: var(--text);
+      border-color: var(--text-dim);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .brand-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-title .badge-growth {
+      background: var(--accent-glow);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--accent-light);
+      font-family: var(--mono);
+      font-size: 9px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+
+    .btn-cta-nav {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #000;
+      background: var(--accent-light);
+      padding: 8px 16px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-cta-nav:hover {
+      background: #4ef0b4;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      margin-top: 64px;
+      padding-bottom: 96px;
+    }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(20px, 4vw, 36px);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: clamp(64px, 10vw, 112px) 0 clamp(48px, 6vw, 72px);
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      background: var(--accent-glow);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      animation: pulseGlow 4s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { border-color: rgba(16, 185, 129, 0.25); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+      100% { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 20px 2px rgba(16, 185, 129, 0.15); }
+    }
+
+    .hero-title {
+      font-size: clamp(34px, 5.5vw, 68px);
+      font-weight: 800;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
+      max-width: 900px;
+      margin: 0 auto 24px;
+      color: #FFFFFF;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--accent-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(16px, 2vw, 19px);
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 38px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 52px;
+      padding: 0 32px;
+      background: var(--accent);
+      color: #041a12;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 8px;
+      letter-spacing: -0.01em;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 52px;
+      padding: 0 26px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: var(--text-dim);
+    }
+
+    /* Key Metrics Grid */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .metric-card {
+      text-align: center;
+      padding: 12px 16px;
+    }
+    .metric-card:not(:last-child) {
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .metric-value {
+      font-family: var(--mono);
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 700;
+      color: var(--accent-light);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+      font-weight: 600;
+    }
+
+    .section-title {
+      font-size: clamp(26px, 3.8vw, 42px);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #FFF;
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* 3 Pillars Section */
+    .pillars-section {
+      padding: 64px 0;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pillar-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .pillar-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .pillar-card:hover {
+      border-color: rgba(16, 185, 129, 0.35);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .pillar-card:hover::before {
+      opacity: 1;
+    }
+
+    .pillar-num {
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+
+    .pillar-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+
+    .pillar-subtitle {
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .pillar-metric-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 22px;
+    }
+
+    .pillar-list {
+      list-style: none;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 20px;
+    }
+
+    .pillar-list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.45;
+    }
+
+    .pillar-list li svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--accent);
+    }
+
+    /* Funnel / Diagnostic Section */
+    .diagnostic-section {
+      padding: 80px 0;
+    }
+
+    .diagnostic-wrapper {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: clamp(24px, 5vw, 44px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+      position: relative;
+    }
+
+    .funnel-progress {
+      margin-bottom: 36px;
+    }
+
+    .progress-track {
+      height: 4px;
+      background: var(--border-subtle);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 33.33%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .step-indicators {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .step-node.active {
+      color: var(--accent-light);
+      font-weight: 600;
+    }
+
+    .step-node.completed {
+      color: var(--text-muted);
+    }
+
+    .step-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      background: var(--bg);
+    }
+
+    .step-node.active .step-dot {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #000;
+      font-weight: 700;
+    }
+
+    .step-node.completed .step-dot {
+      border-color: var(--text-dim);
+      background: var(--text-dim);
+      color: #000;
+    }
+
+    /* Form Step Content */
+    .step-content {
+      display: none;
+    }
+    .step-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FFF;
+      margin-bottom: 8px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    /* Option Cards (Selectable) */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .option-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .option-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--text-dim);
+    }
+
+    .option-card.selected {
+      border-color: var(--accent);
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .option-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .option-radio {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid var(--text-dim);
+      display: inline-block;
+      position: relative;
+    }
+
+    .option-card.selected .option-radio {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .option-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Inputs for Step 3 */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-input {
+      background: #09090b;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      height: 48px;
+      padding: 0 16px;
+      font-family: var(--sans);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+    }
+
+    .form-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Funnel Action Buttons */
+    .step-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .btn-step-next {
+      background: var(--accent);
+      color: #031810;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 24px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      margin-left: auto;
+    }
+    .btn-step-next:hover {
+      background: var(--accent-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-step-back {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .btn-step-back:hover {
+      color: var(--text);
+      border-color: var(--text-dim);
+    }
+
+    /* Funnel Success Screen */
+    .success-panel {
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent);
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 24px;
+    }
+
+    .success-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 10px;
+    }
+
+    .success-msg {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      line-height: 1.55;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: left;
+      margin-bottom: 28px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .summary-card strong {
+      color: var(--text);
+    }
+
+    /* Comparison Section */
+    .compare-section {
+      padding: 64px 0;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .compare-table th, .compare-table td {
+      padding: 18px 24px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 14px;
+    }
+
+    .compare-table th {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+    }
+
+    .compare-table th.col-tdt {
+      color: var(--accent-light);
+      background: rgba(16, 185, 129, 0.06);
+    }
+
+    .compare-table td.col-tdt {
+      background: rgba(16, 185, 129, 0.03);
+      font-weight: 600;
+      color: #FFF;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+      text-align: center;
+      background: var(--bg);
+    }
+
+    .footer-logo {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .metrics-strip {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .metric-card:not(:last-child) {
+        border-right: none;
+        border-bottom: 1px solid var(--border-subtle);
+        padding-bottom: 16px;
+      }
+      .option-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .step-node span {
+        display: none;
+      }
+      .topbar-actions .nav-link {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <a href="/" class="back-btn">← TDT</a>
+      <div class="brand-title">
+        GROWTH
+        <span class="badge-growth">SISTEMA ACELERACIÓN</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <a href="#pilares" class="nav-link">Pilares</a>
+      <a href="#diagnostico" class="btn-cta-nav">Solicitar Diagnóstico →</a>
+    </div>
   </header>
 
-  <main class="hero">
-    <div class="logo-lockup">
-      <svg class="logo" viewBox="0 0 830 259" fill="currentColor" role="img" aria-label="TDT">
-        <path d="M0 0H270V52H0Z"/>
-        <path d="M108 52L162 89V259H108Z"/>
-        <path d="M291 0H460A100 100 0 0 1 560 100V158A100 100 0 0 1 460 258H291V89H347V201H457A44 44 0 0 0 501 157V96A44 44 0 0 0 457 52H291Z"/>
-        <path d="M538 0H830V52H578A127 127 0 0 0 538 0Z"/>
-        <path d="M669 52L723 89V259H669Z"/>
-      </svg>
-      <div class="unit-tag">GROWTH</div>
-    </div>
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-tag">
+          ⚡ Infraestructura de Adquisición & Embudos
+        </div>
+        
+        <h1 class="hero-title">
+          Escalamos tu adquisición y ventas con <span class="gradient-text">precisión de ingeniería.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+          Construimos embudos de alta conversión, captación sistemática de clientes calificados y aceleración de caja directa. Sin métricas vanidosas.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#diagnostico" class="btn-primary">
+            Iniciar Diagnóstico Comercial
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#pilares" class="btn-secondary">
+            Ver 3 Pilares del Sistema
+          </a>
+        </div>
+
+        <!-- Metrics Strip -->
+        <div class="metrics-strip">
+          <div class="metric-card">
+            <div class="metric-value">+3.4x</div>
+            <div class="metric-label">Tasa de Conversión (CVR)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">-42%</div>
+            <div class="metric-label">Costo por Adquisición (CAC)</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">100%</div>
+            <div class="metric-label">Foco en Caja & Margen Real</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Pillars Section -->
+    <section id="pilares" class="pillars-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Infraestructura Comercial</span>
+          <h2 class="section-title">Los 3 Pilares de Growth</h2>
+          <p class="section-desc">Un sistema integrado diseñado para eliminar fugas, captar tráfico con intención y convertirlo en ventas predecibles.</p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pilar 1 -->
+          <div class="pillar-card">
+            <span class="pillar-num">01 / ADQUISICIÓN</span>
+            <h3 class="pillar-name">Captación Sistemática</h3>
+            <p class="pillar-subtitle">Tráfico hiper-segmentado con intención real de compra.</p>
+            
+            <div class="pillar-metric-badge">
+              <span>🎯 CAC Predictivo & Controlado</span>
+            </div>
+
+            <ul class="pillar-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Campañas de respuesta directa multicanal</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Creativos y ángulos comerciales de alto impacto</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Modelos de atribución y rentabilidad por canal</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pilar 2 -->
+          <div class="pillar-card">
+            <span class="pillar-num">02 / CONVERSIÓN</span>
+            <h3 class="pillar-name">Embudos & Oferta</h3>
+            <p class="pillar-subtitle">Arquitectura web rápida pensada para cerrar la venta.</p>
+            
+            <div class="pillar-metric-badge">
+              <span>⚡ Carga &lt; 1s & CVR Optimizado</span>
+            </div>
+
+            <ul class="pillar-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Landings transaccionales sin distracciones</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Checkout optimizado con fricción cero</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Ofertas irresistibles y orden de compra dinámico</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Pilar 3 -->
+          <div class="pillar-card">
+            <span class="pillar-num">03 / RETENCIÓN & CAJA</span>
+            <h3 class="pillar-name">Escala & Recompra</h3>
+            <p class="pillar-subtitle">Maximización del valor de por vida de cada cliente (LTV).</p>
+            
+            <div class="pillar-metric-badge">
+              <span>📈 Ratio LTV / CAC &gt; 4.0x</span>
+            </div>
+
+            <ul class="pillar-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Flujos automatizados de posventa y reactivación</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Upsells, cross-sells e incremento del ticket medio</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>Cierre de caja predecible y aceleración continua</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Diagnostic / Funnel -->
+    <section id="diagnostico" class="diagnostic-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Evaluación Comercial</span>
+          <h2 class="section-title">Diagnóstico de Crecimiento</h2>
+          <p class="section-desc">Completa 3 pasos rápidos para evaluar la situación de tu negocio y recibir una propuesta de aceleración a medida.</p>
+        </div>
+
+        <div class="diagnostic-wrapper">
+          <!-- Funnel Progress -->
+          <div class="funnel-progress">
+            <div class="progress-track">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <div class="step-indicators">
+              <div class="step-node active" id="node1">
+                <span class="step-dot">1</span>
+                <span>Facturación</span>
+              </div>
+              <div class="step-node" id="node2">
+                <span class="step-dot">2</span>
+                <span>Cuello de Botella</span>
+              </div>
+              <div class="step-node" id="node3">
+                <span class="step-dot">3</span>
+                <span>Contacto & Propuesta</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 1: Facturación Actual -->
+          <div class="step-content active" id="step1">
+            <h3 class="step-title">¿Cuál es tu nivel de facturación actual?</h3>
+            <p class="step-desc">Selecciona el rango mensual promedio de tu operación.</p>
+
+            <div class="option-grid">
+              <div class="option-card" onclick="selectOption('rev', '< $10,000 USD / mes', this)">
+                <div class="option-title">
+                  <span>&lt; $10,000 USD / mes</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Validación inicial y primeros clientes</div>
+              </div>
+
+              <div class="option-card selected" onclick="selectOption('rev', '$10,000 - $50,000 USD / mes', this)">
+                <div class="option-title">
+                  <span>$10k - $50k USD / mes</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Tracción constante, buscando escala</div>
+              </div>
+
+              <div class="option-card" onclick="selectOption('rev', '$50,000 - $150,000 USD / mes', this)">
+                <div class="option-title">
+                  <span>$50k - $150k USD / mes</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Escala activa, necesidad de optimizar CAC</div>
+              </div>
+
+              <div class="option-card" onclick="selectOption('rev', '> $150,000 USD / mes', this)">
+                <div class="option-title">
+                  <span>&gt; $150,000 USD / mes</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Alto volumen y diversificación de canales</div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn-step-next" onclick="goToStep(2)">
+                Continuar al Paso 2 →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Cuello de Botella & Objetivo -->
+          <div class="step-content" id="step2">
+            <h3 class="step-title">¿Cuál es tu principal desafío comercial?</h3>
+            <p class="step-desc">Identifica el área donde sientes que el negocio pierde más dinero o tracción.</p>
+
+            <div class="option-grid">
+              <div class="option-card selected" onclick="selectOption('challenge', 'Adquisición y CAC costoso', this)">
+                <div class="option-title">
+                  <span>Adquisición & Tráfico</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">El costo por cliente (CAC) es demasiado alto</div>
+              </div>
+
+              <div class="option-card" onclick="selectOption('challenge', 'Baja conversión en la web/landing', this)">
+                <div class="option-title">
+                  <span>Conversión del Embudo</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Llega tráfico pero pocas visitas terminan comprando</div>
+              </div>
+
+              <div class="option-card" onclick="selectOption('challenge', 'Poca retención y recompra', this)">
+                <div class="option-title">
+                  <span>Retención & LTV</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Los clientes compran una sola vez y no regresan</div>
+              </div>
+
+              <div class="option-card" onclick="selectOption('challenge', 'Construir embudo desde cero', this)">
+                <div class="option-title">
+                  <span>Embudo Llave en Mano</span>
+                  <span class="option-radio"></span>
+                </div>
+                <div class="option-desc">Necesitamos armar toda la infraestructura comercial</div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn-step-back" onclick="goToStep(1)">← Volver</button>
+              <button type="button" class="btn-step-next" onclick="goToStep(3)">
+                Continuar al Paso 3 →
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Contacto & Solicitud -->
+          <div class="step-content" id="step3">
+            <h3 class="step-title">¿Dónde te enviamos la propuesta?</h3>
+            <p class="step-desc">Ingresa tus datos directos para recibir el diagnóstico analítico de tu operación.</p>
+
+            <form id="funnelForm" onsubmit="submitFunnel(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="clientName">Nombre y Apellido</label>
+                  <input type="text" id="clientName" class="form-input" placeholder="Ej: Lucas Martínez" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="clientPhone">WhatsApp / Teléfono</label>
+                  <input type="tel" id="clientPhone" class="form-input" placeholder="+54 9 11 ..." required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label" for="clientEmail">Email de contacto</label>
+                  <input type="email" id="clientEmail" class="form-input" placeholder="tu@empresa.com" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="clientSite">Web, Tienda o Instagram</label>
+                  <input type="text" id="clientSite" class="form-input" placeholder="marca.com o @cuenta" required>
+                </div>
+              </div>
+
+              <div class="step-actions">
+                <button type="button" class="btn-step-back" onclick="goToStep(2)">← Volver</button>
+                <button type="submit" class="btn-step-next">
+                  Solicitar Propuesta Personalizada ⚡
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Success State -->
+          <div class="step-content" id="stepSuccess">
+            <div class="success-panel">
+              <div class="success-icon">✓</div>
+              <h3 class="success-title">Diagnóstico Enviado</h3>
+              <p class="success-msg">
+                Hemos recibido los parámetros de tu operación. Evaluaremos tu embudo y nos pondremos en contacto vía WhatsApp/Email en menos de 24 horas hábiles.
+              </p>
+
+              <div class="summary-card" id="summaryOutput">
+                <!-- Injected via JS -->
+              </div>
+
+              <button type="button" class="btn-primary" onclick="resetFunnel()">
+                Realizar otra consulta
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="compare-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Diferenciación</span>
+          <h2 class="section-title">Enfoque Tradicional vs TDT Growth</h2>
+          <p class="section-desc">Por qué la ingeniería de embudos supera a las agencias convencionales.</p>
+        </div>
+
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>Agencia Tradicional</th>
+              <th class="col-tdt">TDT Growth</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Métrica Principal</strong></td>
+              <td>Likes, clics y visualizaciones</td>
+              <td class="col-tdt">Facturación neta, CAC y Caja Real</td>
+            </tr>
+            <tr>
+              <td><strong>Estructura Web</strong></td>
+              <td>Sitios corporativos lentos</td>
+              <td class="col-tdt">Embudos de alta conversión (&lt; 1s de carga)</td>
+            </tr>
+            <tr>
+              <td><strong>Velocidad de Despliegue</strong></td>
+              <td>Semanas de burocracia</td>
+              <td class="col-tdt">Iteración ágil y optimización continua</td>
+            </tr>
+            <tr>
+              <td><strong>Alineación de Intereses</strong></td>
+              <td>Cobro por horas o % de gasto en ads</td>
+              <td class="col-tdt">Enfoque directo en rentabilidad del negocio</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
-</div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-logo">TDT GROWTH</div>
+      <div class="footer-links">
+        <a href="/">Inicio TDT</a>
+        <a href="#pilares">Pilares</a>
+        <a href="#diagnostico">Diagnóstico</a>
+      </div>
+      <div class="footer-copy">
+        © 2026 TDT Systems. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Funnel State
+    const funnelData = {
+      revenue: '$10,000 - $50,000 USD / mes',
+      challenge: 'Adquisición y CAC costoso',
+      name: '',
+      phone: '',
+      email: '',
+      site: ''
+    };
+
+    function selectOption(category, value, element) {
+      const parent = element.parentElement;
+      const cards = parent.querySelectorAll('.option-card');
+      cards.forEach(card => card.classList.remove('selected'));
+      element.classList.add('selected');
+
+      if (category === 'rev') funnelData.revenue = value;
+      if (category === 'challenge') funnelData.challenge = value;
+    }
+
+    function goToStep(stepNum) {
+      // Hide all step contents
+      document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+      
+      // Update Progress Bar
+      const progressFill = document.getElementById('progressFill');
+      const nodes = [document.getElementById('node1'), document.getElementById('node2'), document.getElementById('node3')];
+      
+      nodes.forEach((node, idx) => {
+        node.classList.remove('active', 'completed');
+        if (idx + 1 < stepNum) node.classList.add('completed');
+        if (idx + 1 === stepNum) node.classList.add('active');
+      });
+
+      if (stepNum === 1) {
+        progressFill.style.width = '33.33%';
+        document.getElementById('step1').classList.add('active');
+      } else if (stepNum === 2) {
+        progressFill.style.width = '66.66%';
+        document.getElementById('step2').classList.add('active');
+      } else if (stepNum === 3) {
+        progressFill.style.width = '100%';
+        document.getElementById('step3').classList.add('active');
+      }
+    }
+
+    function submitFunnel(e) {
+      e.preventDefault();
+      funnelData.name = document.getElementById('clientName').value;
+      funnelData.phone = document.getElementById('clientPhone').value;
+      funnelData.email = document.getElementById('clientEmail').value;
+      funnelData.site = document.getElementById('clientSite').value;
+
+      // Render Summary
+      const summaryOutput = document.getElementById('summaryOutput');
+      summaryOutput.innerHTML = `
+        <div><strong>Cliente:</strong> ${funnelData.name}</div>
+        <div><strong>Marca / Web:</strong> ${funnelData.site}</div>
+        <div><strong>Facturación actual:</strong> ${funnelData.revenue}</div>
+        <div><strong>Cuello de botella:</strong> ${funnelData.challenge}</div>
+        <div><strong>Contacto:</strong> ${funnelData.phone} · ${funnelData.email}</div>
+      `;
+
+      // Show Success Step
+      document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+      document.getElementById('stepSuccess').classList.add('active');
+    }
+
+    function resetFunnel() {
+      document.getElementById('funnelForm').reset();
+      goToStep(1);
+    }
+  </script>
+</body>
+</html>

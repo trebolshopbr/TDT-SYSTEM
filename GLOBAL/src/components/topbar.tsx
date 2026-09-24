@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient, getSessionUser } from "@/lib/supabase/server";
 import SignOutButton from "@/components/sign-out-button";
+import NavLinks from "@/components/nav-links";
 
 export default async function Topbar() {
   const supabase = await createClient();
@@ -22,75 +23,33 @@ export default async function Topbar() {
   if (!user) return null;
 
   return (
-    <header className="flex flex-wrap items-center justify-between gap-y-2 border-b border-neutral-800 bg-black px-6 py-4">
-      <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
-        <Link href="/" className="shrink-0 whitespace-nowrap font-semibold">
-          GLOBAL
-        </Link>
+    <header className="sticky top-0 z-30 flex flex-wrap items-center justify-between gap-y-2 border-b border-neutral-800/80 bg-black/90 px-4 py-2.5 backdrop-blur sm:px-6">
+      <div className="flex min-w-0 items-center gap-3">
         <Link
           href="/"
-          className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
+          className="flex shrink-0 items-center gap-2 pr-2 text-sm font-semibold tracking-wider text-white hover:opacity-90"
         >
-          Meu escritório
+          <span className="rounded bg-white px-1.5 py-0.5 font-mono text-[10px] font-bold text-black">
+            TDT
+          </span>
+          <span>GLOBAL</span>
         </Link>
-        {user && (
-          <Link
-            href="/finanzas"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Financeiro
-          </Link>
-        )}
-        {user && (
-          <Link
-            href="/pedidos"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Pedidos
-          </Link>
-        )}
-        {user && (
-          <Link
-            href="/catalogo"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Catálogo
-          </Link>
-        )}
-        {user && (
-          <Link
-            href="/plataformas"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Plataformas
-          </Link>
-        )}
-        {user && (
-          <Link
-            href="/productos"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Produtos
-          </Link>
-        )}
-        {rol === "admin" && (
-          <Link
-            href="/admin/socios"
-            className="shrink-0 whitespace-nowrap text-neutral-300 hover:text-white"
-          >
-            Sócios
-          </Link>
-        )}
-      </nav>
+        <NavLinks rol={rol} />
+      </div>
 
-      {user && (
-        <div className="flex shrink-0 items-center gap-4 text-sm">
-          <span className="whitespace-nowrap text-neutral-400">
+      <div className="flex shrink-0 items-center gap-3 text-xs">
+        <div className="hidden flex-col text-right sm:flex">
+          <span className="max-w-[160px] truncate font-medium text-white">
             {nombre ?? user.email}
           </span>
-          <SignOutButton />
+          {rol && (
+            <span className="text-[10px] uppercase tracking-wider text-neutral-400">
+              {rol === "admin" ? "Admin" : "Sócio"}
+            </span>
+          )}
         </div>
-      )}
+        <SignOutButton />
+      </div>
     </header>
   );
 }

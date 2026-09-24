@@ -21,7 +21,9 @@ export default function NuevoPedidoForm({
 
   const [plataformaId, setPlataformaId] = useState((plataformas.find((p) => p.activa) ?? plataformas[0])?.id ?? "");
   const [productoId, setProductoId] = useState("");
-  const [fecha, setFecha] = useState(new Date().toISOString().slice(0, 10));
+  const [fecha, setFecha] = useState(
+    new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" }),
+  );
   const [clienteNombre, setClienteNombre] = useState("");
   const [clienteContacto, setClienteContacto] = useState("");
   const [cantidad, setCantidad] = useState("1");

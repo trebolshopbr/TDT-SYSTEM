@@ -10,6 +10,16 @@ Si te pierdes o no sabes dónde guardar algo, lee `SYSTEM/memoria/LEEME.md`. Ah�
 
 Toda IA que trabaje aquí (Claude Code, Antigravity IDE, GPT Work) registra lo que está haciendo en `SYSTEM/ia/agentes/registro.json`, dentro de `activos` de su herramienta: título, estado, qué hace ahora, qué hizo, siguiente paso, bloqueos y archivos. Se actualiza al empezar, al cambiar de tarea y al terminar; al terminar, pon estado `terminado` y actualiza `actualizado`. Lo que lleva más de 24 horas sin cambios o está terminado se ve atenuado en el dashboard. En `archivos` anota las carpetas donde trabajas: así apareces sobre ellas en el mapa. El dashboard maestro lo muestra en IA y automatización. Cada IA elige su propia identidad visual (`agente`: nombre, símbolo, color, forma y lema) y puede sumar `secciones` libres. Si TT te da el prompt "Ubicarse y dejar constancia" (sección Promt del dashboard), sigue ese prompt. Sin claves ni datos sensibles.
 
+## Roles
+
+Cada chat de IA trabaja con un rol. Los archivos de los roles están en `SYSTEM/roles/` (el del Guardián, en `SYSTEM/CLAUDE.md`), y cada uno dice su carril, lo que hace y lo que no.
+
+- **System:** Guardián del sistema (orden, memoria, mapa y registro de IA), Dirección (prioridades y decisiones de TDT), Publicador (el único que sube a GitHub y publica) y Datos (el único que aplica migraciones).
+- **Global:** Dirección, Producto, Operación y Experiencia, cada uno con su propia carpeta dentro de `GLOBAL/`.
+- Un chat no edita fuera de su carril. Si necesita un cambio de otro rol, se lo dice a TT.
+- Solo TT decide las prioridades.
+- El rol se carga con el primer mensaje del chat, y el chat se registra en el registro de IA con el título exacto de su rol.
+
 ## Arquitectura objetivo
 
 - `tdt.systems`: portada pública. `tdtsystem.html` (solo el logo) → `proyectos.html` (Global, Growth, Digital, System) → landing de cada proyecto, guardada en la carpeta de su proyecto: `GLOBAL/landing/global.html`, `GROWTH/landing/growth.html`, `DIGITAL/landing/digital.html`.
@@ -31,30 +41,14 @@ Mientras continúen dentro de un solo repositorio, estas fronteras deben mantene
 - Cada proyecto guarda su landing en `<PROYECTO>/landing/` y su aplicación en su propia carpeta (Global: `GLOBAL/`). Todo lo de un proyecto va en la carpeta de ese proyecto.
 - `SYSTEM/runtime/server.mjs` sirve todo en http://localhost:8790 y sabe en qué carpeta está cada landing.
 - `SYSTEM/documentos-internos/` conserva documentos fuente internos.
-- `GROWTH/` contiene solo su landing. La app de prueba anterior pasa a `~/TDT_REVISION/growth-app-prueba-2026-09-23/`.
-- `TDT_REVISION` está fuera del proyecto presente y contiene material histórico o pendiente de evaluación.
+- `GROWTH/` contiene solo su landing. La app de prueba anterior está en `TDT_REVISION/growth-app-prueba-2026-09-23/`.
+- `TDT_REVISION` contiene material histórico o pendiente de evaluación.
 
-No restaurar código desde `TDT_REVISION` directamente dentro del sistema vigente.
+## Lo viejo (TDT_REVISION)
 
-## Regla para TDT_REVISION
+Lo viejo vive en `TDT_REVISION`, dentro de la carpeta pero ignorado por GitHub. No se usa ni se copia al sistema sin revisarlo antes, y nunca se ejecuta directo.
 
-Revisar material antiguo solamente cuando una pantalla o función actual lo necesite. Clasificar cada pieza antes de utilizarla:
-
-- **VIGENTE**: representa correctamente el presente.
-- **REUTILIZABLE**: contiene una parte útil que debe adaptarse.
-- **REFERENCIA**: explica contexto histórico, pero no debe ejecutarse.
-- **OBSOLETO**: fue reemplazado o contradice el presente.
-- **DESCONOCIDO**: no existe evidencia suficiente para decidir.
-
-Antes de migrar una pieza, responder:
-
-1. ¿Resuelve una necesidad actual?
-2. ¿Su información sigue siendo válida?
-3. ¿Duplica una pieza vigente?
-4. ¿Pertenece a Public, App, Admin o a un módulo?
-5. ¿Reduce complejidad o vuelve a introducir desorden?
-
-## Orden de construcción
+## Orden de construcción (sugerido)
 
 1. App: estructura visual, acceso y navegación.
 2. Dirección: presente, prioridades y decisiones.
@@ -66,34 +60,7 @@ Antes de migrar una pieza, responder:
 8. Public: presentación externa definitiva.
 9. IA y automatización.
 
-No abrir una capa posterior para evitar cerrar una decisión pendiente de una capa anterior.
-
-## Método de trabajo
-
-Trabajar una pantalla o flujo por vez:
-
-1. Definir qué pregunta debe responder.
-2. Identificar la fuente de la información.
-3. Separar hechos, declaraciones, hipótesis y pendientes.
-4. Diseñar la vista mínima necesaria.
-5. Implementar acciones y estados explícitos.
-6. Verificar en navegador y comprobar el flujo completo.
-7. Cerrar la pieza antes de comenzar otra.
-
-## Contrato de información
-
-Todo dato operativo debe poder expresar, cuando aplique:
-
-- identidad estable;
-- módulo o dominio;
-- estado;
-- responsable;
-- fuente y procedencia;
-- fecha de actualización;
-- nivel de evidencia;
-- siguiente paso.
-
-Una interfaz no crea verdad. Representa una fuente identificable.
+Es una guía, no una obligación: TT decide el orden real de construcción.
 
 ## Gobierno
 
@@ -103,16 +70,11 @@ Una interfaz no crea verdad. Representa una fuente identificable.
 - Una idea registrada no se convierte automáticamente en prioridad o tarea.
 - Dirección Estratégica conserva la autoridad raíz.
 - La IA puede leer, relacionar y proponer; no canoniza ni ejecuta decisiones sensibles sin autoridad delegada.
-- Toda automatización debe declarar señal, condición, acción permitida, límite, evidencia y escalamiento.
 
 ## Interfaz
 
 - Mantener navegación simple y estable.
-- Mostrar primero presente, decisión y siguiente acción.
-- Evitar duplicar el mismo contenido en la web pública y el dashboard.
-- Global y Growth no deben enlazar a páginas públicas vacías.
 - El contenido interno de Global, Growth, Digital y System vive en el dashboard.
-- No reincorporar estilos o componentes del dashboard anterior salvo decisión explícita.
 
 ## Cambios y archivos
 
@@ -123,9 +85,9 @@ Una interfaz no crea verdad. Representa una fuente identificable.
 - No crear dos fuentes de verdad para el mismo dato.
 - No incluir secretos, tokens o credenciales en el repositorio.
 
-## Verificación mínima
+## Verificación
 
-Antes de cerrar un cambio:
+Solo al publicar en internet, cambiar la base de datos real o borrar. Antes de cerrar ese tipo de cambio:
 
 - comprobar que la ruta activa sirve el archivo correcto;
 - revisar visualmente la pantalla afectada;
@@ -133,3 +95,4 @@ Antes de cerrar un cambio:
 - ejecutar las pruebas relacionadas;
 - confirmar que no quedan referencias activas a archivos movidos.
 
+Para todo lo demás rige el ritmo ligero: se construye rápido y se corrige sobre la marcha.

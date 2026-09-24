@@ -10,8 +10,9 @@ function formatMoney(n: number) {
   });
 }
 
-function toISODate(d: Date) {
-  return d.toISOString().slice(0, 10);
+// Fecha de hoy en horario de Brasil (AAAA-MM-DD), sin depender del huso del servidor.
+function hoyBR() {
+  return new Date().toLocaleDateString("en-CA", { timeZone: "America/Sao_Paulo" });
 }
 
 const PERIODOS = [
@@ -32,20 +33,20 @@ const CATEGORIA_LABELS: Record<string, string> = {
 };
 
 function calcularInicio(periodo: string) {
-  const hoy = new Date();
+  const hoy = hoyBR();
 
-  if (periodo === "dia") return toISODate(hoy);
+  if (periodo === "dia") return hoy;
 
   if (periodo === "semana") {
-    const diaSemana = (hoy.getDay() + 6) % 7;
-    const inicio = new Date(hoy);
-    inicio.setDate(hoy.getDate() - diaSemana);
-    return toISODate(inicio);
+    const base = new Date(hoy + "T00:00:00Z");
+    const diaSemana = (base.getUTCDay() + 6) % 7;
+    base.setUTCDate(base.getUTCDate() - diaSemana);
+    return base.toISOString().slice(0, 10);
   }
 
-  if (periodo === "anio") return `${hoy.getFullYear()}-01-01`;
+  if (periodo === "anio") return `${hoy.slice(0, 4)}-01-01`;
 
-  return toISODate(hoy).slice(0, 7) + "-01";
+  return hoy.slice(0, 7) + "-01";
 }
 
 export default async function GastosPage({

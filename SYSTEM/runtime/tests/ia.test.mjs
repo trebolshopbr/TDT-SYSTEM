@@ -28,6 +28,8 @@ test('AI registry is served to the dashboard and only with a session',async()=>{
   assert.equal(ro.roles[0].nombre,'Guardián del sistema');
   assert.ok(ro.roles[0].hace.length>=3);
   assert.equal(ro.roles[0].herramienta,'claude-code');
+  for(const n of ['Guardián del sistema','Dirección','Publicador','Datos'])assert.equal(ro.roles.find(x=>x.nombre===n).area,'System',n);
+  assert.ok(ro.roles.filter(x=>x.area==='Global').length>=3);
   const dir=ro.roles.find(x=>x.nombre==='Dirección');
   assert.ok(dir&&dir.herramienta==='gpt-chrome'&&dir.hace.length>=3);
   assert.equal((await fetch(origin+'/_tdt/servicios')).status,401);

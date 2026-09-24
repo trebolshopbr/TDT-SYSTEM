@@ -14,7 +14,7 @@ LOGIN_GLOBAL="${LOGIN_GLOBAL:-https://global.tdt.systems/login}"
 rm -rf "$OUT"; mkdir -p "$OUT"
 cp "$L/tdtsystem.html" "$L/proyectos.html" "$L/system.html" "$L/vercel.json" "$OUT/"
 cp -R "$L/marca" "$OUT/marca"
-cp GLOBAL/landing/global.html GROWTH/landing/growth.html DIGITAL/landing/digital.html "$OUT/"
+cp GLOBAL/landing/*.html GROWTH/landing/growth.html DIGITAL/landing/digital.html "$OUT/"
 [ -d "$L/.vercel" ] && cp -R "$L/.vercel" "$OUT/.vercel"
 sed -i '' "s#https://global.tdt.systems/login#$LOGIN_GLOBAL#" "$OUT/global.html"
 

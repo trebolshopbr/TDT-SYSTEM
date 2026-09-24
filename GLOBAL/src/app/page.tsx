@@ -121,6 +121,14 @@ function IconSpark() {
   );
 }
 
+// Pendientes anotados a mano para que no se olviden (pasar a una tabla si hace falta marcarlos).
+const PENDENCIAS = [
+  "Custos dos produtos: qualquer sócio pode completar em Produtos > Custos pendentes.",
+  "Estoque: os 3 produtos estão com estoque negativo; qualquer sócio pode cadastrar o estoque real em Produtos.",
+  "Câmbio do dia nas despesas em dólares: hoje é digitado à mão.",
+  "Início: as datas do período ainda usam o horário UTC, não o de Brasília.",
+];
+
 export default async function Home({
   searchParams,
 }: {
@@ -188,14 +196,14 @@ export default async function Home({
           </p>
         </div>
 
-        <div className="flex gap-1 rounded-lg bg-neutral-900 p-1">
+        <div className="flex gap-1 rounded-lg border border-neutral-800 bg-neutral-950 p-1">
           {PERIODOS.map((p) => (
             <Link
               key={p.value}
               href={p.value === "mes" ? "/" : `/?periodo=${p.value}`}
-              className={`rounded-md px-3 py-1.5 text-sm font-medium transition ${
+              className={`rounded-md px-3 py-1.5 text-xs font-medium transition ${
                 periodo === p.value
-                  ? "bg-black text-white shadow-sm"
+                  ? "bg-neutral-800 text-white shadow-sm"
                   : "text-neutral-400 hover:text-white"
               }`}
             >
@@ -205,33 +213,49 @@ export default async function Home({
         </div>
       </div>
 
-      {/* Hero: Ganancia */}
-      <div className="mb-4 rounded-2xl border border-emerald-900 bg-gradient-to-br from-emerald-950/40 to-black p-6">
-        <div className="mb-3 flex items-center gap-2 text-emerald-400">
-          <IconSpark />
-          <span className="text-sm font-medium">Lucro da empresa</span>
+      {/* Hero: Ganancia conectada a Finanzas */}
+      <Link
+        href="/finanzas"
+        className="group mb-4 block rounded-2xl border border-emerald-900/80 bg-gradient-to-br from-emerald-950/40 via-black to-black p-6 transition hover:border-emerald-700 hover:from-emerald-950/60"
+      >
+        <div className="mb-3 flex items-center justify-between">
+          <div className="flex items-center gap-2 text-emerald-400">
+            <IconSpark />
+            <span className="text-sm font-medium">Lucro da empresa</span>
+          </div>
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-500/80 transition-transform group-hover:translate-x-0.5 group-hover:text-emerald-300">
+            Ver financeiro <span>→</span>
+          </span>
         </div>
         <p className="mb-1 text-4xl font-semibold tracking-tight text-emerald-300">
           {formatMoney(gananciaTotal)}
         </p>
-        <p className="text-sm text-emerald-400">
+        <p className="text-sm text-emerald-400/90">
           {totalRecibidoNeto > 0
             ? `Margem de ${margen.toFixed(0)}% sobre o recebido`
             : "Sem vendas neste período"}
         </p>
-      </div>
+      </Link>
 
       {/* Soporte: Pedidos / Vendido / Recibido */}
       <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        <div className="rounded-xl border border-neutral-800 bg-black p-4">
-          <div className="mb-2 flex items-center gap-2 text-neutral-500">
-            <IconBag />
-            <span className="text-xs font-medium uppercase tracking-wide">
-              Pedidos
+        <Link
+          href="/pedidos"
+          className="group rounded-xl border border-neutral-800 bg-black p-4 transition hover:border-neutral-600 hover:bg-neutral-950/80"
+        >
+          <div className="mb-2 flex items-center justify-between text-neutral-500 group-hover:text-neutral-400">
+            <div className="flex items-center gap-2">
+              <IconBag />
+              <span className="text-xs font-medium uppercase tracking-wide">
+                Pedidos
+              </span>
+            </div>
+            <span className="text-xs text-neutral-600 transition-transform group-hover:translate-x-0.5 group-hover:text-neutral-300">
+              →
             </span>
           </div>
-          <p className="text-xl font-semibold">{totalPedidos}</p>
-        </div>
+          <p className="text-xl font-semibold text-white">{totalPedidos}</p>
+        </Link>
         <div className="rounded-xl border border-neutral-800 bg-black p-4">
           <div className="mb-2 flex items-center gap-2 text-neutral-500">
             <IconTrend />
@@ -239,17 +263,37 @@ export default async function Home({
               Vendido (bruto)
             </span>
           </div>
-          <p className="text-xl font-semibold">{formatMoney(totalVendidoBruto)}</p>
+          <p className="text-xl font-semibold text-white">{formatMoney(totalVendidoBruto)}</p>
         </div>
-        <div className="rounded-xl border border-neutral-800 bg-black p-4">
-          <div className="mb-2 flex items-center gap-2 text-neutral-500">
-            <IconWallet />
-            <span className="text-xs font-medium uppercase tracking-wide">
-              Recebido (líquido)
+        <Link
+          href="/finanzas"
+          className="group rounded-xl border border-neutral-800 bg-black p-4 transition hover:border-neutral-600 hover:bg-neutral-950/80"
+        >
+          <div className="mb-2 flex items-center justify-between text-neutral-500 group-hover:text-neutral-400">
+            <div className="flex items-center gap-2">
+              <IconWallet />
+              <span className="text-xs font-medium uppercase tracking-wide">
+                Recebido (líquido)
+              </span>
+            </div>
+            <span className="text-xs text-neutral-600 transition-transform group-hover:translate-x-0.5 group-hover:text-neutral-300">
+              →
             </span>
           </div>
-          <p className="text-xl font-semibold">{formatMoney(totalRecibidoNeto)}</p>
-        </div>
+          <p className="text-xl font-semibold text-white">{formatMoney(totalRecibidoNeto)}</p>
+        </Link>
+      </div>
+
+      <div className="mb-4 rounded-xl border border-neutral-800 bg-black p-5">
+        <h2 className="mb-3 text-sm font-medium text-neutral-400">Pendências</h2>
+        <ul className="space-y-2 text-sm text-neutral-300">
+          {PENDENCIAS.map((texto) => (
+            <li key={texto} className="flex gap-2">
+              <span className="text-neutral-600">•</span>
+              <span>{texto}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       {!!productosSinCosto && (
