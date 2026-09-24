@@ -3,6 +3,7 @@
 Una entrada por cambio terminado. La más nueva va arriba.
 
 ## 2026-09-23
+- Mapa: segundo nodo **IA** (igual que TDT) que se despliega y muestra Claude, GPT y Antigravity, cada uno con el avatar de sus chats registrados. Es el punto de partida para diagramar cómo empieza cada chat; todavía sin prompts de rol.
 - Mapa: cada tarjeta de IA dice cuándo actualizó o terminó, y lo terminado o sin cambios hace más de 24 horas se atenúa solo. El prompt "Ubicarse y dejar constancia" y `AGENTS.md` ahora piden mantener la entrada al día, marcarse `terminado` al irse y anotar las carpetas donde se trabaja.
 - El apartado del mapa (icono de mapa) ahora muestra quién trabaja dónde: arriba una tarjeta por IA con su avatar y lo que hace, y en el árbol cada carpeta lleva el avatar de las IA que anotan archivos de esa carpeta en `SYSTEM/ia/agentes/registro.json`. Lo terminado se ve atenuado. Los datos salen de `/_tdt/ia`; no hay archivo nuevo.
 - Global / Sugestiones: cada candidato muestra ahora `Editar`; las imágenes pendientes también llevan a la edición. La ficha permite subir una imagen desde la Mac al bucket `productos` y editar proveedor, costos, venta, competencia, estado, evidencia, notas y próximo paso. La compilación conserva 20/20 rutas.
