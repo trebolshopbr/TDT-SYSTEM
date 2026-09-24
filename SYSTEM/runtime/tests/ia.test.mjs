@@ -27,5 +27,8 @@ test('AI registry is served to the dashboard and only with a session',async()=>{
   const ro=await (await fetch(openOrigin+'/_tdt/roles')).json();
   assert.equal(ro.roles[0].nombre,'Guardián del sistema');
   assert.ok(ro.roles[0].hace.length>=3);
+  assert.equal(ro.roles[0].herramienta,'claude-code');
+  const dir=ro.roles.find(x=>x.nombre==='Dirección');
+  assert.ok(dir&&dir.herramienta==='gpt-chrome'&&dir.hace.length>=3);
  }finally{server.closeAllConnections();server.close();open.closeAllConnections();open.close()}
 });

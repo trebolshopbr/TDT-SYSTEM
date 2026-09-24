@@ -520,11 +520,15 @@ function cargarMapa(){
   const ESCUDO='<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
   const ROLES=(ro&&ro.roles&&ro.roles.length?ro.roles:[{nombre:'Guardián del sistema',hace:[]}]);
   // Cada rol muestra qué herramienta lo cumple (con el avatar de su chat) y qué hace, leído de su archivo.
+  // Herramienta de cada rol: nombre, ícono (índice en AI_TOOLS) y color de familia.
+  const META={'claude-code':['Claude Code local',1,'claude'],'claude-nube':['Claude Code nube',1,'claude'],'gpt-chrome':['GPT Chrome',0,''],'gpt-work':['Codex Work',0,''],'antigravity-ide':['Antigravity IDE',2,'']};
   const rama_rol=(r,n)=>{
-   const chats=ia&&ia.herramientas&&ia.herramientas['claude-code']?ia.herramientas['claude-code'].activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
+   const m=META[r.herramienta]||[r.herramienta,1,''];
+   const h=ia&&ia.herramientas&&ia.herramientas[r.herramienta];
+   const chats=h?h.activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
    const avs=chats.map(a=>'<button type="button" class="qv qb'+(a.estado==='terminado'?' fin':'')+'" data-detalle="rd-'+n+'" title="'+esc(a.agente.nombre+' · toca para ver qué hace')+'">'+avatar(a.agente,'av-xs')+'</button>').join('');
    return '<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+ESCUDO+'</svg><b>'+esc(r.nombre)+'</b></button><ul>'
-    +'<li><span class="node claude"><svg viewBox="0 0 24 24">'+AI_TOOLS[1][2]+'</svg><b>Claude Code local</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
+    +'<li><span class="node'+(m[2]?' '+m[2]:'')+'"><svg viewBox="0 0 24 24">'+AI_TOOLS[m[1]][2]+'</svg><b>'+esc(m[0])+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
     +(r.hace.length?'<li id="rd-'+n+'"'+(chats.length?' hidden':'')+'><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
     +'</ul></li>'};
   const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(rama_rol).join('')+'</ul></li></ul></section>';
