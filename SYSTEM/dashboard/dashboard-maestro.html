@@ -493,8 +493,10 @@ function cargarMapa(){
   const HERR=[['claude-code','Claude',1],['gpt-work','GPT',0],['antigravity-ide','Antigravity',2]];
   const nodoIa=(nombre,icono,id)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
    return '<span class="node"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
-  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([id,nombre,i])=>'<li>'+nodoIa(nombre,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li></ul></section>';
-  cuerpo.innerHTML=filaIa+'<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa;
+  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([id,nombre,i])=>id==='claude-code'
+    ?'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul><li>'+nodoIa('Claude Code local',AI_TOOLS[i][2],'claude-code')+'</li><li>'+nodoIa('Claude Code nube',AI_TOOLS[i][2],'claude-nube')+'</li></ul></li>'
+    :'<li>'+nodoIa(nombre,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li></ul></section>';
+  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }
 function architecture(){return '<header class="view-head"><button class="back" data-page="inicio">← Inicio</button><h1>Arquitectura</h1><p>El mapa que ordena Dirección, negocios, memoria, infraestructura y ejecución.</p></header><div class="section-head"><h2>Áreas</h2><span>'+SYSTEM.length+'</span></div><section class="system-grid">'+cards()+'</section>'}

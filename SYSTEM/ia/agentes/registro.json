@@ -228,6 +228,10 @@
           ]
         }
       ]
+    },
+    "claude-nube": {
+      "nombre": "Claude Code nube",
+      "activos": []
     }
   }
 }
