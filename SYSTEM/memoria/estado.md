@@ -6,17 +6,18 @@ Actualizado: 2026-09-23
 
 ## Portada TDT
 - HECHO 2026-09-23: publicada en `tdt.systems` (portada, proyectos, System solo con pantalla de PIN, landings de Global, Growth y Digital).
-- PENDIENTE (deploy): validar el PIN y servir el dashboard maestro desde un servidor para `app.tdt.systems`; crear `global.tdt.systems` en el DNS (CNAME en Namecheap) y moverle la app Global; conectar un repositorio remoto para poder hacer push.
+- HECHO 2026-09-23: Login de Global en la landing de `tdt.systems` apunta a `https://global.tdt.systems/login`. `app.tdt.systems` queda reservado para System (sin publicar todavía).
 - HECHO: `tdtsystem.html` → `proyectos.html` → landings en las carpetas de cada proyecto.
 - PENDIENTE (propuesto, sin confirmar por TT): usar en Growth y Digital el mismo botón "Login →" que Global; indicar que el logo se puede clicar; hacer que "← TDT" vuelva a proyectos.
 
 ## Global (app de socios, portugués de Brasil, moneda BRL)
-- HECHO 2026-09-23: Sugerencias contiene los cinco candidatos G1 con su nivel real de investigación. Una galería separada muestra las 73 imágenes históricas sin asociarlas todavía a productos o SKUs.
+- HECHO 2026-09-23: Sugerencias contiene los cinco candidatos G1 ordenados, con estado, evidencia, ficha editable y conversión controlada al catálogo. Papa-Bolinhas tiene dos imágenes históricas asociadas como REFERENCIA; los otros cuatro conservan imagen pendiente. Ningún candidato está aprobado todavía.
 - HECHO 2026-09-23: las dos sugerencias investigadas (Suporte Magnético Automotivo y Papa-Bolinhas Portátil) están cargadas y verificadas en la base remota mediante la migración `0020`.
 - HECHO: login, Meu escritório (KPIs de toda la empresa por Dia/Semana/Mês/Ano), Financeiro (bruto → comisiones → líquido → costo → gastos → lucro), Despesas (USD/BRL con el cambio del día), Fechamento de caixa, Pedidos (ligados a stock, comisión, método de pago), Produtos (imagen, canal, costo en USD, stock negativo = vendido sin stock, margens, sugestões), Catálogo, Plataformas, Sócios (solo admin). Galería de 73 fotos reales de productos disponible en `GLOBAL/public/products/`.
 - HECHO: estética negro/blanco en toda la app, autenticación rápida (`getClaims` + `cache`).
+- HECHO 2026-09-23: Dominio `global.tdt.systems` activo para la app de Global. `app.tdt.systems` queda reservado para System.
 - Datos reales: 13 pedidos de Shopee cargados. Nada ficticio.
-- PENDIENTE: al desplegar, mover la app de `app.tdt.systems` a `global.tdt.systems`.
+
 - IDEAS sin pedir: estado de cobro (Pendente/Transferido); unir Produtos y Catálogo.
 
 ## Growth

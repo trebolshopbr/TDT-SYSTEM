@@ -62,7 +62,8 @@ Explicación en palabras simples de cada carpeta. El apartado de carpetas del da
 | `global.tdt.systems` | Landing de Global → `/login` → app Global (equipo) |
 
 Por ahora se trabaja en local y no se despliega sin que TT lo pida.
-Publicado el 2026-09-23: `tdt.systems` sirve portada y landings; `app.tdt.systems` sirve la app Global (todavía no es el System de TT); `global.tdt.systems` no existe en el DNS. El dashboard maestro y el PIN NO están publicados: solo funcionan en local.
+Publicado el 2026-09-23: `tdt.systems` sirve portada y landings; `global.tdt.systems` es el dominio activo para la app Global (con su propio `/login`); `app.tdt.systems` queda reservado para System de TT (sin publicar todavía). El dashboard maestro y el PIN NO están publicados: solo funcionan en local.
+
 
 ## Dos logins distintos (no mezclar)
 
@@ -81,6 +82,7 @@ Las claves están en `.env.local` y `config.js`, nunca en esta carpeta. El Supab
 ## Apartado de carpetas (dashboard maestro, sin título, ícono de carpeta)
 
 - Está debajo de Inicio y se ve como un árbol de carpetas con explicaciones simples (sección "Mapa simple" arriba). Lee en vivo, desde `/_tdt/estructura` (`SYSTEM/runtime/estructura.mjs`, solo con la sesión del PIN), las carpetas de TDT NUEVO (3 niveles, sin node_modules ni archivos ocultos), las descripciones de la tabla "Carpetas" de este archivo, el estado de las direcciones locales y las carpetas de `~/TDT_REVISION`. Nunca muestra el contenido de los archivos.
+- El mapa también muestra el avatar de cada IA sobre las carpetas donde trabaja, según el campo `archivos` de su entrada en el registro de IA. Para aparecer en una carpeta, la IA anota ahí sus archivos.
 - Para que una carpeta tenga descripción en el Mapa, se agrega a la tabla "Carpetas" de este archivo.
 
 ## PIN de System

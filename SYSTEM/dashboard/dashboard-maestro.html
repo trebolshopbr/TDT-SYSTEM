@@ -250,6 +250,15 @@ li.open>ul{display:block;animation:rise .25s ease}
 .old-list{display:none}
 li.open>.old-list{display:flex}
 .node .count{margin-left:2px;padding:1px 8px;border-radius:99px;background:var(--glass2);color:var(--soft);font-size:11px}
+/* quién trabaja dónde */
+.av-xs{width:24px;height:24px;filter:drop-shadow(0 0 6px var(--ac))}
+.qvs{display:inline-flex;align-items:center;gap:4px}.qv{display:inline-flex;cursor:help}
+.fin{opacity:.5}.ia-chip.fin{opacity:.6}
+.ia-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:12px}
+.ia-chip{display:flex;align-items:center;gap:14px;padding:16px 18px}
+.ia-chip b{display:block;font-size:14.5px;font-weight:500;color:var(--ac,#fff)}
+.ia-chip .cuando{display:block;margin-top:6px;color:var(--muted);font-size:11.5px}
+.ia-chip small{display:block;margin-top:3px;color:var(--soft);font-size:12.5px;line-height:1.4}
 /* pantallas angostas: la barra queda al costado, solo con íconos */
 @media(max-width:900px){.stats,.units{grid-template-columns:repeat(2,minmax(0,1fr))}.now{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:820px){.shell{grid-template-columns:68px minmax(0,1fr);gap:10px;padding:10px}.sidebar{top:10px;height:calc(100vh - 20px);padding:16px 8px;border-radius:18px;align-items:center}.brand{padding:0 0 14px}.brand svg{width:40px}.brand small,.nav-label,.nav button span{display:none}.nav button{justify-content:center;padding:11px}.sidebar-foot{flex-direction:column}.sidebar-foot a,.sidebar-foot button{padding:10px}.sidebar-foot span{display:none}.sidebar-foot a::before{content:"←";font-size:14px}.sidebar-foot button::before{content:"⏻";font-size:14px}.top{top:10px;padding-left:14px}.chip.hide-s{display:none}.page{padding:28px 4px 60px}.hero .when{text-align:left}}
@@ -461,19 +470,31 @@ const fsvg='<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012
 function cargarMapa(){
  const estado=document.getElementById('mapaEstado'),cuerpo=document.getElementById('mapaCuerpo');if(!estado)return;
  estado.className='pill';estado.innerHTML='<i></i>Leyendo…';
- fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{
+ Promise.all([fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([e,ia])=>{
   if(!document.getElementById('mapaCuerpo'))return;
   estado.className='pill on';estado.innerHTML='<i></i>Leído '+new Date(e.actualizado).toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit',hour12:false});
   const S=e.simple||{},orden=['SYSTEM','GLOBAL','GROWTH','DIGITAL','PERSONAL'];
   const dirs=e.carpetas.filter(c=>c.dir).sort((a,b)=>{const i=orden.indexOf(a.name),j=orden.indexOf(b.name);return (i<0?99:i)-(j<0?99:j)});
+  // Quién trabaja dónde: cada IA activa aparece en las carpetas de los archivos que anota en su registro.
+  const activos=[];const donde={};
+  const viejo=a=>a.estado==='terminado'||(Date.parse(a.actualizado)&&Date.now()-Date.parse(a.actualizado)>86400000);
+  if(ia&&ia.herramientas)Object.values(ia.herramientas).forEach(h=>h.activos.forEach(a=>{if(!a.agente)return;activos.push(a);
+   a.archivos.forEach(f=>{const p=f.split('/');const claves=[p[0]];if(p.length>2)claves.push(p[0]+'/'+p[1]);claves.forEach(k=>{(donde[k]=donde[k]||{})[a.agente.nombre]=a})})}));
+  const quien=k=>Object.values(donde[k]||{}).map(a=>'<span class="qv'+(viejo(a)?' fin':'')+'" title="'+esc(a.agente.nombre+' · '+(a.estado==='terminado'?'terminó ':'actualizó ')+ago(a.actualizado)+' · '+(a.haciendo||a.titulo))+'">'+avatar(a.agente,'av-xs')+'</span>').join('');
+  const filaIa=activos.length?'<section class="ia-row">'+activos.map(a=>'<article class="card ia-chip'+(viejo(a)?' fin':'')+'" style="--ac:'+(/^#[0-9a-f]{6}$/i.test(a.agente.color)?a.agente.color:'#fff')+'">'+avatar(a.agente,'av-lg')+'<div><b>'+esc(a.agente.nombre)+'</b><small>'+esc((a.haciendo||a.titulo).length>110?(a.haciendo||a.titulo).slice(0,107)+'…':(a.haciendo||a.titulo))+'</small><span class="cuando">'+(a.estado==='terminado'?'Terminó ':'Actualizó ')+esc(ago(a.actualizado))+'</span></div></article>').join('')+'</section>':'';
   const chev='<svg class="chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>';
-  const node=(nombre,texto,clase,plegable,n)=>{
-   const inner=(plegable?chev:'')+fsvg+'<b>'+esc(nombre)+'</b>'+(n?'<span class="count">'+n+'</span>':'')+(texto?'<em>'+esc(texto)+'</em>':'');
+  const node=(nombre,texto,clase,plegable,n,key)=>{
+   const inner=(plegable?chev:'')+fsvg+'<b>'+esc(nombre)+'</b>'+(key&&donde[key]?'<span class="qvs">'+quien(key)+'</span>':'')+(n?'<span class="count">'+n+'</span>':'')+(texto?'<em>'+esc(texto)+'</em>':'');
    return plegable?'<button type="button" class="node '+(clase||'')+'" data-fold>'+inner+'</button>':'<span class="node '+(clase||'')+'">'+inner+'</span>';
   };
   const rama=c=>{const hijos=(c.children||[]).filter(h=>h.dir);
-   return '<li>'+node(c.name,S[c.name],'top',hijos.length>0,hijos.length)+(hijos.length?'<ul>'+hijos.map(h=>'<li>'+node(h.name,S[c.name+'/'+h.name])+'</li>').join('')+'</ul>':'')+'</li>'};
-  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>';
+   return '<li>'+node(c.name,S[c.name],'top',hijos.length>0,hijos.length,c.name)+(hijos.length?'<ul>'+hijos.map(h=>'<li>'+node(h.name,S[c.name+'/'+h.name],'',false,0,c.name+'/'+h.name)+'</li>').join('')+'</ul>':'')+'</li>'};
+  // Segundo nodo del mapa: IA → Claude, GPT, Antigravity (cada herramienta con el avatar de sus chats registrados).
+  const HERR=[['claude-code','Claude',1],['gpt-work','GPT',0],['antigravity-ide','Antigravity',2]];
+  const nodoIa=(nombre,icono,id)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
+   return '<span class="node"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
+  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([id,nombre,i])=>'<li>'+nodoIa(nombre,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li></ul></section>';
+  cuerpo.innerHTML=filaIa+'<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }
 function architecture(){return '<header class="view-head"><button class="back" data-page="inicio">← Inicio</button><h1>Arquitectura</h1><p>El mapa que ordena Dirección, negocios, memoria, infraestructura y ejecución.</p></header><div class="section-head"><h2>Áreas</h2><span>'+SYSTEM.length+'</span></div><section class="system-grid">'+cards()+'</section>'}

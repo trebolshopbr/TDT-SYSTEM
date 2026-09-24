@@ -7,8 +7,9 @@ set -e
 cd "$(dirname "$0")/../.."
 OUT="_registro/deploy-landing"
 L="SYSTEM/landing-sistema"
-# global.tdt.systems todavía no existe en el DNS: mientras tanto el Login de Global apunta a la app actual.
-LOGIN_GLOBAL="${LOGIN_GLOBAL:-https://app.tdt.systems/login}"
+# global.tdt.systems en producción.
+LOGIN_GLOBAL="${LOGIN_GLOBAL:-https://global.tdt.systems/login}"
+
 
 rm -rf "$OUT"; mkdir -p "$OUT"
 cp "$L/tdtsystem.html" "$L/proyectos.html" "$L/system.html" "$L/vercel.json" "$OUT/"

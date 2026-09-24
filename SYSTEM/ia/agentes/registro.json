@@ -7,21 +7,29 @@
         {
           "id": "gpt-work-global-sugestoes",
           "titulo": "Flujo de candidatos de producto en Global",
-          "estado": "activo",
+          "estado": "terminado",
           "responsable": "GPT Work · Codex",
-          "haciendo": "Ordenando los cinco candidatos con imágenes, estado, ficha de análisis y conversión controlada al catálogo.",
+          "haciendo": "Flujo de candidatos terminado y verificado.",
           "hecho": [
-            "Verificó que solo Papa-Bolinhas tiene dos imágenes históricas identificables como referencia."
+            "Ordenó los cinco candidatos y mostró imagen pendiente donde no hay evidencia.",
+            "Vinculó dos imágenes históricas de Papa-Bolinhas como referencia, sin afirmar que sean el SKU exacto.",
+            "Agregó estados, ficha editable, evidencia, próximo paso y margen estimado.",
+            "Creó la conversión transaccional al catálogo, disponible solo después de aprobación.",
+            "Aplicó la migración a Supabase y verificó los cinco registros; lint y build pasaron.",
+            "Hizo visible Editar en cada sugerencia y añadió carga de imágenes desde la Mac."
           ],
-          "siguiente": "Aplicar y verificar el flujo completo en Supabase y en el navegador.",
+          "siguiente": "TT puede editar cualquiera de los cinco candidatos directamente desde Sugestiones.",
           "bloqueos": [],
           "archivos": [
-            "GLOBAL/src/app/productos/sugestoes/",
-            "GLOBAL/supabase/migrations/",
+            "GLOBAL/src/app/productos/sugestoes/page.tsx",
+            "GLOBAL/src/app/productos/sugestoes/[id]/page.tsx",
+            "GLOBAL/src/app/productos/sugestoes/[id]/form.tsx",
+            "GLOBAL/supabase/migrations/20260923233754_ordenar_sugestoes_productos.sql",
+            "SYSTEM/memoria/estado.md",
             "SYSTEM/memoria/bitacora.md"
           ],
           "fuente": "Pedido directo de TT",
-          "actualizado": "2026-09-23T23:37:51Z",
+          "actualizado": "2026-09-23T23:56:07Z",
           "agente": {
             "nombre": "GPT Work",
             "simbolo": "◎",
@@ -29,6 +37,73 @@
             "forma": "circulo",
             "lema": "Ordeno la evidencia y cierro el flujo."
           }
+        },
+        {
+          "id": "gpt-work-codex-atlas",
+          "titulo": "Ubicación y constancia en TDT NUEVO",
+          "estado": "terminado",
+          "responsable": "Codex Atlas · GPT Work, sesión local con TT",
+          "haciendo": "Ejecuté el prompt “Ubicarse y dejar constancia” y dejé mi lectura del sistema.",
+          "hecho": [
+            "Leí AGENTS.md y la entrada, el mapa, el estado y las decisiones de la memoria.",
+            "Recorrí la estructura actual de carpetas sin modificar código ni documentación.",
+            "Registré mi identidad, mi lectura, mis dudas y mi forma de trabajo.",
+            "Anoté el uso del prompt en su registro."
+          ],
+          "siguiente": "Esperar la próxima instrucción de TT y mantener esta constancia actualizada si se retoma.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/ia/agentes/registro.json",
+            "SYSTEM/ia/promt/registro.json"
+          ],
+          "fuente": "Prompt “Ubicarse y dejar constancia” de SYSTEM/ia/promt/registro.json",
+          "actualizado": "2026-09-24T00:34:21Z",
+          "agente": {
+            "nombre": "Codex Atlas",
+            "simbolo": "∴",
+            "color": "#8B5CF6",
+            "forma": "cuadrado",
+            "lema": "Primero ubico la verdad; después muevo el sistema."
+          },
+          "secciones": [
+            {
+              "titulo": "Dónde estoy",
+              "texto": "Estoy en TDT NUEVO, un sistema modular que separa gobierno, operación y presentación. SYSTEM es el centro de TT; Global es hoy la unidad operativa más desarrollada; Growth y Digital conservan por ahora sus landings; Personal reúne la imagen del fundador. La memoria local coordina a las IA y TDT_REVISION conserva material que no debe volver sin clasificación."
+            },
+            {
+              "titulo": "Lo que está claro",
+              "items": [
+                "Cada proyecto guarda su propio código y su propia landing.",
+                "El dashboard maestro muestra gobierno; la operación detallada vive en la app de cada negocio.",
+                "Local, publicación, login de TT y login de socios son fronteras diferentes.",
+                "La interfaz representa fuentes reales: declarado, propuesto y verificado no son lo mismo.",
+                "Se trabaja una pantalla o flujo por vez y se verifica antes de cerrar."
+              ]
+            },
+            {
+              "titulo": "Lo que no está claro o está desactualizado",
+              "items": [
+                "La memoria todavía describe app.tdt.systems sirviendo Global, mientras TT indicó que ese dominio volvió a reservarse para System.",
+                "mapa.md repite SYSTEM/ia/promt y una de las filas dice que está vacío, aunque ya existe un prompt preparado.",
+                "estado.md también dice que Promt tiene registros vacíos, pero el registro actual contiene un prompt y usos.",
+                "AGENTS.md describe TDT_REVISION fuera del proyecto, mientras el recorrido actual también muestra una carpeta TDT_REVISION dentro de TDT NUEVO."
+              ]
+            },
+            {
+              "titulo": "Qué haría distinto",
+              "texto": "Añadiría una verificación breve de coherencia entre código, dominios y memoria al cerrar cada cambio estructural. Evitaría duplicar estados manuales cuando una fuente técnica puede informar automáticamente qué está publicado, qué está local y qué está pendiente."
+            },
+            {
+              "titulo": "Cómo trabajo",
+              "items": [
+                "Leo primero la fuente activa y las reglas locales.",
+                "Distingo evidencia de interpretación y marco lo que no sé.",
+                "Cambio la superficie mínima necesaria y preservo trabajo ajeno.",
+                "Compruebo datos, compilación y recorrido antes de dar algo por terminado.",
+                "Dejo constancia concreta para que la siguiente IA no reconstruya el contexto."
+              ]
+            }
+          ]
         }
       ]
     },
@@ -40,7 +115,7 @@
           "titulo": "Sesión local en TDT NUEVO",
           "estado": "activo",
           "responsable": "claude system1 · Claude Code (Sonnet 5), sesión local en la Mac de TT",
-          "haciendo": "Esperando que Antigravity suba a GitHub los cambios locales. La portada ya está corregida en tdt.systems.",
+          "haciendo": "Terminando el mapa del dashboard: muestra qué IA trabaja en cada carpeta y hace cuánto actualizó. Espero tu siguiente instrucción.",
           "hecho": [
             "Ordenó TDT NUEVO: cada proyecto con su landing en su carpeta y lo viejo archivado en TDT_REVISION",
             "Creó SYSTEM/memoria: mapa, estado, decisiones, bitácora y revisión para que las IA se orienten",
@@ -49,12 +124,13 @@
             "Publicó la portada en tdt.systems y actualizó la app Global en app.tdt.systems, a pedido de TT",
             "Creó el registro de IA: cada herramienta muestra lo activo al tocarla en IA y automatización",
             "Corrigió tdt.systems: Global, Growth y Digital volvieron a abrir (estaban en 404 tras un deploy incompleto)",
-            "Creó SYSTEM/deploy/armar-landing.sh para que ninguna IA vuelva a publicar la portada incompleta"
+            "Creó SYSTEM/deploy/armar-landing.sh para que ninguna IA vuelva a publicar la portada incompleta",
+            "Hizo que el mapa muestre qué IA trabaja en cada carpeta",
+            "Agregó al mapa el 'hace cuánto' de cada IA y el atenuado automático de lo viejo o terminado"
           ],
-          "siguiente": "Cuando Antigravity suba los cambios, verificar que GitHub main coincida con la carpeta local y no tenga secretos.",
+          "siguiente": "Esperar la instrucción de TT. Si GPT Work o Antigravity publican algo nuevo, revisarlo antes de que llegue a producción.",
           "bloqueos": [
-            "global.tdt.systems no existe en el DNS: TT debe crear el registro CNAME en Namecheap",
-            "Subir a GitHub los cambios locales pendientes (lo hace Antigravity)"
+            "global.tdt.systems no existe en el DNS: TT debe crear el registro CNAME en Namecheap"
           ],
           "archivos": [
             "SYSTEM/dashboard/dashboard-maestro.html",
@@ -64,7 +140,7 @@
             "SYSTEM/deploy/armar-landing.sh"
           ],
           "fuente": "SYSTEM/memoria/bitacora.md",
-          "actualizado": "2026-09-23T23:27:00Z",
+          "actualizado": "2026-09-24T00:32:22Z",
           "agente": {
             "nombre": "claude system1",
             "simbolo": "◑",
