@@ -3,6 +3,7 @@
 La más nueva va arriba. Cada una tiene fecha. No se cambian sin que TT lo pida.
 
 ## 2026-09-23
+- Claude se representa en **naranja** en todos sus cuadros del dashboard maestro. Cada herramienta tendrá su propio color de familia.
 - Growth no tiene plan aprobado: hoy es solo su landing. Ninguna "Fase 2" ni embudo sale de aquí; si aparece en el registro de alguna IA, no viene de TT. Se decide cuando TT lo pida.
 - Durante la construcción local, System abre directamente sin pedir el PIN. La protección queda implementada para reactivarla cuando TT lo decida.
 - Al tocar System se ve solo "System" y un campo tipo contraseña para 4 números (PIN).

@@ -3,6 +3,7 @@
 Una entrada por cambio terminado. La más nueva va arriba.
 
 ## 2026-09-23
+- Mapa, nodo Roles: el detalle de "qué hace" queda oculto y se abre o cierra solo al tocar el ícono del chat (el avatar) dentro de "Claude Code local"; funciona igual para cualquier rol futuro. Claude usa **naranja** (`--claude`) en todos sus cuadros del sistema: nodos del árbol de IA y de Roles, y su tarjeta en IA y automatización.
 - Mapa, nodo Roles: **Guardián del sistema** ahora se despliega y muestra **Claude Code local** (con el avatar del chat que cumple el rol) y **qué hace**. El texto se lee de `SYSTEM/CLAUDE.md` mediante `/_tdt/roles` (`roles.mjs`), única fuente del rol; prueba en `ia.test.mjs`.
 - Creado `SYSTEM/CLAUDE.md` con el rol **Guardián del sistema** (primer rol). Un chat nuevo de Claude Code iniciado en la carpeta `SYSTEM` lo lee solo y también recibe `AGENTS.md`. Incluye una prueba de configuración: ante "¿Cuál es tu rol y qué te toca?" debe responder "Soy el Guardián del sistema". Es la única fuente del rol; el nodo Roles del mapa solo muestra el nombre.
 - Ajuste del submenú de IA: el icono de Promt ya no aparece automáticamente al cargar `#automatizacion`. Empieza oculto, se despliega únicamente al tocar el icono de IA y automatización, vuelve a cerrarse al tocarlo otra vez y se oculta al entrar en otra sección.

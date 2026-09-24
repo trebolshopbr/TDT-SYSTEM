@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400&display=swap">
 <style>
-:root{color-scheme:dark;--text:#F4F4F5;--soft:#A1A1AA;--muted:#63636B;--glass:rgba(255,255,255,.035);--glass2:rgba(255,255,255,.07);--edge:rgba(255,255,255,.08);--edge2:rgba(255,255,255,.16);--sans:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace}
+:root{--claude:#E07B4A;color-scheme:dark;--text:#F4F4F5;--soft:#A1A1AA;--muted:#63636B;--glass:rgba(255,255,255,.035);--glass2:rgba(255,255,255,.07);--edge:rgba(255,255,255,.08);--edge2:rgba(255,255,255,.16);--sans:"Geist",ui-sans-serif,system-ui,-apple-system,sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%;background:#000;color:var(--text);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
 button{font:inherit;color:inherit}a{color:inherit;text-decoration:none}
@@ -260,6 +260,14 @@ li.open>.old-list{display:flex}
 .rol-hace li::before{content:"";width:5px;height:5px;margin-top:9px;border-radius:50%;background:rgba(255,255,255,.4);flex:none}
 .tree .rol-hace ul li::after{display:none}
 .tree .rol-hace ul li::before{position:static!important;border:0!important;left:auto!important;top:auto!important;bottom:auto!important;width:5px!important;height:5px!important;align-self:flex-start;flex:none;margin-top:9px;border-radius:50%;background:rgba(255,255,255,.4)}
+.node.claude{border-color:color-mix(in srgb,var(--claude) 60%,transparent);background:color-mix(in srgb,var(--claude) 13%,transparent)}
+.node.claude svg{color:var(--claude);opacity:1}
+.node.claude:hover{background:color-mix(in srgb,var(--claude) 20%,transparent)}
+.ai-card[data-ai="claude-code"]{border-color:color-mix(in srgb,var(--claude) 55%,transparent);background:radial-gradient(320px 160px at 100% 0%,color-mix(in srgb,var(--claude) 16%,transparent),transparent 70%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
+.ai-card[data-ai="claude-code"] .ai-icon{color:var(--claude);border-color:color-mix(in srgb,var(--claude) 60%,transparent);background:color-mix(in srgb,var(--claude) 14%,transparent)}
+.qb{cursor:pointer;border:0;background:none;padding:0;border-radius:50%}
+.qb:hover{filter:brightness(1.25)}
+.qb.on{outline:1.5px solid rgba(255,255,255,.55);outline-offset:2px}
 .ia-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:12px}
 .ia-chip{display:flex;align-items:center;gap:14px;padding:16px 18px}
 .ia-chip b{display:block;font-size:14.5px;font-weight:500;color:var(--ac,#fff)}
@@ -503,21 +511,21 @@ function cargarMapa(){
    return '<li>'+node(c.name,S[c.name],'top',hijos.length>0,hijos.length,c.name)+(hijos.length?'<ul>'+hijos.map(h=>'<li>'+node(h.name,S[c.name+'/'+h.name],'',false,0,c.name+'/'+h.name)+'</li>').join('')+'</ul>':'')+'</li>'};
   // Segundo nodo del mapa: IA → Claude, GPT, Antigravity (cada herramienta con el avatar de sus chats registrados).
   const HERR=[['Claude',1,[['Claude Code local','claude-code'],['Claude Code nube','claude-nube']]],['GPT',0,[['GPT Chrome','gpt-chrome'],['Codex Work','gpt-work']]],['Antigravity IDE',2,[['Antigravity IDE','antigravity-ide']]]];
-  const nodoIa=(nombre,icono,id)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
-   return '<span class="node"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
+  const nodoIa=(nombre,icono,id,clase)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
+   return '<span class="node'+(clase?' '+clase:'')+'"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
   const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([nombre,i,hijos])=>hijos.length===1
-    ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1])+'</li>'
-    :'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
+    ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1],i===1?'claude':'')+'</li>'
+    :'<li><button type="button" class="node'+(i===1?' claude':'')+'" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id,i===1?'claude':'')+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
   // Tercer nodo del mapa: Roles. Por ahora solo el primero.
   const ESCUDO='<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
   const ROLES=(ro&&ro.roles&&ro.roles.length?ro.roles:[{nombre:'Guardián del sistema',hace:[]}]);
   // Cada rol muestra qué herramienta lo cumple (con el avatar de su chat) y qué hace, leído de su archivo.
-  const rama_rol=r=>{
+  const rama_rol=(r,n)=>{
    const chats=ia&&ia.herramientas&&ia.herramientas['claude-code']?ia.herramientas['claude-code'].activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
-   const avs=chats.map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join('');
+   const avs=chats.map(a=>'<button type="button" class="qv qb'+(a.estado==='terminado'?' fin':'')+'" data-detalle="rd-'+n+'" title="'+esc(a.agente.nombre+' · toca para ver qué hace')+'">'+avatar(a.agente,'av-xs')+'</button>').join('');
    return '<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+ESCUDO+'</svg><b>'+esc(r.nombre)+'</b></button><ul>'
-    +'<li><span class="node"><svg viewBox="0 0 24 24">'+AI_TOOLS[1][2]+'</svg><b>Claude Code local</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
-    +(r.hace.length?'<li><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
+    +'<li><span class="node claude"><svg viewBox="0 0 24 24">'+AI_TOOLS[1][2]+'</svg><b>Claude Code local</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
+    +(r.hace.length?'<li id="rd-'+n+'"'+(chats.length?' hidden':'')+'><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
     +'</ul></li>'};
   const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(rama_rol).join('')+'</ul></li></ul></section>';
   cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles;
@@ -549,6 +557,7 @@ function render(next,detailId){
  window.scrollTo(0,0);
 }
 document.addEventListener('click',e=>{
+ const dt=e.target.closest('[data-detalle]');if(dt){const el=document.getElementById(dt.dataset.detalle);if(el){el.hidden=!el.hidden;document.querySelectorAll('[data-detalle="'+dt.dataset.detalle+'"]').forEach(b=>b.classList.toggle('on',!el.hidden))}return}
  const cp=e.target.closest('[data-copy]');if(cp){const p=PROMT_DATA&&PROMT_DATA.preparados.find(x=>x.id===cp.dataset.copy);if(p)copiar(p.texto,cp);return}
  const vp=e.target.closest('[data-verpr]');if(vp){const el=document.getElementById('pr-'+vp.dataset.verpr);if(el){el.hidden=!el.hidden;vp.textContent=el.hidden?'Ver':'Ocultar'}return}
  const ai=e.target.closest('[data-ai]');if(ai){IA_SEL=IA_SEL===ai.dataset.ai?null:ai.dataset.ai;pintarIa();return}
