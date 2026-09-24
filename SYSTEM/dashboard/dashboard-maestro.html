@@ -254,6 +254,12 @@ li.open>.old-list{display:flex}
 .av-xs{width:24px;height:24px;filter:drop-shadow(0 0 6px var(--ac))}
 .qvs{display:inline-flex;align-items:center;gap:4px}.qv{display:inline-flex;cursor:help}
 .fin{opacity:.5}.ia-chip.fin{opacity:.6}
+.rol-hace{max-width:560px;padding:14px 18px;border-radius:14px;border:1px solid var(--edge);background:var(--glass)}
+.rol-hace ul{list-style:none;margin:0;padding:0}
+.rol-hace li{display:flex;gap:10px;padding:6px 0;color:var(--soft);font-size:13.5px;line-height:1.5}
+.rol-hace li::before{content:"";width:5px;height:5px;margin-top:9px;border-radius:50%;background:rgba(255,255,255,.4);flex:none}
+.tree .rol-hace ul li::after{display:none}
+.tree .rol-hace ul li::before{position:static!important;border:0!important;left:auto!important;top:auto!important;bottom:auto!important;width:5px!important;height:5px!important;align-self:flex-start;flex:none;margin-top:9px;border-radius:50%;background:rgba(255,255,255,.4)}
 .ia-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:12px}
 .ia-chip{display:flex;align-items:center;gap:14px;padding:16px 18px}
 .ia-chip b{display:block;font-size:14.5px;font-weight:500;color:var(--ac,#fff)}
@@ -476,7 +482,7 @@ const fsvg='<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012
 function cargarMapa(){
  const estado=document.getElementById('mapaEstado'),cuerpo=document.getElementById('mapaCuerpo');if(!estado)return;
  estado.className='pill';estado.innerHTML='<i></i>Leyendo…';
- Promise.all([fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([e,ia])=>{
+ Promise.all([fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('/_tdt/roles',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([e,ia,ro])=>{
   if(!document.getElementById('mapaCuerpo'))return;
   estado.className='pill on';estado.innerHTML='<i></i>Leído '+new Date(e.actualizado).toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit',hour12:false});
   const S=e.simple||{},orden=['SYSTEM','GLOBAL','GROWTH','DIGITAL','PERSONAL'];
@@ -503,8 +509,17 @@ function cargarMapa(){
     ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1])+'</li>'
     :'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
   // Tercer nodo del mapa: Roles. Por ahora solo el primero.
-  const ROLES=[['Guardián del sistema','<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>']];
-  const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(([n,ic])=>'<li><span class="node"><svg viewBox="0 0 24 24">'+ic+'</svg><b>'+esc(n)+'</b></span></li>').join('')+'</ul></li></ul></section>';
+  const ESCUDO='<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>';
+  const ROLES=(ro&&ro.roles&&ro.roles.length?ro.roles:[{nombre:'Guardián del sistema',hace:[]}]);
+  // Cada rol muestra qué herramienta lo cumple (con el avatar de su chat) y qué hace, leído de su archivo.
+  const rama_rol=r=>{
+   const chats=ia&&ia.herramientas&&ia.herramientas['claude-code']?ia.herramientas['claude-code'].activos.filter(a=>a.agente&&a.titulo===r.nombre):[];
+   const avs=chats.map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join('');
+   return '<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+ESCUDO+'</svg><b>'+esc(r.nombre)+'</b></button><ul>'
+    +'<li><span class="node"><svg viewBox="0 0 24 24">'+AI_TOOLS[1][2]+'</svg><b>Claude Code local</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span></li>'
+    +(r.hace.length?'<li><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
+    +'</ul></li>'};
+  const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(rama_rol).join('')+'</ul></li></ul></section>';
   cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }

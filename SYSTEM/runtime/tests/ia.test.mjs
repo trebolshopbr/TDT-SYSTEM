@@ -23,5 +23,9 @@ test('AI registry is served to the dashboard and only with a session',async()=>{
   const q=await (await fetch(openOrigin+'/_tdt/promt')).json();
   assert.ok(q.preparados.length>=1&&q.preparados[0].id&&q.preparados[0].texto.length>200);
   assert.ok(Array.isArray(q.usos));
+  assert.equal((await fetch(origin+'/_tdt/roles')).status,401);
+  const ro=await (await fetch(openOrigin+'/_tdt/roles')).json();
+  assert.equal(ro.roles[0].nombre,'Guardián del sistema');
+  assert.ok(ro.roles[0].hace.length>=3);
  }finally{server.closeAllConnections();server.close();open.closeAllConnections();open.close()}
 });
