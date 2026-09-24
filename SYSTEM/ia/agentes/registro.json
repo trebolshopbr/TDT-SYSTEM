@@ -43,21 +43,25 @@
           "titulo": "Ubicación y constancia en TDT NUEVO",
           "estado": "terminado",
           "responsable": "Codex Atlas · GPT Work, sesión local con TT",
-          "haciendo": "Ejecuté el prompt “Ubicarse y dejar constancia” y dejé mi lectura del sistema.",
+          "haciendo": "Corregí el submenú: Promt solo aparece cuando TT toca IA y automatización.",
           "hecho": [
             "Leí AGENTS.md y la entrada, el mapa, el estado y las decisiones de la memoria.",
             "Recorrí la estructura actual de carpetas sin modificar código ni documentación.",
             "Registré mi identidad, mi lectura, mis dudas y mi forma de trabajo.",
-            "Anoté el uso del prompt en su registro."
+            "Anoté el uso del prompt en su registro.",
+            "Hizo que Promt cargue y se muestre solamente cuando TT lo despliega.",
+            "Creó el subicono de Promt y una pantalla propia para biblioteca e historial de usos.",
+            "Hizo que el subicono de Promt empiece oculto y se despliegue solo por interacción explícita con IA."
           ],
-          "siguiente": "Esperar la próxima instrucción de TT y mantener esta constancia actualizada si se retoma.",
+          "siguiente": "TT puede recargar IA y tocar el nuevo icono subordinado de Promt.",
           "bloqueos": [],
           "archivos": [
-            "SYSTEM/ia/agentes/registro.json",
-            "SYSTEM/ia/promt/registro.json"
+            "SYSTEM/dashboard/dashboard-maestro.html",
+            "SYSTEM/memoria/bitacora.md",
+            "SYSTEM/ia/agentes/registro.json"
           ],
           "fuente": "Prompt “Ubicarse y dejar constancia” de SYSTEM/ia/promt/registro.json",
-          "actualizado": "2026-09-24T00:34:21Z",
+          "actualizado": "2026-09-24T01:04:32Z",
           "agente": {
             "nombre": "Codex Atlas",
             "simbolo": "∴",
@@ -115,7 +119,7 @@
           "titulo": "Sesión local en TDT NUEVO",
           "estado": "activo",
           "responsable": "claude system1 · Claude Code (Sonnet 5), sesión local en la Mac de TT",
-          "haciendo": "Terminando el mapa del dashboard: muestra qué IA trabaja en cada carpeta y hace cuánto actualizó. Espero tu siguiente instrucción.",
+          "haciendo": "Esperando la siguiente instrucción de TT.",
           "hecho": [
             "Ordenó TDT NUEVO: cada proyecto con su landing en su carpeta y lo viejo archivado en TDT_REVISION",
             "Creó SYSTEM/memoria: mapa, estado, decisiones, bitácora y revisión para que las IA se orienten",
@@ -128,7 +132,7 @@
             "Hizo que el mapa muestre qué IA trabaja en cada carpeta",
             "Agregó al mapa el 'hace cuánto' de cada IA y el atenuado automático de lo viejo o terminado"
           ],
-          "siguiente": "Esperar la instrucción de TT. Si GPT Work o Antigravity publican algo nuevo, revisarlo antes de que llegue a producción.",
+          "siguiente": "Esperar la instrucción de TT.",
           "bloqueos": [
             "global.tdt.systems no existe en el DNS: TT debe crear el registro CNAME en Namecheap"
           ],
@@ -140,7 +144,7 @@
             "SYSTEM/deploy/armar-landing.sh"
           ],
           "fuente": "SYSTEM/memoria/bitacora.md",
-          "actualizado": "2026-09-24T00:32:22Z",
+          "actualizado": "2026-09-24T00:50:58Z",
           "agente": {
             "nombre": "claude system1",
             "simbolo": "◑",
@@ -172,6 +176,30 @@
               ]
             }
           ]
+        },
+        {
+          "id": "claude-code-guardian-sistema",
+          "titulo": "Guardián del sistema",
+          "estado": "activo",
+          "responsable": "guardian de sistema · Claude Code (Opus 5.5), sesión local en la Mac de TT",
+          "haciendo": "Registrado. Esperando la siguiente instrucción de TT.",
+          "hecho": [
+            "Leyó la memoria y el registro de IA para ver quién trabaja en qué."
+          ],
+          "siguiente": "Esperar la instrucción de TT.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/ia/agentes/registro.json"
+          ],
+          "fuente": "Pedido directo de TT",
+          "actualizado": "2026-09-24T01:09:53Z",
+          "agente": {
+            "nombre": "guardian de sistema",
+            "simbolo": "⛨",
+            "color": "#E5E7EB",
+            "forma": "hexagono",
+            "lema": "Sostengo la estructura; verifico antes de dar por cierto."
+          }
         }
       ]
     },

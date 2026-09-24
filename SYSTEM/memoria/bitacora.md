@@ -3,6 +3,11 @@
 Una entrada por cambio terminado. La más nueva va arriba.
 
 ## 2026-09-23
+- Creado `SYSTEM/CLAUDE.md` con el rol **Guardián del sistema** (primer rol). Un chat nuevo de Claude Code iniciado en la carpeta `SYSTEM` lo lee solo y también recibe `AGENTS.md`. Incluye una prueba de configuración: ante "¿Cuál es tu rol y qué te toca?" debe responder "Soy el Guardián del sistema". Es la única fuente del rol; el nodo Roles del mapa solo muestra el nombre.
+- Ajuste del submenú de IA: el icono de Promt ya no aparece automáticamente al cargar `#automatizacion`. Empieza oculto, se despliega únicamente al tocar el icono de IA y automatización, vuelve a cerrarse al tocarlo otra vez y se oculta al entrar en otra sección.
+- Corrección de navegación: Promt dejó de mostrarse dentro de IA y automatización. Al abrir IA aparece debajo su icono como subapartado; ese icono abre `#promt`, una pantalla propia que separa la biblioteca por sector del historial de usos y marca el contenido actual como prueba inicial.
+- Mapa: tercer nodo **Roles** (igual que TDT e IA), cerrado, con un solo rol por ahora: **Guardián del sistema**. Es el primer rol porque sostiene la estructura antes que cualquier negocio. Solo está el nombre; el prompt y la definición del rol se escriben después, cuando TT lo pida. La lista vive en la constante `ROLES` de `SYSTEM/dashboard/dashboard-maestro.html`.
+- Dashboard maestro / IA y automatización: `Promt` quedó cerrado por defecto. Al entrar se ve solo su fila; al tocarla se despliegan Preparados por sector y Usados, y recién entonces se carga el registro local.
 - Mapa, nodo IA: GPT se despliega en **GPT Chrome** (chat en el navegador) y **Codex Work** (el que TT viene usando; los chats GPT Work y Codex Atlas quedan aquí). Antigravity queda como **Antigravity IDE**. Nuevo lugar `gpt-chrome` en `SYSTEM/ia/agentes/registro.json` (vacío); `gpt-work` pasó a llamarse Codex Work; el prompt de orientación indica cuál usar.
 - Mapa, nodo IA: Claude ahora se despliega en **Claude Code local** y **Claude Code nube**. Se creó el lugar `claude-nube` en `SYSTEM/ia/agentes/registro.json` (vacío) para que la versión en la nube se registre ahí, y el prompt de orientación indica cuál usar. El avatar de claude system1 aparece en local; nube queda sin avatar hasta que alguien se registre.
 - Mapa: segundo nodo **IA** (igual que TDT) que se despliega y muestra Claude, GPT y Antigravity, cada uno con el avatar de sus chats registrados. Es el punto de partida para diagramar cómo empieza cada chat; todavía sin prompts de rol.
@@ -62,4 +67,3 @@ Una entrada por cambio terminado. La más nueva va arriba.
 - 2026-09-23: Configurado repositorio Git unificado en rama `main` con `.gitignore` estricto (protege secretos `.env*`, dependencias `node_modules/` y cachés de compilación) vinculado a `https://github.com/trebolshopbr/TDT-SYSTEM.git`.
 - 2026-09-23: Despliegue de producción completado en Vercel: portada/landings en `https://tdt.systems` y aplicación Global en `https://app.tdt.systems`.
 - 2026-09-23: Corrección de dominios: `LOGIN_GLOBAL` en `SYSTEM/deploy/armar-landing.sh` actualizado a `https://global.tdt.systems/login`. Portada republicada en `tdt.systems` mediante `armar-landing.sh`. Dominio `app.tdt.systems` queda reservado para System (sin publicar todavía) y `global.tdt.systems` activo para la app de Global.
-

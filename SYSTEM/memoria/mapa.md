@@ -10,6 +10,7 @@ Actualizado: 2026-09-23
 | `SYSTEM/dashboard/` | `dashboard-maestro.html`: dashboard maestro de TT, servido protegido en `/sistema/dashboard-maestro.html` |
 | `SYSTEM/deploy/` | `armar-landing.sh`: junta la portada con las landings de cada proyecto en `_registro/deploy-landing` para publicar en `tdt.systems`. No publica solo |
 | `SYSTEM/runtime/` | Servidor local (`server.mjs`) que sirve todo en :8790. Pruebas en `tests/` |
+| `SYSTEM/CLAUDE.md` | El rol Guardián del sistema. Lo lee solo un chat de Claude Code iniciado en la carpeta `SYSTEM` |
 | `SYSTEM/memoria/` | Esta memoria para orientar a las IA |
 | `SYSTEM/ia/promt/` | `registro.json`: prompts preparados por sector (`preparados`) y cuáles se usaron y quién (`usos`). Se muestra en Promt, dentro de IA y automatización |
 | `SYSTEM/ia/agentes/` | `registro.json`: lo que hace cada IA ahora (Claude Code, Antigravity IDE, GPT Work). Se muestra al tocar cada tarjeta en IA y automatización. Lo lee `/_tdt/ia` |

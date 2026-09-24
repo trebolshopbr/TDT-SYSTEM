@@ -126,9 +126,9 @@ button:focus-visible,a:focus-visible{outline:2px solid rgba(255,255,255,.5);outl
 .act .arch{display:flex;flex-wrap:wrap;gap:6px}.act .arch span{padding:3px 9px;border-radius:99px;background:var(--glass2);color:var(--soft);font:400 11.5px/1.4 var(--mono)}
 .act footer{margin-top:18px;color:var(--muted);font-size:12px}
 .ai-vacio{padding:34px;text-align:center;color:var(--muted);font-size:13px}
-.promt-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:42px}.promt-head h2{margin:0;font-size:22px;font-weight:500;letter-spacing:-.03em}
-.promt-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.promt-box{min-height:150px;padding:22px}.promt-box header{display:flex;align-items:center;justify-content:space-between;gap:12px}.promt-box h3{margin:0;font-size:15px;font-weight:500}.promt-box .zero{color:var(--muted);font:11px/1 var(--mono)}
-.promt-empty{height:90px;display:grid;place-items:center;color:var(--muted);font-size:12px}@media(max-width:700px){.promt-grid{grid-template-columns:1fr}}
+.promt-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.75fr);gap:12px;margin-top:28px}.promt-column{min-width:0}.promt-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 4px 12px}.promt-section-head h2{margin:0;font-size:16px;font-weight:500}.promt-section-head span{color:var(--muted);font:11px/1 var(--mono)}
+.promt-stack{display:grid;gap:10px}.promt-item{padding:22px}.promt-item header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}.promt-item .sector{display:inline-block;margin-bottom:10px;color:var(--muted);font:11px/1 var(--mono);text-transform:uppercase;letter-spacing:.08em}.promt-item h2{margin:0;font-size:19px;font-weight:500;letter-spacing:-.02em}.promt-item .para{margin:6px 0 0;color:var(--soft);font-size:13px}.promt-item footer{margin-top:16px;color:var(--muted);font-size:11.5px}.promt-history{padding:8px 20px}.promt-history .us{align-items:flex-start;flex-direction:column;gap:3px;padding:14px 0}.promt-history .us span{font-size:12.5px}.promt-empty{height:120px;display:grid;place-items:center;color:var(--muted);font-size:12px}.promt-test{margin-top:12px;padding:12px 14px;border:1px dashed var(--edge2);border-radius:13px;color:var(--muted);font-size:12px}.nav button.nav-sub{display:none;margin-top:-1px;margin-left:12px;position:relative}.nav button.nav-sub::before{content:"";position:absolute;left:-7px;top:-9px;width:8px;height:19px;border-left:1px solid var(--edge2);border-bottom:1px solid var(--edge2);border-radius:0 0 0 7px}.nav button.nav-sub.open{display:flex}.nav button.nav-sub svg{width:15px;height:15px}
+@media(max-width:780px){.promt-layout{grid-template-columns:1fr}}
 /* dirección */
 .dir-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.dir-head h1{margin:0;font-size:clamp(42px,6vw,70px);font-weight:500;letter-spacing:-.055em}
 .dir-section{margin-top:30px}.dir-section>header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.dir-section h2{margin:0;font-size:17px;font-weight:500}.dir-section>header span{color:var(--muted);font:11px/1 var(--mono)}
@@ -311,11 +311,12 @@ const I={
  memoria:'<path d="M9.5 4A2.5 2.5 0 007 6.5v.4A3 3 0 005 12a3 3 0 002 5.1v.4A2.5 2.5 0 009.5 20c1.4 0 2.5-1.1 2.5-2.5v-11C12 5.1 10.9 4 9.5 4z"/><path d="M14.5 4A2.5 2.5 0 0117 6.5v.4a3 3 0 012 5.1 3 3 0 01-2 5.1v.4a2.5 2.5 0 01-5 0v-11C12 5.1 13.1 4 14.5 4z"/><path d="M7 9h2M15 9h2M7 15h2M15 15h2"/>',
  infraestructura:'<rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/>',
  mapa:'<path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"/><path d="M9 3v15M15 6v15"/>',
- automatizacion:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>'
+ automatizacion:'<rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+ promt:'<path d="M4 4h16v13H9l-5 4z"/><path d="M8 8l2 2-2 2M13 12h3"/>'
 };
 const svg=id=>'<svg viewBox="0 0 24 24">'+I[id]+'</svg>';
 const NAV=[['Ahora',['inicio','direccion']],['Negocios',['global','growth','digital','personal']],['Sistema',['sistema','memoria','infraestructura','automatizacion']]];
-const NAMES={inicio:'Inicio',mapa:'',direccion:'Dirección',global:'Global',growth:'Growth',digital:'Digital',personal:'Personal',sistema:'Arquitectura',memoria:'Memoria viva',infraestructura:'Infraestructura',automatizacion:'IA y automatización'};
+const NAMES={inicio:'Inicio',mapa:'',direccion:'Dirección',global:'Global',growth:'Growth',digital:'Digital',personal:'Personal',sistema:'Arquitectura',memoria:'Memoria viva',infraestructura:'Infraestructura',automatizacion:'IA y automatización',promt:'Promt'};
 const UNITS=[
  {id:'global',name:'Global',desc:'Comercio · sourcing · logística',on:1,state:'App operando',links:[[LOCAL?'http://localhost:3000/login':'https://global.tdt.systems/login','Abrir app →','pri','_blank'],['/global.html','Landing','sec','_top']]},
  {id:'growth',name:'Growth',desc:'Crecimiento · ventas',on:0,state:'Solo landing',links:[['/growth.html','Landing','sec','_top']]},
@@ -352,8 +353,8 @@ const DETAIL={
 };
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 // Navegación en tres niveles: lectura arriba, negocios al centro y gobierno abajo.
-const navBtn=id=>'<button data-page="'+id+'" title="'+NAMES[id]+'">'+svg(id)+'<span>'+NAMES[id]+'</span></button>';
-document.getElementById('nav').innerHTML=['inicio','mapa','memoria','automatizacion'].map(navBtn).join('')+'<div class="grow"></div>'+['global','growth','digital'].map(navBtn).join('')+'<div class="grow"></div>'+['direccion','personal','sistema','infraestructura'].map(navBtn).join('');
+const navBtn=(id,sub=false)=>'<button data-page="'+id+'" class="'+(sub?'nav-sub':'')+'" title="'+NAMES[id]+'">'+svg(id)+'<span>'+NAMES[id]+'</span></button>';
+document.getElementById('nav').innerHTML=['inicio','mapa','memoria','automatizacion'].map(id=>navBtn(id)).join('')+navBtn('promt',true)+'<div class="grow"></div>'+['global','growth','digital'].map(id=>navBtn(id)).join('')+'<div class="grow"></div>'+['direccion','personal','sistema','infraestructura'].map(id=>navBtn(id)).join('');
 const pill=u=>'<span class="pill'+(u.on?' on':'')+'"><i></i>'+u.state+'</span>';
 const links=u=>u.links.map(l=>'<a class="btn '+l[2]+'" href="'+l[0]+'" target="'+l[3]+'"'+(l[3]==='_blank'?' rel="noopener"':'')+'>'+l[1]+'</a>').join('');
 const cards=()=>SYSTEM.map(x=>'<button class="card hover system-card" data-detail="'+x[0]+'"><span class="tag">'+x[1]+'</span><strong>'+x[2]+'</strong><p>'+x[3]+'</p></button>').join('');
@@ -407,7 +408,7 @@ function avatar(a,clase){
  return '<svg class="av '+clase+'" viewBox="0 0 48 48" style="--ac:'+c+'" role="img" aria-label="'+esc((a&&a.nombre)||'IA')+'"><g fill="'+c+'" fill-opacity=".14" stroke="'+c+'" stroke-width="1.6" stroke-linejoin="round">'+f+'</g><text x="24" y="25" text-anchor="middle" dominant-baseline="central" fill="'+c+'" font-size="'+(n<=1?20:n===2?15:11)+'" font-family="Geist,system-ui,sans-serif">'+esc(g)+'</text></svg>';
 }
 const aiId=n=>n.toLowerCase().replace(/\s+/g,'-');
-let IA_DATA=null,IA_SEL=null,PROMT_DATA=null;
+let IA_DATA=null,IA_SEL=null,PROMT_DATA=null,IA_SUB_OPEN=false;
 function copiar(t,btn){const ok=()=>{btn.textContent='Copiado';btn.classList.add('ok');setTimeout(()=>{btn.textContent='Copiar';btn.classList.remove('ok')},1500)};const fb=()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');ok()}catch{}ta.remove()};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()}
 const ago=iso=>{const t=Date.parse(iso);if(!t)return '';const m=Math.max(0,Math.round((Date.now()-t)/60000));return m<1?'ahora':m<60?'hace '+m+' min':m<1440?'hace '+Math.round(m/60)+' h':'hace '+Math.round(m/1440)+' d'};
 function pintarIa(){
@@ -433,19 +434,24 @@ function pintarIa(){
 }
 function cargarIa(){fetch('/_tdt/ia',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{IA_DATA=e;pintarIa()}).catch(()=>{IA_DATA=null;pintarIa()})}
 function aiView(){
- return '<header class="view-head"><h1>IA y automatización</h1></header><section class="ai-grid">'+AI_TOOLS.map(x=>'<button type="button" class="card ai-card" data-ai="'+aiId(x[0])+'"><div class="ai-top"><div class="ai-icon"><svg viewBox="0 0 24 24" role="img" aria-label="'+esc(x[0])+'">'+x[2]+'</svg></div><span class="ai-meta"><span class="ai-avs" data-ai-av="'+aiId(x[0])+'"></span><span class="ai-count" data-ai-count="'+aiId(x[0])+'">·</span></span></div><div><h2>'+esc(x[0])+'</h2><p>'+esc(x[1])+'</p></div></button>').join('')+'</section><section class="ai-detalle" id="aiDetalle"></section><section class="promt-head"><h2>Promt</h2><span class="pill" id="promtEstado"><i></i>Leyendo…</span></section><section class="promt-grid" id="promtCuerpo"></section>';
+ return '<header class="view-head"><h1>IA y automatización</h1></header><section class="ai-grid">'+AI_TOOLS.map(x=>'<button type="button" class="card ai-card" data-ai="'+aiId(x[0])+'"><div class="ai-top"><div class="ai-icon"><svg viewBox="0 0 24 24" role="img" aria-label="'+esc(x[0])+'">'+x[2]+'</svg></div><span class="ai-meta"><span class="ai-avs" data-ai-av="'+aiId(x[0])+'"></span><span class="ai-count" data-ai-count="'+aiId(x[0])+'">·</span></span></div><div><h2>'+esc(x[0])+'</h2><p>'+esc(x[1])+'</p></div></button>').join('')+'</section><section class="ai-detalle" id="aiDetalle"></section>';
+}
+function promtView(){
+ return '<header class="view-head"><p class="eyebrow">IA y automatización</p><h1>Promt</h1><p>Biblioteca de instrucciones preparadas y registro de cuáles ya se usaron.</p><div class="promt-test">El contenido actual es una prueba inicial. Esta pantalla queda preparada para ordenar nuevos prompts por sector.</div></header><div class="row" style="margin-top:22px"><span class="pill" id="promtEstado"><i></i>Leyendo…</span></div><section class="promt-layout"><div class="promt-column"><div class="promt-section-head"><h2>Preparados por sector</h2><span id="promtPreparadosTotal">·</span></div><div class="promt-stack" id="promtPreparados"></div></div><div class="promt-column"><div class="promt-section-head"><h2>Usados</h2><span id="promtUsosTotal">·</span></div><div class="card promt-history" id="promtUsos"></div></div></section>';
 }
 function cargarPromt(){
- const estado=document.getElementById('promtEstado'),cuerpo=document.getElementById('promtCuerpo');if(!estado)return;
+ const estado=document.getElementById('promtEstado'),preparados=document.getElementById('promtPreparados'),usos=document.getElementById('promtUsos');if(!estado||!preparados||!usos)return;
  fetch('/_tdt/promt',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(e=>{
-  if(!document.getElementById('promtCuerpo'))return;
+  if(!document.getElementById('promtPreparados'))return;
   estado.className='pill on';estado.innerHTML='<i></i>Registro local';
   PROMT_DATA=e;
   const titulo=id=>{const p=e.preparados.find(x=>x.id===id);return p?p.titulo:id};
   const fecha=iso=>{const t=Date.parse(iso);return t?new Date(t).toLocaleDateString('es',{day:'numeric',month:'short'}):''};
-  cuerpo.innerHTML='<article class="card promt-box"><header><h3>Preparados por sector</h3><span class="zero">'+e.preparados.length+'</span></header>'+(e.preparados.length?e.preparados.map(p=>'<div class="pr"><div class="pr-top"><div><b>'+esc(p.titulo)+'</b><small>'+esc(p.sector)+(p.para?' · '+esc(p.para):'')+(p.autor?' · por '+esc(p.autor):'')+'</small></div><div class="pr-btns"><button type="button" data-verpr="'+esc(p.id)+'">Ver</button><button type="button" data-copy="'+esc(p.id)+'">Copiar</button></div></div><pre class="pr-text" id="pr-'+esc(p.id)+'" hidden>'+esc(p.texto)+'</pre></div>').join(''):'<div class="promt-empty">Todavía vacío</div>')+'</article>'
-   +'<article class="card promt-box"><header><h3>Usados</h3><span class="zero">'+e.usos.length+'</span></header>'+(e.usos.length?e.usos.map(u=>'<div class="us"><b>'+esc(u.agente||'IA')+'</b><span>usó «'+esc(titulo(u.promptId))+'»</span><small>'+esc(fecha(u.fecha))+(u.nota?' · '+esc(u.nota):'')+'</small></div>').join(''):'<div class="promt-empty">Todavía vacío</div>')+'</article>';
- }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión';cuerpo.innerHTML=''});
+  document.getElementById('promtPreparadosTotal').textContent=e.preparados.length;
+  document.getElementById('promtUsosTotal').textContent=e.usos.length;
+  preparados.innerHTML=e.preparados.length?e.preparados.map(p=>'<article class="card promt-item"><header><div><span class="sector">'+esc(p.sector||'Sin sector')+'</span><h2>'+esc(p.titulo)+'</h2><p class="para">'+esc(p.para||'Uso todavía no definido')+'</p></div><div class="pr-btns"><button type="button" data-verpr="'+esc(p.id)+'">Ver</button><button type="button" data-copy="'+esc(p.id)+'">Copiar</button></div></header><pre class="pr-text" id="pr-'+esc(p.id)+'" hidden>'+esc(p.texto)+'</pre><footer>'+(p.autor?'Preparado por '+esc(p.autor):'Autor sin registrar')+'</footer></article>').join(''):'<div class="card promt-empty">Todavía no hay prompts preparados</div>';
+  usos.innerHTML=e.usos.length?e.usos.map(u=>'<div class="us"><b>'+esc(u.agente||'IA')+'</b><span>usó «'+esc(titulo(u.promptId))+'»</span><small>'+esc(fecha(u.fecha))+(u.nota?' · '+esc(u.nota):'')+'</small></div>').join(''):'<div class="promt-empty">Todavía no hay usos registrados</div>';
+ }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión';preparados.innerHTML='';usos.innerHTML=''});
 }
 function memoryMarkup(text){
  return String(text).split('\n').map(l=>{
@@ -496,7 +502,10 @@ function cargarMapa(){
   const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([nombre,i,hijos])=>hijos.length===1
     ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1])+'</li>'
     :'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
-  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa;
+  // Tercer nodo del mapa: Roles. Por ahora solo el primero.
+  const ROLES=[['Guardián del sistema','<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>']];
+  const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(([n,ic])=>'<li><span class="node"><svg viewBox="0 0 24 24">'+ic+'</svg><b>'+esc(n)+'</b></span></li>').join('')+'</ul></li></ul></section>';
+  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }
 function architecture(){return '<header class="view-head"><button class="back" data-page="inicio">← Inicio</button><h1>Arquitectura</h1><p>El mapa que ordena Dirección, negocios, memoria, infraestructura y ejecución.</p></header><div class="section-head"><h2>Áreas</h2><span>'+SYSTEM.length+'</span></div><section class="system-grid">'+cards()+'</section>'}
@@ -509,14 +518,16 @@ function detail(id,from){
 function render(next,detailId){
  const page=next||'inicio';
  document.querySelectorAll('#nav [data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===page));
+ const promtNav=document.querySelector('#nav [data-page="promt"]');if(promtNav)promtNav.classList.toggle('open',IA_SUB_OPEN);
  const title=detailId?DETAIL[detailId]?.title:(page in NAMES?NAMES[page]:(DETAIL[page]?.title||page));
  document.getElementById('crumb').innerHTML='System'+(title?' <span style="opacity:.4">/</span> <b>'+esc(title)+'</b>':'');
  document.body.classList.toggle('inicio',page==='inicio'&&!detailId);
  const app=document.getElementById('app');
- app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():page==='mapa'?mapa():page==='memoria'?memoryView():page==='automatizacion'?aiView():page==='direccion'?directionView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
+ app.innerHTML=detailId?detail(detailId,'sistema'):page==='inicio'?home():page==='mapa'?mapa():page==='memoria'?memoryView():page==='automatizacion'?aiView():page==='promt'?promtView():page==='direccion'?directionView():page==='global'?globalView():page==='growth'?growthView():page==='digital'?digitalView():page==='sistema'?architecture():detail(page);
  if(page==='mapa'&&!detailId)cargarMapa();
  if(page==='memoria'&&!detailId)cargarMemoria();
- if(page==='automatizacion'&&!detailId){cargarPromt();cargarIa()}
+ if(page==='automatizacion'&&!detailId)cargarIa();
+ if(page==='promt'&&!detailId)cargarPromt();
  if(page==='direccion'&&!detailId)cargarDireccion();
  app.style.animation='none';void app.offsetWidth;app.style.animation='';
  try{history.replaceState(null,'','#'+(detailId?'sistema/'+detailId:page))}catch{}
@@ -533,7 +544,7 @@ document.addEventListener('click',e=>{
  const m=e.target.closest('[data-memory]');if(m){const panel=document.getElementById('memory-'+m.dataset.memory),was=panel.classList.contains('open');document.querySelectorAll('.memory-content.open').forEach(x=>x.classList.remove('open'));if(!was)panel.classList.add('open');return}
  const f=e.target.closest('[data-fold]');if(f){f.parentElement.classList.toggle('open');return}
  const d=e.target.closest('[data-detail]');if(d){render('sistema',d.dataset.detail);return}
- const p=e.target.closest('button[data-page]');if(p)render(p.dataset.page);
+ const p=e.target.closest('button[data-page]');if(p){const destino=p.dataset.page,actual=document.querySelector('#nav button.active')?.dataset.page;if(destino==='automatizacion'){IA_SUB_OPEN=!(actual==='automatizacion'&&IA_SUB_OPEN);render('automatizacion');return}if(destino!=='promt')IA_SUB_OPEN=false;render(destino)}
 });
 document.addEventListener('submit',e=>{
  if(e.target.id!=='direccionInbox')return;e.preventDefault();if(!DIR_DATA)return;
