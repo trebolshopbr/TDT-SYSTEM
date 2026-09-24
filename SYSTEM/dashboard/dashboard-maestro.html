@@ -490,12 +490,12 @@ function cargarMapa(){
   const rama=c=>{const hijos=(c.children||[]).filter(h=>h.dir);
    return '<li>'+node(c.name,S[c.name],'top',hijos.length>0,hijos.length,c.name)+(hijos.length?'<ul>'+hijos.map(h=>'<li>'+node(h.name,S[c.name+'/'+h.name],'',false,0,c.name+'/'+h.name)+'</li>').join('')+'</ul>':'')+'</li>'};
   // Segundo nodo del mapa: IA → Claude, GPT, Antigravity (cada herramienta con el avatar de sus chats registrados).
-  const HERR=[['claude-code','Claude',1],['gpt-work','GPT',0],['antigravity-ide','Antigravity',2]];
+  const HERR=[['Claude',1,[['Claude Code local','claude-code'],['Claude Code nube','claude-nube']]],['GPT',0,[['GPT Chrome','gpt-chrome'],['Codex Work','gpt-work']]],['Antigravity IDE',2,[['Antigravity IDE','antigravity-ide']]]];
   const nodoIa=(nombre,icono,id)=>{const h=ia&&ia.herramientas&&ia.herramientas[id];const avs=h?h.activos.filter(a=>a.agente).map(a=>'<span class="qv'+(a.estado==='terminado'?' fin':'')+'" title="'+esc(a.agente.nombre)+'">'+avatar(a.agente,'av-xs')+'</span>').join(''):'';
    return '<span class="node"><svg viewBox="0 0 24 24">'+icono+'</svg><b>'+esc(nombre)+'</b>'+(avs?'<span class="qvs">'+avs+'</span>':'')+'</span>'};
-  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([id,nombre,i])=>id==='claude-code'
-    ?'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul><li>'+nodoIa('Claude Code local',AI_TOOLS[i][2],'claude-code')+'</li><li>'+nodoIa('Claude Code nube',AI_TOOLS[i][2],'claude-nube')+'</li></ul></li>'
-    :'<li>'+nodoIa(nombre,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li></ul></section>';
+  const arbolIa='<section class="card tree" style="margin-top:12px"><ul><li>'+node('IA','','root',true)+'<ul>'+HERR.map(([nombre,i,hijos])=>hijos.length===1
+    ?'<li>'+nodoIa(nombre,AI_TOOLS[i][2],hijos[0][1])+'</li>'
+    :'<li><button type="button" class="node" data-fold>'+chev+'<svg viewBox="0 0 24 24">'+AI_TOOLS[i][2]+'</svg><b>'+esc(nombre)+'</b></button><ul>'+hijos.map(([n,id])=>'<li>'+nodoIa(n,AI_TOOLS[i][2],id)+'</li>').join('')+'</ul></li>').join('')+'</ul></li></ul></section>';
   cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }

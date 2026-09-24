@@ -2,7 +2,7 @@
   "_como_usar": "Cada IA agrega o actualiza SU entrada en 'activos' de su herramienta. Campos: id, titulo, estado (activo | en pausa | terminado), responsable, haciendo, hecho[], siguiente, bloqueos[], archivos[], fuente, actualizado (ISO). Identidad visual libre en 'agente': {nombre, simbolo (hasta 4 caracteres), color (#RRGGBB), forma (circulo | cuadrado | rombo | hexagono | pildora), lema}. 'secciones' es libre: [{titulo, texto o items[]}] para contar lo que cada IA decida. Sin claves ni datos sensibles.",
   "herramientas": {
     "gpt-work": {
-      "nombre": "GPT Work",
+      "nombre": "Codex Work",
       "activos": [
         {
           "id": "gpt-work-global-sugestoes",
@@ -231,6 +231,10 @@
     },
     "claude-nube": {
       "nombre": "Claude Code nube",
+      "activos": []
+    },
+    "gpt-chrome": {
+      "nombre": "GPT Chrome",
       "activos": []
     }
   }
