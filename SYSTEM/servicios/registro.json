@@ -1,0 +1,77 @@
+{
+  "_como_usar": "Lista de los servicios externos donde vive TDT. Solo nombres, dominios y para qué sirve cada cosa: nunca claves ni datos secretos. La mantiene el Publicador cuando publica o cambia un dominio.",
+  "actualizado": "2026-09-24T01:59:30Z",
+  "servicios": [
+    {
+      "id": "vercel",
+      "nombre": "Vercel",
+      "para": "Publica lo que se ve en internet",
+      "hijos": [
+        {
+          "nombre": "tdt.systems",
+          "detalle": "Portada y landings",
+          "tecnico": "proyecto Vercel: tdt-landing"
+        },
+        {
+          "nombre": "global.tdt.systems",
+          "detalle": "App de Global",
+          "tecnico": "proyecto Vercel: global-tdt"
+        }
+      ]
+    },
+    {
+      "id": "github",
+      "nombre": "GitHub",
+      "para": "Guarda el código",
+      "hijos": [
+        {
+          "nombre": "TDT-SYSTEM",
+          "detalle": "Repositorio, rama main",
+          "tecnico": "trebolshopbr/TDT-SYSTEM"
+        }
+      ]
+    },
+    {
+      "id": "supabase",
+      "nombre": "Supabase",
+      "para": "Guarda los datos",
+      "hijos": [
+        {
+          "nombre": "Global",
+          "detalle": "Base de datos de la app de los socios",
+          "tecnico": "proyecto Supabase: drnjdufklfihowrjxfdd"
+        },
+        {
+          "nombre": "System",
+          "detalle": "Ya no se usa para entrar a System",
+          "tecnico": "proyecto Supabase: zffjultbznluqzweiuxj"
+        }
+      ]
+    },
+    {
+      "id": "namecheap",
+      "nombre": "Namecheap",
+      "para": "Es donde está el dominio",
+      "hijos": [
+        {
+          "nombre": "tdt.systems",
+          "detalle": "Dominio principal, apunta a Vercel",
+          "hijos": [
+            {
+              "nombre": "www",
+              "detalle": "Lleva a la portada"
+            },
+            {
+              "nombre": "global",
+              "detalle": "Lleva a la app de Global"
+            },
+            {
+              "nombre": "app",
+              "detalle": "Reservado para System, todavía sin publicar"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

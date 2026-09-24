@@ -268,6 +268,13 @@ li.open>.old-list{display:flex}
 .qb{cursor:pointer;border:0;background:none;padding:0;border-radius:50%}
 .qb:hover{filter:brightness(1.25)}
 .qb.on{outline:1.5px solid rgba(255,255,255,.55);outline-offset:2px}
+.node em{white-space:normal}
+.serv .node em{display:none}
+.serv li.open>.node em{display:none}
+.serv .node.info em,.serv li.open>.node.info em{display:inline}
+.ico-b{display:inline-flex;cursor:pointer;border-radius:8px}
+.ico-b:hover{filter:brightness(1.4)}
+.serv .node.info{border-color:var(--edge2)}
 .ia-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:12px}
 .ia-chip{display:flex;align-items:center;gap:14px;padding:16px 18px}
 .ia-chip b{display:block;font-size:14.5px;font-weight:500;color:var(--ac,#fff)}
@@ -490,7 +497,7 @@ const fsvg='<svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012
 function cargarMapa(){
  const estado=document.getElementById('mapaEstado'),cuerpo=document.getElementById('mapaCuerpo');if(!estado)return;
  estado.className='pill';estado.innerHTML='<i></i>Leyendo…';
- Promise.all([fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('/_tdt/roles',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([e,ia,ro])=>{
+ Promise.all([fetch('/_tdt/estructura',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}),fetch('/_tdt/ia',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('/_tdt/roles',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),fetch('/_tdt/servicios',{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)]).then(([e,ia,ro,sv])=>{
   if(!document.getElementById('mapaCuerpo'))return;
   estado.className='pill on';estado.innerHTML='<i></i>Leído '+new Date(e.actualizado).toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit',hour12:false});
   const S=e.simple||{},orden=['SYSTEM','GLOBAL','GROWTH','DIGITAL','PERSONAL'];
@@ -532,7 +539,15 @@ function cargarMapa(){
     +(r.hace.length?'<li id="rd-'+n+'"'+(chats.length?' hidden':'')+'><div class="rol-hace"><ul>'+r.hace.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div></li>':'')
     +'</ul></li>'};
   const arbolRoles='<section class="card tree" style="margin-top:12px"><ul><li>'+node('Roles','','root',true)+'<ul>'+ROLES.map(rama_rol).join('')+'</ul></li></ul></section>';
-  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles;
+  // Cuarto nodo del mapa: Servicios (Vercel, GitHub, Supabase, Namecheap), leídos de SYSTEM/servicios/registro.json.
+  const ICO_SERV={vercel:'<path d="M12 4l9 16H3z"/>',github:'<circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 7v10M18 11c0 4-6 3-11 6"/>',supabase:'<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/>',namecheap:'<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>'};
+  const PUNTO='<circle cx="12" cy="12" r="3"/>';
+  const ramaServ=(n,ic)=>{
+   const txt=n.para||n.detalle;
+   const cab='<span class="ico-b" data-info title="Qué es"><svg viewBox="0 0 24 24">'+ic+'</svg></span><b>'+esc(n.nombre)+'</b>'+(txt?'<em>'+esc(txt)+'</em>':'');
+   return n.hijos&&n.hijos.length?'<li><button type="button" class="node" data-fold>'+chev+cab+'</button><ul>'+n.hijos.map(h=>ramaServ(h,PUNTO)).join('')+'</ul></li>':'<li><span class="node">'+cab+'</span></li>'};
+  const arbolServ=sv&&sv.servicios&&sv.servicios.length?'<section class="card tree serv" style="margin-top:12px"><ul><li>'+node('Servicios','','root',true)+'<ul>'+sv.servicios.map(x=>ramaServ(x,ICO_SERV[x.id]||PUNTO)).join('')+'</ul></li></ul></section>':'';
+  cuerpo.innerHTML='<section class="card tree"><ul><li>'+node('TDT','','root',true)+'<ul>'+dirs.map(rama).join('')+'</ul></li></ul></section>'+arbolIa+arbolRoles+arbolServ;
  }).catch(()=>{estado.className='pill';estado.innerHTML='<i></i>Sin conexión con el servidor local';cuerpo.innerHTML=''});
 }
 function architecture(){return '<header class="view-head"><button class="back" data-page="inicio">← Inicio</button><h1>Arquitectura</h1><p>El mapa que ordena Dirección, negocios, memoria, infraestructura y ejecución.</p></header><div class="section-head"><h2>Áreas</h2><span>'+SYSTEM.length+'</span></div><section class="system-grid">'+cards()+'</section>'}
@@ -565,6 +580,7 @@ document.addEventListener('click',e=>{
  const cp=e.target.closest('[data-copy]');if(cp){const p=PROMT_DATA&&PROMT_DATA.preparados.find(x=>x.id===cp.dataset.copy);if(p)copiar(p.texto,cp);return}
  const vp=e.target.closest('[data-verpr]');if(vp){const el=document.getElementById('pr-'+vp.dataset.verpr);if(el){el.hidden=!el.hidden;vp.textContent=el.hidden?'Ver':'Ocultar'}return}
  const ai=e.target.closest('[data-ai]');if(ai){IA_SEL=IA_SEL===ai.dataset.ai?null:ai.dataset.ai;pintarIa();return}
+ const inf=e.target.closest('[data-info]');if(inf){const nd=inf.closest('.node');if(nd)nd.classList.toggle('info');return}
  if(e.target.closest('#mapaRefrescar')){cargarMapa();return}
  if(e.target.closest('#memoriaRefrescar')){cargarMemoria();return}
  if(e.target.closest('#direccionGuardar')){guardarDireccion();return}

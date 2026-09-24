@@ -30,5 +30,11 @@ test('AI registry is served to the dashboard and only with a session',async()=>{
   assert.equal(ro.roles[0].herramienta,'claude-code');
   const dir=ro.roles.find(x=>x.nombre==='Dirección');
   assert.ok(dir&&dir.herramienta==='gpt-chrome'&&dir.hace.length>=3);
+  assert.equal((await fetch(origin+'/_tdt/servicios')).status,401);
+  const sv=await (await fetch(openOrigin+'/_tdt/servicios')).json();
+  assert.deepEqual(sv.servicios.map(x=>x.id),['vercel','github','supabase','namecheap']);
+  assert.ok(!JSON.stringify(sv).match(/service_role|sb_secret|eyJ/));
+  const pub=ro.roles.find(x=>x.nombre==='Publicador');
+  assert.ok(pub&&pub.herramienta==='antigravity-ide'&&pub.hace.length>=3);
  }finally{server.closeAllConnections();server.close();open.closeAllConnections();open.close()}
 });

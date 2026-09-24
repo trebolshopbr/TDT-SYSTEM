@@ -18,6 +18,7 @@ Toda IA que trabaje aquí (Claude Code, Antigravity IDE, GPT Work) registra lo q
 - Hay dos logins distintos a propósito: el de TT (sistema/admin) y el de cada proyecto (equipo). No mezclarlos.
 - En local: portada, landings y System en http://localhost:8790 (`./abrir.sh`); app Global en http://localhost:3000 (`cd GLOBAL && npm run dev`)). Cada app se abre por separado; System no arranca ninguna.
 - Trabajo local por defecto: no desplegar a Vercel ni tocar dominios sin pedido explícito de TT.
+- Ritmo ligero: en construcción no se sube cada cambio a GitHub (una vez al día o cuando TT lo pida) ni se anota cada detalle en la bitácora (un resumen por bloque de trabajo). Protocolo extra solo al publicar, cambiar la base de datos real o borrar.
 - Para publicar la portada en `tdt.systems`, primero ejecutar `SYSTEM/deploy/armar-landing.sh` y desplegar desde `_registro/deploy-landing`. Nunca desplegar `SYSTEM/landing-sistema` directo: las landings de Global, Growth y Digital viven en sus carpetas y quedarían en 404.
 
 Mientras continúen dentro de un solo repositorio, estas fronteras deben mantenerse conceptualmente separadas.

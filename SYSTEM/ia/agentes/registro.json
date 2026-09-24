@@ -119,7 +119,7 @@
           "titulo": "Sesión local en TDT NUEVO",
           "estado": "activo",
           "responsable": "claude system1 · Claude Code (Sonnet 5), sesión local en la Mac de TT",
-          "haciendo": "Esperando la siguiente instrucción de TT.",
+          "haciendo": "Verificando el cambio de dominios que hizo Antigravity y definiendo roles con TT, en orden. Espera la decisión sobre el tercer rol.",
           "hecho": [
             "Ordenó TDT NUEVO: cada proyecto con su landing en su carpeta y lo viejo archivado en TDT_REVISION",
             "Creó SYSTEM/memoria: mapa, estado, decisiones, bitácora y revisión para que las IA se orienten",
@@ -130,11 +130,12 @@
             "Corrigió tdt.systems: Global, Growth y Digital volvieron a abrir (estaban en 404 tras un deploy incompleto)",
             "Creó SYSTEM/deploy/armar-landing.sh para que ninguna IA vuelva a publicar la portada incompleta",
             "Hizo que el mapa muestre qué IA trabaja en cada carpeta",
-            "Agregó al mapa el 'hace cuánto' de cada IA y el atenuado automático de lo viejo o terminado"
+            "Agregó al mapa el 'hace cuánto' de cada IA y el atenuado automático de lo viejo o terminado",
+            "Verificó que global.tdt.systems sirve la app Global, que tdt.systems enlaza a ese login y que app.tdt.systems quedó reservado para System"
           ],
           "siguiente": "Esperar la instrucción de TT.",
           "bloqueos": [
-            "global.tdt.systems no existe en el DNS: TT debe crear el registro CNAME en Namecheap"
+            "El PIN y el dashboard maestro no están publicados: hace falta un servidor para validarlos (app.tdt.systems está reservado para System)"
           ],
           "archivos": [
             "SYSTEM/dashboard/dashboard-maestro.html",
@@ -144,7 +145,7 @@
             "SYSTEM/deploy/armar-landing.sh"
           ],
           "fuente": "SYSTEM/memoria/bitacora.md",
-          "actualizado": "2026-09-24T00:50:58Z",
+          "actualizado": "2026-09-24T01:44:16Z",
           "agente": {
             "nombre": "claude system1",
             "simbolo": "◑",
@@ -207,9 +208,47 @@
       "nombre": "Antigravity IDE",
       "activos": [
         {
+          "id": "antigravity-ide-publicador",
+          "titulo": "Publicador",
+          "estado": "activo",
+          "responsable": "publicador · Antigravity IDE (Gemini Flash), sesión local con TT",
+          "haciendo": "Esperando autenticación de GitHub para completar el push a main",
+          "hecho": [
+            "Leyó completo publicador.md y AGENTS.md.",
+            "Confirmó el rol de Publicador y sus límites ante TT.",
+            "Registró su identidad visual y operativa en antigravity-ide.",
+            "Revisó git status y comprobó ausencia de claves, .env y archivos pesados.",
+            "Ejecutó y validó las pruebas de runtime (3/3 pasaron).",
+            "Creó el commit local en main con roles, servicios, mapa, servidor, pruebas y bitácora."
+          ],
+          "siguiente": "Confirmar sincronización con origin/main en cuanto se complete el push.",
+          "bloqueos": [
+            "La terminal requiere credenciales de GitHub (https://github.com) no guardadas en el llavero."
+          ],
+          "archivos": [
+            "SYSTEM/roles/publicador.md",
+            "SYSTEM/servicios/registro.json",
+            "SYSTEM/runtime/servicios.mjs",
+            "SYSTEM/runtime/server.mjs",
+            "SYSTEM/runtime/tests/ia.test.mjs",
+            "SYSTEM/memoria/bitacora.md",
+            "SYSTEM/memoria/mapa.md",
+            "SYSTEM/ia/agentes/registro.json"
+          ],
+          "fuente": "SYSTEM/roles/publicador.md y pedido directo de TT",
+          "actualizado": "2026-09-24T02:08:00Z",
+          "agente": {
+            "nombre": "publicador",
+            "simbolo": "✦",
+            "color": "#E11D48",
+            "forma": "pildora",
+            "lema": "Solo sale lo comprobado y pedido."
+          }
+        },
+        {
           "id": "antigravity-ide-local-tdt-nuevo",
           "titulo": "Sesión Antigravity IDE en TDT NUEVO",
-          "estado": "activo",
+          "estado": "terminado",
           "responsable": "antigravity core · Antigravity IDE, sesión de desarrollo con TT",
           "haciendo": "Sincronizando el repositorio GitHub main, gobernando deploys con armar-landing.sh y registrando la constancia del agente.",
           "hecho": [
@@ -263,7 +302,30 @@
     },
     "gpt-chrome": {
       "nombre": "GPT Chrome",
-      "activos": []
+      "activos": [
+        {
+          "id": "gpt-chrome-direccion",
+          "titulo": "Dirección",
+          "estado": "activo",
+          "responsable": "Faro · GPT Chrome",
+          "haciendo": "Esperando que TT le cuente qué está pasando hoy",
+          "hecho": [],
+          "siguiente": "Esperar el relato de TT.",
+          "bloqueos": [],
+          "archivos": [
+            "SYSTEM/direccion/estado.json"
+          ],
+          "fuente": "Pedido directo de TT",
+          "actualizado": "2026-09-24T01:40:33Z",
+          "agente": {
+            "nombre": "Faro",
+            "simbolo": "◉",
+            "color": "#168C6B",
+            "forma": "circulo",
+            "lema": "Ordenar sin decidir."
+          }
+        }
+      ]
     }
   }
 }

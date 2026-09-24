@@ -8,6 +8,7 @@ import { memoria } from './memoria.mjs';
 import { promt } from './promt.mjs';
 import { ia } from './ia.mjs';
 import { roles } from './roles.mjs';
+import { servicios } from './servicios.mjs';
 import { guardarDireccion, leerDireccion } from './direccion.mjs';
 
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.css':'text/css'};
@@ -86,6 +87,10 @@ export function createTdtServer({root,verifyUser,pinStore=null,requirePin=true})
    if(path==='/_tdt/memoria'){
     if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
     return respond(res,200,JSON.stringify(await memoria(root)),{'Content-Type':'application/json'});
+   }
+   if(path==='/_tdt/servicios'){
+    if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
+    return respond(res,200,JSON.stringify(await servicios(root)),{'Content-Type':'application/json'});
    }
    if(path==='/_tdt/roles'){
     if(!user)return respond(res,401,'{"error":"Unauthorized"}',{'Content-Type':'application/json'});
